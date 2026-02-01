@@ -1,0 +1,85 @@
+/* brutal-nav - Nav brutaliste chaotique avec status */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--chaos-void, #0a0a0a);
+  border-bottom: 3px solid var(--chaos-blood, #ff0040);
+  font-family: var(--chaos-font-mono, 'Space Mono', monospace);
+}
+
+.inner { display: flex; align-items: stretch; height: 60px; }
+
+.brand {
+  background: var(--chaos-blood, #ff0040);
+  color: var(--chaos-void, #0a0a0a);
+  font-family: var(--chaos-font-display, 'Bebas Neue', sans-serif);
+  font-size: 1.5rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.links { display: flex; flex: 1; }
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chaos-bone-dark, #888);
+  text-decoration: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: all 0.15s;
+}
+
+.link:hover { background: var(--chaos-blood, #ff0040); color: var(--chaos-void, #0a0a0a); }
+
+.linkActive {
+  background: rgba(255, 0, 64, 0.1);
+  color: var(--chaos-blood, #ff0040);
+}
+
+.linkActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--chaos-blood, #ff0040);
+}
+
+.status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statusItem { display: flex; flex-direction: column; gap: 0.2rem; }
+.statusLabel { font-size: 0.5rem; color: var(--chaos-bone-dark, #666); letter-spacing: 0.2em; text-transform: uppercase; }
+.statusValue { font-size: 0.7rem; color: var(--chaos-blood, #ff0040); font-weight: bold; }
+.statusOnline { display: flex; align-items: center; gap: 0.5rem; }
+
+.dot { width: 8px; height: 8px; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+.dotOnline { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
+.dotOffline { background: #ff0040; }
+.dotWarning { background: #ffaa00; animation: blink 0.5s infinite; }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes blink { 50% { opacity: 0; } }
+
+.variantHeavy { border-bottom-width: 5px; }
+.variantHeavy .brand { clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); padding-right: 3rem; }
+.variantDouble { border-bottom: 2px solid var(--chaos-blood, #ff0040); box-shadow: 0 4px 0 0 var(--chaos-blood, #ff0040); }

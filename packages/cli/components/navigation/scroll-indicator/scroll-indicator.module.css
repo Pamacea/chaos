@@ -1,0 +1,82 @@
+/* scroll-indicator - Indicateur de scroll vertical avec texte */
+.container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.track {
+  width: 2px;
+  height: 100px;
+  background: var(--chaos-iron, #2a2820);
+  position: relative;
+  border-radius: 1px;
+}
+
+.thumb {
+  width: 6px;
+  height: 20px;
+  background: var(--chaos-gold, #c9a227);
+  position: absolute;
+  left: -2px;
+  top: 0;
+  border-radius: 3px;
+  transition: top 0.3s ease-out;
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+.text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--chaos-font-serif, 'Cinzel', serif);
+  font-size: 0.5rem;
+  letter-spacing: 0.4em;
+  color: var(--chaos-bone-dark, #9a8b6f);
+  transform: rotate(180deg);
+  text-transform: uppercase;
+}
+
+.arrow {
+  animation: bounce 2s ease-in-out infinite;
+  color: var(--chaos-gold, #c9a227);
+  font-size: 0.8rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(5px); opacity: 0.5; }
+}
+
+.variantBlood .track { background: rgba(255, 0, 64, 0.2); }
+.variantBlood .thumb { background: var(--chaos-blood, #ff0040); box-shadow: 0 0 10px rgba(255, 0, 64, 0.5); }
+.variantBlood .text { color: var(--chaos-bone-dark, #666); }
+.variantBlood .arrow { color: var(--chaos-blood, #ff0040); }
+
+.variantMinimal .track { width: 1px; height: 60px; }
+.variantMinimal .thumb { width: 3px; height: 10px; left: -1px; }
+.variantMinimal .text { display: none; }
+
+.positionLeft { left: 0; right: auto; }
+.positionLeft .text { transform: rotate(0deg); }
+
+.percentage {
+  font-family: var(--chaos-font-mono, monospace);
+  font-size: 0.6rem;
+  color: var(--chaos-gold, #c9a227);
+  margin-top: 0.5rem;
+}
+
+.variantBlood .percentage { color: var(--chaos-blood, #ff0040); }

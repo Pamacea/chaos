@@ -1,0 +1,111 @@
+/* dead-button - Bouton détruit/glitché avec layers */
+.container {
+  position: relative;
+  width: 280px;
+  height: 60px;
+  animation: btnShake 0.1s infinite;
+  cursor: not-allowed;
+}
+
+.container:hover { animation: btnShakeHard 0.05s infinite; }
+
+@keyframes btnShake {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(0.5px, 0.5px); }
+  50% { transform: translate(-0.5px, -0.5px); }
+  75% { transform: translate(0.5px, -0.5px); }
+}
+
+@keyframes btnShakeHard {
+  0%, 100% { transform: translate(0) rotate(0); }
+  25% { transform: translate(2px, 1px) rotate(0.5deg); }
+  50% { transform: translate(-1px, -2px) rotate(-0.5deg); }
+  75% { transform: translate(1px, -1px) rotate(0.3deg); }
+}
+
+.clean {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  letter-spacing: 0.02em;
+}
+
+.gradient2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4); }
+.gradient3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4); }
+.gradient4 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4); }
+
+.icon { font-size: 1.1rem; }
+
+.destroy {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 0, 64, 0.1) 2px, rgba(255, 0, 64, 0.1) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.3) 3px, rgba(0, 0, 0, 0.3) 4px);
+  border-radius: 16px;
+  mix-blend-mode: multiply;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  animation: noiseMove 0.2s steps(5) infinite;
+}
+
+@keyframes noiseMove {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-1px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.glitch1, .glitch2 { position: absolute; inset: 0; border-radius: 16px; pointer-events: none; }
+.glitch1 { background: var(--chaos-blood, #ff0040); mix-blend-mode: color-dodge; opacity: 0; animation: glitchSlice1 3s infinite; }
+.glitch2 { background: cyan; mix-blend-mode: color-dodge; opacity: 0; animation: glitchSlice2 3s infinite; }
+
+@keyframes glitchSlice1 {
+  0%, 89%, 91%, 93%, 95%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  90% { opacity: 0.8; clip-path: inset(20% 0 60% 0); transform: translateX(-5px); }
+  92% { opacity: 0.6; clip-path: inset(50% 0 30% 0); transform: translateX(3px); }
+  94% { opacity: 0.7; clip-path: inset(70% 0 10% 0); transform: translateX(-2px); }
+}
+
+@keyframes glitchSlice2 {
+  0%, 89%, 91%, 93%, 95%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  90% { opacity: 0.5; clip-path: inset(30% 0 50% 0); transform: translateX(4px); }
+  92% { opacity: 0.4; clip-path: inset(10% 0 70% 0); transform: translateX(-3px); }
+  94% { opacity: 0.6; clip-path: inset(60% 0 20% 0); transform: translateX(5px); }
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  right: -10px;
+  height: 3px;
+  background: var(--chaos-blood, #ff0040);
+  transform: rotate(-3deg);
+  box-shadow: 0 0 10px var(--chaos-blood, #ff0040);
+}
+
+.noStrike::after { display: none; }
+.sizeSm { width: 200px; height: 45px; }
+.sizeSm .clean { font-size: 0.85rem; border-radius: 12px; }
+.sizeLg { width: 340px; height: 70px; }
+.sizeLg .clean { font-size: 1.2rem; border-radius: 20px; }

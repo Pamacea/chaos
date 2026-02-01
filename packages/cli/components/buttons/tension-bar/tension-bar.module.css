@@ -1,0 +1,105 @@
+/* tension-bar - Barre de tension/progression dramatique */
+.container {
+  width: 100%;
+  position: relative;
+  font-family: var(--chaos-font-mono, 'Space Mono', monospace);
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.labelLeft { color: var(--chaos-bone-dark, #666); }
+.labelRight { color: var(--chaos-blood, #ff0040); }
+
+.track {
+  height: 8px;
+  background: var(--chaos-iron, #222);
+  position: relative;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: var(--chaos-blood, #ff0040);
+  transition: width 0.5s ease-out;
+  position: relative;
+}
+
+.fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.percentage {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-size: 0.7rem;
+  color: var(--chaos-blood, #ff0040);
+  font-weight: bold;
+}
+
+.markers { display: flex; justify-content: space-between; margin-top: 0.3rem; }
+.marker { width: 1px; height: 6px; background: var(--chaos-iron, #333); }
+.markerActive { background: var(--chaos-blood, #ff0040); }
+
+.variantGold .fill { background: linear-gradient(to right, var(--chaos-gold-dark, #8b7017), var(--chaos-gold, #c9a227)); }
+.variantGold .labelRight, .variantGold .percentage { color: var(--chaos-gold, #c9a227); }
+.variantGold .markerActive { background: var(--chaos-gold, #c9a227); }
+
+.variantDanger .fill { background: var(--chaos-blood, #ff0040); }
+.variantDanger.high .fill { animation: dangerPulse 0.5s ease-in-out infinite; }
+.variantDanger.high .track { animation: dangerGlow 0.5s ease-in-out infinite; }
+
+@keyframes dangerPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+@keyframes dangerGlow {
+  0%, 100% { box-shadow: 0 0 5px var(--chaos-blood, #ff0040); }
+  50% { box-shadow: 0 0 15px var(--chaos-blood, #ff0040); }
+}
+
+.variantSegmented .track { display: flex; gap: 2px; background: transparent; }
+.segment { flex: 1; height: 8px; background: var(--chaos-iron, #222); transition: background 0.3s; }
+.segmentFilled { background: var(--chaos-blood, #ff0040); }
+
+.sizeSm .track, .sizeSm .segment { height: 4px; }
+.sizeLg .track, .sizeLg .segment { height: 16px; }
+
+.withText .track { height: 30px; display: flex; align-items: center; padding: 0 1rem; }
+.innerText {
+  position: absolute;
+  left: 1rem;
+  font-size: 0.7rem;
+  color: var(--chaos-bone, #e8e8e8);
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.animated .fill {
+  background: repeating-linear-gradient(45deg, var(--chaos-blood, #ff0040), var(--chaos-blood, #ff0040) 10px, #cc0033 10px, #cc0033 20px);
+  background-size: 200% 100%;
+  animation: stripeMove 1s linear infinite;
+}
+
+@keyframes stripeMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 28px 0; }
+}

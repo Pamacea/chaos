@@ -1,0 +1,142 @@
+.container {
+  position: relative;
+  display: inline-block;
+  --drip-color: #ff0040;
+}
+
+.char {
+  display: inline-block;
+  position: relative;
+}
+
+/* Drip elements */
+.drip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 0;
+  background: var(--drip-color);
+  border-radius: 0 0 50% 50%;
+  animation: drip var(--drip-duration, 2s) ease-in infinite;
+  animation-delay: var(--drip-delay, 0s);
+}
+
+.drip::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--drip-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: droplet var(--drip-duration, 2s) ease-in infinite;
+  animation-delay: var(--drip-delay, 0s);
+}
+
+@keyframes drip {
+  0% { height: 0; opacity: 1; }
+  20% { height: 20px; opacity: 1; }
+  80% { height: 60px; opacity: 1; }
+  100% { height: 80px; opacity: 0; }
+}
+
+@keyframes droplet {
+  0%, 70% { opacity: 0; transform: translateX(-50%) scale(1); }
+  75% { opacity: 1; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) scale(0) translateY(20px); }
+}
+
+/* Multiple drips per character */
+.drip.secondary {
+  left: 30%;
+  animation-delay: calc(var(--drip-delay, 0s) + 0.5s);
+}
+
+.drip.tertiary {
+  left: 70%;
+  animation-delay: calc(var(--drip-delay, 0s) + 1s);
+}
+
+/* Intensity levels */
+.light .drip {
+  width: 2px;
+}
+
+.light .drip::after {
+  width: 4px;
+  height: 4px;
+}
+
+.heavy .drip {
+  width: 6px;
+}
+
+.heavy .drip::after {
+  width: 12px;
+  height: 12px;
+}
+
+/* Color variants */
+.blood { --drip-color: #ff0040; }
+.acid { --drip-color: #aaff00; }
+.cyber { --drip-color: #00ffff; }
+.void { --drip-color: #0a0a0a; }
+.chrome { --drip-color: linear-gradient(180deg, #888 0%, #fff 50%, #888 100%); }
+
+/* Text glow matching drip */
+.glowing .char {
+  text-shadow: 0 0 10px var(--drip-color), 0 0 20px var(--drip-color);
+}
+
+/* Melting effect */
+.melting .char {
+  animation: melt 3s ease-in-out infinite;
+  animation-delay: var(--char-delay, 0s);
+}
+
+@keyframes melt {
+  0%, 100% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(1.1); transform-origin: top; }
+}
+
+/* Pooling effect at bottom */
+.pool {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--drip-color);
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(5px);
+  animation: poolGrow 3s ease-out forwards;
+}
+
+@keyframes poolGrow {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0.5; }
+}
+
+/* Hover pause */
+.pauseOnHover:hover .drip {
+  animation-play-state: paused;
+}
+
+/* Static drip (no animation) */
+.static .drip {
+  animation: none;
+  height: 40px;
+  opacity: 1;
+}
+
+.static .drip::after {
+  animation: none;
+  opacity: 1;
+  bottom: -4px;
+}

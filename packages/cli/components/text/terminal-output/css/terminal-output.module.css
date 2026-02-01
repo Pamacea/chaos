@@ -1,0 +1,203 @@
+.container {
+  font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+  background: #0a0a0a;
+  border: 1px solid #222;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Header bar */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.title {
+  font-size: 0.75rem;
+  color: #666;
+  margin-left: auto;
+  letter-spacing: 0.05em;
+}
+
+/* Content area */
+.content {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #333 #0a0a0a;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* Lines */
+.line {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+.prompt {
+  color: #00ff00;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.command {
+  color: #fafafa;
+}
+
+.output {
+  color: #888;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Line types */
+.line.error .output { color: #ff0040; }
+.line.success .output { color: #00ff00; }
+.line.warning .output { color: #ffaa00; }
+.line.info .output { color: #00ffff; }
+
+/* Typing animation */
+.typing .command::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Animated output */
+.animated .line {
+  opacity: 0;
+  animation: lineIn 0.3s forwards;
+}
+
+@keyframes lineIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Variants */
+.hacker {
+  border-color: #00ff00;
+}
+
+.hacker .header {
+  background: #001100;
+  border-color: #00ff0040;
+}
+
+.hacker .prompt { color: #00ff00; }
+.hacker .command { color: #00ff00; }
+.hacker .output { color: #00aa00; }
+
+.blood {
+  border-color: #ff0040;
+}
+
+.blood .header {
+  background: #110000;
+  border-color: #ff004040;
+}
+
+.blood .prompt { color: #ff0040; }
+.blood .command { color: #ff6666; }
+.blood .output { color: #aa4444; }
+
+.cyber {
+  border-color: #00ffff;
+}
+
+.cyber .header {
+  background: #001111;
+  border-color: #00ffff40;
+}
+
+.cyber .prompt { color: #00ffff; }
+.cyber .command { color: #88ffff; }
+.cyber .output { color: #00aaaa; }
+
+/* Scanlines overlay */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+}
+
+/* Glowing effect */
+.glowing .prompt,
+.glowing .command {
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Input line */
+.inputLine {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #222;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fafafa;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  caret-color: #00ff00;
+}
+
+.input::placeholder {
+  color: #444;
+}

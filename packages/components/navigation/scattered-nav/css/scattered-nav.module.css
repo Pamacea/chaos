@@ -1,0 +1,121 @@
+/* scattered-nav - Nav éclatée/fragments positionnés aléatoirement */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 60px;
+  background: var(--chaos-void, #0a0a0a);
+  border-bottom: 1px solid var(--chaos-blood, #ff0040);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  height: 100%;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--chaos-font-mono, 'Space Mono', monospace);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+  color: var(--chaos-bone-dark, #888);
+  text-decoration: none;
+}
+
+.item:hover {
+  background: var(--chaos-blood, #ff0040);
+  color: var(--chaos-void, #0a0a0a);
+}
+
+/* Scattered positions - each item slightly offset */
+.scattered1 { transform: translateY(3px); }
+.scattered2 { transform: rotate(-2deg); border-left: 1px solid var(--chaos-blood, #ff0040); }
+.scattered3 { transform: translateY(-2px) rotate(1deg); }
+.scattered4 { transform: translateX(-3px); }
+.scattered5 { transform: rotate(1.5deg) translateY(1px); }
+
+/* Logo variant */
+.logo {
+  background: var(--chaos-blood, #ff0040);
+  color: var(--chaos-void, #0a0a0a);
+  font-family: var(--chaos-font-display, 'Bebas Neue', sans-serif);
+  font-size: 1.3rem;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: var(--chaos-bone, #e8e8e8);
+  opacity: 0.5;
+  animation: navGlitch 0.3s infinite;
+}
+
+@keyframes navGlitch {
+  0%, 100% { clip-path: inset(0 0 80% 0); }
+  25% { clip-path: inset(20% 0 60% 0); }
+  50% { clip-path: inset(40% 0 40% 0); }
+  75% { clip-path: inset(60% 0 20% 0); }
+}
+
+/* Corrupt item */
+.corrupt {
+  font-family: var(--chaos-font-mono, monospace);
+  color: var(--chaos-blood, #ff0040);
+  font-size: 0.6rem;
+  opacity: 0.5;
+  animation: flickerText 3s infinite;
+}
+
+@keyframes flickerText {
+  0%, 90%, 100% { opacity: 0.5; }
+  92%, 94%, 96% { opacity: 0; }
+}
+
+/* Status indicator */
+.status {
+  margin-left: auto;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0 1.5rem;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  background: var(--chaos-blood, #ff0040);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Blink item */
+.blink {
+  animation: blink 1s step-start infinite;
+  color: var(--chaos-blood, #ff0040);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

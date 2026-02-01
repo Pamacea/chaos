@@ -1,0 +1,129 @@
+.container {
+  position: relative;
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin-right: 0.25em;
+}
+
+.wordInner {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease;
+}
+
+.word.visible .wordInner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Direction variants */
+.fromBottom .wordInner { transform: translateY(100%); }
+.fromTop .wordInner { transform: translateY(-100%); }
+.fromLeft .wordInner { transform: translateX(-100%); }
+.fromRight .wordInner { transform: translateX(100%); }
+
+.fromBottom.visible .wordInner,
+.fromTop.visible .wordInner { transform: translateY(0); }
+.fromLeft.visible .wordInner,
+.fromRight.visible .wordInner { transform: translateX(0); }
+
+/* Blur variant */
+.blur .wordInner {
+  filter: blur(10px);
+}
+
+.blur.visible .wordInner {
+  filter: blur(0);
+}
+
+/* Scale variant */
+.scale .wordInner {
+  transform: translateY(100%) scale(0.8);
+}
+
+.scale.visible .wordInner {
+  transform: translateY(0) scale(1);
+}
+
+/* Rotate variant */
+.rotate .wordInner {
+  transform: translateY(100%) rotateX(90deg);
+  transform-origin: bottom;
+}
+
+.rotate.visible .wordInner {
+  transform: translateY(0) rotateX(0deg);
+}
+
+/* Split char mode */
+.char {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
+}
+
+.char.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Line mode */
+.line {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 0.1em;
+}
+
+.lineInner {
+  display: block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease;
+}
+
+.line.visible .lineInner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Highlight effect */
+.highlight {
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 30%;
+  background: var(--highlight-color, #ff0040);
+  opacity: 0.3;
+  z-index: -1;
+  transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
+}
+
+.highlight.visible::after {
+  width: 100%;
+}
+
+/* Speed variants */
+.fast .wordInner,
+.fast .char,
+.fast .lineInner {
+  transition-duration: 0.3s;
+}
+
+.slow .wordInner,
+.slow .char,
+.slow .lineInner {
+  transition-duration: 1s;
+}

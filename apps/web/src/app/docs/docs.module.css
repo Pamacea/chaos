@@ -866,6 +866,439 @@
   color: var(--border);
 }
 
+/* NEW TEXT PREVIEWS */
+.typingText {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.typingCursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: cursorBlinkSmall 1s step-end infinite;
+}
+
+@keyframes cursorBlinkSmall {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.charGlitch {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  text-shadow: 1px 0 #00ffff, -1px 0 #ff0040;
+}
+
+.revealText {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  animation: revealSmall 1.5s ease forwards;
+}
+
+@keyframes revealSmall {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.strikeReveal {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.strikeReveal > span:first-child {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+.strikeNew {
+  color: var(--accent);
+}
+
+.giantLayers {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-shadow: 2px 2px 0 var(--accent), 4px 4px 0 rgba(255, 0, 64, 0.3);
+}
+
+.bloodDrip {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+}
+
+.rotateText {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  position: relative;
+  height: 1.2em;
+  overflow: hidden;
+}
+
+.rotateText > span {
+  display: block;
+  animation: rotateWords 4s infinite;
+}
+
+@keyframes rotateWords {
+  0%, 40% { transform: translateY(0); }
+  50%, 90% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+.asciiArt {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  line-height: 1.1;
+  white-space: pre;
+}
+
+.countdownDisplay {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.terminalOutput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.termPrompt {
+  color: var(--accent);
+}
+
+/* NEW NAVIGATION PREVIEWS */
+.scatteredNav {
+  display: flex;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.scatteredNav > span:last-child {
+  transform: rotate(-5deg) translateY(-5px);
+  color: var(--accent);
+}
+
+.verticalNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.verticalNav > span:nth-child(2) {
+  color: var(--accent);
+}
+
+.brutalNav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 2px solid var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.brutalNav > span:first-child {
+  font-weight: 900;
+}
+
+.progressDots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressDots > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--text-dim);
+}
+
+.progressDots .dotActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.scrollIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+}
+
+.scrollIndicator > div {
+  width: 2px;
+  height: 40px;
+  background: var(--border);
+  position: relative;
+}
+
+.scrollThumb {
+  position: absolute;
+  top: 30%;
+  left: -2px;
+  width: 6px;
+  height: 12px;
+  background: var(--accent);
+}
+
+/* NEW BUTTON PREVIEWS */
+.deadButton {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #333, #222);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.deeperButton {
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.dualChoice {
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.dualChoice > span {
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.dualChoice > span:first-child {
+  border-right: none;
+}
+
+.ctaBrutal {
+  padding: 0.5rem 1.5rem;
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tensionBar {
+  width: 80%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.tensionBar .tensionFill {
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, #22c55e, var(--accent));
+}
+
+/* NEW LAYOUT PREVIEWS */
+.horizontalScroll {
+  display: flex;
+  gap: 6px;
+  padding: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.horizontalScroll > div {
+  min-width: 40px;
+  height: 40px;
+  background: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+.voidFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  color: #c9a84c;
+}
+
+.voidFrame::before,
+.voidFrame::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: #c9a84c;
+  border-style: solid;
+}
+
+.voidFrame::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+
+.voidFrame::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+.towerPricing {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.towerPricing > div {
+  padding: 0.3rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.towerPricing .featured {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
+
+.specGrid {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.specGrid > span:first-child {
+  color: var(--text-dim);
+}
+
+.specGrid > span:last-child {
+  color: #06b6d4;
+}
+
+.tracklist {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tracklist > span:first-child {
+  color: var(--text-dim);
+}
+
+.tracklist > span:last-child {
+  color: var(--text-dim);
+}
+
+/* DECORATIVE PREVIEWS */
+.runeSymbols {
+  font-size: 1.5rem;
+  color: #c9a84c;
+  letter-spacing: 0.3em;
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+.ornaments {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c9a84c;
+}
+
+.ornaments > span:first-child,
+.ornaments > span:last-child {
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+}
+
+.coffeeStain {
+  width: 60px;
+  height: 40px;
+  position: relative;
+}
+
+.coffeeStain .stainRing {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(139, 90, 43, 0.3);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 90, 43, 0.1), transparent 70%);
+}
+
+.sheetMusic {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.sheetMusic > span {
+  animation: noteFloat 3s ease-in-out infinite;
+}
+
+.sheetMusic > span:nth-child(2) { animation-delay: -1s; }
+.sheetMusic > span:nth-child(3) { animation-delay: -2s; }
+
+@keyframes noteFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.inscription {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: #d4c4a8;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.1);
+  letter-spacing: 0.1em;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .docs {

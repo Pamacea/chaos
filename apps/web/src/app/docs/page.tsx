@@ -22,15 +22,35 @@ const COMPONENTS = {
   layout: [
     { name: 'hologram-card', description: 'Holographic card' },
     { name: 'data-grid', description: 'Terminal data table' },
+    { name: 'horizontal-scroll', description: 'Horizontal panel scroll' },
+    { name: 'void-frame', description: 'Decorative corner frame' },
+    { name: 'tower-pricing', description: 'Vertical pricing tiers' },
+    { name: 'spec-grid', description: 'Terminal spec display' },
+    { name: 'tracklist', description: 'Music tracklist layout' },
   ],
   navigation: [
     { name: 'hexagon-menu', description: 'Honeycomb menu' },
+    { name: 'scattered-nav', description: 'Scattered chaotic nav' },
+    { name: 'vertical-nav', description: 'Rune vertical sidebar' },
+    { name: 'brutal-nav', description: 'Bold brutalist navbar' },
+    { name: 'progress-dots', description: 'Section progress dots' },
+    { name: 'scroll-indicator', description: 'Scroll position tracker' },
   ],
   text: [
     { name: 'glitch-text', description: 'RGB split glitch effect' },
     { name: 'flicker-text', description: 'Random opacity flicker' },
     { name: 'distortion-text', description: 'Wave/shake/skew/blur' },
     { name: 'falling-text', description: 'Cascading letters' },
+    { name: 'typing-text', description: 'Typewriter animation' },
+    { name: 'char-glitch', description: 'Per-character glitch' },
+    { name: 'reveal-text', description: 'Scroll reveal animation' },
+    { name: 'strike-reveal', description: 'Strikethrough reveal' },
+    { name: 'giant-layers', description: 'Layered shadow text' },
+    { name: 'blood-drip', description: 'Dripping blood effect' },
+    { name: 'rotate-text', description: 'Word rotation carousel' },
+    { name: 'ascii-art', description: 'ASCII art display' },
+    { name: 'countdown-display', description: 'Countdown timer' },
+    { name: 'terminal-output', description: 'Terminal console' },
   ],
   overlays: [
     { name: 'noise-overlay', description: 'SVG fractal noise' },
@@ -41,6 +61,11 @@ const COMPONENTS = {
   buttons: [
     { name: 'glitch-button', description: 'Glitch on hover' },
     { name: 'chaos-button', description: 'Chaotic with debris' },
+    { name: 'dead-button', description: 'Destroyed aesthetic' },
+    { name: 'deeper-button', description: 'Deep descent CTA' },
+    { name: 'dual-choice', description: 'Yes/No binary choice' },
+    { name: 'cta-brutal', description: 'Brutalist call-to-action' },
+    { name: 'tension-bar', description: 'Progress tension meter' },
   ],
   backgrounds: [
     { name: 'noise-canvas', description: 'Animated noise canvas' },
@@ -54,6 +79,13 @@ const COMPONENTS = {
     { name: 'screen-distortion', description: 'Full screen fx' },
     { name: 'glowing-border', description: 'Glowing container' },
     { name: 'glitch-image', description: 'RGB glitch on hover' },
+  ],
+  decorative: [
+    { name: 'rune-symbols', description: 'Elder Futhark runes' },
+    { name: 'ornaments', description: 'Decorative dividers' },
+    { name: 'coffee-stain', description: 'Paper stain effects' },
+    { name: 'sheet-music', description: 'Floating music notes' },
+    { name: 'inscription', description: 'Carved stone text' },
   ],
 };
 
@@ -211,6 +243,76 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className={styles.glowBorder}><span>GLOW</span></div>;
     case 'glitch-image':
       return <div className={styles.glitchImg}>IMG</div>;
+    
+    // New Text
+    case 'typing-text':
+      return <span className={styles.typingText}>TYPE<span className={styles.typingCursor} /></span>;
+    case 'char-glitch':
+      return <span className={styles.charGlitch}>GL!TCH</span>;
+    case 'reveal-text':
+      return <span className={styles.revealText}>REVEAL</span>;
+    case 'strike-reveal':
+      return <span className={styles.strikeReveal}><span>OLD</span><span className={styles.strikeNew}>NEW</span></span>;
+    case 'giant-layers':
+      return <span className={styles.giantLayers}>BIG</span>;
+    case 'blood-drip':
+      return <span className={styles.bloodDrip}>DRIP</span>;
+    case 'rotate-text':
+      return <span className={styles.rotateText}><span>WORD</span></span>;
+    case 'ascii-art':
+      return <pre className={styles.asciiArt}>{`╔══╗\n║▓▓║\n╚══╝`}</pre>;
+    case 'countdown-display':
+      return <span className={styles.countdownDisplay}>00:42</span>;
+    case 'terminal-output':
+      return <div className={styles.terminalOutput}><span className={styles.termPrompt}>❯</span> ls</div>;
+    
+    // New Navigation
+    case 'scattered-nav':
+      return <div className={styles.scatteredNav}><span>NAV</span><span>ITEM</span></div>;
+    case 'vertical-nav':
+      return <div className={styles.verticalNav}><span>ᛟ</span><span>☰</span><span>ᛞ</span></div>;
+    case 'brutal-nav':
+      return <div className={styles.brutalNav}><span>BRAND</span><span>LINK</span></div>;
+    case 'progress-dots':
+      return <div className={styles.progressDots}><span/><span className={styles.dotActive}/><span/></div>;
+    case 'scroll-indicator':
+      return <div className={styles.scrollIndicator}><div className={styles.scrollThumb}/><span>↓</span></div>;
+    
+    // New Buttons
+    case 'dead-button':
+      return <div className={styles.deadButton}>DEAD</div>;
+    case 'deeper-button':
+      return <button className={styles.deeperButton}>DEEPER ↓</button>;
+    case 'dual-choice':
+      return <div className={styles.dualChoice}><span>OUI</span><span>NON</span></div>;
+    case 'cta-brutal':
+      return <button className={styles.ctaBrutal}>ACTION</button>;
+    case 'tension-bar':
+      return <div className={styles.tensionBar}><div className={styles.tensionFill}/></div>;
+    
+    // New Layout
+    case 'horizontal-scroll':
+      return <div className={styles.horizontalScroll}><div/><div/><div/></div>;
+    case 'void-frame':
+      return <div className={styles.voidFrame}><span>✦</span></div>;
+    case 'tower-pricing':
+      return <div className={styles.towerPricing}><div>$9</div><div className={styles.featured}>$19</div><div>$49</div></div>;
+    case 'spec-grid':
+      return <div className={styles.specGrid}><span>CPU</span><span>8</span></div>;
+    case 'tracklist':
+      return <div className={styles.tracklist}><span>01</span><span>Track</span><span>3:42</span></div>;
+    
+    // Decorative
+    case 'rune-symbols':
+      return <span className={styles.runeSymbols}>ᛟ ᚨ ᛊ</span>;
+    case 'ornaments':
+      return <div className={styles.ornaments}><span>—</span><span>✝</span><span>—</span></div>;
+    case 'coffee-stain':
+      return <div className={styles.coffeeStain}><div className={styles.stainRing}/></div>;
+    case 'sheet-music':
+      return <div className={styles.sheetMusic}><span>♪</span><span>♫</span><span>𝄞</span></div>;
+    case 'inscription':
+      return <span className={styles.inscription}>CARVED</span>;
     
     default:
       return <span>{name}</span>;

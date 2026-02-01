@@ -1,0 +1,93 @@
+.container {
+  --scroll-accent: #00f0ff;
+  --scroll-bg: rgba(0, 0, 0, 0.3);
+  --panel-gap: 2rem;
+  
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-accent) var(--scroll-bg);
+}
+
+.container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: var(--scroll-bg);
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: var(--scroll-accent);
+  border-radius: 2px;
+}
+
+.track {
+  display: flex;
+  gap: var(--panel-gap);
+  padding: 1rem 0;
+  width: max-content;
+}
+
+.panel {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Variants */
+.cyan { --scroll-accent: #00f0ff; }
+.green { --scroll-accent: #00ff88; }
+.amber { --scroll-accent: #ffaa00; }
+.blood { --scroll-accent: #8b1a1a; }
+
+/* Panel sizes */
+.panelFull {
+  width: 100vw;
+}
+
+.panelLarge {
+  width: 80vw;
+}
+
+.panelMedium {
+  width: 60vw;
+}
+
+.panelSmall {
+  width: 40vw;
+}
+
+/* Fade edges */
+.fadeEdges {
+  mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+/* Indicators */
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--scroll-bg);
+  border: 1px solid var(--scroll-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover,
+.indicatorActive {
+  background: var(--scroll-accent);
+  box-shadow: 0 0 10px var(--scroll-accent);
+}

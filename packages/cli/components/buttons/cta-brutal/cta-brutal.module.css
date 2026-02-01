@@ -1,0 +1,81 @@
+/* cta-brutal - CTA style brutaliste */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  background: var(--chaos-blood, #ff0040);
+  color: var(--chaos-void, #0a0a0a);
+  font-family: var(--chaos-font-display, 'Bebas Neue', sans-serif);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+}
+
+.button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--chaos-bone, #e8e8e8);
+}
+
+.button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.icon { font-size: 1.2em; transition: transform 0.3s; }
+.button:hover .icon { transform: translateX(5px); }
+
+.variantOutline {
+  background: transparent;
+  border: 3px solid var(--chaos-blood, #ff0040);
+  color: var(--chaos-blood, #ff0040);
+  clip-path: none;
+}
+
+.variantOutline:hover {
+  background: var(--chaos-blood, #ff0040);
+  color: var(--chaos-void, #0a0a0a);
+}
+
+.variantGold { background: var(--chaos-gold, #c9a227); }
+.variantGold:hover { box-shadow: 4px 4px 0 var(--chaos-gold-dark, #8b7017); }
+
+.variantInverse { background: var(--chaos-bone, #e8e8e8); color: var(--chaos-void, #0a0a0a); }
+.variantInverse:hover { box-shadow: 4px 4px 0 var(--chaos-blood, #ff0040); }
+
+.sizeSm { padding: 0.8rem 1.5rem; font-size: 1rem; }
+.sizeLg { padding: 2rem 4rem; font-size: 2rem; }
+.sizeXl { padding: 2.5rem 5rem; font-size: 2.5rem; }
+
+.fullWidth { width: 100%; clip-path: none; }
+.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+.loading { position: relative; color: transparent; }
+.loading::after {
+  content: '';
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.shake:hover { animation: shake 0.1s infinite; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(-2px, -2px); }
+  25% { transform: translate(-1px, -3px); }
+  50% { transform: translate(-3px, -1px); }
+  75% { transform: translate(-2px, -2px); }
+}

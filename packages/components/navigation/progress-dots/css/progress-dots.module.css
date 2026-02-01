@@ -1,0 +1,152 @@
+/* progress-dots - Indicateur de section (dots) */
+.container {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--chaos-bone-dark, #666);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.dot::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--chaos-bone-dark, #666);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.dot:hover {
+  border-color: var(--chaos-blood, #ff0040);
+}
+
+.dot:hover::before {
+  transform: scale(0.5);
+  background: var(--chaos-blood, #ff0040);
+}
+
+.dotActive {
+  border-color: var(--chaos-blood, #ff0040);
+  box-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+.dotActive::before {
+  transform: scale(1);
+  background: var(--chaos-blood, #ff0040);
+}
+
+/* Label on hover */
+.dotWithLabel {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chaos-bone-dark, #666);
+  opacity: 0;
+  transition: all 0.3s;
+  white-space: nowrap;
+  font-family: var(--chaos-font-mono, monospace);
+}
+
+.dot:hover .label {
+  opacity: 1;
+}
+
+.dotActive .label {
+  opacity: 1;
+  color: var(--chaos-blood, #ff0040);
+}
+
+/* Connector line between dots */
+.withConnector .dot:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 1.5rem;
+  background: var(--chaos-bone-dark, #333);
+  transform: translateX(-50%);
+}
+
+/* Variant: gold/medieval */
+.variantGold .dot {
+  border-color: var(--chaos-gold-dark, #8b7017);
+}
+
+.variantGold .dot:hover {
+  border-color: var(--chaos-gold, #c9a227);
+}
+
+.variantGold .dot:hover::before {
+  background: var(--chaos-gold, #c9a227);
+}
+
+.variantGold .dotActive {
+  border-color: var(--chaos-gold, #c9a227);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+}
+
+.variantGold .dotActive::before {
+  background: var(--chaos-gold, #c9a227);
+}
+
+.variantGold .dotActive .label {
+  color: var(--chaos-gold, #c9a227);
+}
+
+/* Variant: minimal */
+.variantMinimal .dot {
+  width: 8px;
+  height: 8px;
+  border-width: 1px;
+}
+
+/* Horizontal variant */
+.horizontal {
+  flex-direction: row;
+  top: auto;
+  bottom: 2rem;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.horizontal .label {
+  right: 50%;
+  top: auto;
+  bottom: 100%;
+  transform: translateX(50%);
+  padding-right: 0;
+  padding-bottom: 0.5rem;
+}
+
+.horizontal.withConnector .dot:not(:last-child)::after {
+  top: 50%;
+  left: 100%;
+  width: 1.5rem;
+  height: 1px;
+  transform: translateY(-50%);
+}

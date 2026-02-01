@@ -1,0 +1,144 @@
+.ornament {
+  --ornament-color: #c9a227;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ornament-color);
+}
+
+/* Divider style */
+.divider {
+  gap: 1rem;
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ornament-color), transparent);
+}
+
+.symbol {
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+/* Corner ornament */
+.corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
+.cornerTopLeft { top: 0; left: 0; }
+.cornerTopRight { top: 0; right: 0; transform: scaleX(-1); }
+.cornerBottomLeft { bottom: 0; left: 0; transform: scaleY(-1); }
+.cornerBottomRight { bottom: 0; right: 0; transform: scale(-1); }
+
+.cornerInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cornerInner::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background: var(--ornament-color);
+}
+
+.cornerInner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 1px;
+  height: 30px;
+  background: var(--ornament-color);
+}
+
+.cornerSymbol {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 0.75rem;
+}
+
+/* Fleuron */
+.fleuron {
+  font-family: 'Times New Roman', serif;
+  font-size: 2rem;
+  opacity: 0.7;
+}
+
+/* Cross variations */
+.cross {
+  font-size: 1.5rem;
+}
+
+/* Frame ornament */
+.frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.frameTop,
+.frameBottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.frameTop { top: -0.5em; }
+.frameBottom { bottom: -0.5em; }
+
+.frameLine {
+  width: 60px;
+  height: 1px;
+  background: var(--ornament-color);
+}
+
+.frameSymbol {
+  font-size: 0.875rem;
+}
+
+/* Variants */
+.gold { --ornament-color: #c9a227; }
+.bone { --ornament-color: #d4c5a9; }
+.blood { --ornament-color: #8b1a1a; }
+.iron { --ornament-color: #4a4a4a; }
+
+/* Common ornament symbols */
+.symbols {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0.6;
+}
+
+/* Animated */
+.animated .symbol,
+.animated .fleuron {
+  animation: ornamentPulse 3s ease-in-out infinite;
+}
+
+@keyframes ornamentPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+/* Size variants */
+.sm .symbol { font-size: 0.875rem; }
+.sm .fleuron { font-size: 1.25rem; }
+.md .symbol { font-size: 1.25rem; }
+.md .fleuron { font-size: 2rem; }
+.lg .symbol { font-size: 1.75rem; }
+.lg .fleuron { font-size: 3rem; }
