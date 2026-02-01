@@ -1,0 +1,152 @@
+.container {
+  --note-color: #2a2a2a;
+  
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.inline {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.note {
+  position: absolute;
+  color: var(--note-color);
+  opacity: 0.3;
+  animation: noteDrift 20s linear infinite;
+}
+
+/* Note variations */
+.note1 { font-size: 1.5rem; }
+.note2 { font-size: 2rem; }
+.note3 { font-size: 1.8rem; }
+.note4 { font-size: 1.2rem; }
+.note5 { font-size: 3rem; }
+.note6 { font-size: 2.5rem; }
+
+@keyframes noteDrift {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0.3; 
+  }
+  25% { 
+    transform: translateY(-20px) rotate(5deg); 
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0.3; 
+  }
+  75% { 
+    transform: translateY(20px) rotate(-5deg); 
+    opacity: 0.5; 
+  }
+}
+
+/* Falling animation */
+.falling .note {
+  animation: noteFall 15s linear infinite;
+}
+
+@keyframes noteFall {
+  0% { 
+    transform: translateY(-100%) rotate(0deg); 
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+/* Swirling animation */
+.swirling .note {
+  animation: noteSwirl 25s ease-in-out infinite;
+}
+
+@keyframes noteSwirl {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.2;
+  }
+  25% { 
+    transform: translate(30px, -40px) rotate(90deg) scale(1.1);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translate(0, 0) rotate(180deg) scale(1);
+    opacity: 0.3;
+  }
+  75% { 
+    transform: translate(-30px, 40px) rotate(270deg) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+/* Rising animation */
+.rising .note {
+  animation: noteRise 20s ease-in-out infinite;
+}
+
+@keyframes noteRise {
+  0% { 
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% { 
+    transform: translateY(-100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Staff lines */
+.staff {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.1;
+}
+
+.staffLine {
+  height: 1px;
+  background: var(--note-color);
+}
+
+.staffTop {
+  top: 15%;
+}
+
+.staffBottom {
+  bottom: 15%;
+}
+
+/* Variants */
+.ash { --note-color: #2a2a2a; }
+.silver { --note-color: #888888; }
+.gold { --note-color: #c9a227; }
+.blood { --note-color: #6b1010; }
+.ivory { --note-color: #e8e8e8; }
+
+/* Density */
+.sparse .note { animation-duration: 30s; }
+.normal .note { animation-duration: 20s; }
+.dense .note { animation-duration: 12s; }

@@ -1,0 +1,173 @@
+.container {
+  display: block;
+  font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+  white-space: pre;
+  line-height: 1.2;
+  letter-spacing: 0;
+  overflow-x: auto;
+}
+
+/* Size variants */
+.xs { font-size: 0.5rem; }
+.sm { font-size: 0.65rem; }
+.md { font-size: 0.8rem; }
+.lg { font-size: 1rem; }
+.xl { font-size: 1.25rem; }
+
+/* Color variants */
+.blood {
+  color: #ff0040;
+  text-shadow: 0 0 5px #ff004080;
+}
+
+.cyber {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff80;
+}
+
+.matrix {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff0080;
+}
+
+.amber {
+  color: #ffaa00;
+  text-shadow: 0 0 5px #ffaa0080;
+}
+
+.ghost {
+  color: #666;
+  opacity: 0.7;
+}
+
+.gradient {
+  background: linear-gradient(180deg, #ff0040 0%, #00ffff 50%, #00ff00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation variants */
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typeIn 2s steps(40, end) forwards;
+}
+
+@keyframes typeIn {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+
+.reveal .line {
+  opacity: 0;
+  animation: lineReveal 0.5s forwards;
+}
+
+@keyframes lineReveal {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: #ff0040;
+  animation: asciiGlitch1 3s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch::after {
+  color: #00ffff;
+  animation: asciiGlitch2 3s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes asciiGlitch1 {
+  0%, 90%, 100% { transform: translate(0); opacity: 0; }
+  92% { transform: translate(-2px, 0); opacity: 0.8; }
+  94% { transform: translate(2px, 0); opacity: 0.8; }
+}
+
+@keyframes asciiGlitch2 {
+  0%, 90%, 100% { transform: translate(0); opacity: 0; }
+  93% { transform: translate(2px, 0); opacity: 0.8; }
+  95% { transform: translate(-2px, 0); opacity: 0.8; }
+}
+
+/* Scanline effect */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+}
+
+/* Border styles */
+.bordered {
+  border: 1px solid currentColor;
+  padding: 1rem;
+  position: relative;
+}
+
+.bordered::before {
+  content: '┌' attr(data-title) '┐';
+  position: absolute;
+  top: -0.6em;
+  left: 1rem;
+  background: inherit;
+  padding: 0 0.5rem;
+  font-size: 0.8em;
+}
+
+/* Flicker effect */
+.flicker {
+  animation: asciiFlicker 0.15s infinite;
+}
+
+@keyframes asciiFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Pulse effect */
+.pulse {
+  animation: asciiPulse 2s ease-in-out infinite;
+}
+
+@keyframes asciiPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Line container for reveal animation */
+.line {
+  display: block;
+}

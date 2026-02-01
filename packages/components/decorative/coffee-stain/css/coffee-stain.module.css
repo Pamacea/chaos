@@ -1,0 +1,170 @@
+.container {
+  position: relative;
+  pointer-events: none;
+}
+
+/* Fixed positioning for overlay mode */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Relative for inline mode */
+.inline {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stain {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Stain presets */
+.stain1 {
+  width: 150px;
+  height: 140px;
+  background: radial-gradient(ellipse at 40% 40%, 
+    rgba(61, 43, 31, 0.25) 0%, 
+    rgba(61, 43, 31, 0.12) 40%, 
+    transparent 70%
+  );
+  transform: rotate(15deg);
+}
+
+.stain2 {
+  width: 100px;
+  height: 90px;
+  background: radial-gradient(ellipse at 60% 50%, 
+    rgba(45, 31, 21, 0.25) 0%, 
+    rgba(45, 31, 21, 0.12) 50%, 
+    transparent 75%
+  );
+  transform: rotate(-20deg);
+}
+
+.stain3 {
+  width: 80px;
+  height: 85px;
+  background: radial-gradient(ellipse at 50% 50%, 
+    rgba(61, 43, 31, 0.18) 0%, 
+    transparent 60%
+  );
+}
+
+.stain4 {
+  width: 120px;
+  height: 110px;
+  background: radial-gradient(ellipse at 45% 55%, 
+    rgba(50, 35, 25, 0.2) 0%, 
+    rgba(50, 35, 25, 0.1) 45%, 
+    transparent 70%
+  );
+  transform: rotate(10deg);
+}
+
+.stain5 {
+  width: 60px;
+  height: 55px;
+  background: radial-gradient(circle, 
+    rgba(61, 43, 31, 0.15) 0%, 
+    transparent 65%
+  );
+}
+
+/* Ring stain (cup bottom) */
+.ring {
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 
+    inset 0 0 10px rgba(61, 43, 31, 0.2),
+    0 0 15px rgba(61, 43, 31, 0.15);
+  border: 2px solid rgba(61, 43, 31, 0.15);
+}
+
+.ring1 {
+  width: 80px;
+  height: 80px;
+}
+
+.ring2 {
+  width: 70px;
+  height: 70px;
+}
+
+/* Aged paper effect overlay */
+.agedPaper {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, 
+      transparent 0%, 
+      rgba(139, 115, 85, 0.03) 25%, 
+      transparent 50%, 
+      rgba(139, 115, 85, 0.05) 75%, 
+      transparent 100%
+    );
+  pointer-events: none;
+}
+
+/* Paper texture */
+.paperTexture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Burn edges */
+.burnEdges {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* Edge darkening */
+.edgeLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, rgba(26, 21, 16, 0.8) 0%, transparent 100%);
+}
+
+.edgeRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(-90deg, rgba(26, 21, 16, 0.8) 0%, transparent 100%);
+}
+
+/* Intensity variants */
+.light .stain { opacity: 0.5; }
+.medium .stain { opacity: 0.75; }
+.heavy .stain { opacity: 1; }
+
+/* Color variants */
+.coffee {
+  --stain-color: rgba(61, 43, 31, 1);
+}
+
+.tea {
+  --stain-color: rgba(139, 115, 85, 1);
+}
+
+.wine {
+  --stain-color: rgba(100, 30, 40, 1);
+}
+
+.ink {
+  --stain-color: rgba(20, 20, 40, 1);
+}

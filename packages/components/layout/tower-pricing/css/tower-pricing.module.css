@@ -1,0 +1,177 @@
+.tower {
+  --tower-accent: #c9a227;
+  --tower-bg: rgba(0, 0, 0, 0.6);
+  --tower-border: rgba(255, 255, 255, 0.1);
+  
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 400px;
+}
+
+.tier {
+  position: relative;
+  padding: 2rem;
+  background: var(--tower-bg);
+  border: 1px solid var(--tower-border);
+  border-top: none;
+  transition: all 0.3s ease;
+}
+
+.tier:first-child {
+  border-top: 1px solid var(--tower-border);
+  border-radius: 4px 4px 0 0;
+}
+
+.tier:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+.tier:hover {
+  background: rgba(201, 162, 39, 0.05);
+  border-color: var(--tower-accent);
+  z-index: 1;
+}
+
+/* Featured tier */
+.featured {
+  border-color: var(--tower-accent);
+  background: rgba(201, 162, 39, 0.1);
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.featured::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  height: 3px;
+  background: var(--tower-accent);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.25rem 1rem;
+  background: var(--tower-accent);
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tierHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--tower-border);
+}
+
+.tierName {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--tower-accent);
+  letter-spacing: 0.1em;
+}
+
+.tierPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.currency {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.period {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.tierFeatures {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.featureIcon {
+  color: var(--tower-accent);
+  font-size: 0.75rem;
+}
+
+.tierAction {
+  margin-top: 1.5rem;
+}
+
+.actionButton {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--tower-accent);
+  color: var(--tower-accent);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.actionButton:hover {
+  background: var(--tower-accent);
+  color: #000;
+}
+
+.featured .actionButton {
+  background: var(--tower-accent);
+  color: #000;
+}
+
+.featured .actionButton:hover {
+  background: transparent;
+  color: var(--tower-accent);
+}
+
+/* Variants */
+.gold { --tower-accent: #c9a227; }
+.blood { --tower-accent: #8b1a1a; }
+.cyan { --tower-accent: #00f0ff; }
+.bone { --tower-accent: #d4c5a9; }
+
+/* Connector lines between tiers */
+.connector {
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 20px;
+  background: var(--tower-accent);
+  opacity: 0.3;
+}

@@ -1,0 +1,76 @@
+/* deeper-button - Bouton "aller plus loin" style descent */
+.button {
+  padding: 2rem 4rem;
+  background: transparent;
+  border: 2px solid var(--chaos-blood, #ff0040);
+  color: var(--chaos-blood, #ff0040);
+  font-family: var(--chaos-font-display, 'Bebas Neue', sans-serif);
+  font-size: 1.5rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--chaos-blood, #ff0040);
+  transition: left 0.3s;
+  z-index: -1;
+}
+
+.button:hover { color: var(--chaos-void, #0a0a0a); }
+.button:hover::before { left: 0; }
+
+.arrow {
+  display: inline-block;
+  margin-left: 1rem;
+  transition: transform 0.3s;
+}
+
+.button:hover .arrow { animation: arrowBounce 0.5s ease-in-out infinite; }
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.variantGold { border-color: var(--chaos-gold, #c9a227); color: var(--chaos-gold, #c9a227); }
+.variantGold::before { background: var(--chaos-gold, #c9a227); }
+.variantGold:hover { color: var(--chaos-void, #0a0a0a); }
+
+.variantOutline { border-width: 1px; }
+.variantOutline:hover { border-width: 2px; }
+
+.variantGhost { border-color: transparent; border-bottom-color: var(--chaos-blood, #ff0040); }
+.variantGhost::before { display: none; }
+.variantGhost:hover { color: var(--chaos-blood, #ff0040); border-color: var(--chaos-blood, #ff0040); }
+
+.sizeSm { padding: 1rem 2rem; font-size: 1rem; }
+.sizeLg { padding: 2.5rem 5rem; font-size: 2rem; }
+
+.pulsing { animation: pulse 2s ease-in-out infinite; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 0, 64, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(255, 0, 64, 0); }
+}
+
+.variantGold.pulsing { animation: pulseGold 2s ease-in-out infinite; }
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(201, 162, 39, 0); }
+}
+
+.iconLeft { margin-right: 1rem; }
+.iconRight { margin-left: 1rem; }

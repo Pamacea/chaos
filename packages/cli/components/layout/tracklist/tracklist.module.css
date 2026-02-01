@@ -1,0 +1,24 @@
+.tracklist { --track-accent: #888; --track-hover: rgba(255, 255, 255, 0.05); --track-active: rgba(139, 26, 26, 0.2); display: flex; flex-direction: column; font-family: 'Cormorant Garamond', serif; }
+.track { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 1.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; transition: all 0.3s ease; }
+.track:hover { background: var(--track-hover); }
+.track:hover .trackBar { width: 100%; }
+.trackNum { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--track-accent); min-width: 2rem; }
+.trackInfo { display: flex; flex-direction: column; gap: 0.25rem; overflow: hidden; }
+.trackName { font-size: 1rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.trackArtist { font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); font-style: italic; }
+.trackBarContainer { position: relative; width: 80px; height: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+.trackBar { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--track-accent); transition: width 0.6s ease; }
+.trackDuration { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); min-width: 3rem; text-align: right; }
+.active { background: var(--track-active); }
+.active .trackNum { color: #8b1a1a; }
+.active .trackNum::before { content: '▶'; margin-right: 0.5rem; }
+.active .trackBar { animation: progress 180s linear forwards; }
+@keyframes progress { from { width: 0; } to { width: 100%; } }
+.silver { --track-accent: #888; }
+.blood { --track-accent: #8b1a1a; --track-active: rgba(139, 26, 26, 0.2); }
+.gold { --track-accent: #c9a227; --track-active: rgba(201, 162, 39, 0.2); }
+.bone { --track-accent: #d4c5a9; --track-active: rgba(212, 197, 169, 0.2); }
+.header { display: grid; grid-template-columns: auto 1fr auto auto; gap: 1.5rem; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--track-accent); }
+.compact .track { padding: 0.75rem 1rem; gap: 1rem; }
+.compact .trackBarContainer { display: none; }
+.numbered .trackNum { font-size: 1.25rem; font-family: 'Playfair Display', serif; font-weight: 700; }

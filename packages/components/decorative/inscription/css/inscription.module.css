@@ -1,0 +1,160 @@
+.inscription {
+  --stone-color: #d4c5a9;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --highlight-color: rgba(255, 255, 255, 0.1);
+  
+  font-family: 'Cinzel', serif;
+  color: var(--stone-color);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+}
+
+/* Carved/engraved effect */
+.carved {
+  text-shadow: 
+    1px 1px 1px var(--shadow-color),
+    -1px -1px 1px var(--highlight-color),
+    0 0 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Deep engraved effect */
+.deepCarved {
+  text-shadow: 
+    2px 2px 2px var(--shadow-color),
+    -1px -1px 1px var(--highlight-color),
+    1px 1px 4px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Raised/embossed effect */
+.embossed {
+  text-shadow: 
+    -1px -1px 1px var(--shadow-color),
+    1px 1px 1px var(--highlight-color),
+    0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Weathered stone effect */
+.weathered {
+  opacity: 0.7;
+  filter: blur(0.3px);
+  text-shadow: 
+    1px 1px 2px var(--shadow-color),
+    -1px -1px 1px var(--highlight-color),
+    0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.weathered::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  filter: blur(1px);
+  transform: translate(1px, 1px);
+}
+
+/* Ancient/runic style */
+.ancient {
+  font-family: 'UnifrakturMaguntia', serif;
+  letter-spacing: 0.1em;
+  text-shadow: 
+    2px 2px 3px var(--shadow-color),
+    -1px -1px 2px var(--highlight-color);
+}
+
+/* Roman numerals style */
+.roman {
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-shadow: 
+    1px 2px 2px var(--shadow-color),
+    -1px -1px 1px var(--highlight-color);
+}
+
+/* Stone texture overlay */
+.textured::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Color variants */
+.bone { --stone-color: #d4c5a9; }
+.marble { --stone-color: #e8e8e8; }
+.granite { --stone-color: #6a6a6a; }
+.obsidian { --stone-color: #2a2a2a; --shadow-color: rgba(255, 255, 255, 0.2); --highlight-color: rgba(0, 0, 0, 0.3); }
+.gold { --stone-color: #c9a227; }
+
+/* Size variants */
+.xs { font-size: 0.75rem; letter-spacing: 0.15em; }
+.sm { font-size: 1rem; letter-spacing: 0.2em; }
+.md { font-size: 1.5rem; letter-spacing: 0.2em; }
+.lg { font-size: 2.5rem; letter-spacing: 0.25em; }
+.xl { font-size: 4rem; letter-spacing: 0.3em; }
+
+/* Decorative border */
+.bordered {
+  padding: 1em 1.5em;
+  border: 1px solid var(--stone-color);
+  position: relative;
+}
+
+.bordered::before,
+.bordered::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--stone-color);
+}
+
+.bordered::before {
+  top: -5px;
+  left: -5px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.bordered::after {
+  bottom: -5px;
+  right: -5px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Crack effect */
+.cracked {
+  position: relative;
+}
+
+.cracked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 20%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 80%,
+    transparent 100%
+  );
+  transform: rotate(-5deg);
+}

@@ -1,0 +1,156 @@
+.container {
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.layer {
+  display: block;
+  position: relative;
+}
+
+.layer:not(:first-child) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Base layer styling */
+.base {
+  background: linear-gradient(180deg, #fafafa 0%, #888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shadow layers */
+.shadow1 {
+  transform: translate(4px, 4px);
+  z-index: -1;
+  opacity: 0.5;
+  background: linear-gradient(180deg, #ff0040 0%, #ff004080 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow2 {
+  transform: translate(8px, 8px);
+  z-index: -2;
+  opacity: 0.3;
+  background: linear-gradient(180deg, #ff0040 0%, #ff004040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow3 {
+  transform: translate(12px, 12px);
+  z-index: -3;
+  opacity: 0.15;
+  background: linear-gradient(180deg, #ff0040 0%, #ff004020 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Variants */
+.blood .shadow1,
+.blood .shadow2,
+.blood .shadow3 {
+  background: linear-gradient(180deg, #ff0040 0%, transparent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cyber .shadow1 { background: linear-gradient(180deg, #00ffff 0%, transparent 100%); -webkit-background-clip: text; background-clip: text; }
+.cyber .shadow2 { background: linear-gradient(180deg, #ff00ff 0%, transparent 100%); -webkit-background-clip: text; background-clip: text; }
+.cyber .shadow3 { background: linear-gradient(180deg, #00ff00 0%, transparent 100%); -webkit-background-clip: text; background-clip: text; }
+
+.mono .base,
+.mono .shadow1,
+.mono .shadow2,
+.mono .shadow3 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+.mono .shadow1 { color: #666; }
+.mono .shadow2 { color: #444; }
+.mono .shadow3 { color: #222; }
+
+.neon .base {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 40px #ff0040;
+}
+.neon .shadow1,
+.neon .shadow2,
+.neon .shadow3 {
+  opacity: 0;
+}
+
+/* Animated variant */
+.animated .shadow1 {
+  animation: layerFloat1 3s ease-in-out infinite;
+}
+
+.animated .shadow2 {
+  animation: layerFloat2 4s ease-in-out infinite;
+}
+
+.animated .shadow3 {
+  animation: layerFloat3 5s ease-in-out infinite;
+}
+
+@keyframes layerFloat1 {
+  0%, 100% { transform: translate(4px, 4px); }
+  50% { transform: translate(6px, 6px); }
+}
+
+@keyframes layerFloat2 {
+  0%, 100% { transform: translate(8px, 8px); }
+  50% { transform: translate(12px, 10px); }
+}
+
+@keyframes layerFloat3 {
+  0%, 100% { transform: translate(12px, 12px); }
+  50% { transform: translate(16px, 14px); }
+}
+
+/* Hover effect */
+.hover:hover .shadow1 {
+  transform: translate(8px, 8px);
+  transition: transform 0.3s ease;
+}
+
+.hover:hover .shadow2 {
+  transform: translate(16px, 16px);
+  transition: transform 0.3s ease;
+}
+
+.hover:hover .shadow3 {
+  transform: translate(24px, 24px);
+  transition: transform 0.3s ease;
+}
+
+/* Sizes */
+.sm { font-size: clamp(2rem, 8vw, 4rem); }
+.md { font-size: clamp(4rem, 15vw, 8rem); }
+.lg { font-size: clamp(6rem, 20vw, 12rem); }
+.xl { font-size: clamp(8rem, 25vw, 18rem); }
+
+/* Offset directions */
+.diagonal .shadow1 { transform: translate(4px, 4px); }
+.diagonal .shadow2 { transform: translate(8px, 8px); }
+.diagonal .shadow3 { transform: translate(12px, 12px); }
+
+.horizontal .shadow1 { transform: translateX(4px); }
+.horizontal .shadow2 { transform: translateX(8px); }
+.horizontal .shadow3 { transform: translateX(12px); }
+
+.vertical .shadow1 { transform: translateY(4px); }
+.vertical .shadow2 { transform: translateY(8px); }
+.vertical .shadow3 { transform: translateY(12px); }

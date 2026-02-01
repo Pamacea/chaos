@@ -1,0 +1,141 @@
+.frame {
+  --frame-color: #c9a227;
+  --frame-bg: rgba(0, 0, 0, 0.5);
+  
+  position: relative;
+  padding: 2rem;
+  background: var(--frame-bg);
+  border: 1px solid var(--frame-color);
+}
+
+/* Corner ornaments */
+.corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--frame-color);
+  border-style: solid;
+}
+
+.cornerTopLeft {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.cornerTopRight {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+}
+
+.cornerBottomLeft {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+}
+
+.cornerBottomRight {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Extended corners */
+.extended .corner {
+  width: 30px;
+  height: 30px;
+}
+
+.extended .corner::before,
+.extended .corner::after {
+  content: '';
+  position: absolute;
+  background: var(--frame-color);
+}
+
+.extended .cornerTopLeft::before,
+.extended .cornerBottomLeft::before {
+  left: 5px;
+  width: 1px;
+  height: 15px;
+}
+
+.extended .cornerTopLeft::before { top: 5px; }
+.extended .cornerBottomLeft::before { bottom: 5px; }
+
+.extended .cornerTopRight::before,
+.extended .cornerBottomRight::before {
+  right: 5px;
+  width: 1px;
+  height: 15px;
+}
+
+.extended .cornerTopRight::before { top: 5px; }
+.extended .cornerBottomRight::before { bottom: 5px; }
+
+.extended .cornerTopLeft::after,
+.extended .cornerTopRight::after {
+  top: 5px;
+  height: 1px;
+  width: 15px;
+}
+
+.extended .cornerTopLeft::after { left: 5px; }
+.extended .cornerTopRight::after { right: 5px; }
+
+.extended .cornerBottomLeft::after,
+.extended .cornerBottomRight::after {
+  bottom: 5px;
+  height: 1px;
+  width: 15px;
+}
+
+.extended .cornerBottomLeft::after { left: 5px; }
+.extended .cornerBottomRight::after { right: 5px; }
+
+/* Ornate style - with decorative elements */
+.ornate .corner {
+  width: 40px;
+  height: 40px;
+}
+
+.ornate::before {
+  content: '✦';
+  position: absolute;
+  top: -0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--frame-color);
+  font-size: 1rem;
+}
+
+.ornate::after {
+  content: '✦';
+  position: absolute;
+  bottom: -0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--frame-color);
+  font-size: 1rem;
+}
+
+/* Variants */
+.gold { --frame-color: #c9a227; }
+.bone { --frame-color: #d4c5a9; }
+.blood { --frame-color: #8b1a1a; }
+.iron { --frame-color: #4a4a4a; }
+.cyan { --frame-color: #00f0ff; }
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+}
+
+.glow.cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.glow.blood {
+  box-shadow: 0 0 20px rgba(139, 26, 26, 0.3);
+}

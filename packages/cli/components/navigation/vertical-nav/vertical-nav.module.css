@@ -1,0 +1,98 @@
+/* vertical-nav - Nav latérale avec glyphes/runes */
+.nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: linear-gradient(to right, var(--chaos-obsidian, #121210) 0%, transparent 100%);
+  border-right: 1px solid var(--chaos-iron, #2a2820);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+  z-index: 100;
+}
+
+.rune {
+  font-size: 1.5rem;
+  color: var(--chaos-gold-dark, #8b7017);
+  opacity: 0.5;
+  animation: runeGlow 4s ease-in-out infinite;
+}
+
+@keyframes runeGlow {
+  0%, 100% { opacity: 0.3; text-shadow: none; }
+  50% { opacity: 0.8; text-shadow: 0 0 10px var(--chaos-gold, #c9a227); }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.glyph {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--chaos-font-display, 'Cinzel Decorative', serif);
+  font-size: 1rem;
+  color: var(--chaos-bone-dark, #9a8b6f);
+  text-decoration: none;
+  border: 1px solid var(--chaos-iron, #2a2820);
+  position: relative;
+  transition: all 0.4s;
+}
+
+.glyph::before {
+  content: attr(data-label);
+  position: absolute;
+  left: 60px;
+  font-family: var(--chaos-font-serif, 'Cinzel', serif);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--chaos-bone-dark, #9a8b6f);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.glyph:hover {
+  color: var(--chaos-gold, #c9a227);
+  border-color: var(--chaos-gold, #c9a227);
+  background: rgba(201, 162, 39, 0.1);
+}
+
+.glyph:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.glyphActive {
+  color: var(--chaos-gold, #c9a227);
+  border-color: var(--chaos-gold, #c9a227);
+  box-shadow: 0 0 15px rgba(201, 162, 39, 0.3);
+}
+
+.variantDark {
+  background: linear-gradient(to right, var(--chaos-void, #0a0a0a) 0%, transparent 100%);
+  border-right-color: var(--chaos-blood, #ff0040);
+}
+
+.variantDark .rune { color: var(--chaos-blood, #ff0040); }
+.variantDark .glyph { border-color: rgba(255, 0, 64, 0.3); }
+.variantDark .glyph:hover {
+  color: var(--chaos-blood, #ff0040);
+  border-color: var(--chaos-blood, #ff0040);
+  background: rgba(255, 0, 64, 0.1);
+}
+
+.sizeCompact { width: 50px; padding: 1rem 0; }
+.sizeCompact .glyph { width: 30px; height: 30px; font-size: 0.8rem; }
+.sizeCompact .rune { font-size: 1rem; }

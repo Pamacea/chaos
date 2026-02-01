@@ -1,0 +1,84 @@
+.container {
+  display: inline-block;
+  font-family: 'Courier New', 'Monaco', monospace;
+  position: relative;
+}
+
+.text {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+.cursor.block {
+  width: 0.6em;
+}
+
+.cursor.line {
+  width: 2px;
+}
+
+.cursor.underscore {
+  width: 0.6em;
+  height: 2px;
+  vertical-align: baseline;
+}
+
+.cursorHidden {
+  opacity: 0;
+}
+
+/* Variants */
+.terminal {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff0080;
+}
+
+.terminal .cursor {
+  background: #00ff00;
+  box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff0080;
+}
+
+.hacker {
+  color: #ff0040;
+  text-shadow: 0 0 5px #ff0040, 0 0 15px #ff004080;
+}
+
+.hacker .cursor {
+  background: #ff0040;
+  box-shadow: 0 0 5px #ff0040;
+}
+
+.cyber {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff80;
+}
+
+.cyber .cursor {
+  background: #00ffff;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+.ghost {
+  color: #888;
+  opacity: 0.8;
+}
+
+.ghost .cursor {
+  background: #888;
+  animation: blink 2s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

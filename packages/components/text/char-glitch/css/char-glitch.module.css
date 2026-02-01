@@ -1,0 +1,124 @@
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.char {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.1s ease-out;
+}
+
+.char.glitching {
+  animation: charGlitch 0.15s ease-in-out;
+}
+
+.char::before,
+.char::after {
+  content: attr(data-char);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.char::before {
+  color: #ff0040;
+  z-index: -1;
+}
+
+.char::after {
+  color: #00ffff;
+  z-index: -2;
+}
+
+.char.glitching::before {
+  animation: charLayer1 0.15s ease-in-out;
+  opacity: 0.8;
+}
+
+.char.glitching::after {
+  animation: charLayer2 0.15s ease-in-out;
+  opacity: 0.8;
+}
+
+/* Intensity levels */
+.subtle .char.glitching {
+  animation-duration: 0.3s;
+}
+
+.intense .char.glitching {
+  animation-duration: 0.08s;
+}
+
+/* Variants */
+.blood .char::before { color: #ff0040; }
+.blood .char::after { color: #880020; }
+
+.cyber .char::before { color: #00ffff; }
+.cyber .char::after { color: #ff00ff; }
+
+.matrix .char::before { color: #00ff00; }
+.matrix .char::after { color: #008800; }
+
+.corrupt .char::before { color: #ffffff; }
+.corrupt .char::after { color: #000000; }
+
+/* Hover mode */
+.hover .char:hover {
+  animation: charGlitch 0.15s ease-in-out infinite;
+}
+
+.hover .char:hover::before,
+.hover .char:hover::after {
+  opacity: 0.8;
+}
+
+.hover .char:hover::before {
+  animation: charLayer1 0.15s ease-in-out infinite;
+}
+
+.hover .char:hover::after {
+  animation: charLayer2 0.15s ease-in-out infinite;
+}
+
+@keyframes charGlitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+@keyframes charLayer1 {
+  0%, 100% { transform: translate(0); opacity: 0; }
+  20% { transform: translate(-3px, 0); opacity: 0.8; }
+  40% { transform: translate(3px, 0); opacity: 0.6; }
+  60% { transform: translate(-2px, 0); opacity: 0.8; }
+  80% { transform: translate(2px, 0); opacity: 0.6; }
+}
+
+@keyframes charLayer2 {
+  0%, 100% { transform: translate(0); opacity: 0; }
+  20% { transform: translate(3px, 0); opacity: 0.6; }
+  40% { transform: translate(-3px, 0); opacity: 0.8; }
+  60% { transform: translate(2px, 0); opacity: 0.6; }
+  80% { transform: translate(-2px, 0); opacity: 0.8; }
+}
+
+/* Scramble effect */
+.scramble .char {
+  font-family: monospace;
+}
+
+.scramble .char.scrambling {
+  color: transparent;
+}
+
+.scramble .char.scrambling::before {
+  color: inherit;
+  opacity: 1;
+  animation: none;
+  transform: none;
+}

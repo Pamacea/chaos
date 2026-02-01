@@ -24,10 +24,25 @@ const COMPONENTS = {
   'flicker-text': { category: 'text', description: 'Text that flickers randomly', status: 'ready' },
   'distortion-text': { category: 'text', description: 'Wave/shake/skew/blur text effects', status: 'ready' },
   'falling-text': { category: 'text', description: 'Letters falling in cascade', status: 'ready' },
+  'typing-text': { category: 'text', description: 'Terminal typing effect', status: 'ready' },
+  'char-glitch': { category: 'text', description: 'Per-character glitch effect', status: 'ready' },
+  'reveal-text': { category: 'text', description: 'Text reveal on scroll', status: 'ready' },
+  'strike-reveal': { category: 'text', description: 'Strikethrough then reveal', status: 'ready' },
+  'giant-layers': { category: 'text', description: 'Giant text with 3D shadow layers', status: 'ready' },
+  'blood-drip': { category: 'text', description: 'Dripping blood effect letters', status: 'ready' },
+  'rotate-text': { category: 'text', description: 'Vertical rotating text', status: 'ready' },
+  'ascii-art': { category: 'text', description: 'Styled ASCII art block', status: 'ready' },
+  'countdown-display': { category: 'text', description: 'Stylized countdown timer', status: 'ready' },
+  'terminal-output': { category: 'text', description: 'Terminal block with prompt', status: 'ready' },
   
   // Buttons
   'glitch-button': { category: 'buttons', description: 'Button with glitch hover effect', status: 'ready' },
   'chaos-button': { category: 'buttons', description: 'Chaotic animated button with debris', status: 'ready' },
+  'dead-button': { category: 'buttons', description: 'Destroyed/glitched button with layers', status: 'ready' },
+  'deeper-button': { category: 'buttons', description: 'Go deeper style descent button', status: 'ready' },
+  'dual-choice': { category: 'buttons', description: 'Yes/No dual button choice', status: 'ready' },
+  'cta-brutal': { category: 'buttons', description: 'Brutalist CTA button', status: 'ready' },
+  'tension-bar': { category: 'buttons', description: 'Dramatic tension/progress bar', status: 'ready' },
   
   // Backgrounds
   'noise-canvas': { category: 'backgrounds', description: 'Animated noise canvas background', status: 'ready' },
@@ -40,6 +55,7 @@ const COMPONENTS = {
   'cursor-follower': { category: 'effects', description: 'Custom cursor with trail', status: 'ready' },
   'screen-distortion': { category: 'effects', description: 'Full screen distortion effect', status: 'ready' },
   'glowing-border': { category: 'effects', description: 'Glowing border container with pulse', status: 'ready' },
+  'glitch-image': { category: 'effects', description: 'Image with RGB glitch on hover', status: 'ready' },
   
   // Neon components
   'neon-button': { category: 'neon', description: 'Button with neon glow effect', status: 'ready' },
@@ -61,12 +77,26 @@ const COMPONENTS = {
   // Layout components
   'hologram-card': { category: 'layout', description: 'Holographic card with scanlines', status: 'ready' },
   'data-grid': { category: 'layout', description: 'Terminal-style data table', status: 'ready' },
+  'horizontal-scroll': { category: 'layout', description: 'Horizontal scrolling panels', status: 'ready' },
+  'void-frame': { category: 'layout', description: 'Frame with decorative corners', status: 'ready' },
+  'tower-pricing': { category: 'layout', description: 'Vertical stacked pricing cards', status: 'ready' },
+  'spec-grid': { category: 'layout', description: 'Terminal-style specs grid', status: 'ready' },
+  'tracklist': { category: 'layout', description: 'Music tracklist component', status: 'ready' },
   
   // Navigation
   'hexagon-menu': { category: 'navigation', description: 'Honeycomb hexagon menu', status: 'ready' },
+  'scattered-nav': { category: 'navigation', description: 'Scattered fragment navigation', status: 'ready' },
+  'vertical-nav': { category: 'navigation', description: 'Vertical nav with glyphs', status: 'ready' },
+  'brutal-nav': { category: 'navigation', description: 'Brutalist chaotic navigation', status: 'ready' },
+  'progress-dots': { category: 'navigation', description: 'Section progress indicator', status: 'ready' },
+  'scroll-indicator': { category: 'navigation', description: 'Vertical scroll indicator', status: 'ready' },
   
-  // Effects (new)
-  'glitch-image': { category: 'effects', description: 'Image with RGB glitch on hover', status: 'ready' },
+  // Decorative
+  'rune-symbols': { category: 'decorative', description: 'Animated runic symbols', status: 'ready' },
+  'ornaments': { category: 'decorative', description: 'Medieval ornaments', status: 'ready' },
+  'coffee-stain': { category: 'decorative', description: 'Coffee stain/aged paper effect', status: 'ready' },
+  'sheet-music': { category: 'decorative', description: 'Floating music notes', status: 'ready' },
+  'inscription': { category: 'decorative', description: 'Stone carved inscription', status: 'ready' },
 };
 
 const program = new Command();

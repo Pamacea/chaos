@@ -1,0 +1,139 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.text {
+  position: relative;
+  display: inline;
+}
+
+/* Strike line */
+.strike {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.container.active .strike {
+  width: 100%;
+}
+
+/* Hidden text that reveals */
+.revealed {
+  display: block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0.3s;
+  margin-top: 0.5em;
+}
+
+.container.active .revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variant: strikethrough stays */
+.permanent .strike {
+  background: var(--strike-color, #ff0040);
+}
+
+.permanent.active .text {
+  opacity: 0.5;
+}
+
+/* Variant: text fades then reveals */
+.crossout .text {
+  transition: opacity 0.3s ease;
+}
+
+.crossout.active .text {
+  opacity: 0.3;
+}
+
+/* Variant: redacted style */
+.redacted .strike {
+  height: 1em;
+  background: var(--strike-color, #0a0a0a);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.redacted.active .text {
+  color: transparent;
+}
+
+/* Variant: censored with bars */
+.censored {
+  position: relative;
+}
+
+.censored .strike {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--strike-color, #0a0a0a) 0px,
+    var(--strike-color, #0a0a0a) 8px,
+    transparent 8px,
+    transparent 12px
+  );
+  top: 0;
+  transform: none;
+}
+
+/* Variant: glitch strike */
+.glitch .strike {
+  background: var(--strike-color, #ff0040);
+  animation: none;
+}
+
+.glitch.active .strike {
+  animation: glitchStrike 0.5s ease forwards;
+}
+
+@keyframes glitchStrike {
+  0% { width: 0; transform: translateY(-50%); }
+  30% { width: 110%; transform: translateY(-50%) translateX(-5%); }
+  50% { width: 95%; transform: translateY(-50%) translateX(3%); }
+  70% { width: 102%; transform: translateY(-50%) translateX(-2%); }
+  100% { width: 100%; transform: translateY(-50%); }
+}
+
+/* Colors */
+.blood .strike { background: #ff0040; }
+.cyber .strike { background: #00ffff; }
+.acid .strike { background: #aaff00; }
+.void .strike { background: #0a0a0a; }
+
+/* Hover trigger */
+.hover:hover .strike {
+  width: 100%;
+}
+
+.hover:hover .revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation on scroll */
+.scroll .strike {
+  transition-delay: var(--delay, 0ms);
+}
+
+/* Double strike */
+.double .strike::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 100%;
+  height: 2px;
+  background: inherit;
+  opacity: 0.5;
+}
