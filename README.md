@@ -97,16 +97,63 @@ import { GlitchButton } from './components/chaos/buttons/glitch-button';
 </GlitchButton>
 ```
 
-## Customization
+## Theming
 
-All components use CSS custom properties:
+All components use CSS variables. Add these to your `globals.css`:
 
 ```css
 :root {
-  --chaos-glitch-color: #ff0040;
-  --chaos-glitch-color-alt: #00ffff;
-  --chaos-noise-opacity: 0.05;
+  /* Primary - main glitch color */
+  --chaos-primary: #ff0040;
+  --chaos-primary-rgb: 255, 0, 64;
+  
+  /* Secondary - alt glitch layer */
+  --chaos-secondary: #00ffff;
+  --chaos-secondary-rgb: 0, 255, 255;
+  
+  /* Accent - third color */
+  --chaos-accent: #ff00ff;
+  --chaos-accent-rgb: 255, 0, 255;
+  
+  /* Base colors */
+  --chaos-background: #0a0a0a;
+  --chaos-foreground: #fafafa;
+  --chaos-muted: #171717;
+  --chaos-border: #333333;
 }
+```
+
+### Presets
+
+```css
+/* Cyberpunk */
+.cyberpunk {
+  --chaos-primary: #f0f000;
+  --chaos-secondary: #00f0f0;
+  --chaos-background: #0d0d1a;
+}
+
+/* Matrix */
+.matrix {
+  --chaos-primary: #00ff00;
+  --chaos-secondary: #00cc00;
+  --chaos-background: #000000;
+}
+
+/* Vaporwave */
+.vaporwave {
+  --chaos-primary: #ff71ce;
+  --chaos-secondary: #01cdfe;
+  --chaos-background: #1a0a2e;
+}
+```
+
+### Per-component override
+
+```tsx
+<GlitchText style={{ '--chaos-primary': '#ff6600' } as React.CSSProperties}>
+  Custom Orange
+</GlitchText>
 ```
 
 ## Philosophy

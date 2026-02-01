@@ -13,8 +13,8 @@
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.1s;
-  --glitch-color: #ff0040;
-  --glitch-color-alt: #00ffff;
+  --glitch-color: var(--chaos-primary, #ff0040);
+  --glitch-color-alt: var(--chaos-secondary, #00ffff);
 }
 
 .button:active {
@@ -23,20 +23,20 @@
 
 /* Variants */
 .default {
-  background: #0a0a0a;
-  color: #fafafa;
-  border: 1px solid #333;
+  background: var(--chaos-background, #0a0a0a);
+  color: var(--chaos-foreground, #fafafa);
+  border: 1px solid var(--chaos-border, #333);
 }
 
 .outline {
   background: transparent;
-  color: #fafafa;
+  color: var(--chaos-foreground, #fafafa);
   border: 2px solid currentColor;
 }
 
 .ghost {
   background: transparent;
-  color: #fafafa;
+  color: var(--chaos-foreground, #fafafa);
   border: none;
 }
 
