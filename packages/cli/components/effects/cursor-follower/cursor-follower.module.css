@@ -1,0 +1,50 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.ring {
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.dot {
+  border-radius: 50%;
+}
+
+.crosshair {
+  background: transparent;
+  position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.crosshair::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.crosshair::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+}

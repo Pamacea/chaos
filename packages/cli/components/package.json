@@ -1,0 +1,13 @@
+{
+  "name": "@chaos/components",
+  "version": "0.1.0",
+  "description": "Glitch, noise, and distortion UI components",
+  "type": "module",
+  "exports": {
+    "./text/*": "./text/*/index.tsx",
+    "./overlays/*": "./overlays/*/index.tsx",
+    "./buttons/*": "./buttons/*/index.tsx",
+    "./effects/*": "./effects/*/index.tsx",
+    "./backgrounds/*": "./backgrounds/*/index.tsx"
+  }
+}
