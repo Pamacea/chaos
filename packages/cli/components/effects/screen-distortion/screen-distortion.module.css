@@ -46,14 +46,14 @@
 
 @keyframes glitch-distort-1 {
   0%, 85%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); }
-  86% { opacity: 1; clip-path: inset(20% 0 60% 0); transform: translateX(var(--shift, -5px)); background: rgba(var(--chaos-primary-rgb, 255, 0, 64), 0.1); }
+  86% { opacity: 1; clip-path: inset(20% 0 60% 0); transform: translateX(var(--shift, -5px)); background: hsl(var(--primary, 347 100% 50%) / 0.1); }
   88% { opacity: 1; clip-path: inset(50% 0 30% 0); transform: translateX(var(--shift, 5px)); }
   90% { opacity: 0; }
 }
 
 @keyframes glitch-distort-2 {
   0%, 85%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); }
-  87% { opacity: 1; clip-path: inset(40% 0 40% 0); transform: translateX(var(--shift, 3px)); background: rgba(var(--chaos-secondary-rgb, 0, 255, 255), 0.1); }
+  87% { opacity: 1; clip-path: inset(40% 0 40% 0); transform: translateX(var(--shift, 3px)); background: hsl(var(--secondary, 180 100% 50%) / 0.1); }
   89% { opacity: 1; clip-path: inset(70% 0 10% 0); transform: translateX(var(--shift, -3px)); }
   91% { opacity: 0; }
 }

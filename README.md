@@ -99,60 +99,47 @@ import { GlitchButton } from './components/chaos/buttons/glitch-button';
 
 ## Theming
 
-All components use CSS variables. Add these to your `globals.css`:
+Components use **standard CSS variables** — the same ones from shadcn/ui and most Next.js/Vite templates.
+
+If your `globals.css` already has these, **you're good to go**:
 
 ```css
 :root {
-  /* Primary - main glitch color */
-  --chaos-primary: #ff0040;
-  --chaos-primary-rgb: 255, 0, 64;
-  
-  /* Secondary - alt glitch layer */
-  --chaos-secondary: #00ffff;
-  --chaos-secondary-rgb: 0, 255, 255;
-  
-  /* Accent - third color */
-  --chaos-accent: #ff00ff;
-  --chaos-accent-rgb: 255, 0, 255;
-  
-  /* Base colors */
-  --chaos-background: #0a0a0a;
-  --chaos-foreground: #fafafa;
-  --chaos-muted: #171717;
-  --chaos-border: #333333;
+  --primary: 222.2 47.4% 11.2%;
+  --secondary: 210 40% 96.1%;
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --border: 214.3 31.8% 91.4%;
 }
 ```
 
-### Presets
+### Custom theme for Chaos
+
+Want a more chaotic vibe? Override in your `globals.css`:
 
 ```css
-/* Cyberpunk */
-.cyberpunk {
-  --chaos-primary: #f0f000;
-  --chaos-secondary: #00f0f0;
-  --chaos-background: #0d0d1a;
-}
-
-/* Matrix */
-.matrix {
-  --chaos-primary: #00ff00;
-  --chaos-secondary: #00cc00;
-  --chaos-background: #000000;
-}
-
-/* Vaporwave */
-.vaporwave {
-  --chaos-primary: #ff71ce;
-  --chaos-secondary: #01cdfe;
-  --chaos-background: #1a0a2e;
+:root {
+  --primary: 347 100% 50%;      /* #ff0040 - red */
+  --secondary: 180 100% 50%;    /* #00ffff - cyan */
+  --accent: 300 100% 50%;       /* #ff00ff - magenta */
+  --background: 0 0% 4%;        /* #0a0a0a */
+  --foreground: 0 0% 98%;       /* #fafafa */
 }
 ```
 
-### Per-component override
+### Per-component override with className
 
 ```tsx
-<GlitchText style={{ '--chaos-primary': '#ff6600' } as React.CSSProperties}>
-  Custom Orange
+// In your CSS
+.my-custom-glitch {
+  --primary: 120 100% 50%;  /* green */
+  --secondary: 60 100% 50%; /* yellow */
+}
+
+// Usage
+<GlitchText className="my-custom-glitch">
+  Custom Colors
 </GlitchText>
 ```
 
