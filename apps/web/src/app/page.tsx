@@ -67,7 +67,7 @@ export default function Home() {
           {/* Install command - floating */}
           <div className={styles.installBlock} id="install">
             <div className={styles.installNoise} />
-            <code>npx chaos add</code>
+            <code>npx @oalacea/chaosui add</code>
             <span className={styles.installCursor}>_</span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function Home() {
         <div className={styles.infoScatter}>
           <div className={styles.infoBlock} style={{ top: '20%', left: '5%' }}>
             <span className={styles.infoLabel}>COMPONENTS</span>
-            <span className={styles.infoValue}>12</span>
+            <span className={styles.infoValue}>30</span>
           </div>
           <div className={styles.infoBlock} style={{ top: '35%', right: '8%' }}>
             <span className={styles.infoLabel}>RUNTIME</span>

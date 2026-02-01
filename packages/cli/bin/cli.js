@@ -39,6 +39,34 @@ const COMPONENTS = {
   'warning-tape': { category: 'effects', description: 'Scrolling warning tape banner', status: 'ready' },
   'cursor-follower': { category: 'effects', description: 'Custom cursor with trail', status: 'ready' },
   'screen-distortion': { category: 'effects', description: 'Full screen distortion effect', status: 'ready' },
+  'glowing-border': { category: 'effects', description: 'Glowing border container with pulse', status: 'ready' },
+  
+  // Neon components
+  'neon-button': { category: 'neon', description: 'Button with neon glow effect', status: 'ready' },
+  'neon-badge': { category: 'neon', description: 'Luminous status badges', status: 'ready' },
+  'neon-progress': { category: 'neon', description: 'Glowing progress bar with shimmer', status: 'ready' },
+  'neon-toggle': { category: 'neon', description: 'On/off switch with neon glow', status: 'ready' },
+  'neon-alert': { category: 'neon', description: 'Alert notifications with neon style', status: 'ready' },
+  'neon-tabs': { category: 'neon', description: 'Tab navigation with glow effect', status: 'ready' },
+  'neon-divider': { category: 'neon', description: 'Luminous section dividers', status: 'ready' },
+  
+  // Cyber components
+  'cyber-input': { category: 'cyber', description: 'Input with animated border glow', status: 'ready' },
+  'cyber-loader': { category: 'cyber', description: 'Futuristic spinners and loaders', status: 'ready' },
+  'cyber-modal': { category: 'cyber', description: 'Modal with scanlines and glow', status: 'ready' },
+  'cyber-avatar': { category: 'cyber', description: 'Avatar with neon border and status', status: 'ready' },
+  'cyber-slider': { category: 'cyber', description: 'Slider with neon track and thumb', status: 'ready' },
+  'cyber-tooltip': { category: 'cyber', description: 'Terminal-style tooltips', status: 'ready' },
+  
+  // Layout components
+  'hologram-card': { category: 'layout', description: 'Holographic card with scanlines', status: 'ready' },
+  'data-grid': { category: 'layout', description: 'Terminal-style data table', status: 'ready' },
+  
+  // Navigation
+  'hexagon-menu': { category: 'navigation', description: 'Honeycomb hexagon menu', status: 'ready' },
+  
+  // Effects (new)
+  'glitch-image': { category: 'effects', description: 'Image with RGB glitch on hover', status: 'ready' },
 };
 
 const program = new Command();
@@ -75,8 +103,15 @@ program
   .command('add [component]')
   .description('Add a component to your project')
   .option('-d, --dir <path>', 'Target directory', './components/chaos')
+  .option('-v, --variant <type>', 'Styling variant: css or tailwind', 'css')
   .option('-y, --yes', 'Skip confirmation')
   .action(async (componentName, options) => {
+    const variant = options.variant.toLowerCase();
+    if (!['css', 'tailwind'].includes(variant)) {
+      console.log(pc.red(`\n✗ Invalid variant "${variant}". Use 'css' or 'tailwind'.\n`));
+      return;
+    }
+
     // If no component specified, show interactive picker
     if (!componentName) {
       const choices = Object.entries(COMPONENTS).map(([name, info]) => ({
@@ -85,20 +120,33 @@ program
         value: name,
       }));
       
-      const response = await prompts({
-        type: 'autocomplete',
-        name: 'component',
-        message: 'Which component?',
-        choices,
-        suggest: (input, choices) => 
-          choices.filter(c => c.title.includes(input) || c.description.toLowerCase().includes(input.toLowerCase()))
-      });
+      const response = await prompts([
+        {
+          type: 'autocomplete',
+          name: 'component',
+          message: 'Which component?',
+          choices,
+          suggest: (input, choices) => 
+            choices.filter(c => c.title.includes(input) || c.description.toLowerCase().includes(input.toLowerCase()))
+        },
+        {
+          type: 'select',
+          name: 'variant',
+          message: 'Styling variant?',
+          choices: [
+            { title: 'CSS Modules', value: 'css' },
+            { title: 'Tailwind', value: 'tailwind' },
+          ],
+          initial: variant === 'tailwind' ? 1 : 0,
+        }
+      ]);
       
       if (!response.component) {
         console.log(pc.dim('Cancelled.'));
         return;
       }
       componentName = response.component;
+      options.variant = response.variant || variant;
     }
     
     // Validate component exists
@@ -109,22 +157,36 @@ program
     }
     
     const info = COMPONENTS[componentName];
-    const sourceDir = path.join(COMPONENTS_DIR, info.category, componentName);
+    const baseDir = path.join(COMPONENTS_DIR, info.category, componentName);
+    
+    // Check if component has variant subdirs or is legacy (flat structure)
+    const variantDir = path.join(baseDir, options.variant);
+    const hasVariants = fs.existsSync(path.join(baseDir, 'css')) || fs.existsSync(path.join(baseDir, 'tailwind'));
+    const sourceDir = hasVariants ? variantDir : baseDir;
     const targetDir = path.resolve(options.dir, info.category);
     
     // Check source exists
     if (!fs.existsSync(sourceDir)) {
-      console.log(pc.yellow(`\n⚠ Component "${componentName}" is not yet implemented.`));
-      console.log(pc.dim('  Coming soon!\n'));
+      if (hasVariants) {
+        console.log(pc.yellow(`\n⚠ Variant "${options.variant}" not available for "${componentName}".`));
+        const available = [];
+        if (fs.existsSync(path.join(baseDir, 'css'))) available.push('css');
+        if (fs.existsSync(path.join(baseDir, 'tailwind'))) available.push('tailwind');
+        console.log(pc.dim(`  Available variants: ${available.join(', ')}\n`));
+      } else {
+        console.log(pc.yellow(`\n⚠ Component "${componentName}" is not yet implemented.`));
+        console.log(pc.dim('  Coming soon!\n'));
+      }
       return;
     }
     
     // Confirm
     if (!options.yes) {
+      const variantLabel = hasVariants ? ` (${pc.magenta(options.variant)})` : '';
       const confirm = await prompts({
         type: 'confirm',
         name: 'value',
-        message: `Add ${pc.cyan(componentName)} to ${pc.dim(targetDir)}?`,
+        message: `Add ${pc.cyan(componentName)}${variantLabel} to ${pc.dim(targetDir)}?`,
         initial: true,
       });
       
@@ -139,7 +201,7 @@ program
       await fs.ensureDir(targetDir);
       await fs.copy(sourceDir, path.join(targetDir, componentName));
       
-      console.log(pc.green(`\n✓ Added ${componentName}`));
+      console.log(pc.green(`\n✓ Added ${componentName}`) + (hasVariants ? pc.magenta(` (${options.variant})`) : ''));
       console.log(pc.dim(`  → ${path.join(targetDir, componentName)}\n`));
       
       // Show usage hint

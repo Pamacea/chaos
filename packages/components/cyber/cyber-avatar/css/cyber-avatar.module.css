@@ -1,0 +1,60 @@
+.avatar {
+  --avatar-color: #00f0ff;
+  --avatar-size: 3rem;
+  position: relative;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+}
+
+.sm { --avatar-size: 2rem; }
+.md { --avatar-size: 3rem; }
+.lg { --avatar-size: 4rem; }
+.xl { --avatar-size: 6rem; }
+
+.cyan { --avatar-color: #00f0ff; }
+.pink { --avatar-color: #ff00ff; }
+.green { --avatar-color: #00ff88; }
+.purple { --avatar-color: #a855f7; }
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.border {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border: 2px solid var(--avatar-color);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.glowing .border {
+  box-shadow: 0 0 10px var(--avatar-color), 0 0 20px var(--avatar-color);
+  animation: avatar-glow 2s ease-in-out infinite;
+}
+
+@keyframes avatar-glow {
+  0%, 100% { box-shadow: 0 0 5px var(--avatar-color); }
+  50% { box-shadow: 0 0 15px var(--avatar-color), 0 0 30px var(--avatar-color); }
+}
+
+.status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid hsl(var(--background, 0 0% 4%));
+}
+
+.online { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
+.offline { background: #666; }
+.busy { background: #ff0040; box-shadow: 0 0 6px #ff0040; }
+.away { background: #ffaa00; box-shadow: 0 0 6px #ffaa00; }

@@ -1,0 +1,52 @@
+.container {
+  --grid-color: #00f0ff;
+  
+  width: 100%;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--grid-color);
+  overflow: hidden;
+}
+
+.cyan { --grid-color: #00f0ff; }
+.green { --grid-color: #00ff88; }
+.amber { --grid-color: #ffaa00; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.headerRow {
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 1px solid var(--grid-color);
+}
+
+.header {
+  padding: 0.75rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+  color: var(--grid-color);
+}
+
+.row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.striped:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hoverable:hover {
+  background: rgba(0, 240, 255, 0.1);
+}
+
+.cell {
+  padding: 0.625rem 1rem;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.8);
+}

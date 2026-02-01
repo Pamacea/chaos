@@ -310,6 +310,325 @@ const COMPONENTS: Record<string, {
 <ScreenDistortion type="chromatic" intensity="subtle" />
 <ScreenDistortion type="wave" speed="slow" />`,
   },
+  'glowing-border': {
+    name: 'GlowingBorder',
+    category: 'effects',
+    description: 'Container with animated neon glowing border effect.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Content inside the border' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple" | "rainbow"', default: '"cyan"', description: 'Glow color' },
+      { name: 'animated', type: 'boolean', default: 'true', description: 'Enable pulse animation' },
+      { name: 'intensity', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Glow intensity' },
+    ],
+    usage: `import { GlowingBorder } from '@/components/chaos/effects/glowing-border';
+
+<GlowingBorder>Content here</GlowingBorder>
+<GlowingBorder variant="rainbow">Rainbow glow</GlowingBorder>
+<GlowingBorder intensity="high" animated={false}>Static</GlowingBorder>`,
+  },
+  'glitch-image': {
+    name: 'GlitchImage',
+    category: 'effects',
+    description: 'Image with RGB split glitch effect on hover.',
+    props: [
+      { name: 'src', type: 'string', default: '-', description: 'Image source URL' },
+      { name: 'alt', type: 'string', default: '"Image"', description: 'Alt text' },
+      { name: 'intensity', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Glitch intensity' },
+      { name: 'continuous', type: 'boolean', default: 'false', description: 'Continuous glitch (not just hover)' },
+    ],
+    usage: `import { GlitchImage } from '@/components/chaos/effects/glitch-image';
+
+<GlitchImage src="/photo.jpg" alt="Profile" />
+<GlitchImage src="/hero.png" intensity="high" />
+<GlitchImage src="/bg.jpg" continuous />`,
+  },
+
+  // NEON
+  'neon-button': {
+    name: 'NeonButton',
+    category: 'neon',
+    description: 'Glowing neon button with multiple color variants and effects.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Button content' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple" | "red" | "yellow"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Button size' },
+      { name: 'glowing', type: 'boolean', default: 'false', description: 'Continuous glow pulse' },
+      { name: 'animated', type: 'boolean', default: 'false', description: 'Animated gradient border' },
+      { name: 'cut', type: 'boolean', default: 'false', description: 'Cut corner style' },
+    ],
+    usage: `import { NeonButton } from '@/components/chaos/neon/neon-button';
+
+<NeonButton>ENTER</NeonButton>
+<NeonButton variant="pink" glowing>GLOW</NeonButton>
+<NeonButton variant="green" cut>CUT STYLE</NeonButton>
+<NeonButton size="lg" animated>ANIMATED</NeonButton>`,
+  },
+  'neon-badge': {
+    name: 'NeonBadge',
+    category: 'neon',
+    description: 'Luminous status badge with pulse animation.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Badge content' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple" | "red" | "yellow"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Badge size' },
+      { name: 'pulse', type: 'boolean', default: 'false', description: 'Pulse animation' },
+      { name: 'outline', type: 'boolean', default: 'false', description: 'Outline style' },
+    ],
+    usage: `import { NeonBadge } from '@/components/chaos/neon/neon-badge';
+
+<NeonBadge>LIVE</NeonBadge>
+<NeonBadge variant="green" pulse>ONLINE</NeonBadge>
+<NeonBadge variant="red" outline>ERROR</NeonBadge>`,
+  },
+  'neon-progress': {
+    name: 'NeonProgress',
+    category: 'neon',
+    description: 'Glowing progress bar with shimmer animation.',
+    props: [
+      { name: 'value', type: 'number', default: '-', description: 'Current progress value' },
+      { name: 'max', type: 'number', default: '100', description: 'Maximum value' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple" | "rainbow"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Bar size' },
+      { name: 'animated', type: 'boolean', default: 'true', description: 'Shimmer animation' },
+      { name: 'showValue', type: 'boolean', default: 'false', description: 'Show percentage' },
+    ],
+    usage: `import { NeonProgress } from '@/components/chaos/neon/neon-progress';
+
+<NeonProgress value={75} />
+<NeonProgress value={50} variant="rainbow" showValue />
+<NeonProgress value={30} size="lg" animated={false} />`,
+  },
+  'neon-toggle': {
+    name: 'NeonToggle',
+    category: 'neon',
+    description: 'Neon on/off switch with glow effect.',
+    props: [
+      { name: 'checked', type: 'boolean', default: '-', description: 'Current state' },
+      { name: 'onChange', type: '(checked: boolean) => void', default: '-', description: 'Change callback' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Toggle size' },
+    ],
+    usage: `import { NeonToggle } from '@/components/chaos/neon/neon-toggle';
+
+const [on, setOn] = useState(false);
+
+<NeonToggle checked={on} onChange={setOn} />
+<NeonToggle checked={on} onChange={setOn} variant="pink" />`,
+  },
+  'neon-alert': {
+    name: 'NeonAlert',
+    category: 'neon',
+    description: 'Neon notification/alert component with variants.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Alert message' },
+      { name: 'variant', type: '"info" | "success" | "warning" | "error"', default: '"info"', description: 'Alert type' },
+      { name: 'title', type: 'string', default: '-', description: 'Alert title' },
+      { name: 'dismissible', type: 'boolean', default: 'false', description: 'Show close button' },
+      { name: 'onDismiss', type: '() => void', default: '-', description: 'Close callback' },
+    ],
+    usage: `import { NeonAlert } from '@/components/chaos/neon/neon-alert';
+
+<NeonAlert title="Info">This is an info message</NeonAlert>
+<NeonAlert variant="error" dismissible onDismiss={handleClose}>
+  Critical error occurred
+</NeonAlert>`,
+  },
+  'neon-tabs': {
+    name: 'NeonTabs',
+    category: 'neon',
+    description: 'Glowing tab navigation component.',
+    props: [
+      { name: 'tabs', type: 'NeonTab[]', default: '-', description: 'Array of {id, label, icon?}' },
+      { name: 'activeTab', type: 'string', default: '-', description: 'Active tab id' },
+      { name: 'onChange', type: '(tabId: string) => void', default: '-', description: 'Tab change callback' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+    ],
+    usage: `import { NeonTabs } from '@/components/chaos/neon/neon-tabs';
+
+const tabs = [
+  { id: 'home', label: 'Home' },
+  { id: 'settings', label: 'Settings' },
+];
+
+<NeonTabs tabs={tabs} activeTab="home" onChange={setActiveTab} />`,
+  },
+  'neon-divider': {
+    name: 'NeonDivider',
+    category: 'neon',
+    description: 'Luminous horizontal divider line.',
+    props: [
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple" | "gradient"', default: '"cyan"', description: 'Neon color' },
+      { name: 'animated', type: 'boolean', default: 'false', description: 'Glow animation' },
+      { name: 'text', type: 'string', default: '-', description: 'Center text' },
+    ],
+    usage: `import { NeonDivider } from '@/components/chaos/neon/neon-divider';
+
+<NeonDivider />
+<NeonDivider variant="gradient" animated />
+<NeonDivider text="OR" variant="pink" />`,
+  },
+
+  // CYBER
+  'cyber-input': {
+    name: 'CyberInput',
+    category: 'cyber',
+    description: 'Animated input field with neon glow and label.',
+    props: [
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'label', type: 'string', default: '-', description: 'Input label' },
+      { name: 'error', type: 'string', default: '-', description: 'Error message' },
+    ],
+    usage: `import { CyberInput } from '@/components/chaos/cyber/cyber-input';
+
+<CyberInput placeholder="Enter text" />
+<CyberInput label="Username" variant="pink" />
+<CyberInput label="Email" error="Invalid email" />`,
+  },
+  'cyber-loader': {
+    name: 'CyberLoader',
+    category: 'cyber',
+    description: 'Futuristic loading spinners with multiple styles.',
+    props: [
+      { name: 'variant', type: '"spinner" | "dots" | "bars" | "pulse" | "hexagon"', default: '"spinner"', description: 'Loader style' },
+      { name: 'color', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Loader size' },
+    ],
+    usage: `import { CyberLoader } from '@/components/chaos/cyber/cyber-loader';
+
+<CyberLoader />
+<CyberLoader variant="dots" color="pink" />
+<CyberLoader variant="hexagon" size="lg" />`,
+  },
+  'cyber-modal': {
+    name: 'CyberModal',
+    category: 'cyber',
+    description: 'Modal dialog with scanlines effect.',
+    props: [
+      { name: 'isOpen', type: 'boolean', default: '-', description: 'Modal visibility' },
+      { name: 'onClose', type: '() => void', default: '-', description: 'Close callback' },
+      { name: 'title', type: 'string', default: '-', description: 'Modal title' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "red"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Modal size' },
+    ],
+    usage: `import { CyberModal } from '@/components/chaos/cyber/cyber-modal';
+
+<CyberModal isOpen={open} onClose={() => setOpen(false)} title="Confirm">
+  Are you sure?
+</CyberModal>`,
+  },
+  'cyber-avatar': {
+    name: 'CyberAvatar',
+    category: 'cyber',
+    description: 'Avatar with neon frame and status indicator.',
+    props: [
+      { name: 'src', type: 'string', default: '-', description: 'Image source' },
+      { name: 'size', type: '"sm" | "md" | "lg" | "xl"', default: '"md"', description: 'Avatar size' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'status', type: '"online" | "offline" | "busy" | "away"', default: '-', description: 'Status indicator' },
+      { name: 'glowing', type: 'boolean', default: 'false', description: 'Continuous glow' },
+    ],
+    usage: `import { CyberAvatar } from '@/components/chaos/cyber/cyber-avatar';
+
+<CyberAvatar src="/avatar.jpg" />
+<CyberAvatar src="/user.png" status="online" glowing />
+<CyberAvatar src="/profile.jpg" size="xl" variant="pink" />`,
+  },
+  'cyber-slider': {
+    name: 'CyberSlider',
+    category: 'cyber',
+    description: 'Neon range slider with value display.',
+    props: [
+      { name: 'value', type: 'number', default: '-', description: 'Current value' },
+      { name: 'onChange', type: '(value: number) => void', default: '-', description: 'Change callback' },
+      { name: 'min', type: 'number', default: '0', description: 'Minimum value' },
+      { name: 'max', type: 'number', default: '100', description: 'Maximum value' },
+      { name: 'step', type: 'number', default: '1', description: 'Step increment' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'showValue', type: 'boolean', default: 'false', description: 'Show current value' },
+    ],
+    usage: `import { CyberSlider } from '@/components/chaos/cyber/cyber-slider';
+
+<CyberSlider value={50} onChange={setValue} />
+<CyberSlider value={vol} onChange={setVol} showValue variant="pink" />`,
+  },
+  'cyber-tooltip': {
+    name: 'CyberTooltip',
+    category: 'cyber',
+    description: 'Terminal-style tooltip on hover.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Trigger element' },
+      { name: 'content', type: 'ReactNode', default: '-', description: 'Tooltip content' },
+      { name: 'position', type: '"top" | "bottom" | "left" | "right"', default: '"top"', description: 'Tooltip position' },
+      { name: 'variant', type: '"cyan" | "pink" | "green"', default: '"cyan"', description: 'Neon color' },
+    ],
+    usage: `import { CyberTooltip } from '@/components/chaos/cyber/cyber-tooltip';
+
+<CyberTooltip content="Click to submit">
+  <button>Submit</button>
+</CyberTooltip>`,
+  },
+
+  // LAYOUT
+  'hologram-card': {
+    name: 'HologramCard',
+    category: 'layout',
+    description: 'Holographic card with scanlines and glow.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Card content' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'scanlines', type: 'boolean', default: 'true', description: 'Show CRT scanlines' },
+      { name: 'flicker', type: 'boolean', default: 'false', description: 'Flicker effect' },
+    ],
+    usage: `import { HologramCard } from '@/components/chaos/layout/hologram-card';
+
+<HologramCard>
+  <h2>Title</h2>
+  <p>Content here</p>
+</HologramCard>
+<HologramCard variant="pink" flicker>Unstable</HologramCard>`,
+  },
+  'data-grid': {
+    name: 'DataGrid',
+    category: 'layout',
+    description: 'Terminal-style data table with neon accents.',
+    props: [
+      { name: 'columns', type: 'DataGridColumn[]', default: '-', description: 'Column definitions {key, header, width?}' },
+      { name: 'data', type: 'T[]', default: '-', description: 'Data rows' },
+      { name: 'variant', type: '"cyan" | "green" | "amber"', default: '"cyan"', description: 'Color theme' },
+      { name: 'striped', type: 'boolean', default: 'true', description: 'Striped rows' },
+      { name: 'hoverable', type: 'boolean', default: 'true', description: 'Hover effect' },
+    ],
+    usage: `import { DataGrid } from '@/components/chaos/layout/data-grid';
+
+const columns = [
+  { key: 'name', header: 'Name' },
+  { key: 'status', header: 'Status' },
+];
+const data = [{ name: 'Server-1', status: 'Online' }];
+
+<DataGrid columns={columns} data={data} />`,
+  },
+
+  // NAVIGATION
+  'hexagon-menu': {
+    name: 'HexagonMenu',
+    category: 'navigation',
+    description: 'Honeycomb-style hexagonal menu layout.',
+    props: [
+      { name: 'items', type: 'HexagonMenuItem[]', default: '-', description: 'Menu items {id, label, icon?, onClick?}' },
+      { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Hexagon size' },
+    ],
+    usage: `import { HexagonMenu } from '@/components/chaos/navigation/hexagon-menu';
+
+const items = [
+  { id: 'home', label: 'Home' },
+  { id: 'settings', label: 'Settings' },
+  { id: 'profile', label: 'Profile' },
+];
+
+<HexagonMenu items={items} />`,
+  },
 };
 
 export function generateStaticParams() {
@@ -439,6 +758,46 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.cursorPreview}><div/><div/></div>;
     case 'screen-distortion':
       return <div className={styles.distortPreview}><span>DISTORTION</span></div>;
+    case 'glowing-border':
+      return <div className={styles.glowBorderPreview}><span>GLOW</span></div>;
+    case 'glitch-image':
+      return <div className={styles.glitchImgPreview}>IMG</div>;
+    // NEON
+    case 'neon-button':
+      return <button className={styles.neonBtnPreview}>GLOW</button>;
+    case 'neon-badge':
+      return <span className={styles.neonBadgePreview}>LIVE</span>;
+    case 'neon-progress':
+      return <div className={styles.neonProgressPreview}><div /></div>;
+    case 'neon-toggle':
+      return <div className={styles.neonTogglePreview}><div /></div>;
+    case 'neon-alert':
+      return <div className={styles.neonAlertPreview}>ALERT</div>;
+    case 'neon-tabs':
+      return <div className={styles.neonTabsPreview}><span className={styles.active}>TAB</span><span>TAB</span></div>;
+    case 'neon-divider':
+      return <div className={styles.neonDividerPreview} />;
+    // CYBER
+    case 'cyber-input':
+      return <div className={styles.cyberInputPreview}><span>INPUT</span></div>;
+    case 'cyber-loader':
+      return <div className={styles.cyberLoaderPreview} />;
+    case 'cyber-modal':
+      return <div className={styles.cyberModalPreview}><span>MODAL</span></div>;
+    case 'cyber-avatar':
+      return <div className={styles.cyberAvatarPreview} />;
+    case 'cyber-slider':
+      return <div className={styles.cyberSliderPreview}><div /></div>;
+    case 'cyber-tooltip':
+      return <div className={styles.cyberTooltipPreview}>TIP</div>;
+    // LAYOUT
+    case 'hologram-card':
+      return <div className={styles.holoCardPreview}><span>HOLO</span></div>;
+    case 'data-grid':
+      return <div className={styles.dataGridPreview}><div/><div/><div/></div>;
+    // NAVIGATION
+    case 'hexagon-menu':
+      return <div className={styles.hexMenuPreview}><div/><div/><div/></div>;
     default:
       return <span>Preview</span>;
   }

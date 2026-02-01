@@ -1,0 +1,73 @@
+.container {
+  --glow-color: #00f0ff;
+  --glow-size: 10px;
+  
+  position: relative;
+  padding: 2px;
+  border-radius: 0.5rem;
+  background: var(--glow-color);
+}
+
+.cyan { --glow-color: #00f0ff; }
+.pink { --glow-color: #ff00ff; }
+.green { --glow-color: #00ff88; }
+.purple { --glow-color: #a855f7; }
+
+.rainbow {
+  background: linear-gradient(90deg, #00f0ff, #ff00ff, #00ff88, #00f0ff);
+  background-size: 300% 100%;
+}
+
+.low { --glow-size: 5px; }
+.medium { --glow-size: 10px; }
+.high { --glow-size: 20px; }
+
+.content {
+  position: relative;
+  background: hsl(var(--background, 0 0% 4%));
+  border-radius: calc(0.5rem - 2px);
+  z-index: 1;
+}
+
+/* Glow effect */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  background: inherit;
+  filter: blur(var(--glow-size));
+  opacity: 0.7;
+  z-index: -1;
+}
+
+/* Animation */
+.animated {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.rainbow.animated {
+  animation: glow-pulse 2s ease-in-out infinite, rainbow-border 3s linear infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.container:hover {
+  filter: brightness(1.2);
+}
+
+.container:hover::before {
+  filter: blur(calc(var(--glow-size) * 1.5));
+  opacity: 0.9;
+}

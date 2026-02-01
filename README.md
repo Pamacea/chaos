@@ -1,11 +1,11 @@
 # 🗡️ Chaos UI
 
-Glitch, noise, and distortion components for React. Copy-paste like shadcn.
+Glitch, noise, neon & cyber components for React. Copy-paste like shadcn.
 
 ## Quick Start
 
 ```bash
-npx @oalacea/chaosui add glitch-text
+npx @oalacea/chaosui add neon-button
 ```
 
 That's it. No install needed.
@@ -13,8 +13,11 @@ That's it. No install needed.
 ## Usage
 
 ```bash
-# Add a component
-npx @oalacea/chaosui add noise-overlay
+# Add a component (CSS Modules by default)
+npx @oalacea/chaosui add neon-button
+
+# Add with Tailwind variant
+npx @oalacea/chaosui add neon-button --variant tailwind
 
 # List all components
 npx @oalacea/chaosui list
@@ -25,16 +28,43 @@ npx @oalacea/chaosui init
 
 ## Components
 
-### Overlays
+### 🔮 Neon
 
 | Component | Description |
 |-----------|-------------|
-| `noise-overlay` | SVG fractal noise texture overlay |
-| `scanlines` | CRT-style horizontal scanlines |
-| `vignette` | Dark edges radial gradient |
-| `static-flicker` | Animated noise with flicker effect |
+| `neon-button` | Button with neon glow effect |
+| `neon-badge` | Luminous status badges |
+| `neon-progress` | Glowing progress bar with shimmer |
+| `neon-toggle` | On/off switch with neon glow |
+| `neon-alert` | Alert notifications with neon style |
+| `neon-tabs` | Tab navigation with glow effect |
+| `neon-divider` | Luminous section dividers |
 
-### Text Effects
+### 🤖 Cyber
+
+| Component | Description |
+|-----------|-------------|
+| `cyber-input` | Input with animated border glow |
+| `cyber-loader` | Futuristic spinners and loaders |
+| `cyber-modal` | Modal with scanlines and glow |
+| `cyber-avatar` | Avatar with neon border and status |
+| `cyber-slider` | Slider with neon track and thumb |
+| `cyber-tooltip` | Terminal-style tooltips |
+
+### 📐 Layout
+
+| Component | Description |
+|-----------|-------------|
+| `hologram-card` | Holographic card with scanlines |
+| `data-grid` | Terminal-style data table |
+
+### 🧭 Navigation
+
+| Component | Description |
+|-----------|-------------|
+| `hexagon-menu` | Honeycomb hexagon menu |
+
+### 📝 Text Effects
 
 | Component | Description |
 |-----------|-------------|
@@ -43,14 +73,14 @@ npx @oalacea/chaosui init
 | `distortion-text` | Wavy distortion text effect |
 | `falling-text` | Letters falling in cascade |
 
-### Buttons
+### 🎛️ Buttons
 
 | Component | Description |
 |-----------|-------------|
 | `glitch-button` | Button with glitch hover effect |
 | `chaos-button` | Chaotic animated button |
 
-### Backgrounds
+### 🌌 Backgrounds
 
 | Component | Description |
 |-----------|-------------|
@@ -59,15 +89,77 @@ npx @oalacea/chaosui init
 | `glow-orbs` | Floating blurred orbs |
 | `particle-field` | Drifting particle background |
 
-### Effects
+### 🎭 Overlays
+
+| Component | Description |
+|-----------|-------------|
+| `noise-overlay` | SVG fractal noise texture overlay |
+| `scanlines` | CRT-style horizontal scanlines |
+| `vignette` | Dark edges radial gradient |
+| `static-flicker` | Animated noise with flicker effect |
+
+### ✨ Effects
 
 | Component | Description |
 |-----------|-------------|
 | `warning-tape` | Scrolling warning tape banner |
 | `cursor-follower` | Custom cursor with trail |
 | `screen-distortion` | Full screen distortion effect |
+| `glowing-border` | Glowing border container with pulse |
+| `glitch-image` | Image with RGB glitch on hover |
+
+## Styling Variants
+
+All components are available in **two variants**:
+
+### CSS Modules (default)
+```bash
+npx @oalacea/chaosui add neon-button --variant css
+```
+Copies `index.tsx` + `component.module.css`
+
+### Tailwind
+```bash
+npx @oalacea/chaosui add neon-button --variant tailwind
+```
+Copies self-contained `index.tsx` with Tailwind classes
 
 ## Examples
+
+### NeonButton
+
+```tsx
+import { NeonButton } from './components/chaos/neon/neon-button';
+
+<NeonButton variant="cyan" size="lg" glowing>
+  Enter the Grid
+</NeonButton>
+```
+
+### CyberModal
+
+```tsx
+import { CyberModal } from './components/chaos/cyber/cyber-modal';
+
+<CyberModal 
+  isOpen={open} 
+  onClose={() => setOpen(false)}
+  title="System Alert"
+  variant="cyan"
+>
+  <p>Connection established.</p>
+</CyberModal>
+```
+
+### HologramCard
+
+```tsx
+import { HologramCard } from './components/chaos/layout/hologram-card';
+
+<HologramCard variant="pink" scanlines>
+  <h3>Status: Online</h3>
+</HologramCard>
+```
 
 ### GlitchText
 
@@ -79,73 +171,31 @@ import { GlitchText } from './components/chaos/text/glitch-text';
 </GlitchText>
 ```
 
-### NoiseOverlay
-
-```tsx
-import { NoiseOverlay } from './components/chaos/overlays/noise-overlay';
-
-<NoiseOverlay opacity={0.05} animated />
-```
-
-### GlitchButton
-
-```tsx
-import { GlitchButton } from './components/chaos/buttons/glitch-button';
-
-<GlitchButton intensity="medium" variant="outline">
-  Enter the Void
-</GlitchButton>
-```
-
 ## Theming
 
-Components use **standard CSS variables** — the same ones from shadcn/ui and most Next.js/Vite templates.
-
-If your `globals.css` already has these, **you're good to go**:
+Components use **CSS variables** compatible with shadcn/ui:
 
 ```css
 :root {
-  --primary: 222.2 47.4% 11.2%;
-  --secondary: 210 40% 96.1%;
-  --background: 0 0% 100%;
-  --foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --border: 214.3 31.8% 91.4%;
-}
-```
-
-### Custom theme for Chaos
-
-Want a more chaotic vibe? Override in your `globals.css`:
-
-```css
-:root {
-  --primary: 347 100% 50%;      /* #ff0040 - red */
-  --secondary: 180 100% 50%;    /* #00ffff - cyan */
-  --accent: 300 100% 50%;       /* #ff00ff - magenta */
   --background: 0 0% 4%;        /* #0a0a0a */
   --foreground: 0 0% 98%;       /* #fafafa */
+  --primary: 347 100% 50%;      /* #ff0040 */
+  --secondary: 180 100% 50%;    /* #00ffff */
 }
 ```
 
-### Per-component override with className
-
-```tsx
-// In your CSS
-.my-custom-glitch {
-  --primary: 120 100% 50%;  /* green */
-  --secondary: 60 100% 50%; /* yellow */
-}
-
-// Usage
-<GlitchText className="my-custom-glitch">
-  Custom Colors
-</GlitchText>
-```
+Neon/Cyber components also support direct color variants:
+- `cyan` (#00f0ff)
+- `pink` (#ff00ff)
+- `green` (#00ff88)
+- `purple` (#a855f7)
+- `red` (#ff0040)
+- `yellow` (#ffff00)
 
 ## Philosophy
 
 - **Copy-paste** — Components live in your codebase
+- **Two variants** — CSS Modules or Tailwind, your choice
 - **No runtime** — Pure CSS animations
 - **Customizable** — Every prop exposed
 - **Composable** — Mix effects freely

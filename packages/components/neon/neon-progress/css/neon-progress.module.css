@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.sm { height: 0.25rem; }
+.md { height: 0.5rem; }
+.lg { height: 0.75rem; }
+
+.bar {
+  --progress-color: #00f0ff;
+  height: 100%;
+  background: var(--progress-color);
+  border-radius: 0.25rem;
+  transition: width 0.5s ease;
+}
+
+/* Variants */
+.cyan { --progress-color: #00f0ff; }
+.pink { --progress-color: #ff00ff; }
+.green { --progress-color: #00ff88; }
+.purple { --progress-color: #a855f7; }
+
+.rainbow {
+  background: linear-gradient(90deg, #00f0ff, #ff00ff, #00ff88, #00f0ff);
+  background-size: 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
+}
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Shimmer animation */
+.animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Glow effect */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1.25rem;
+  background: var(--progress-color, #00f0ff);
+  filter: blur(0.5rem);
+  opacity: 0.5;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Value display */
+.value {
+  font-family: var(--font-display, 'Orbitron', monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--progress-color, #00f0ff);
+  min-width: 2.5rem;
+  text-align: right;
+}

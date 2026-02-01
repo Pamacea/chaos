@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.base {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.red { filter: hue-rotate(-50deg) saturate(200%); }
+.blue { filter: hue-rotate(50deg) saturate(200%); }
+
+.container:hover .red {
+  opacity: 0.8;
+  animation: glitch-r 0.3s steps(2) infinite;
+}
+
+.container:hover .blue {
+  opacity: 0.8;
+  animation: glitch-b 0.3s steps(2) infinite;
+}
+
+.continuous .red {
+  opacity: 0.5;
+  animation: glitch-r 2s steps(3) infinite;
+}
+
+.continuous .blue {
+  opacity: 0.5;
+  animation: glitch-b 2s steps(3) infinite;
+}
+
+.low .layer { opacity: 0.3 !important; }
+.high .layer { opacity: 0.9 !important; }
+.high:hover .red, .high:hover .blue { animation-duration: 0.1s; }
+
+@keyframes glitch-r {
+  0% { transform: translate(0); clip-path: inset(20% 0 40% 0); }
+  25% { transform: translate(-5px, 5px); clip-path: inset(50% 0 20% 0); }
+  50% { transform: translate(5px, -5px); clip-path: inset(10% 0 60% 0); }
+  75% { transform: translate(-3px, 3px); clip-path: inset(70% 0 10% 0); }
+  100% { transform: translate(0); clip-path: inset(20% 0 40% 0); }
+}
+
+@keyframes glitch-b {
+  0% { transform: translate(0); clip-path: inset(60% 0 10% 0); }
+  25% { transform: translate(5px, -5px); clip-path: inset(20% 0 50% 0); }
+  50% { transform: translate(-5px, 5px); clip-path: inset(80% 0 5% 0); }
+  75% { transform: translate(3px, -3px); clip-path: inset(5% 0 70% 0); }
+  100% { transform: translate(0); clip-path: inset(60% 0 10% 0); }
+}
