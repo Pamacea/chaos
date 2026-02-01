@@ -1,0 +1,114 @@
+.button {
+  --neon-color: #00f0ff;
+  --neon-glow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color), 0 0 40px var(--neon-color);
+  
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+  color: var(--neon-color);
+  background: transparent;
+  border: 2px solid var(--neon-color);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: var(--neon-color);
+  color: hsl(var(--background, 0 0% 4%));
+  box-shadow: var(--neon-glow);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* Variants */
+.cyan { --neon-color: #00f0ff; }
+.pink { --neon-color: #ff00ff; }
+.green { --neon-color: #00ff88; }
+.purple { --neon-color: #a855f7; }
+.red { --neon-color: #ff0040; }
+.yellow { --neon-color: #ffff00; }
+
+/* Sizes */
+.sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625em;
+}
+
+.lg {
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  letter-spacing: 0.1875em;
+}
+
+/* Glowing animation */
+.glowing {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--neon-color); }
+  50% { box-shadow: var(--neon-glow); }
+}
+
+/* Animated gradient border */
+.animated {
+  border: none;
+  background: 
+    linear-gradient(hsl(var(--background, 0 0% 4%)), hsl(var(--background, 0 0% 4%))) padding-box,
+    linear-gradient(90deg, #00f0ff, #ff00ff, #00f0ff) border-box;
+  border: 2px solid transparent;
+  background-size: 100% 100%, 200% 100%;
+  animation: border-flow 3s linear infinite;
+}
+
+.animated:hover {
+  background: 
+    linear-gradient(90deg, #00f0ff, #ff00ff) padding-box,
+    linear-gradient(90deg, #00f0ff, #ff00ff, #00f0ff) border-box;
+  color: hsl(var(--background, 0 0% 4%));
+}
+
+@keyframes border-flow {
+  0% { background-position: 0 0, 0% 50%; }
+  100% { background-position: 0 0, 200% 50%; }
+}
+
+/* Cut corners */
+.cut {
+  clip-path: polygon(
+    0 0, calc(100% - 12px) 0, 100% 12px,
+    100% 100%, 12px 100%, 0 calc(100% - 12px)
+  );
+}
+
+/* Glow sweep element */
+.glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--neon-color), transparent);
+  opacity: 0.3;
+  transition: left 0.5s ease;
+}
+
+.button:hover .glow {
+  left: 100%;
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+}

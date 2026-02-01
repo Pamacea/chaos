@@ -2,6 +2,30 @@ import Link from 'next/link';
 import styles from './docs.module.css';
 
 const COMPONENTS = {
+  neon: [
+    { name: 'neon-button', description: 'Glowing neon button' },
+    { name: 'neon-badge', description: 'Luminous status badge' },
+    { name: 'neon-progress', description: 'Glowing progress bar' },
+    { name: 'neon-toggle', description: 'Neon on/off switch' },
+    { name: 'neon-alert', description: 'Neon notifications' },
+    { name: 'neon-tabs', description: 'Glowing tab navigation' },
+    { name: 'neon-divider', description: 'Luminous dividers' },
+  ],
+  cyber: [
+    { name: 'cyber-input', description: 'Animated input field' },
+    { name: 'cyber-loader', description: 'Futuristic spinners' },
+    { name: 'cyber-modal', description: 'Modal with scanlines' },
+    { name: 'cyber-avatar', description: 'Neon avatar frame' },
+    { name: 'cyber-slider', description: 'Neon range slider' },
+    { name: 'cyber-tooltip', description: 'Terminal tooltips' },
+  ],
+  layout: [
+    { name: 'hologram-card', description: 'Holographic card' },
+    { name: 'data-grid', description: 'Terminal data table' },
+  ],
+  navigation: [
+    { name: 'hexagon-menu', description: 'Honeycomb menu' },
+  ],
   text: [
     { name: 'glitch-text', description: 'RGB split glitch effect' },
     { name: 'flicker-text', description: 'Random opacity flicker' },
@@ -28,8 +52,12 @@ const COMPONENTS = {
     { name: 'warning-tape', description: 'Scrolling banner' },
     { name: 'cursor-follower', description: 'Custom cursor trail' },
     { name: 'screen-distortion', description: 'Full screen fx' },
+    { name: 'glowing-border', description: 'Glowing container' },
+    { name: 'glitch-image', description: 'RGB glitch on hover' },
   ],
 };
+
+const totalComponents = Object.values(COMPONENTS).flat().length;
 
 export default function DocsPage() {
   return (
@@ -38,15 +66,22 @@ export default function DocsPage() {
       <header className={styles.header}>
         <Link href="/" className={styles.backLink}>← BACK</Link>
         <div className={styles.headerContent}>
-          <span className={styles.headerTag}>17 COMPONENTS</span>
+          <span className={styles.headerTag}>{totalComponents} COMPONENTS</span>
           <h1 className={styles.title}>
             <span className="glitch" data-text="DOCS">DOCS</span>
           </h1>
         </div>
         <div className={styles.headerRight}>
-          <code className={styles.installCmd}>npx chaos add [name]</code>
+          <code className={styles.installCmd}>npx @oalacea/chaosui add [name]</code>
         </div>
       </header>
+
+      {/* Variant info */}
+      <div className={styles.variantInfo}>
+        <span className={styles.variantBadge}>CSS</span>
+        <span className={styles.variantBadge}>TAILWIND</span>
+        <code>--variant css|tailwind</code>
+      </div>
 
       {/* Main grid - takes space */}
       <main className={styles.main}>
@@ -89,6 +124,47 @@ export default function DocsPage() {
 
 function ComponentPreview({ name }: { name: string }) {
   switch (name) {
+    // Neon
+    case 'neon-button':
+      return <button className={styles.neonBtn}>GLOW</button>;
+    case 'neon-badge':
+      return <span className={styles.neonBadge}>LIVE</span>;
+    case 'neon-progress':
+      return <div className={styles.neonProgress}><div className={styles.neonProgressBar} /></div>;
+    case 'neon-toggle':
+      return <div className={styles.neonToggle}><div className={styles.neonToggleThumb} /></div>;
+    case 'neon-alert':
+      return <div className={styles.neonAlert}>ALERT</div>;
+    case 'neon-tabs':
+      return <div className={styles.neonTabs}><span className={styles.neonTabActive}>TAB</span><span>TAB</span></div>;
+    case 'neon-divider':
+      return <div className={styles.neonDivider} />;
+    
+    // Cyber
+    case 'cyber-input':
+      return <div className={styles.cyberInput}><span>INPUT</span></div>;
+    case 'cyber-loader':
+      return <div className={styles.cyberLoader} />;
+    case 'cyber-modal':
+      return <div className={styles.cyberModal}><span>MODAL</span></div>;
+    case 'cyber-avatar':
+      return <div className={styles.cyberAvatar} />;
+    case 'cyber-slider':
+      return <div className={styles.cyberSlider}><div className={styles.cyberSliderThumb} /></div>;
+    case 'cyber-tooltip':
+      return <div className={styles.cyberTooltip}>TIP</div>;
+    
+    // Layout
+    case 'hologram-card':
+      return <div className={styles.holoCard}><span>HOLO</span></div>;
+    case 'data-grid':
+      return <div className={styles.dataGrid}><div/><div/><div/></div>;
+    
+    // Navigation
+    case 'hexagon-menu':
+      return <div className={styles.hexMenu}><div/><div/><div/></div>;
+    
+    // Text
     case 'glitch-text':
       return <span className={`${styles.previewText} glitch`} data-text="GLITCH">GLITCH</span>;
     case 'flicker-text':
@@ -97,6 +173,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <span className={`${styles.previewText} ${styles.waveText}`}>WAVE</span>;
     case 'falling-text':
       return <span className={`${styles.previewText} ${styles.fallText}`}>FALL</span>;
+    
+    // Overlays
     case 'noise-overlay':
       return <div className={styles.noiseBox}><span>NOISE</span></div>;
     case 'scanlines':
@@ -105,10 +183,14 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className={styles.vignetteBox}><span>VIGN</span></div>;
     case 'static-flicker':
       return <div className={styles.staticBox}><span>STATIC</span></div>;
+    
+    // Buttons
     case 'glitch-button':
       return <button className={styles.previewBtn}>HOVER</button>;
     case 'chaos-button':
       return <button className={styles.previewChaosBtn}>CHAOS</button>;
+    
+    // Backgrounds
     case 'noise-canvas':
       return <div className={styles.canvasBox} />;
     case 'light-beams':
@@ -117,12 +199,19 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className={styles.orbsBox}><div/><div/></div>;
     case 'particle-field':
       return <div className={styles.particlesBox}><div/><div/><div/><div/><div/></div>;
+    
+    // Effects
     case 'warning-tape':
       return <div className={styles.tapeBox}><span>WARNING • ERROR •</span></div>;
     case 'cursor-follower':
       return <div className={styles.cursorBox}><div className={styles.cursorRing}/><div className={styles.cursorDot}/></div>;
     case 'screen-distortion':
       return <div className={styles.distortBox}><span>DIST</span></div>;
+    case 'glowing-border':
+      return <div className={styles.glowBorder}><span>GLOW</span></div>;
+    case 'glitch-image':
+      return <div className={styles.glitchImg}>IMG</div>;
+    
     default:
       return <span>{name}</span>;
   }

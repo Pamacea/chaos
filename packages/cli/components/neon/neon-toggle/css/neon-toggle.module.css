@@ -1,0 +1,79 @@
+.toggle {
+  --toggle-color: #00f0ff;
+  --toggle-width: 3.25rem;
+  --toggle-height: 1.75rem;
+  --thumb-size: 1.25rem;
+  
+  position: relative;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Sizes */
+.sm {
+  --toggle-width: 2.5rem;
+  --toggle-height: 1.375rem;
+  --thumb-size: 1rem;
+}
+
+.lg {
+  --toggle-width: 4rem;
+  --toggle-height: 2.125rem;
+  --thumb-size: 1.625rem;
+}
+
+/* Variants */
+.cyan { --toggle-color: #00f0ff; }
+.pink { --toggle-color: #ff00ff; }
+.green { --toggle-color: #00ff88; }
+.purple { --toggle-color: #a855f7; }
+
+.track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--toggle-height);
+  transition: all 0.3s ease;
+}
+
+.checked .track {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: var(--toggle-color);
+  box-shadow: 0 0 10px var(--toggle-color), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: 0.25rem;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background: #666;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.checked .thumb {
+  left: calc(100% - var(--thumb-size) - 0.25rem);
+  background: var(--toggle-color);
+  box-shadow: 0 0 10px var(--toggle-color), 0 0 20px var(--toggle-color);
+}
+
+.toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggle:focus-visible .track {
+  outline: 2px solid var(--toggle-color);
+  outline-offset: 2px;
+}

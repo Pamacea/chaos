@@ -1,0 +1,124 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  animation: overlay-fade 0.2s ease-out;
+}
+
+@keyframes overlay-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  --modal-color: #00f0ff;
+  
+  position: relative;
+  width: 100%;
+  max-height: 90vh;
+  background: hsl(var(--background, 0 0% 4%));
+  border: 2px solid var(--modal-color);
+  box-shadow: 
+    0 0 20px var(--modal-color),
+    inset 0 0 20px rgba(0, 240, 255, 0.05);
+  overflow: hidden;
+  animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+  from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.cyan { --modal-color: #00f0ff; }
+.pink { --modal-color: #ff00ff; }
+.green { --modal-color: #00ff88; }
+.red { --modal-color: #ff0040; }
+
+.sm { max-width: 25rem; }
+.md { max-width: 37.5rem; }
+.lg { max-width: 56.25rem; }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 1px solid var(--modal-color);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+  color: var(--modal-color);
+}
+
+.close {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close:hover {
+  color: var(--modal-color);
+}
+
+.content {
+  padding: 1.25rem;
+  max-height: calc(90vh - 3.75rem);
+  overflow-y: auto;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Corner decorations */
+.modal::before,
+.modal::after {
+  content: '';
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--modal-color);
+}
+
+.modal::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.modal::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}

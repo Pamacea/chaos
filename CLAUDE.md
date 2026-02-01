@@ -83,13 +83,13 @@ component-name/
 
 ```bash
 # Add component to project
-npx chaos-ui add glitch-text
+npx @oalacea/chaosui add glitch-text
 
 # List all components
-npx chaos-ui list
+npx @oalacea/chaosui list
 
 # Initialize chaos in project
-npx chaos-ui init
+npx @oalacea/chaosui init
 ```
 
 ## Running Locally

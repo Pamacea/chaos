@@ -1,0 +1,43 @@
+.divider {
+  --divider-color: #00f0ff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cyan { --divider-color: #00f0ff; }
+.pink { --divider-color: #ff00ff; }
+.green { --divider-color: #00ff88; }
+.purple { --divider-color: #a855f7; }
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
+  box-shadow: 0 0 8px var(--divider-color);
+}
+
+.gradient .line {
+  height: 2px;
+  background: linear-gradient(90deg, #00f0ff, #ff00ff, #00ff88);
+}
+
+.text {
+  flex-shrink: 0;
+  padding: 0 0.5rem;
+  font-family: var(--font-display, 'Orbitron', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1875em;
+  color: var(--divider-color);
+}
+
+.animated .line {
+  animation: divider-pulse 2s ease-in-out infinite;
+}
+
+@keyframes divider-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--divider-color); }
+  50% { box-shadow: 0 0 15px var(--divider-color); }
+}

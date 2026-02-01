@@ -1,0 +1,102 @@
+.card {
+  --holo-color: #00f0ff;
+  --holo-bg: rgba(0, 240, 255, 0.05);
+  
+  position: relative;
+  padding: 1.5rem;
+  background: var(--holo-bg);
+  border: 1px solid var(--holo-color);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--holo-color), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+  0% { top: 0; opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { top: 100%; opacity: 1; }
+}
+
+/* Variants */
+.cyan {
+  --holo-color: #00f0ff;
+  --holo-bg: rgba(0, 240, 255, 0.05);
+}
+
+.pink {
+  --holo-color: #ff00ff;
+  --holo-bg: rgba(255, 0, 255, 0.05);
+}
+
+.green {
+  --holo-color: #00ff88;
+  --holo-bg: rgba(0, 255, 136, 0.05);
+}
+
+.purple {
+  --holo-color: #a855f7;
+  --holo-bg: rgba(168, 85, 247, 0.05);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--holo-bg) 0%, transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flicker {
+  animation: hologram-flicker 4s infinite;
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  95% { opacity: 0.9; }
+  96% { opacity: 1; }
+}
+
+.card:hover {
+  box-shadow: 
+    0 0 20px var(--holo-color),
+    inset 0 0 20px rgba(0, 240, 255, 0.1);
+}
