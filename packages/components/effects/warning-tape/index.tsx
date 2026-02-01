@@ -22,8 +22,8 @@ export const WarningTape = forwardRef<HTMLDivElement, WarningTapeProps>(
   (
     {
       children,
-      bgColor = '#ff0040',
-      textColor = '#000000',
+      bgColor,
+      textColor,
       duration = 20,
       rotation = -1,
       reverse = false,
@@ -41,8 +41,8 @@ export const WarningTape = forwardRef<HTMLDivElement, WarningTapeProps>(
         ref={ref}
         className={`${styles.tape} ${className || ''}`}
         style={{
-          backgroundColor: bgColor,
-          color: textColor,
+          ...(bgColor && { backgroundColor: bgColor }),
+          ...(textColor && { color: textColor }),
           transform: `rotate(${rotation}deg) scale(1.1)`,
           ...style,
         }}

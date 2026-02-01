@@ -1,0 +1,107 @@
+/* Chaos UI - CSS Variables */
+/* Copy these to your globals.css and customize as needed */
+
+:root {
+  /* Primary colors - used for glitch effects */
+  --chaos-primary: #ff0040;
+  --chaos-primary-rgb: 255, 0, 64;
+  
+  /* Secondary colors - used for alt glitch layer */
+  --chaos-secondary: #00ffff;
+  --chaos-secondary-rgb: 0, 255, 255;
+  
+  /* Accent - third color for effects */
+  --chaos-accent: #ff00ff;
+  --chaos-accent-rgb: 255, 0, 255;
+  
+  /* Background & Foreground */
+  --chaos-background: #0a0a0a;
+  --chaos-foreground: #fafafa;
+  
+  /* Muted colors */
+  --chaos-muted: #171717;
+  --chaos-muted-foreground: #a1a1a1;
+  
+  /* Border */
+  --chaos-border: #333333;
+  
+  /* Effects intensity */
+  --chaos-noise-opacity: 0.05;
+  --chaos-scanline-opacity: 0.1;
+  --chaos-vignette-opacity: 0.4;
+}
+
+/* Dark theme (default) - same as :root */
+.dark {
+  --chaos-primary: #ff0040;
+  --chaos-primary-rgb: 255, 0, 64;
+  --chaos-secondary: #00ffff;
+  --chaos-secondary-rgb: 0, 255, 255;
+  --chaos-accent: #ff00ff;
+  --chaos-accent-rgb: 255, 0, 255;
+  --chaos-background: #0a0a0a;
+  --chaos-foreground: #fafafa;
+  --chaos-muted: #171717;
+  --chaos-muted-foreground: #a1a1a1;
+  --chaos-border: #333333;
+}
+
+/* Light theme alternative */
+.light {
+  --chaos-primary: #dc0035;
+  --chaos-primary-rgb: 220, 0, 53;
+  --chaos-secondary: #0099cc;
+  --chaos-secondary-rgb: 0, 153, 204;
+  --chaos-accent: #cc00cc;
+  --chaos-accent-rgb: 204, 0, 204;
+  --chaos-background: #fafafa;
+  --chaos-foreground: #0a0a0a;
+  --chaos-muted: #f0f0f0;
+  --chaos-muted-foreground: #666666;
+  --chaos-border: #e0e0e0;
+}
+
+/* Cyberpunk preset */
+.cyberpunk {
+  --chaos-primary: #f0f000;
+  --chaos-primary-rgb: 240, 240, 0;
+  --chaos-secondary: #00f0f0;
+  --chaos-secondary-rgb: 0, 240, 240;
+  --chaos-accent: #f000f0;
+  --chaos-accent-rgb: 240, 0, 240;
+  --chaos-background: #0d0d1a;
+  --chaos-foreground: #f0f0f0;
+  --chaos-muted: #1a1a2e;
+  --chaos-muted-foreground: #8888aa;
+  --chaos-border: #2a2a4a;
+}
+
+/* Matrix preset */
+.matrix {
+  --chaos-primary: #00ff00;
+  --chaos-primary-rgb: 0, 255, 0;
+  --chaos-secondary: #00cc00;
+  --chaos-secondary-rgb: 0, 204, 0;
+  --chaos-accent: #00ff66;
+  --chaos-accent-rgb: 0, 255, 102;
+  --chaos-background: #000000;
+  --chaos-foreground: #00ff00;
+  --chaos-muted: #001100;
+  --chaos-muted-foreground: #00aa00;
+  --chaos-border: #003300;
+}
+
+/* Vaporwave preset */
+.vaporwave {
+  --chaos-primary: #ff71ce;
+  --chaos-primary-rgb: 255, 113, 206;
+  --chaos-secondary: #01cdfe;
+  --chaos-secondary-rgb: 1, 205, 254;
+  --chaos-accent: #b967ff;
+  --chaos-accent-rgb: 185, 103, 255;
+  --chaos-background: #1a0a2e;
+  --chaos-foreground: #fffb96;
+  --chaos-muted: #2d1b4e;
+  --chaos-muted-foreground: #b8b8d0;
+  --chaos-border: #4a2c7a;
+}

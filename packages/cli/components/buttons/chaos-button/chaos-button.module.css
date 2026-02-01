@@ -1,5 +1,6 @@
 .button {
-  --accent: #ff0040;
+  --accent: var(--chaos-primary, #ff0040);
+  --accent-alt: var(--chaos-secondary, #00ffff);
   position: relative;
   padding: 1rem 2.5rem;
   font-family: inherit;
@@ -132,7 +133,7 @@
 }
 
 .ghost1 { color: var(--accent); }
-.ghost2 { color: #00ffff; }
+.ghost2 { color: var(--accent-alt); }
 
 .button:hover .ghost1 {
   opacity: 0.6;

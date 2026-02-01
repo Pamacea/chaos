@@ -1,8 +1,8 @@
 .glitch {
   position: relative;
   display: inline-block;
-  --glitch-color: #ff0040;
-  --glitch-color-alt: #00ffff;
+  --glitch-color: var(--chaos-primary, #ff0040);
+  --glitch-color-alt: var(--chaos-secondary, #00ffff);
 }
 
 .glitch::before,
