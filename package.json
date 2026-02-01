@@ -1,0 +1,12 @@
+{
+  "name": "chaos",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @chaos/web dev",
+    "build": "pnpm --filter @chaos/web build",
+    "cli": "node packages/cli/bin/cli.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,564 @@
+.docs {
+  min-height: 100vh;
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 3rem;
+}
+
+/* HEADER - spread out */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.backLink {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.backLink:hover {
+  color: var(--accent);
+}
+
+.headerContent {
+  text-align: center;
+}
+
+.headerTag {
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 8rem);
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+.headerRight {
+  text-align: right;
+}
+
+.installCmd {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+/* MAIN - full width, categories stacked */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* CATEGORY */
+.category {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.categoryTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  position: sticky;
+  top: 2rem;
+}
+
+/* COMPONENT GRID - fills space */
+.componentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* COMPONENT CARD */
+.componentCard {
+  display: grid;
+  grid-template-rows: 200px auto;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.3s, transform 0.3s;
+  overflow: hidden;
+}
+
+.componentCard:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* CARD PREVIEW - big and alive */
+.cardPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cardInfo {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.cardName {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.cardDesc {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.cardArrow {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  transition: color 0.3s, transform 0.3s;
+}
+
+.componentCard:hover .cardArrow {
+  color: var(--accent);
+  transform: translateY(-50%) translateX(5px);
+}
+
+/* PREVIEW ELEMENTS */
+.previewText {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.waveText {
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0) skewX(0); }
+  25% { transform: translateY(-5px) skewX(-3deg); }
+  75% { transform: translateY(5px) skewX(3deg); }
+}
+
+.fallText {
+  animation: fall 2s ease-in-out infinite;
+}
+
+@keyframes fall {
+  0%, 100% { transform: translateY(-20px); opacity: 0; }
+  20%, 80% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+/* Noise box */
+.noiseBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.noiseBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  animation: noiseShift 0.2s steps(5) infinite;
+}
+
+@keyframes noiseShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Scanlines box */
+.scanlinesBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.scanlinesBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  animation: scanMove 3s linear infinite;
+}
+
+@keyframes scanMove {
+  from { background-position: 0 0; }
+  to { background-position: 0 100px; }
+}
+
+/* Vignette box */
+.vignetteBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.8) 100%);
+}
+
+/* Static box */
+.staticBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+}
+
+.staticBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  animation: staticFlicker 0.1s steps(3) infinite;
+}
+
+@keyframes staticFlicker {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.12; }
+}
+
+/* Preview button */
+.previewBtn {
+  padding: 0.8rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--text-dim);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.componentCard:hover .previewBtn {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+  animation: btnGlitch 0.1s infinite;
+}
+
+@keyframes btnGlitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+}
+
+/* Chaos button */
+.previewChaosBtn {
+  padding: 0.8rem 2rem;
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+}
+
+.previewChaosBtn::before,
+.previewChaosBtn::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+}
+
+.previewChaosBtn::before {
+  width: 20px; height: 2px;
+  top: -5px; left: 20%;
+}
+
+.previewChaosBtn::after {
+  width: 2px; height: 15px;
+  bottom: -10px; right: 25%;
+}
+
+/* Canvas box */
+.canvasBox {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #111 25%, #0a0a0a 25%, #0a0a0a 50%, #111 50%, #111 75%, #0a0a0a 75%);
+  background-size: 4px 4px;
+  animation: canvasAnim 0.5s steps(2) infinite;
+}
+
+@keyframes canvasAnim {
+  to { background-position: 4px 0; }
+}
+
+/* Beams box */
+.beamsBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.beamsBox > div {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  opacity: 0.3;
+  animation: beamMove 3s ease-in-out infinite;
+}
+
+.beamsBox > div:nth-child(1) { left: 25%; background: linear-gradient(180deg, transparent, #7c3aed, transparent); animation-delay: 0s; }
+.beamsBox > div:nth-child(2) { left: 50%; background: linear-gradient(180deg, transparent, #06b6d4, transparent); animation-delay: -1s; }
+.beamsBox > div:nth-child(3) { left: 75%; background: linear-gradient(180deg, transparent, #ec4899, transparent); animation-delay: -2s; }
+
+@keyframes beamMove {
+  0%, 100% { transform: translateX(-20px) skewX(-5deg); opacity: 0.2; }
+  50% { transform: translateX(20px) skewX(5deg); opacity: 0.4; }
+}
+
+/* Orbs box */
+.orbsBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.orbsBox > div {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.4;
+  animation: orbFloat 4s ease-in-out infinite;
+}
+
+.orbsBox > div:nth-child(1) { width: 80px; height: 80px; background: #7c3aed; top: 20%; left: 20%; }
+.orbsBox > div:nth-child(2) { width: 60px; height: 60px; background: #06b6d4; bottom: 20%; right: 20%; animation-delay: -2s; }
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+
+/* Particles box */
+.particlesBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.particlesBox > div {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleDrift 3s linear infinite;
+}
+
+.particlesBox > div:nth-child(1) { left: 20%; animation-delay: 0s; }
+.particlesBox > div:nth-child(2) { left: 40%; animation-delay: -0.6s; }
+.particlesBox > div:nth-child(3) { left: 60%; animation-delay: -1.2s; }
+.particlesBox > div:nth-child(4) { left: 80%; animation-delay: -1.8s; }
+.particlesBox > div:nth-child(5) { left: 50%; animation-delay: -2.4s; }
+
+@keyframes particleDrift {
+  0% { transform: translateY(200px); opacity: 0; }
+  10%, 90% { opacity: 0.5; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+/* Tape box */
+.tapeBox {
+  width: 100%;
+  background: var(--accent);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  transform: rotate(-3deg);
+}
+
+.tapeBox span {
+  display: inline-block;
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: tapeScroll 5s linear infinite;
+}
+
+@keyframes tapeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Cursor box */
+.cursorBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cursorRing {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  animation: cursorPulse 2s ease-in-out infinite;
+}
+
+.cursorDot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+@keyframes cursorPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+/* Distort box */
+.distortBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  position: relative;
+}
+
+.distortBox::before {
+  content: 'DIST';
+  position: absolute;
+  color: var(--accent);
+  opacity: 0.5;
+  animation: distortGlitch 3s infinite;
+}
+
+@keyframes distortGlitch {
+  0%, 90%, 100% { transform: translate(0); clip-path: inset(0 0 50% 0); }
+  92% { transform: translate(-3px, 2px); clip-path: inset(20% 0 30% 0); }
+  94% { transform: translate(2px, -1px); clip-path: inset(40% 0 10% 0); }
+  96% { transform: translate(-1px, 1px); clip-path: inset(60% 0 0 0); }
+}
+
+/* FOOTER */
+.footer {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.footer a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+.footer span {
+  color: var(--border);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .docs {
+    padding: 1.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .headerRight {
+    text-align: center;
+  }
+
+  .category {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .categoryTitle {
+    writing-mode: horizontal-tb;
+    transform: none;
+    position: static;
+  }
+
+  .componentGrid {
+    grid-template-columns: 1fr;
+  }
+}

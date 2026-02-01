@@ -1,0 +1,57 @@
+.container {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.down {
+  animation-name: fall-down;
+}
+
+.up {
+  animation-name: fall-up;
+}
+
+.loop {
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%) rotate(-10deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%) rotate(10deg);
+  }
+}
+
+@keyframes fall-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) rotate(10deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%) rotate(-10deg);
+  }
+}
