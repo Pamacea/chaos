@@ -1,0 +1,197 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.1s;
+  --glitch-color: #ff0040;
+  --glitch-color-alt: #00ffff;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* Variants */
+.default {
+  background: #0a0a0a;
+  color: #fafafa;
+  border: 1px solid #333;
+}
+
+.outline {
+  background: transparent;
+  color: #fafafa;
+  border: 2px solid currentColor;
+}
+
+.ghost {
+  background: transparent;
+  color: #fafafa;
+  border: none;
+}
+
+/* Content layer */
+.content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Glitch layers */
+.glitchLayer,
+.glitchLayerAlt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitchLayer {
+  color: var(--glitch-color);
+  z-index: 1;
+}
+
+.glitchLayerAlt {
+  color: var(--glitch-color-alt);
+  z-index: 2;
+}
+
+/* Noise layer */
+.noiseLayer {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Hover states */
+.button:hover .noiseLayer {
+  opacity: 0.15;
+  animation: noise-shift 0.2s steps(5) infinite;
+}
+
+/* SUBTLE hover */
+.subtle:hover .glitchLayer {
+  opacity: 0.5;
+  animation: glitch-subtle 0.5s infinite;
+}
+
+.subtle:hover .glitchLayerAlt {
+  opacity: 0.3;
+  animation: glitch-subtle-alt 0.5s infinite;
+}
+
+@keyframes glitch-subtle {
+  0%, 100% { transform: translate(0); clip-path: inset(0 0 70% 0); }
+  25% { transform: translate(-1px, 1px); clip-path: inset(20% 0 50% 0); }
+  50% { transform: translate(1px, -1px); clip-path: inset(40% 0 30% 0); }
+  75% { transform: translate(-1px, -1px); clip-path: inset(60% 0 10% 0); }
+}
+
+@keyframes glitch-subtle-alt {
+  0%, 100% { transform: translate(0); clip-path: inset(70% 0 0 0); }
+  25% { transform: translate(1px, -1px); clip-path: inset(50% 0 20% 0); }
+  50% { transform: translate(-1px, 1px); clip-path: inset(30% 0 40% 0); }
+  75% { transform: translate(1px, 1px); clip-path: inset(10% 0 60% 0); }
+}
+
+/* MEDIUM hover */
+.medium:hover .glitchLayer {
+  opacity: 0.7;
+  animation: glitch-medium 0.2s infinite;
+}
+
+.medium:hover .glitchLayerAlt {
+  opacity: 0.5;
+  animation: glitch-medium-alt 0.2s infinite;
+}
+
+@keyframes glitch-medium {
+  0%, 100% { transform: translate(0); clip-path: inset(0 0 60% 0); }
+  20% { transform: translate(-2px, 2px); clip-path: inset(10% 0 50% 0); }
+  40% { transform: translate(2px, -2px); clip-path: inset(30% 0 30% 0); }
+  60% { transform: translate(-2px, -2px); clip-path: inset(50% 0 10% 0); }
+  80% { transform: translate(2px, 2px); clip-path: inset(70% 0 0 0); }
+}
+
+@keyframes glitch-medium-alt {
+  0%, 100% { transform: translate(0); clip-path: inset(60% 0 0 0); }
+  20% { transform: translate(2px, -2px); clip-path: inset(50% 0 10% 0); }
+  40% { transform: translate(-2px, 2px); clip-path: inset(30% 0 30% 0); }
+  60% { transform: translate(2px, 2px); clip-path: inset(10% 0 50% 0); }
+  80% { transform: translate(-2px, -2px); clip-path: inset(0 0 70% 0); }
+}
+
+/* INTENSE hover */
+.intense:hover .glitchLayer {
+  opacity: 0.9;
+  animation: glitch-intense 0.1s infinite;
+}
+
+.intense:hover .glitchLayerAlt {
+  opacity: 0.7;
+  animation: glitch-intense-alt 0.1s infinite;
+}
+
+.intense:hover {
+  animation: button-shake 0.1s infinite;
+}
+
+@keyframes glitch-intense {
+  0% { transform: translate(0); clip-path: inset(0 0 50% 0); }
+  10% { transform: translate(-3px, 3px); clip-path: inset(5% 0 45% 0); }
+  20% { transform: translate(3px, -3px); clip-path: inset(15% 0 35% 0); }
+  30% { transform: translate(-3px, -3px); clip-path: inset(25% 0 25% 0); }
+  40% { transform: translate(3px, 3px); clip-path: inset(35% 0 15% 0); }
+  50% { transform: translate(-3px, 0); clip-path: inset(45% 0 5% 0); }
+  60% { transform: translate(3px, 0); clip-path: inset(55% 0 0 0); }
+  70% { transform: translate(0, 3px); clip-path: inset(65% 0 0 0); }
+  80% { transform: translate(0, -3px); clip-path: inset(75% 0 0 0); }
+  90% { transform: translate(-3px, 3px); clip-path: inset(85% 0 0 0); }
+  100% { transform: translate(0); clip-path: inset(95% 0 0 0); }
+}
+
+@keyframes glitch-intense-alt {
+  0% { transform: translate(0); clip-path: inset(50% 0 0 0); }
+  10% { transform: translate(3px, -3px); clip-path: inset(45% 0 5% 0); }
+  20% { transform: translate(-3px, 3px); clip-path: inset(35% 0 15% 0); }
+  30% { transform: translate(3px, 3px); clip-path: inset(25% 0 25% 0); }
+  40% { transform: translate(-3px, -3px); clip-path: inset(15% 0 35% 0); }
+  50% { transform: translate(3px, 0); clip-path: inset(5% 0 45% 0); }
+  60% { transform: translate(-3px, 0); clip-path: inset(0 0 55% 0); }
+  70% { transform: translate(0, -3px); clip-path: inset(0 0 65% 0); }
+  80% { transform: translate(0, 3px); clip-path: inset(0 0 75% 0); }
+  90% { transform: translate(3px, -3px); clip-path: inset(0 0 85% 0); }
+  100% { transform: translate(0); clip-path: inset(0 0 95% 0); }
+}
+
+@keyframes button-shake {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, -1px); }
+  75% { transform: translate(1px, -1px); }
+}
+
+@keyframes noise-shift {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-1px, -2px); }
+  100% { transform: translate(0, 0); }
+}

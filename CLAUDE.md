@@ -1,72 +1,106 @@
-# CLAUDE.md - AI Instructions for Chaos
+# CLAUDE.md - AI Instructions for Chaos UI
 
-This file provides guidance for AI assistants working with this component library.
+A copy-paste component library for glitch, noise, and distortion effects in React.
 
 ## Project Structure
 
 ```
 chaos/
-├── components/           # UI components (each in its own folder)
-│   └── [component-name]/
-│       ├── index.html    # Demo/preview file
-│       ├── style.css     # Component styles
-│       └── script.js     # Component logic (if needed)
-├── README.md             # Project documentation
-├── CLAUDE.md             # This file
-└── LICENSE               # MIT License
+├── apps/
+│   └── web/                    # Documentation site (Next.js)
+│       └── src/app/
+│           ├── page.tsx        # Homepage
+│           ├── about/          # About page
+│           └── docs/           # Component docs
+├── packages/
+│   ├── cli/                    # npx chaos-ui CLI
+│   │   └── bin/cli.js
+│   └── components/             # All UI components
+│       ├── backgrounds/        # Background effects
+│       │   ├── glow-orbs/
+│       │   ├── light-beams/
+│       │   ├── noise-canvas/
+│       │   └── particle-field/
+│       ├── buttons/            # Button components
+│       │   ├── chaos-button/
+│       │   └── glitch-button/
+│       ├── effects/            # Special effects
+│       │   ├── cursor-follower/
+│       │   ├── screen-distortion/
+│       │   └── warning-tape/
+│       ├── overlays/           # Overlay effects
+│       │   ├── noise-overlay/
+│       │   ├── scanlines/
+│       │   ├── static-flicker/
+│       │   └── vignette/
+│       └── text/               # Text effects
+│           ├── distortion-text/
+│           ├── falling-text/
+│           ├── flicker-text/
+│           └── glitch-text/
+├── .gitignore
+├── package.json
+├── pnpm-workspace.yaml
+└── README.md
 ```
 
-## Component Guidelines
+## Component Structure
 
-### Creating a New Component
+Each component follows the same pattern:
 
-1. Create a folder in `components/` with a descriptive name (kebab-case)
-2. Include at minimum:
-   - `index.html` - Standalone demo that works when opened directly
-   - `style.css` - All styles scoped to avoid conflicts
-3. Optional:
-   - `script.js` - JavaScript functionality
-   - `README.md` - Component-specific documentation
+```
+component-name/
+├── index.tsx               # React component
+└── component-name.module.css   # CSS Module styles
+```
+
+## Development Guidelines
+
+### Adding a New Component
+
+1. Create folder in appropriate category under `packages/components/`
+2. Create `index.tsx` with the component
+3. Create `component-name.module.css` for styles
+4. Add to CLI registry in `packages/cli/bin/cli.js`
+5. Add documentation page in `apps/web/src/app/docs/[component]/`
 
 ### Code Style
 
-- **CSS**: Use CSS custom properties (variables) for theming
-- **JS**: Vanilla JavaScript preferred, no frameworks required
-- **HTML**: Semantic markup, accessible where possible
-- **Naming**: BEM-ish naming or scoped classes to prevent conflicts
+- **TypeScript**: All components in `.tsx`
+- **CSS Modules**: Scoped styles with `.module.css`
+- **Props**: Fully typed with defaults
+- **Animations**: Pure CSS, no JS runtime
+- **Customization**: CSS custom properties for theming
 
 ### Component Philosophy
 
-- **Self-contained**: Each component should work in isolation
-- **Creative**: Prioritize visual impact and interesting effects
-- **Hackable**: Code should be easy to understand and modify
-- **No dependencies**: Pure HTML/CSS/JS, no build steps required
+- Self-contained: Each component works standalone
+- No dependencies: Pure React + CSS
+- Copy-paste friendly: Components go in user's codebase
+- Accessible when possible, chaotic by design
 
-## Adding Components
+## CLI Usage
 
-When adding a component from external sources (CodePen, demos, etc.):
+```bash
+# Add component to project
+npx chaos-ui add glitch-text
 
-1. Extract and organize into the component folder structure
-2. Clean up the code (remove unnecessary vendor prefixes, etc.)
-3. Add comments explaining complex parts
-4. Test that the demo works standalone
-5. Update the main README.md component list
+# List all components
+npx chaos-ui list
 
-## Example Component Structure
+# Initialize chaos in project
+npx chaos-ui init
+```
 
-```html
-<!-- components/glowing-button/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glowing Button - Chaos</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <button class="chaos-glowing-btn">Click Me</button>
-  <script src="script.js"></script>
-</body>
-</html>
+## Running Locally
+
+```bash
+# Install deps
+pnpm install
+
+# Run docs site
+cd apps/web && pnpm dev
+
+# Test CLI locally
+node packages/cli/bin/cli.js list
 ```
