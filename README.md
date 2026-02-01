@@ -1,6 +1,8 @@
 # 🗡️ Chaos UI
 
-Glitch, noise, neon & cyber components for React. Copy-paste like shadcn.
+Glitch, noise, neon & brutalist components for React. Copy-paste like shadcn.
+
+**65 components** — CSS Modules or Tailwind — Zero runtime.
 
 ## Quick Start
 
@@ -26,9 +28,9 @@ npx @oalacea/chaosui list
 npx @oalacea/chaosui init
 ```
 
-## Components
+## Components (65)
 
-### 🔮 Neon
+### 🔮 Neon (7)
 
 | Component | Description |
 |-----------|-------------|
@@ -40,7 +42,7 @@ npx @oalacea/chaosui init
 | `neon-tabs` | Tab navigation with glow effect |
 | `neon-divider` | Luminous section dividers |
 
-### 🤖 Cyber
+### 🤖 Cyber (6)
 
 | Component | Description |
 |-----------|-------------|
@@ -51,20 +53,7 @@ npx @oalacea/chaosui init
 | `cyber-slider` | Slider with neon track and thumb |
 | `cyber-tooltip` | Terminal-style tooltips |
 
-### 📐 Layout
-
-| Component | Description |
-|-----------|-------------|
-| `hologram-card` | Holographic card with scanlines |
-| `data-grid` | Terminal-style data table |
-
-### 🧭 Navigation
-
-| Component | Description |
-|-----------|-------------|
-| `hexagon-menu` | Honeycomb hexagon menu |
-
-### 📝 Text Effects
+### 📝 Text Effects (14)
 
 | Component | Description |
 |-----------|-------------|
@@ -72,15 +61,53 @@ npx @oalacea/chaosui init
 | `flicker-text` | Text that flickers randomly |
 | `distortion-text` | Wavy distortion text effect |
 | `falling-text` | Letters falling in cascade |
+| `typing-text` | Terminal typing effect |
+| `char-glitch` | Per-character glitch effect |
+| `reveal-text` | Text reveal on scroll |
+| `strike-reveal` | Strikethrough then reveal |
+| `giant-layers` | Giant text with 3D shadow layers |
+| `blood-drip` | Dripping blood effect letters |
+| `rotate-text` | Vertical rotating text |
+| `ascii-art` | Styled ASCII art block |
+| `countdown-display` | Stylized countdown timer |
+| `terminal-output` | Terminal block with prompt |
 
-### 🎛️ Buttons
+### 🎛️ Buttons (7)
 
 | Component | Description |
 |-----------|-------------|
 | `glitch-button` | Button with glitch hover effect |
-| `chaos-button` | Chaotic animated button |
+| `chaos-button` | Chaotic animated button with debris |
+| `dead-button` | Destroyed/glitched button |
+| `deeper-button` | Go deeper style descent button |
+| `dual-choice` | Yes/No dual button choice |
+| `cta-brutal` | Brutalist CTA button |
+| `tension-bar` | Dramatic tension/progress bar |
 
-### 🌌 Backgrounds
+### 🧭 Navigation (6)
+
+| Component | Description |
+|-----------|-------------|
+| `hexagon-menu` | Honeycomb hexagon menu |
+| `scattered-nav` | Scattered fragment navigation |
+| `vertical-nav` | Vertical nav with glyphs |
+| `brutal-nav` | Brutalist chaotic navigation |
+| `progress-dots` | Section progress indicator |
+| `scroll-indicator` | Vertical scroll indicator |
+
+### 📐 Layout (7)
+
+| Component | Description |
+|-----------|-------------|
+| `hologram-card` | Holographic card with scanlines |
+| `data-grid` | Terminal-style data table |
+| `horizontal-scroll` | Horizontal scrolling panels |
+| `void-frame` | Frame with decorative corners |
+| `tower-pricing` | Vertical stacked pricing cards |
+| `spec-grid` | Terminal-style specs grid |
+| `tracklist` | Music tracklist component |
+
+### 🌌 Backgrounds (4)
 
 | Component | Description |
 |-----------|-------------|
@@ -89,7 +116,7 @@ npx @oalacea/chaosui init
 | `glow-orbs` | Floating blurred orbs |
 | `particle-field` | Drifting particle background |
 
-### 🎭 Overlays
+### 🎭 Overlays (4)
 
 | Component | Description |
 |-----------|-------------|
@@ -98,7 +125,7 @@ npx @oalacea/chaosui init
 | `vignette` | Dark edges radial gradient |
 | `static-flicker` | Animated noise with flicker effect |
 
-### ✨ Effects
+### ✨ Effects (5)
 
 | Component | Description |
 |-----------|-------------|
@@ -107,6 +134,16 @@ npx @oalacea/chaosui init
 | `screen-distortion` | Full screen distortion effect |
 | `glowing-border` | Glowing border container with pulse |
 | `glitch-image` | Image with RGB glitch on hover |
+
+### 🏛️ Decorative (5)
+
+| Component | Description |
+|-----------|-------------|
+| `rune-symbols` | Animated runic symbols |
+| `ornaments` | Medieval ornaments |
+| `coffee-stain` | Coffee stain/aged paper effect |
+| `sheet-music` | Floating music notes |
+| `inscription` | Stone carved inscription |
 
 ## Styling Variants
 
@@ -136,39 +173,46 @@ import { NeonButton } from './components/chaos/neon/neon-button';
 </NeonButton>
 ```
 
-### CyberModal
+### TypingText
 
 ```tsx
-import { CyberModal } from './components/chaos/cyber/cyber-modal';
+import { TypingText } from './components/chaos/text/typing-text';
 
-<CyberModal 
-  isOpen={open} 
-  onClose={() => setOpen(false)}
-  title="System Alert"
-  variant="cyan"
->
-  <p>Connection established.</p>
-</CyberModal>
+<TypingText speed={50} cursor>
+  Initializing system...
+</TypingText>
 ```
 
-### HologramCard
+### DeadButton
 
 ```tsx
-import { HologramCard } from './components/chaos/layout/hologram-card';
+import { DeadButton } from './components/chaos/buttons/dead-button';
 
-<HologramCard variant="pink" scanlines>
-  <h3>Status: Online</h3>
-</HologramCard>
+<DeadButton destruction="heavy">
+  DESTROYED
+</DeadButton>
 ```
 
-### GlitchText
+### VoidFrame
 
 ```tsx
-import { GlitchText } from './components/chaos/text/glitch-text';
+import { VoidFrame } from './components/chaos/layout/void-frame';
 
-<GlitchText intensity="intense" glitchColor="#ff0040">
-  CHAOS
-</GlitchText>
+<VoidFrame variant="gold" corners="ornate">
+  <h2>Ancient Text</h2>
+</VoidFrame>
+```
+
+### RuneSymbols
+
+```tsx
+import { RuneSymbols } from './components/chaos/decorative/rune-symbols';
+
+<RuneSymbols 
+  symbols={['ᛟ', 'ᚨ', 'ᛊ']} 
+  variant="gold" 
+  animated 
+/>
 ```
 
 ## Theming
@@ -184,13 +228,14 @@ Components use **CSS variables** compatible with shadcn/ui:
 }
 ```
 
-Neon/Cyber components also support direct color variants:
+Color variants available:
 - `cyan` (#00f0ff)
 - `pink` (#ff00ff)
 - `green` (#00ff88)
 - `purple` (#a855f7)
 - `red` (#ff0040)
 - `yellow` (#ffff00)
+- `gold` (#c9a84c)
 
 ## Philosophy
 
@@ -199,6 +244,16 @@ Neon/Cyber components also support direct color variants:
 - **No runtime** — Pure CSS animations
 - **Customizable** — Every prop exposed
 - **Composable** — Mix effects freely
+- **Brutalist** — Embrace the chaos
+
+## What's New in 0.5.0
+
+- 🆕 **30 new components** inspired by experimental demos
+- 📝 **Text effects**: typing, char-glitch, blood-drip, ascii-art, countdown...
+- 🧭 **Navigation**: scattered-nav, brutal-nav, vertical-nav with runes...
+- 🏛️ **Decorative**: rune-symbols, ornaments, inscriptions, sheet-music...
+- 📐 **Layout**: void-frame, tower-pricing, tracklist, horizontal-scroll...
+- 🎛️ **Buttons**: dead-button, deeper-button, dual-choice, tension-bar...
 
 ## License
 
