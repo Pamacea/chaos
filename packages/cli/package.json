@@ -1,6 +1,6 @@
 {
   "name": "@oalacea/chaosui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Glitch, noise, and distortion components for React. Copy-paste like shadcn.",
   "type": "module",
   "bin": {

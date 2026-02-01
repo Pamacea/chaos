@@ -21,7 +21,7 @@ export interface GlowOrbsProps extends HTMLAttributes<HTMLDivElement> {
 export const GlowOrbs = forwardRef<HTMLDivElement, GlowOrbsProps>(
   (
     {
-      colors = ['var(--chaos-primary, #ff0040)', 'var(--chaos-secondary, #00ffff)', 'var(--chaos-accent, #ff00ff)', 'var(--chaos-primary, #ff0040)'],
+      colors = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent, 300 100% 50%))', 'hsl(var(--muted))'],
       count = 5,
       sizeRange = [100, 300],
       blur = 80,

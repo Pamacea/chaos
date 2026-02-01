@@ -7,8 +7,8 @@
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background-color: var(--chaos-primary, #ff0040);
-  color: var(--chaos-background, #000000);
+  background-color: hsl(var(--primary, 347 100% 50%));
+  color: hsl(var(--primary-foreground, 0 0% 100%));
 }
 
 .scroll {

@@ -13,8 +13,8 @@
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.1s;
-  --glitch-color: var(--chaos-primary, #ff0040);
-  --glitch-color-alt: var(--chaos-secondary, #00ffff);
+  --glitch-color: hsl(var(--primary, 347 100% 50%));
+  --glitch-color-alt: hsl(var(--secondary, 180 100% 50%));
 }
 
 .button:active {
@@ -23,20 +23,20 @@
 
 /* Variants */
 .default {
-  background: var(--chaos-background, #0a0a0a);
-  color: var(--chaos-foreground, #fafafa);
-  border: 1px solid var(--chaos-border, #333);
+  background: hsl(var(--background, 0 0% 4%));
+  color: hsl(var(--foreground, 0 0% 98%));
+  border: 1px solid hsl(var(--border, 0 0% 20%));
 }
 
 .outline {
   background: transparent;
-  color: var(--chaos-foreground, #fafafa);
+  color: hsl(var(--foreground, 0 0% 98%));
   border: 2px solid currentColor;
 }
 
 .ghost {
   background: transparent;
-  color: var(--chaos-foreground, #fafafa);
+  color: hsl(var(--foreground, 0 0% 98%));
   border: none;
 }
 
