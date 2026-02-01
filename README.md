@@ -2,26 +2,25 @@
 
 Glitch, noise, and distortion components for React. Copy-paste like shadcn.
 
-## Installation
+## Quick Start
 
 ```bash
-npx chaos-ui init
+npx @oalacea/chaosui add glitch-text
 ```
+
+That's it. No install needed.
 
 ## Usage
 
-Add components to your project:
-
 ```bash
-npx chaos-ui add glitch-text
-npx chaos-ui add noise-overlay
-npx chaos-ui add glitch-button
-```
+# Add a component
+npx @oalacea/chaosui add noise-overlay
 
-List all available components:
+# List all components
+npx @oalacea/chaosui list
 
-```bash
-npx chaos-ui list
+# Initialize config (optional)
+npx @oalacea/chaosui init
 ```
 
 ## Components
@@ -85,7 +84,6 @@ import { GlitchText } from './components/chaos/text/glitch-text';
 ```tsx
 import { NoiseOverlay } from './components/chaos/overlays/noise-overlay';
 
-// Add to your layout
 <NoiseOverlay opacity={0.05} animated />
 ```
 
@@ -99,19 +97,9 @@ import { GlitchButton } from './components/chaos/buttons/glitch-button';
 </GlitchButton>
 ```
 
-### WarningTape
-
-```tsx
-import { WarningTape } from './components/chaos/effects/warning-tape';
-
-<WarningTape bgColor="#ff0040" rotation={-2}>
-  SYSTEM FAILURE • CRITICAL ERROR
-</WarningTape>
-```
-
 ## Customization
 
-All components use CSS custom properties for easy theming:
+All components use CSS custom properties:
 
 ```css
 :root {
@@ -123,11 +111,11 @@ All components use CSS custom properties for easy theming:
 
 ## Philosophy
 
-- **Copy-paste** — Components live in your codebase, not node_modules
-- **No runtime** — Pure CSS animations, no JavaScript overhead
-- **Customizable** — Every prop exposed, every style overridable
-- **Composable** — Mix and match effects freely
+- **Copy-paste** — Components live in your codebase
+- **No runtime** — Pure CSS animations
+- **Customizable** — Every prop exposed
+- **Composable** — Mix effects freely
 
 ## License
 
-MIT © [Oalacea](https://github.com/oalacea)
+MIT © [Pamacea](https://github.com/Pamacea)

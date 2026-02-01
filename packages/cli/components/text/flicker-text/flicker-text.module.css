@@ -1,0 +1,91 @@
+.flicker {
+  display: inline-block;
+  --min-opacity: 0;
+}
+
+/* SLOW */
+.slow {
+  animation: flicker-slow 4s infinite;
+}
+
+@keyframes flicker-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 1; }
+  52% { opacity: var(--min-opacity); }
+  54% { opacity: 1; }
+  80% { opacity: 1; }
+  82% { opacity: var(--min-opacity); }
+  84% { opacity: 1; }
+}
+
+/* NORMAL */
+.normal {
+  animation: flicker-normal 2s infinite;
+}
+
+@keyframes flicker-normal {
+  0%, 100% { opacity: 1; }
+  33% { opacity: 1; }
+  34% { opacity: var(--min-opacity); }
+  35% { opacity: 1; }
+  66% { opacity: 1; }
+  67% { opacity: var(--min-opacity); }
+  68% { opacity: 1; }
+  69% { opacity: var(--min-opacity); }
+  70% { opacity: 1; }
+}
+
+/* FAST */
+.fast {
+  animation: flicker-fast 0.5s infinite;
+}
+
+@keyframes flicker-fast {
+  0%, 100% { opacity: 1; }
+  10% { opacity: var(--min-opacity); }
+  20% { opacity: 1; }
+  30% { opacity: var(--min-opacity); }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  70% { opacity: var(--min-opacity); }
+  80% { opacity: 1; }
+}
+
+/* ERRATIC */
+.erratic {
+  animation: flicker-erratic 3s infinite;
+}
+
+@keyframes flicker-erratic {
+  0%, 100% { opacity: 1; }
+  5% { opacity: var(--min-opacity); }
+  6% { opacity: 1; }
+  7% { opacity: var(--min-opacity); }
+  8% { opacity: 1; }
+  25% { opacity: 1; }
+  26% { opacity: var(--min-opacity); }
+  27% { opacity: 1; }
+  50% { opacity: 1; }
+  51% { opacity: var(--min-opacity); }
+  52% { opacity: 1; }
+  53% { opacity: var(--min-opacity); }
+  54% { opacity: 1; }
+  55% { opacity: var(--min-opacity); }
+  56% { opacity: 1; }
+  75% { opacity: 1; }
+  76% { opacity: var(--min-opacity); }
+  77% { opacity: 1; }
+  90% { opacity: 1; }
+  91% { opacity: var(--min-opacity); }
+  92% { opacity: 1; }
+}
+
+/* HOVER ONLY */
+.hoverOnly {
+  animation: none;
+  opacity: 1;
+}
+
+.hoverOnly:hover {
+  animation: flicker-normal 0.5s infinite;
+}

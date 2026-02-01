@@ -1,0 +1,100 @@
+.distortion {
+  display: inline-block;
+}
+
+/* WAVE */
+.wave {
+  animation: wave var(--duration, 2s) ease-in-out infinite;
+}
+
+.wave.subtle { --wave-amount: 2px; }
+.wave.medium { --wave-amount: 5px; }
+.wave.intense { --wave-amount: 10px; }
+
+@keyframes wave {
+  0%, 100% { 
+    transform: translateY(0) skewX(0); 
+  }
+  25% { 
+    transform: translateY(calc(var(--wave-amount) * -1)) skewX(-2deg); 
+  }
+  50% { 
+    transform: translateY(0) skewX(0); 
+  }
+  75% { 
+    transform: translateY(var(--wave-amount)) skewX(2deg); 
+  }
+}
+
+/* SHAKE */
+.shake {
+  animation: shake var(--duration, 0.5s) linear infinite;
+}
+
+.shake.subtle { --shake-amount: 1px; }
+.shake.medium { --shake-amount: 3px; }
+.shake.intense { --shake-amount: 6px; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(calc(var(--shake-amount) * -1), var(--shake-amount)); }
+  20% { transform: translate(var(--shake-amount), calc(var(--shake-amount) * -1)); }
+  30% { transform: translate(calc(var(--shake-amount) * -1), calc(var(--shake-amount) * -1)); }
+  40% { transform: translate(var(--shake-amount), var(--shake-amount)); }
+  50% { transform: translate(calc(var(--shake-amount) * -1), 0); }
+  60% { transform: translate(var(--shake-amount), 0); }
+  70% { transform: translate(0, var(--shake-amount)); }
+  80% { transform: translate(0, calc(var(--shake-amount) * -1)); }
+  90% { transform: translate(var(--shake-amount), var(--shake-amount)); }
+}
+
+/* SKEW */
+.skew {
+  animation: skew var(--duration, 3s) ease-in-out infinite;
+}
+
+.skew.subtle { --skew-amount: 3deg; }
+.skew.medium { --skew-amount: 8deg; }
+.skew.intense { --skew-amount: 15deg; }
+
+@keyframes skew {
+  0%, 100% { transform: skewX(0) skewY(0); }
+  25% { transform: skewX(var(--skew-amount)) skewY(calc(var(--skew-amount) * 0.5)); }
+  50% { transform: skewX(0) skewY(0); }
+  75% { transform: skewX(calc(var(--skew-amount) * -1)) skewY(calc(var(--skew-amount) * -0.5)); }
+}
+
+/* BLUR */
+.blur {
+  animation: blur var(--duration, 2s) ease-in-out infinite;
+}
+
+.blur.subtle { --blur-amount: 1px; }
+.blur.medium { --blur-amount: 3px; }
+.blur.intense { --blur-amount: 6px; }
+
+@keyframes blur {
+  0%, 100% { filter: blur(0); }
+  50% { filter: blur(var(--blur-amount)); }
+}
+
+/* SPEEDS */
+.slow { --duration: 4s; }
+.normal { --duration: 2s; }
+.fast { --duration: 0.8s; }
+
+.shake.slow { --duration: 1s; }
+.shake.normal { --duration: 0.5s; }
+.shake.fast { --duration: 0.2s; }
+
+/* HOVER ONLY */
+.hoverOnly {
+  animation: none;
+  transform: none;
+  filter: none;
+}
+
+.hoverOnly.wave:hover { animation: wave var(--duration, 2s) ease-in-out infinite; }
+.hoverOnly.shake:hover { animation: shake var(--duration, 0.5s) linear infinite; }
+.hoverOnly.skew:hover { animation: skew var(--duration, 3s) ease-in-out infinite; }
+.hoverOnly.blur:hover { animation: blur var(--duration, 2s) ease-in-out infinite; }
