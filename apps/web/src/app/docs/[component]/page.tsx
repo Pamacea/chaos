@@ -205,23 +205,6 @@ const COMPONENTS: Record<string, {
 <NoiseCanvas fps={60} intensity={80} />
 <NoiseCanvas monochrome={false} />`,
   },
-  'light-beams': {
-    name: 'LightBeams',
-    category: 'backgrounds',
-    description: 'Vertical colored light beams that sway gently.',
-    props: [
-      { name: 'colors', type: 'string[]', default: '["#7c3aed", "#06b6d4", ...]', description: 'Beam colors' },
-      { name: 'count', type: 'number', default: '5', description: 'Number of beams' },
-      { name: 'beamWidth', type: 'number', default: '2', description: 'Beam width in px' },
-      { name: 'opacity', type: 'number', default: '0.15', description: 'Beam opacity' },
-      { name: 'durationRange', type: '[number, number]', default: '[15, 25]', description: 'Animation duration range' },
-    ],
-    usage: `import { LightBeams } from '@/components/chaos/backgrounds/light-beams';
-
-<LightBeams />
-<LightBeams colors={['#ff0040', '#00ff00']} count={3} />
-<LightBeams opacity={0.3} beamWidth={4} />`,
-  },
   'glow-orbs': {
     name: 'GlowOrbs',
     category: 'backgrounds',
@@ -255,6 +238,30 @@ const COMPONENTS: Record<string, {
 <ParticleField />
 <ParticleField count={100} color="#ff0040" />
 <ParticleField sizeRange={[2, 5]} opacity={0.8} />`,
+  },
+  'starfield': {
+    name: 'Starfield',
+    category: 'backgrounds',
+    description: 'Animated canvas starfield with depth, twinkle, and parallax effects.',
+    props: [
+      { name: 'starCount', type: 'number', default: '200', description: 'Number of stars' },
+      { name: 'speed', type: 'number', default: '0.5', description: 'Star movement speed' },
+      { name: 'color', type: 'string', default: '"#ffffff"', description: 'Star color' },
+      { name: 'minSize', type: 'number', default: '0.5', description: 'Minimum star size' },
+      { name: 'maxSize', type: 'number', default: '2', description: 'Maximum star size' },
+      { name: 'twinkle', type: 'boolean', default: 'true', description: 'Enable twinkling' },
+      { name: 'twinkleSpeed', type: 'number', default: '0.02', description: 'Twinkle speed' },
+      { name: 'depth', type: 'number', default: '1000', description: 'Perspective depth' },
+      { name: 'direction', type: '"center" | "right" | "down" | "random"', default: '"center"', description: 'Movement direction' },
+      { name: 'backgroundColor', type: 'string', default: '"transparent"', description: 'Canvas background' },
+      { name: 'mouseParallax', type: 'boolean', default: 'true', description: 'Mouse parallax effect' },
+      { name: 'parallaxIntensity', type: 'number', default: '0.5', description: 'Parallax strength' },
+    ],
+    usage: `import { Starfield } from '@/components/chaos/backgrounds/starfield';
+
+<Starfield />
+<Starfield starCount={500} speed={1} />
+<Starfield direction="right" twinkle={false} color="#ff0040" />`,
   },
 
   // EFFECTS
@@ -341,6 +348,25 @@ const COMPONENTS: Record<string, {
 <GlitchImage src="/photo.jpg" alt="Profile" />
 <GlitchImage src="/hero.png" intensity="high" />
 <GlitchImage src="/bg.jpg" continuous />`,
+  },
+  'radar-scan': {
+    name: 'RadarScan',
+    category: 'effects',
+    description: 'Circular radar display with rotating scan line, rings, and target blips.',
+    props: [
+      { name: 'color', type: 'string', default: '"rgba(0, 255, 0, 0.8)"', description: 'Scan color' },
+      { name: 'speed', type: 'number', default: '1', description: 'Rotation speed (per second)' },
+      { name: 'size', type: 'number', default: '300', description: 'Radar size in pixels' },
+      { name: 'rings', type: 'number', default: '4', description: 'Number of concentric rings' },
+      { name: 'blips', type: 'Array<{angle, distance}>', default: '[]', description: 'Target blips to display' },
+      { name: 'pulseBlips', type: 'boolean', default: 'true', description: 'Enable pulse on blips' },
+      { name: 'scanWidth', type: 'number', default: '2', description: 'Scan line width' },
+    ],
+    usage: `import { RadarScan } from '@/components/chaos/effects/radar-scan';
+
+<RadarScan />
+<RadarScan color="rgba(255, 0, 0, 0.8)" speed={2} />
+<RadarScan blips={[{angle: 45, distance: 70}, {angle: 180, distance: 40}]} />`,
   },
 
   // NEON
@@ -860,6 +886,28 @@ const lines = [
 ];
 
 <TerminalOutput lines={lines} animated />`,
+  },
+
+  // NEW INPUTS
+  'chat-interface': {
+    name: 'ChatInterface',
+    category: 'inputs',
+    description: 'Chat message interface with echo response and themes.',
+    props: [
+      { name: 'initialMessages', type: 'Message[]', default: '[]', description: 'Initial messages' },
+      { name: 'onSendMessage', type: '(content: string) => void', default: '-', description: 'Callback on send' },
+      { name: 'showTimestamps', type: 'boolean', default: 'false', description: 'Show timestamps' },
+      { name: 'theme', type: '"terminal" | "neon" | "minimal" | "cyber"', default: '"terminal"', description: 'Chat theme' },
+      { name: 'autoScroll', type: 'boolean', default: 'true', description: 'Auto-scroll to bottom' },
+      { name: 'showInput', type: 'boolean', default: 'true', description: 'Show input field' },
+      { name: 'placeholder', type: 'string', default: '"Type a message..."', description: 'Input placeholder' },
+      { name: 'sendLabel', type: 'string', default: '"Send"', description: 'Send button label' },
+    ],
+    usage: `import { ChatInterface } from '@/components/chaos/inputs/chat-interface';
+
+<ChatInterface />
+<ChatInterface theme="neon" showTimestamps />
+<ChatInterface onSendMessage={(msg) => console.log(msg)} />`,
   },
 
   // NEW NAVIGATION COMPONENTS
@@ -1420,8 +1468,8 @@ function ComponentPreview({ component }: { component: string }) {
       return <button className={styles.chaosBtnPreview}>CHAOS</button>;
     case 'noise-canvas':
       return <div className={styles.canvasPreview} />;
-    case 'light-beams':
-      return <div className={styles.beamsPreview}><div/><div/><div/></div>;
+    case 'starfield':
+      return <div className={styles.starfieldBox}><div/><div/><div/><div/></div>;
     case 'glow-orbs':
       return <div className={styles.orbsPreview}><div/><div/></div>;
     case 'particle-field':
@@ -1436,6 +1484,8 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.glowBorderPreview}><span>GLOW</span></div>;
     case 'glitch-image':
       return <div className={styles.glitchImgPreview}>IMG</div>;
+    case 'radar-scan':
+      return <div className={styles.radarBox}><div className={styles.radarSweep}/></div>;
     // NEON
     case 'neon-button':
       return <button className={styles.neonBtnPreview}>GLOW</button>;
@@ -1544,7 +1594,77 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.sheetMusicPreview}><span>♪</span><span>♫</span><span>𝄞</span></div>;
     case 'inscription':
       return <span className={styles.inscriptionPreview}>CARVED</span>;
-    
+
+    // INPUTS
+    case 'chat-interface':
+      return <div className={styles.chatInterfaceBox}><div className={styles.chatBubble}>Hi</div></div>;
+    case 'secret-reveal':
+      return <div className={styles.secretRevealBox}><span>SECRET</span></div>;
+
+    // DISPLAY
+    case 'countdown-timer':
+      return <div className={styles.countdownTimerBox}><span>00</span>:<span>42</span></div>;
+    case 'terminal-message':
+      return <div className={styles.terminalMessageBox}><span className={styles.termPrompt2}>❯</span> Message</div>;
+
+    // NEW TEXT EFFECTS
+    case 'breathing-text':
+      return <span className={styles.breathingText}>BREATH</span>;
+    case 'handwritten-text':
+      return <span className={styles.handwrittenText}>Written</span>;
+    case 'scramble-text':
+      return <span className={styles.scrambleText}>SCRAMBLE</span>;
+    case 'stroke-text':
+      return <span className={styles.strokeText}>STROKE</span>;
+    case 'word-by-word-reveal':
+      return <span className={styles.wordByWord}>REVEAL</span>;
+    case 'shadow-glitch':
+      return <span className={styles.shadowGlitch}>GLITCH</span>;
+    case 'split-text':
+      return <span className={styles.splitText}><span>SPLIT</span></span>;
+
+    // NEW NAVIGATION
+    case 'corner-nav':
+      return <div className={styles.cornerNavBox}><span>☰</span></div>;
+    case 'minimal-nav':
+      return <div className={styles.minimalNavBox}><span>Home</span><span>About</span></div>;
+
+    // NEW BACKGROUNDS
+    case 'gradient-mesh':
+      return <div className={styles.meshBox} />;
+    case 'noise-pattern':
+      return <div className={styles.noisePatternBox}><span>NOISE</span></div>;
+
+    // NEW OVERLAYS
+    case 'scanlines-overlay':
+      return <div className={styles.scanlinesOverlayBox}><span>SCAN</span></div>;
+
+    // NEW EFFECTS
+    case 'chromatic-aberration':
+      return <div className={styles.chromaticBox}><span>RGB</span></div>;
+    case 'glass-crack':
+      return <div className={styles.glassCrackBox}><span>CRACK</span></div>;
+
+    // NEW LAYOUT
+    case 'horizontal-panel-scroll':
+      return <div className={styles.panelScrollBox}><div/><div/><div/></div>;
+    case 'glass-container':
+      return <div className={styles.glassContainerBox}><span>GLASS</span></div>;
+    case 'phase-container':
+      return <div className={styles.phaseContainerBox}><span>PHASE</span></div>;
+
+    // NEW DECORATIVE
+    case 'document-stamp':
+      return <div className={styles.documentStampBox}><span>STAMP</span></div>;
+    case 'marginalia':
+      return <div className={styles.marginaliaBox}><span>Note</span></div>;
+    case 'paper-edges':
+      return <div className={styles.paperEdgesBox}><span>PAPER</span></div>;
+
+    // NEW BUTTONS
+    case 'tension-meter':
+      return <div className={styles.tensionMeterBox}><div className={styles.tensionMeterFill}/></div>;
+
     default:
       return <span>Preview</span>;
   }

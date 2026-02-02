@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import styles from './page.module.css';
+import { Cursor } from './cursor';
 
 export default function Home() {
   return (
     <div className={styles.chaos}>
       {/* Custom cursor */}
-      <div className={styles.cursorOuter} id="cursor-outer" />
-      <div className={styles.cursorInner} id="cursor-inner" />
+      <Cursor />
 
       {/* Floating debris */}
       <div className={styles.debris}>
@@ -99,43 +99,6 @@ export default function Home() {
       <div className={styles.tape}>
         <span>{'SYSTEM UNSTABLE • VISUAL CORRUPTION • EMBRACE CHAOS • '.repeat(15)}</span>
       </div>
-
-      {/* Cursor script */}
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function() {
-          const outer = document.getElementById('cursor-outer');
-          const inner = document.getElementById('cursor-inner');
-          let mouseX = 0, mouseY = 0;
-          let outerX = 0, outerY = 0;
-          
-          document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            inner.style.left = mouseX + 'px';
-            inner.style.top = mouseY + 'px';
-          });
-          
-          function animate() {
-            outerX += (mouseX - outerX) * 0.15;
-            outerY += (mouseY - outerY) * 0.15;
-            outer.style.left = outerX + 'px';
-            outer.style.top = outerY + 'px';
-            requestAnimationFrame(animate);
-          }
-          animate();
-          
-          document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-              outer.style.transform = 'translate(-50%, -50%) scale(2)';
-              outer.style.borderColor = '#ff0040';
-            });
-            el.addEventListener('mouseleave', () => {
-              outer.style.transform = 'translate(-50%, -50%) scale(1)';
-              outer.style.borderColor = '#fff';
-            });
-          });
-        })();
-      `}} />
     </div>
   );
 }

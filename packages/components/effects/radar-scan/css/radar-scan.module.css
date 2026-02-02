@@ -79,24 +79,42 @@
 .scanLine {
   position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: radar-scan 1s linear infinite;
+  pointer-events: none;
+}
+
+/* The thin scan line */
+.scanLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
   left: 50%;
   width: var(--scan-width, 2px);
   height: 50%;
   background: var(--radar-color, rgba(0, 255, 0, 0.8));
-  transform-origin: bottom center;
-  animation: radar-scan 1s linear infinite;
+  transform: translateX(-50%);
   box-shadow: 0 0 10px var(--radar-color, rgba(0, 255, 0, 0.5));
 }
 
+/* The gradient sweep - circular, clipped to radar */
 .scanLine::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -25px;
-  width: 50px;
-  height: 200px;
-  background: linear-gradient(180deg, var(--radar-color, rgba(0, 255, 0, 0.4)) 0%, transparent 100%);
-  filter: blur(10px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--radar-color, rgba(0, 255, 0, 0.5)) 0deg,
+    transparent 30deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
 }
 
 @keyframes radar-scan {

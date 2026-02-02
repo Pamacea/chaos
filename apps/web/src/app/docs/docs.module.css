@@ -1358,26 +1358,6 @@
 }
 
 /* NEW NAVIGATION PREVIEWS */
-.cornerNavBox {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background: var(--accent);
-  color: var(--bg);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-}
-
-.minimalNavBox {
-  display: flex;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-dim);
-}
-
 .timelineNavBox {
   display: flex;
   flex-direction: column;
@@ -1397,29 +1377,9 @@
 }
 
 /* NEW BACKGROUNDS */
-.meshBox {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  animation: meshShift 5s ease infinite;
-  background-size: 200% 200%;
-}
-
 @keyframes meshShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-
-.noisePatternBox {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: radial-gradient(circle at 50% 50%, #111 1px, transparent 1px);
-  background-size: 8px 8px;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
 }
 
 .starfieldBox {
@@ -1565,21 +1525,6 @@
 }
 
 /* NEW LAYOUT */
-.panelScrollBox {
-  display: flex;
-  gap: 8px;
-  padding: 8px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.panelScrollBox > div {
-  min-width: 50px;
-  height: 50px;
-  background: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-}
 
 .glassContainerBox {
   padding: 1rem;
@@ -1808,4 +1753,350 @@
   .componentGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* PREVIEW STYLES - Missing Component Previews */
+
+/* noise-canvas preview */
+.canvasPreview {
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* radar-scan preview */
+.radarBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.radarBox::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radarSweep {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(0, 255, 0, 0.8), transparent);
+  transform-origin: bottom center;
+  animation: radarSweep 2s linear infinite;
+}
+
+.radarSweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 40px;
+  height: 100px;
+  background: conic-gradient(from 0deg at 50% 0%, rgba(0, 255, 0, 0.3) 0deg, transparent 60deg);
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* chat-interface preview */
+.chatInterfaceBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+
+.chatBubble {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* secret-reveal preview */
+.secretRevealBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.secretRevealBox span {
+  background: #000;
+  color: #000;
+  padding: 0 0.5rem;
+  cursor: help;
+  transition: all 0.3s;
+}
+
+.secretRevealBox span:hover {
+  color: #fff;
+}
+
+/* countdown-timer preview */
+.countdownTimerBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #ff0040;
+}
+
+.countdownTimerBox span {
+  background: rgba(255, 0, 64, 0.1);
+  padding: 0.25rem 0.5rem;
+}
+
+/* terminal-message preview */
+.terminalMessageBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: #00ff00;
+}
+
+.termPrompt2 {
+  color: #ff0040;
+}
+
+/* breathing text preview */
+.breathingText {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* handwritten text preview */
+.handwrittenText {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  font-style: italic;
+}
+
+/* scramble text preview */
+.scrambleText {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+}
+
+/* stroke text preview */
+.strokeText {
+  color: transparent;
+  -webkit-text-stroke: 1px #ff0040;
+}
+
+/* word by word reveal preview */
+.wordByWord {
+  overflow: hidden;
+}
+
+/* shadow glitch preview */
+.shadowGlitch {
+  text-shadow: 2px 0 #ff0040, -2px 0 #00ffff;
+}
+
+/* split text preview */
+.splitText {
+  display: inline-block;
+}
+
+.splitText span {
+  display: inline-block;
+  animation: splitText 1s ease-out;
+}
+
+@keyframes splitText {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* corner nav preview */
+.cornerNavBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+
+.cornerNavBox span {
+  font-size: 1.5rem;
+  color: #ff0040;
+}
+
+/* minimal nav preview */
+.minimalNavBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+}
+
+.minimalNavBox span {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid transparent;
+}
+
+.minimalNavBox span:hover {
+  border-bottom-color: #ff0040;
+}
+
+/* gradient mesh preview */
+.meshBox {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* noise pattern preview */
+.noisePatternBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* glass container preview */
+.glassContainerBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-display);
+  color: #fff;
+}
+
+/* phase container preview */
+.phaseContainerBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #ff0040, #7c3aed);
+  font-family: var(--font-display);
+  color: #fff;
+}
+
+/* panel scroll preview */
+.panelScrollBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.panelScrollBox div {
+  flex: 0 0 40%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 0, 64, 0.2), rgba(124, 58, 234, 0.2));
+  border: 1px solid rgba(255, 0, 64, 0.3);
+}
+
+/* document stamp preview */
+.documentStampBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #ff0040;
+  border: 3px double #ff0040;
+  border-radius: 4px;
+  transform: rotate(-5deg);
+}
+
+/* marginalia preview */
+.marginaliaBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* paper edges preview */
+.paperEdgesBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  background: #f5f0e6;
+  color: #8b7355;
+  box-shadow: inset 0 0 20px rgba(139, 115, 85, 0.3);
+}
+
+/* tension meter preview */
+.tensionMeterBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.tensionMeterFill {
+  flex: 1;
+  height: 8px;
+  background: linear-gradient(90deg, #00ff00, #ff0040);
+  border-radius: 4px;
 }

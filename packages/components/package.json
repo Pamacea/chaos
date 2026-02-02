@@ -1,7 +1,7 @@
 {
   "name": "@oalacea/chaosui",
-  "version": "0.7.0",
-  "description": "Glitch, noise, and distortion UI components",
+  "version": "0.7.1",
+  "description": "Glitch, noise, organic, fantasy and distortion UI components",
   "type": "module",
   "exports": {
     "./text/*": "./text/*/index.tsx",
