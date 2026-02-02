@@ -1,0 +1,210 @@
+.wordByWord {
+  display: inline;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  transition: all var(--duration, 400ms) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.word.visible {
+  opacity: 1;
+}
+
+/* STYLES - Fade */
+.fade .word.visible {
+  animation: fade-word var(--duration, 400ms) ease forwards;
+}
+
+@keyframes fade-word {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* STYLES - Slide */
+.slide .word {
+  transform: translateY(20px);
+}
+
+.slide.up .word.visible {
+  animation: slide-up var(--duration, 400ms) ease forwards;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide.down .word {
+  transform: translateY(-20px);
+}
+
+.slide.down .word.visible {
+  animation: slide-down var(--duration, 400ms) ease forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide.left .word {
+  transform: translateX(20px);
+}
+
+.slide.left .word.visible {
+  animation: slide-left var(--duration, 400ms) ease forwards;
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide.right .word {
+  transform: translateX(-20px);
+}
+
+.slide.right .word.visible {
+  animation: slide-right var(--duration, 400ms) ease forwards;
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* STYLES - Scale */
+.scale .word {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.scale .word.visible {
+  animation: scale-word var(--duration, 400ms) ease forwards;
+}
+
+@keyframes scale-word {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* STYLES - Blur */
+.blur .word {
+  filter: blur(10px);
+}
+
+.blur .word.visible {
+  animation: blur-word var(--duration, 400ms) ease forwards;
+}
+
+@keyframes blur-word {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* STYLES - Glitch */
+.glitch .word.visible {
+  animation: glitch-word 0.3s ease forwards;
+}
+
+@keyframes glitch-word {
+  0% {
+    opacity: 0;
+    transform: translate(-10px, 0);
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+  }
+  20% {
+    opacity: 0.5;
+    transform: translate(10px, 0);
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+  }
+  40% {
+    opacity: 0.8;
+    transform: translate(-5px, 0);
+    text-shadow: 1px 1px #ff0000, -1px -1px #00ffff;
+  }
+  60% {
+    opacity: 1;
+    transform: translate(5px, 0);
+  }
+  80% {
+    transform: translate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+    text-shadow: none;
+  }
+}
+
+/* COLOR VARIANTS */
+
+.wordByWord.neon .word.visible {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+.wordByWord.fire .word.visible {
+  text-shadow: 0 0 10px #ff4400, 0 0 20px #ff0000;
+}
+
+.wordByWord.cyber .word.visible {
+  text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+}
+
+/* SPEED VARIANTS */
+
+.wordByWord.fast .word {
+  --duration: 200ms;
+}
+
+.wordByWord.slow .word {
+  --duration: 800ms;
+}
+
+/* EASING VARIANTS */
+
+.wordByWord.elastic .word {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wordByWord.bounce .word {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

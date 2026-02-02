@@ -1,0 +1,99 @@
+.breathingText,
+.breathingWord {
+  display: inline-block;
+  opacity: 0;
+  animation: breathe-in ease-out forwards;
+}
+
+.breathingContainer {
+  display: contents;
+}
+
+/* BREATHE IN ANIMATION - Scale up from below */
+@keyframes breathe-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  60% {
+    transform: translateY(-2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* SUBTLE - Gentle breathing */
+.subtle {
+  animation-duration: 1.2s;
+}
+
+.subtle:hover {
+  animation: breathe-subtle 3s ease-in-out infinite;
+}
+
+@keyframes breathe-subtle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.01);
+  }
+}
+
+/* MEDIUM - Moderate breathing */
+.medium {
+  animation-duration: 0.8s;
+}
+
+.medium:hover {
+  animation: breathe-medium 2s ease-in-out infinite;
+}
+
+@keyframes breathe-medium {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* INTENSE - Strong breathing */
+.intense {
+  animation-duration: 0.5s;
+}
+
+.intense:hover {
+  animation: breathe-intense 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe-intense {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-8px) scale(1.05);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(0) scale(1.02);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-4px) scale(1.03);
+    opacity: 0.95;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .breathingText,
+  .breathingWord {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

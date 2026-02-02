@@ -1,0 +1,71 @@
+.shadowGlitch {
+  display: inline-block;
+  position: relative;
+  color: currentColor;
+}
+
+/* SUBTLE - Small offset, slight color separation */
+.subtle {
+  text-shadow:
+    calc(var(--shadow-offset, 2px) * 0.5) calc(var(--shadow-offset, 2px) * 0.5) 0 var(--shadow-color-1, #ff0040),
+    calc(var(--shadow-offset, 2px) * -0.5) calc(var(--shadow-offset, 2px) * -0.5) 0 var(--shadow-color-2, #00ffff);
+}
+
+/* MEDIUM - Medium offset, visible separation */
+.medium {
+  text-shadow:
+    var(--shadow-offset, 3px) var(--shadow-offset, 3px) 0 var(--shadow-color-1, #ff0040),
+    calc(var(--shadow-offset, 3px) * -1) calc(var(--shadow-offset, 3px) * -1) 0 var(--shadow-color-2, #00ffff);
+}
+
+/* INTENSE - Large offset, strong separation */
+.intense {
+  text-shadow:
+    calc(var(--shadow-offset, 4px) * 1.5) var(--shadow-offset, 4px) 0 var(--shadow-color-1, #ff0040),
+    calc(var(--shadow-offset, 4px) * -1.5) calc(var(--shadow-offset, 4px) * -1) 0 var(--shadow-color-2, #00ffff);
+}
+
+/* HOVER - Animate on hover */
+.hover:hover {
+  animation: glitch-shadows 0.3s infinite;
+}
+
+@keyframes glitch-shadows {
+  0% {
+    text-shadow:
+      var(--shadow-offset, 3px) var(--shadow-offset, 3px) 0 var(--shadow-color-1, #ff0040),
+      calc(var(--shadow-offset, 3px) * -1) calc(var(--shadow-offset, 3px) * -1) 0 var(--shadow-color-2, #00ffff);
+  }
+  20% {
+    text-shadow:
+      calc(var(--shadow-offset, 3px) * -1) var(--shadow-offset, 3px) 0 var(--shadow-color-1, #ff0040),
+      var(--shadow-offset, 3px) calc(var(--shadow-offset, 3px) * -1) 0 var(--shadow-color-2, #00ffff);
+  }
+  40% {
+    text-shadow:
+      calc(var(--shadow-offset, 3px) * 0.5) calc(var(--shadow-offset, 3px) * -1) 0 var(--shadow-color-1, #ff0040),
+      calc(var(--shadow-offset, 3px) * -0.5) var(--shadow-offset, 3px) 0 var(--shadow-color-2, #00ffff);
+  }
+  60% {
+    text-shadow:
+      var(--shadow-offset, 3px) calc(var(--shadow-offset, 3px) * 0.5) 0 var(--shadow-color-1, #ff0040),
+      calc(var(--shadow-offset, 3px) * -1) calc(var(--shadow-offset, 3px) * -0.5) 0 var(--shadow-color-2, #00ffff);
+  }
+  80% {
+    text-shadow:
+      calc(var(--shadow-offset, 3px) * -0.5) var(--shadow-offset, 3px) 0 var(--shadow-color-1, #ff0040),
+      var(--shadow-offset, 3px) calc(var(--shadow-offset, 3px) * -0.5) 0 var(--shadow-color-2, #00ffff);
+  }
+  100% {
+    text-shadow:
+      var(--shadow-offset, 3px) var(--shadow-offset, 3px) 0 var(--shadow-color-1, #ff0040),
+      calc(var(--shadow-offset, 3px) * -1) calc(var(--shadow-offset, 3px) * -1) 0 var(--shadow-color-2, #00ffff);
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .hover:hover {
+    animation: none;
+  }
+}

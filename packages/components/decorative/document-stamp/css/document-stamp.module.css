@@ -1,0 +1,264 @@
+.stamp {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: multiply;
+  transform: rotate(var(--rotation, -15deg));
+}
+
+.stampInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width, 3px) solid var(--stamp-color, #00aa00);
+  border-radius: 4px;
+  opacity: var(--opacity, 0.7);
+}
+
+/* SIZES */
+.small {
+  width: 80px;
+  height: 50px;
+  font-size: 0.75rem;
+}
+
+.medium {
+  width: 120px;
+  height: 70px;
+  font-size: 0.875rem;
+}
+
+.large {
+  width: 160px;
+  height: 90px;
+  font-size: 1rem;
+}
+
+/* STAMP TEXT */
+.stampText {
+  font-family: 'Courier New', 'Courier', monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stamp-color, #00aa00);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* STAMP BORDER */
+.stampBorder {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--stamp-color, #00aa00);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* PATTERN (for confidential) */
+.stampPattern {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0.2;
+}
+
+.patternLine {
+  width: 80%;
+  height: 1px;
+  background: var(--stamp-color, #aa00aa);
+}
+
+/* TYPES */
+
+/* Approved */
+.type-approved {
+  --stamp-color: #00aa00;
+}
+
+.type-approved .stampInner {
+  background: rgba(0, 170, 0, 0.05);
+}
+
+/* Rejected */
+.type-rejected {
+  --stamp-color: #aa0000;
+}
+
+.type-rejected .stampInner {
+  background: rgba(170, 0, 0, 0.05);
+}
+
+.type-rejected .stampText::before,
+.type-rejected .stampText::after {
+  content: '✕';
+  position: absolute;
+  font-size: 1.5em;
+  opacity: 0.3;
+}
+
+.type-rejected .stampText::before {
+  top: -10px;
+  left: -10px;
+  transform: rotate(-45deg);
+}
+
+.type-rejected .stampText::after {
+  bottom: -10px;
+  right: -10px;
+  transform: rotate(45deg);
+}
+
+/* Confidential */
+.type-confidential {
+  --stamp-color: #aa00aa;
+}
+
+.type-confidential .stampInner {
+  background: rgba(170, 0, 170, 0.05);
+}
+
+/* Draft */
+.type-draft {
+  --stamp-color: #666666;
+}
+
+.type-draft .stampInner {
+  background: rgba(102, 102, 102, 0.05);
+  border-style: dashed;
+}
+
+/* Custom */
+.type-custom {
+  --stamp-color: #000000;
+}
+
+/* ANIMATED */
+.stamp.animated {
+  animation: stamp-appear 0.5s ease forwards;
+}
+
+@keyframes stamp-appear {
+  0% {
+    transform: rotate(var(--rotation, -15deg)) scale(1.2);
+    opacity: 0;
+  }
+  70% {
+    transform: rotate(var(--rotation, -15deg)) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--rotation, -15deg)) scale(1);
+    opacity: var(--opacity, 0.7);
+  }
+}
+
+/* VARIANTS */
+
+/* Stamp with seal */
+.stamp.seal .stampInner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--stamp-color, #00aa00);
+  opacity: 0.5;
+}
+
+/* Double border */
+.stamp.double .stampBorder::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--stamp-color, #00aa00);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* Corner stamp */
+.stamp.corner {
+  transform: rotate(var(--rotation, -15deg)) translate(20px, 20px);
+}
+
+/* Bleeding ink effect */
+.stamp.bleed::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(ellipse at center, var(--stamp-color, #00aa00) 0%, transparent 70%);
+  opacity: 0.2;
+  filter: blur(5px);
+  border-radius: 50%;
+}
+
+/* Worn/torn stamp */
+.stamp.worn .stampInner {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+.stamp.worn .stampBorder {
+  border-style: solid;
+  border-image: repeating-linear-gradient(
+    45deg,
+    var(--stamp-color, #00aa00) 0px,
+    var(--stamp-color, #00aa00) 2px,
+    transparent 2px,
+    transparent 4px
+  ) 3;
+}
+
+/* Faded stamp */
+.stamp.faded {
+  opacity: 0.4;
+}
+
+/* Glow effect */
+.stamp.glow .stampText {
+  text-shadow: 0 0 10px var(--stamp-color, #00aa00);
+}
+
+.stamp.glow .stampInner {
+  box-shadow: 0 0 20px var(--stamp-color, #00aa00);
+}
+
+/* Oval stamp */
+.stamp.oval .stampInner {
+  border-radius: 50%;
+  width: auto;
+  padding: 0.5rem 1.5rem;
+}
+
+/* Circle stamp */
+.stamp.circle .stampInner {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+}
+
+.stamp.circle .stampText {
+  line-height: 1.4;
+}
+
+/* Rectangular stamp with cut corners */
+.stamp.cut-corners .stampInner {
+  border-radius: 0;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+}

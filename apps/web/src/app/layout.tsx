@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceMono.variable} ${bebasNeue.variable}`}>
+    <html lang="en" className={`${spaceMono.variable} ${bebasNeue.variable}`} suppressHydrationWarning>
       <body>
         {/* Noise overlay */}
         <div className="noise" aria-hidden="true" />

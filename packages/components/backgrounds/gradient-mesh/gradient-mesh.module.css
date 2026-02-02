@@ -1,0 +1,247 @@
+.gradientMesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* VARIANTS */
+
+/* Cosmic - space-like colors */
+.gradientMesh.cosmic {
+  filter: blur(60px) brightness(1.2);
+}
+
+.gradientMesh.cosmic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+}
+
+/* Aurora - northern lights effect */
+.gradientMesh.aurora {
+  filter: blur(40px);
+}
+
+.gradientMesh.aurora::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 128, 0.1) 0%,
+    rgba(128, 0, 255, 0.1) 50%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
+  animation: aurora-shift 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes aurora-shift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20%); }
+}
+
+/* Sunset - warm colors */
+.gradientMesh.sunset {
+  filter: blur(50px);
+  animation: sunset-fade 20s ease-in-out infinite;
+}
+
+@keyframes sunset-fade {
+  0%, 100% { filter: blur(50px) brightness(1); }
+  50% { filter: blur(60px) brightness(1.2); }
+}
+
+/* Ocean - blue tones */
+.gradientMesh.ocean {
+  filter: blur(70px);
+  animation: ocean-wave 15s ease-in-out infinite;
+}
+
+@keyframes ocean-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10%); }
+}
+
+/* Neon - bright saturated colors */
+.gradientMesh.neon {
+  filter: blur(30px);
+  animation: neon-pulse 5s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { filter: blur(30px) brightness(1); }
+  50% { filter: blur(40px) brightness(1.5); }
+}
+
+/* Minimal - subtle colors */
+.gradientMesh.minimal {
+  opacity: 0.3;
+  filter: blur(80px);
+}
+
+/* Bold - strong colors */
+.gradientMesh.bold {
+  opacity: 0.7;
+  filter: blur(40px);
+}
+
+/* Dark - dark mode version */
+.gradientMesh.dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* Light - light mode version */
+.gradientMesh.light::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+/* COLOR THEMES */
+
+/* Cool colors */
+.gradientMesh.cool {
+  filter: hue-rotate(180deg);
+}
+
+/* Warm colors */
+.gradientMesh.warm {
+  filter: hue-rotate(0deg) saturate(1.5);
+}
+
+/* Monochrome */
+.gradientMesh.mono {
+  filter: grayscale(1);
+}
+
+/* Sepia */
+.gradientMesh.sepia {
+  filter: sepia(0.5);
+}
+
+/* SIZE VARIANTS */
+
+/* Small scale */
+.gradientMesh.small {
+  filter: blur(40px);
+}
+
+/* Large scale */
+.gradientMesh.large {
+  filter: blur(100px);
+}
+
+/* ANIMATION VARIANTS */
+
+/* Slow motion */
+.gradientMesh.slow {
+  animation-duration: 30s;
+}
+
+/* Fast motion */
+.gradientMesh.fast {
+  animation-duration: 5s;
+}
+
+/* Freeze */
+.gradientMesh.frozen {
+  animation-play-state: paused;
+}
+
+/* BLEND MODES */
+
+.gradientMesh.multiply {
+  mix-blend-mode: multiply;
+}
+
+.gradientMesh.screen {
+  mix-blend-mode: screen;
+}
+
+.gradientMesh.overlay {
+  mix-blend-mode: overlay;
+}
+
+.gradientMesh.difference {
+  mix-blend-mode: difference;
+}
+
+/* OVERLAY PATTERNS */
+
+/* Grid pattern */
+.gradientMesh.grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* Dots pattern */
+.gradientMesh.dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Lines pattern */
+.gradientMesh.lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255,255,255,0.02) 10px,
+    rgba(255,255,255,0.02) 20px
+  );
+  pointer-events: none;
+}
+
+/* FIXED POSITION */
+.gradientMesh.fixed {
+  position: fixed;
+}
+
+.gradientMesh.absolute {
+  position: absolute;
+}
+
+/* Z-INDEX */
+.gradientMesh.behind {
+  z-index: -1;
+}
+
+.gradientMesh.front {
+  z-index: 1;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .gradientMesh {
+    filter: blur(30px);
+  }
+}

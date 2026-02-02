@@ -13,7 +13,6 @@ const COMPONENTS = {
       { name: 'neon-tabs', description: 'Glowing tab navigation' },
       { name: 'neon-divider', description: 'Luminous dividers' },
       { name: 'glowing-border', description: 'Glowing container' },
-      { name: 'glow-orbs', description: 'Floating blurred orbs' },
     ],
   },
   'cyber-tech': {
@@ -71,6 +70,18 @@ const COMPONENTS = {
       { name: 'rotate-text', description: 'Word rotation carousel' },
     ],
   },
+  'text-effects': {
+    title: 'TEXT EFFECTS',
+    items: [
+      { name: 'breathing-text', description: 'Breathing animation' },
+      { name: 'handwritten-text', description: 'Handwriting style' },
+      { name: 'scramble-text', description: 'Text scramble effect' },
+      { name: 'stroke-text', description: 'Outlined text effect' },
+      { name: 'word-by-word-reveal', description: 'Word by word reveal' },
+      { name: 'shadow-glitch', description: 'Shadow glitch effect' },
+      { name: 'split-text', description: 'Split text animation' },
+    ],
+  },
   'navigation': {
     title: 'NAVIGATION',
     items: [
@@ -79,26 +90,51 @@ const COMPONENTS = {
       { name: 'brutal-nav', description: 'Bold brutalist navbar' },
       { name: 'progress-dots', description: 'Section progress dots' },
       { name: 'scroll-indicator', description: 'Scroll position tracker' },
+      { name: 'corner-nav', description: 'Corner-positioned nav' },
+      { name: 'minimal-nav', description: 'Minimalist navigation' },
+      { name: 'timeline-nav', description: 'Timeline-style navigation' },
     ],
   },
-  'background-overlays': {
-    title: 'BACKGROUND & OVERLAYS',
+  'backgrounds': {
+    title: 'BACKGROUNDS',
     items: [
       { name: 'noise-canvas', description: 'Animated noise canvas' },
       { name: 'particle-field', description: 'Drifting particles' },
+      { name: 'glow-orbs', description: 'Floating blurred orbs' },
+      { name: 'gradient-mesh', description: 'Gradient mesh background' },
+      { name: 'noise-pattern', description: 'Noise pattern overlay' },
+      { name: 'starfield', description: 'Animated starfield' },
+    ],
+  },
+  'overlays': {
+    title: 'OVERLAYS',
+    items: [
       { name: 'noise-overlay', description: 'SVG fractal noise' },
       { name: 'scanlines', description: 'CRT horizontal lines' },
+      { name: 'scanlines-overlay', description: 'Scanline effect overlay' },
       { name: 'vignette', description: 'Dark edges gradient' },
       { name: 'static-flicker', description: 'Animated TV static' },
+    ],
+  },
+  'effects': {
+    title: 'EFFECTS',
+    items: [
+      { name: 'cursor-follower', description: 'Custom cursor follower' },
+      { name: 'chromatic-aberration', description: 'RGB chromatic effect' },
+      { name: 'glass-crack', description: 'Glass shatter effect' },
+      { name: 'radar-scan', description: 'Radar scanning animation' },
     ],
   },
   'layout-cards': {
     title: 'LAYOUT & CARDS',
     items: [
       { name: 'horizontal-scroll', description: 'Horizontal panel scroll' },
+      { name: 'horizontal-panel-scroll', description: 'Panel scroll container' },
       { name: 'void-frame', description: 'Decorative corner frame' },
       { name: 'tower-pricing', description: 'Vertical pricing tiers' },
       { name: 'tracklist', description: 'Music tracklist layout' },
+      { name: 'glass-container', description: 'Glass morphism container' },
+      { name: 'phase-container', description: 'Phase transition container' },
     ],
   },
   'decorative': {
@@ -108,6 +144,10 @@ const COMPONENTS = {
       { name: 'ornaments', description: 'Decorative dividers' },
       { name: 'sheet-music', description: 'Floating music notes' },
       { name: 'inscription', description: 'Carved stone text' },
+      { name: 'coffee-stain', description: 'Coffee stain effect' },
+      { name: 'document-stamp', description: 'Document stamp effect' },
+      { name: 'marginalia', description: 'Margin annotations' },
+      { name: 'paper-edges', description: 'Aged paper edges' },
     ],
   },
   'buttons-controls': {
@@ -116,6 +156,21 @@ const COMPONENTS = {
       { name: 'dual-choice', description: 'Yes/No binary choice' },
       { name: 'cta-brutal', description: 'Brutalist call-to-action' },
       { name: 'tension-bar', description: 'Progress tension meter' },
+      { name: 'tension-meter', description: 'Tension gauge meter' },
+    ],
+  },
+  'inputs': {
+    title: 'INPUTS',
+    items: [
+      { name: 'chat-interface', description: 'Chat message input' },
+      { name: 'secret-reveal', description: 'Hidden content reveal' },
+    ],
+  },
+  'display': {
+    title: 'DISPLAY',
+    items: [
+      { name: 'countdown-timer', description: 'Countdown display' },
+      { name: 'terminal-message', description: 'Terminal message' },
     ],
   },
 };
@@ -204,6 +259,13 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className={styles.neonDivider} />;
     case 'glowing-border':
       return <div className={styles.glowBorder}><span>GLOW</span></div>;
+    // Backgrounds
+    case 'gradient-mesh':
+      return <div className={styles.meshBox} />;
+    case 'noise-pattern':
+      return <div className={styles.noisePatternBox}><span>NOISE</span></div>;
+    case 'starfield':
+      return <div className={styles.starfieldBox}><div/><div/><div/><div/></div>;
     case 'glow-orbs':
       return <div className={styles.orbsBox}><div/><div/></div>;
     
@@ -330,7 +392,87 @@ function ComponentPreview({ name }: { name: string }) {
       return <button className={styles.ctaBrutal}>ACTION</button>;
     case 'tension-bar':
       return <div className={styles.tensionBar}><div className={styles.tensionFill}/></div>;
-    
+
+    // NEW TEXT EFFECTS
+    case 'breathing-text':
+      return <span className={styles.breathingText}>BREATH</span>;
+    case 'handwritten-text':
+      return <span className={styles.handwrittenText}>Written</span>;
+    case 'scramble-text':
+      return <span className={styles.scrambleText}>SCRAMBLE</span>;
+    case 'stroke-text':
+      return <span className={styles.strokeText}>STROKE</span>;
+    case 'word-by-word-reveal':
+      return <span className={styles.wordByWord}>REVEAL</span>;
+
+    // NEW NAVIGATION
+    case 'corner-nav':
+      return <div className={styles.cornerNavBox}><span>☰</span></div>;
+    case 'minimal-nav':
+      return <div className={styles.minimalNavBox}><span>Home</span><span>About</span></div>;
+    case 'timeline-nav':
+      return <div className={styles.timelineNavBox}><div/><div className={styles.timelineActive}/><div/></div>;
+
+    // NEW BACKGROUNDS
+    case 'gradient-mesh':
+      return <div className={styles.meshBox} />;
+    case 'noise-pattern':
+      return <div className={styles.noisePatternBox}><span>NOISE</span></div>;
+    case 'starfield':
+      return <div className={styles.starfieldBox}><div/><div/><div/><div/></div>;
+
+    // NEW OVERLAYS
+    case 'scanlines-overlay':
+      return <div className={styles.scanlinesOverlayBox}><span>SCAN</span></div>;
+
+    // NEW EFFECTS
+    case 'chromatic-aberration':
+      return <div className={styles.chromaticBox}><span>RGB</span></div>;
+    case 'glass-crack':
+      return <div className={styles.glassCrackBox}><span>CRACK</span></div>;
+    case 'radar-scan':
+      return <div className={styles.radarBox}><div className={styles.radarSweep}/></div>;
+
+    // NEW LAYOUT
+    case 'horizontal-panel-scroll':
+      return <div className={styles.panelScrollBox}><div/><div/><div/></div>;
+    case 'glass-container':
+      return <div className={styles.glassContainerBox}><span>GLASS</span></div>;
+    case 'phase-container':
+      return <div className={styles.phaseContainerBox}><span>PHASE</span></div>;
+
+    // NEW DECORATIVE
+    case 'coffee-stain':
+      return <div className={styles.coffeeStainBox}><div className={styles.stainRing}/></div>;
+    case 'document-stamp':
+      return <div className={styles.documentStampBox}><span>STAMP</span></div>;
+    case 'marginalia':
+      return <div className={styles.marginaliaBox}><span>Note</span></div>;
+    case 'paper-edges':
+      return <div className={styles.paperEdgesBox}><span>PAPER</span></div>;
+
+    // NEW BUTTONS
+    case 'tension-meter':
+      return <div className={styles.tensionMeterBox}><div className={styles.tensionMeterFill}/></div>;
+
+    // INPUTS
+    case 'chat-interface':
+      return <div className={styles.chatInterfaceBox}><div className={styles.chatBubble}>Hi</div></div>;
+    case 'secret-reveal':
+      return <div className={styles.secretRevealBox}><span>SECRET</span></div>;
+
+    // DISPLAY
+    case 'countdown-timer':
+      return <div className={styles.countdownTimerBox}><span>00</span>:<span>42</span></div>;
+    case 'terminal-message':
+      return <div className={styles.terminalMessageBox}><span className={styles.termPrompt2}>❯</span> Message</div>;
+
+    // EXTRA TEXT
+    case 'shadow-glitch':
+      return <span className={styles.shadowGlitch}>GLITCH</span>;
+    case 'split-text':
+      return <span className={styles.splitText}><span>SPLIT</span></span>;
+
     default:
       return <span>{name}</span>;
   }

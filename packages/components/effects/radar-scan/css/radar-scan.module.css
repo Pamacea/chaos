@@ -1,0 +1,191 @@
+.radar {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* RINGS */
+.rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--radar-color, rgba(0, 255, 0, 0.3));
+  opacity: 0.5;
+}
+
+/* CROSSHAIRS */
+.crosshairs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.crosshair {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, var(--radar-color, rgba(0, 255, 0, 0.5)) 50%, transparent 100%);
+  transform-origin: center center;
+}
+
+/* BLIPS */
+.blips {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--radar-color, rgba(0, 255, 0, 0.8));
+  border-radius: 50%;
+  transform: rotate(var(--angle, 0deg)) translate(calc(50% * var(--distance, 50%) / 100)) rotate(calc(var(--angle, 0deg) * -1));
+  box-shadow: 0 0 10px var(--radar-color, rgba(0, 255, 0, 0.8));
+}
+
+.blip.pulse {
+  animation: blip-pulse 2s ease-in-out infinite;
+}
+
+@keyframes blip-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: rotate(var(--angle, 0deg)) translate(calc(50% * var(--distance, 50%) / 100)) rotate(calc(var(--angle, 0deg) * -1)) scale(1);
+    box-shadow: 0 0 10px var(--radar-color, rgba(0, 255, 0, 0.8));
+  }
+  50% {
+    opacity: 0.6;
+    transform: rotate(var(--angle, 0deg)) translate(calc(50% * var(--distance, 50%) / 100)) rotate(calc(var(--angle, 0deg) * -1)) scale(0.8);
+    box-shadow: 0 0 20px var(--radar-color, rgba(0, 255, 0, 0.8));
+  }
+}
+
+/* SCAN LINE */
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--scan-width, 2px);
+  height: 50%;
+  background: var(--radar-color, rgba(0, 255, 0, 0.8));
+  transform-origin: bottom center;
+  animation: radar-scan 1s linear infinite;
+  box-shadow: 0 0 10px var(--radar-color, rgba(0, 255, 0, 0.5));
+}
+
+.scanLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -25px;
+  width: 50px;
+  height: 200px;
+  background: linear-gradient(180deg, var(--radar-color, rgba(0, 255, 0, 0.4)) 0%, transparent 100%);
+  filter: blur(10px);
+}
+
+@keyframes radar-scan {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* GLOW */
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--radar-color, rgba(0, 255, 0, 0.1)) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* VARIANTS */
+
+/* Green radar (default) */
+.radar.green {
+  --radar-color: rgba(0, 255, 0, 0.8);
+}
+
+/* Red radar */
+.radar.red {
+  --radar-color: rgba(255, 0, 0, 0.8);
+}
+
+/* Blue radar */
+.radar.blue {
+  --radar-color: rgba(0, 100, 255, 0.8);
+}
+
+/* Amber radar */
+.radar.amber {
+  --radar-color: rgba(255, 165, 0, 0.8);
+}
+
+/* Minimal radar */
+.radar.minimal .ring {
+  border-width: 0.5px;
+  opacity: 0.3;
+}
+
+.radar.minimal .crosshair {
+  opacity: 0.3;
+}
+
+/* Retro CRT radar */
+.radar.crt .scanLine {
+  box-shadow: 0 0 5px var(--radar-color, rgba(0, 255, 0, 0.5)), 0 0 15px var(--radar-color, rgba(0, 255, 0, 0.3));
+}
+
+.radar.crt .blip {
+  box-shadow: 0 0 15px var(--radar-color, rgba(0, 255, 0, 0.8));
+}
+
+/* Grid overlay */
+.radar.grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, var(--radar-color, rgba(0, 255, 0, 0.1)) 1px, transparent 1px),
+    linear-gradient(180deg, var(--radar-color, rgba(0, 255, 0, 0.1)) 1px, transparent 1px);
+  background-size: 25px 25px;
+  pointer-events: none;
+}
+
+/* Double scan */
+.radar.doubleScan .scanLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  transform: rotate(180deg);
+}
+
+/* Solid sectors */
+.radar.solidSectors .scanLine {
+  background: linear-gradient(180deg, transparent 0%, var(--radar-color, rgba(0, 255, 0, 0.3)) 100%);
+}
+
+.radar.solidSectors .scanLine::after {
+  opacity: 0.3;
+}

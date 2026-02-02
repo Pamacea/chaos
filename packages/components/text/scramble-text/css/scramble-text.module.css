@@ -1,0 +1,188 @@
+.scramble {
+  display: inline-block;
+  cursor: default;
+}
+
+.scramble:hover {
+  cursor: pointer;
+}
+
+.scrambling {
+  cursor: wait;
+}
+
+/* STYLES */
+
+/* Random - all characters scramble at once */
+.random {
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Sequential - characters decode left to right */
+.sequential {
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+.sequential::before {
+  content: '';
+  display: inline-block;
+}
+
+/* Burst - characters decode from center outward */
+.burst {
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Wave - characters decode in wave pattern */
+.wave {
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+/* COLOR VARIANTS */
+
+.scramble.neon .scrambling {
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.scramble.fire .scrambling {
+  color: #ff4400;
+  text-shadow: 0 0 10px #ff4400, 0 0 20px #ff0000;
+}
+
+.scramble.cyber .scrambling {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
+}
+
+/* GLITCH DURING SCRAMBLE */
+.scramble.glitch .scrambling {
+  animation: scramble-glitch 0.1s infinite;
+}
+
+@keyframes scramble-glitch {
+  0%, 100% {
+    transform: translate(0);
+    text-shadow: 0 0 0 transparent;
+  }
+  25% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+  }
+  50% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+  }
+  75% {
+    transform: translate(-1px, -1px);
+    text-shadow: 1px 1px #ff0000;
+  }
+}
+
+/* TERMINAL STYLE */
+.scramble.terminal {
+  background: #0a0a0a;
+  color: #00ff00;
+  padding: 0.25rem 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.scramble.terminal::before {
+  content: '>';
+  margin-right: 0.5rem;
+}
+
+/* PUNCTUATION ONLY */
+.scramble.punctuation {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
+.scramble.punctuation .scrambling {
+  color: inherit;
+}
+
+/* DECRYPTING EFFECT - characters become progressively clearer */
+.scramble.decrypt .scrambling {
+  opacity: 0.7;
+  filter: blur(0.5px);
+}
+
+/* MATRIX STYLE */
+.scramble.matrix {
+  color: #00ff00;
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+.scramble.matrix .scrambling {
+  animation: matrix-glow 0.5s infinite;
+}
+
+@keyframes matrix-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #00ff00;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+  }
+}
+
+/* HOVER HINT */
+.scramble[trigger='hover']::after {
+  content: '▼';
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.scramble[trigger='hover']:hover::after {
+  opacity: 0.5;
+}
+
+/* CLICK HINT */
+.scramble[trigger='click'] {
+  cursor: pointer;
+}
+
+.scramble[trigger='click']::after {
+  content: 'CLICK';
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5em;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.scramble[trigger='click']:hover::after {
+  opacity: 0.5;
+}
+
+/* REVEAL ANIMATION */
+.scramble.reveal {
+  opacity: 0;
+  animation: reveal-fade-in 0.3s ease forwards;
+}
+
+@keyframes reveal-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

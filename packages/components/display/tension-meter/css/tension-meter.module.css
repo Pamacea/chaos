@@ -1,0 +1,231 @@
+.tensionMeter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono, monospace);
+}
+
+/* LABEL */
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* TRACK */
+.track {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.horizontal .track {
+  width: 200px;
+  height: 12px;
+  border-radius: 6px;
+}
+
+.vertical .track {
+  width: 12px;
+  height: 200px;
+  border-radius: 6px;
+}
+
+/* BAR */
+.bar {
+  position: absolute;
+  background: var(--color, #00ff00);
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.horizontal .bar {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--percentage, 0%);
+}
+
+.vertical .bar {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--percentage, 0%);
+}
+
+/* VALUE */
+.value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.125rem;
+  font-weight: 700;
+}
+
+.number {
+  font-size: 1.125rem;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.percent {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* WARNING INDICATOR */
+.warningIndicator {
+  font-size: 1rem;
+  animation: warning-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes warning-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* BAR STYLES */
+
+/* Solid */
+.solid .bar {
+  box-shadow: 0 0 10px var(--color, #00ff00);
+}
+
+/* Segmented */
+.segmented .segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Pulsing */
+.pulsing .bar {
+  animation: bar-pulse 1s ease-in-out infinite;
+}
+
+@keyframes bar-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--color, #00ff00); }
+  50% { opacity: 0.8; box-shadow: 0 0 20px var(--color, #00ff00), 0 0 30px var(--color, #00ff00); }
+}
+
+/* Glitch */
+.glitch .bar {
+  animation: bar-glitch 0.3s infinite;
+}
+
+@keyframes bar-glitch {
+  0%, 90%, 100% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+  92% {
+    transform: translateX(-2px);
+    filter: hue-rotate(90deg);
+  }
+  94% {
+    transform: translateX(2px);
+    filter: hue-rotate(180deg);
+  }
+  96% {
+    transform: translateX(-1px);
+    filter: hue-rotate(270deg);
+  }
+  98% {
+    transform: translateX(1px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* VARIANTS */
+
+/* Normal */
+.normal .bar {
+  background: var(--normal-color, #00ff00);
+}
+
+.normal .number {
+  color: var(--normal-color, #00ff00);
+}
+
+/* Warning */
+.warning .bar {
+  background: var(--warning-color, #ffaa00);
+}
+
+.warning .number {
+  color: var(--warning-color, #ffaa00);
+}
+
+/* Critical */
+.critical .bar {
+  background: var(--critical-color, #ff0000);
+  animation: critical-blink 0.5s ease-in-out infinite;
+}
+
+.critical .number {
+  color: var(--critical-color, #ff0000);
+}
+
+@keyframes critical-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* SIZES */
+
+.small.horizontal .track {
+  width: 100px;
+  height: 8px;
+}
+
+.small.vertical .track {
+  width: 8px;
+  height: 100px;
+}
+
+.small .number {
+  font-size: 0.875rem;
+}
+
+.large.horizontal .track {
+  width: 300px;
+  height: 16px;
+}
+
+.large.vertical .track {
+  width: 16px;
+  height: 300px;
+}
+
+.large .number {
+  font-size: 1.5rem;
+}
+
+/* COMPACT */
+.tensionMeter.compact {
+  gap: 0.5rem;
+}
+
+.tensionMeter.compact .track {
+  width: 100px;
+  height: 8px;
+}
+
+.tensionMeter.compact .value {
+  flex-direction: row;
+}
+
+.tensionMeter.compact .number {
+  font-size: 0.75rem;
+}
+
+.tensionMeter.compact .percent {
+  font-size: 0.5rem;
+}
+
+.tensionMeter.compact .label {
+  font-size: 0.625rem;
+}

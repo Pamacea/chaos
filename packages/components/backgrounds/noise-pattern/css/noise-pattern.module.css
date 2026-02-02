@@ -1,0 +1,59 @@
+.noisePattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.svg {
+  display: none;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: var(--noise-opacity, 0.1);
+  background-color: var(--noise-color, #000);
+  transition: opacity 0.3s ease;
+}
+
+/* ANIMATED */
+.animated .noise {
+  animation: noise-shift var(--animation-speed, 5s) linear infinite;
+}
+
+@keyframes noise-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(5%, 5%);
+  }
+  30% {
+    transform: translate(-5%, 5%);
+  }
+  40% {
+    transform: translate(5%, -5%);
+  }
+  50% {
+    transform: translate(-3%, -3%);
+  }
+  60% {
+    transform: translate(3%, 3%);
+  }
+  70% {
+    transform: translate(-3%, 3%);
+  }
+  80% {
+    transform: translate(3%, -3%);
+  }
+  90% {
+    transform: translate(-2%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
