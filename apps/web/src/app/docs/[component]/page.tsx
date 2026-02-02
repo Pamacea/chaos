@@ -901,6 +901,28 @@ const items = [
 
 <VerticalNav items={items} />`,
   },
+  'timeline-nav': {
+    name: 'TimelineNav',
+    category: 'navigation',
+    description: 'Timeline-style navigation with era markers and active states.',
+    props: [
+      { name: 'eras', type: 'TimelineEra[]', default: '-', description: 'Timeline eras {value, label, active?}' },
+      { name: 'orientation', type: '"horizontal" | "vertical"', default: '"horizontal"', description: 'Timeline orientation' },
+      { name: 'onEraClick', type: '(era: TimelineEra, index: number) => void', default: '-', description: 'Era click callback' },
+      { name: 'showLabels', type: 'boolean', default: 'true', description: 'Show era labels' },
+      { name: 'showLine', type: 'boolean', default: 'true', description: 'Show connecting line' },
+      { name: 'dotSize', type: '"small" | "medium" | "large"', default: '"medium"', description: 'Dot size' },
+    ],
+    usage: `import { TimelineNav } from '@/components/chaos/navigation/timeline-nav';
+
+const eras = [
+  { value: '2020', label: '2020', active: true },
+  { value: '2021', label: '2021' },
+  { value: '2022', label: '2022' },
+];
+
+<TimelineNav eras={eras} orientation="vertical" />`,
+  },
   'brutal-nav': {
     name: 'BrutalNav',
     category: 'navigation',
@@ -1478,6 +1500,8 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.scatteredNavPreview}><span>NAV</span><span className={styles.scattered}>ITEM</span></div>;
     case 'vertical-nav':
       return <div className={styles.verticalNavPreview}><span>ᛟ</span><span className={styles.navActive}>☰</span><span>ᛞ</span></div>;
+    case 'timeline-nav':
+      return <div className={styles.timelineNavPreview}><div/><div className={styles.timelineDotActive}/><div/></div>;
     case 'brutal-nav':
       return <div className={styles.brutalNavPreview}><span className={styles.navBrand}>CHAOS</span><span>LINK</span></div>;
     case 'progress-dots':

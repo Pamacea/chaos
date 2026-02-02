@@ -1190,6 +1190,24 @@
   text-shadow: 0 0 10px var(--accent);
 }
 
+.timelineNavPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0.5rem;
+}
+
+.timelineNavPreview > div {
+  width: 20px;
+  height: 3px;
+  background: var(--border);
+}
+
+.timelineNavPreview .timelineDotActive {
+  background: var(--accent);
+  width: 30px;
+}
+
 .brutalNavPreview {
   display: flex;
   align-items: center;
