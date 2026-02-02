@@ -1,19 +1,19 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './page.module.css';
 
 export function Cursor() {
   const outerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    if (isInitialized.current) return;
+    isInitialized.current = true;
+
     const outer = outerRef.current;
     const inner = innerRef.current;
-
-    if (!outer || !inner) return;
 
     let mouseX = 0, mouseY = 0;
     let outerX = 0, outerY = 0;
@@ -22,8 +22,10 @@ export function Cursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      inner.style.left = mouseX + 'px';
-      inner.style.top = mouseY + 'px';
+      if (inner) {
+        inner.style.left = mouseX + 'px';
+        inner.style.top = mouseY + 'px';
+      }
     };
 
     function animate() {
@@ -40,10 +42,12 @@ export function Cursor() {
 
     const links = document.querySelectorAll('a, button');
     const handleMouseEnter = () => {
+      if (!outer) return;
       outer.style.transform = 'translate(-50%, -50%) scale(2)';
       outer.style.borderColor = '#ff0040';
     };
     const handleMouseLeave = () => {
+      if (!outer) return;
       outer.style.transform = 'translate(-50%, -50%) scale(1)';
       outer.style.borderColor = '#fff';
     };
@@ -62,11 +66,6 @@ export function Cursor() {
       });
     };
   }, []);
-
-  // Don't render on server, only after mount to prevent hydration mismatch
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <>
