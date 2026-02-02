@@ -1,0 +1,411 @@
+.phaseContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* PROGRESS */
+.progress {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.progress.top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.progress.bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.progress.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+.progress.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+.progressBar {
+  flex: 1;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.3;
+  overflow: hidden;
+}
+
+.left .progressBar,
+.right .progressBar {
+  width: 2px;
+  height: 100%;
+}
+
+.progressFill {
+  height: 100%;
+  background: currentColor;
+  transition: width var(--transition-duration, 500ms) ease;
+}
+
+.left .progressFill,
+.right .progressFill {
+  width: 100%;
+  transition: height var(--transition-duration, 500ms) ease;
+}
+
+.counter {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* PHASE CONTENT */
+.phaseContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.phase {
+  width: 100%;
+  max-width: 800px;
+  opacity: 0;
+}
+
+/* TRANSITIONS - Fade */
+.fade .phase.enter {
+  animation: fade-in var(--transition-duration, 500ms) ease forwards;
+}
+
+.fade .phase.exit {
+  animation: fade-out var(--transition-duration, 500ms) ease forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* TRANSITIONS - Slide */
+.slide .phase.enter {
+  animation: slide-in var(--transition-duration, 500ms) ease forwards;
+}
+
+.slide .phase.exit {
+  animation: slide-out var(--transition-duration, 500ms) ease forwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+/* TRANSITIONS - Scale */
+.scale .phase.enter {
+  animation: scale-in var(--transition-duration, 500ms) ease forwards;
+}
+
+.scale .phase.exit {
+  animation: scale-out var(--transition-duration, 500ms) ease forwards;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+/* TRANSITIONS - Blur */
+.blur .phase.enter {
+  animation: blur-in var(--transition-duration, 500ms) ease forwards;
+}
+
+.blur .phase.exit {
+  animation: blur-out var(--transition-duration, 500ms) ease forwards;
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+/* TRANSITIONS - Glitch */
+.glitch .phase.enter {
+  animation: glitch-enter var(--transition-duration, 500ms) ease forwards;
+}
+
+.glitch .phase.exit {
+  animation: glitch-exit var(--transition-duration, 500ms) ease forwards;
+}
+
+@keyframes glitch-enter {
+  0% {
+    opacity: 0;
+    transform: translate(-10px, 0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    opacity: 0.5;
+    transform: translate(10px, 0);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    opacity: 0.7;
+    transform: translate(-10px, 0);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    opacity: 0.3;
+    transform: translate(5px, 5px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translate(-5px, -5px);
+    filter: hue-rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes glitch-exit {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(-3px, 2px);
+  }
+  40% {
+    opacity: 0.6;
+    transform: translate(3px, -2px);
+  }
+  60% {
+    opacity: 0.4;
+    transform: translate(-2px, -1px);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translate(2px, 1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+/* NAVIGATION */
+.navigation {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.navButton {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid currentColor;
+  color: currentColor;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  background: currentColor;
+  color: var(--bg, #000);
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.navButton.skip {
+  border-color: currentColor;
+  opacity: 0.7;
+}
+
+.navButton.skip:hover {
+  opacity: 1;
+}
+
+.navButton.complete {
+  background: currentColor;
+  color: var(--bg, #000);
+  box-shadow: 0 0 20px currentColor;
+}
+
+/* VARIANTS */
+
+/* Minimal */
+.phaseContainer.minimal .progress {
+  padding: 0.5rem;
+}
+
+.phaseContainer.minimal .navButton {
+  padding: 0.5rem 1rem;
+  border-width: 1px;
+  font-size: 0.75rem;
+}
+
+/* Brutalist */
+.phaseContainer.brutalist .progressBar {
+  height: 4px;
+  background: #000;
+}
+
+.phaseContainer.brutalist .progressFill {
+  background: #ff0040;
+}
+
+.phaseContainer.brutalist .navButton {
+  background: #000;
+  border: none;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.phaseContainer.brutalist .navButton:hover {
+  background: #ff0040;
+}
+
+/* Neon */
+.phaseContainer.neon .progressFill {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.phaseContainer.neon .navButton {
+  border-width: 2px;
+  box-shadow: 0 0 5px currentColor;
+}
+
+.phaseContainer.neon .navButton:hover {
+  box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+/* Terminal */
+.phaseContainer.terminal .progress {
+  background: #0a0a0a;
+  border-bottom: 1px solid #00ff00;
+}
+
+.phaseContainer.terminal .counter {
+  color: #00ff00;
+}
+
+.phaseContainer.terminal .navButton {
+  background: transparent;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+}
+
+.phaseContainer.terminal .navButton:hover:not(:disabled) {
+  background: #00ff00;
+  color: #000;
+}
+
+/* TRANSITIONING STATE */
+.phaseContainer.transitioning .navButton {
+  pointer-events: none;
+  opacity: 0.5;
+}

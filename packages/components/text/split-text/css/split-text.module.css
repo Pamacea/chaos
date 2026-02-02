@@ -1,0 +1,97 @@
+.splitContainer {
+  display: inline;
+}
+
+.splitUnit {
+  display: inline-block;
+  opacity: 0;
+  animation: split-reveal forwards;
+}
+
+/* FADE - Simple opacity */
+.fade {
+  animation-name: fade-split;
+}
+
+@keyframes fade-split {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* SLIDE UP - Slide from bottom */
+.slide-up {
+  animation-name: slide-up-split;
+}
+
+@keyframes slide-up-split {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SLIDE DOWN - Slide from top */
+.slide-down {
+  animation-name: slide-down-split;
+}
+
+@keyframes slide-down-split {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SCALE - Scale from small */
+.scale {
+  animation-name: scale-split;
+}
+
+@keyframes scale-split {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* STAGGER - Combined fade + slide with bounce */
+.stagger {
+  animation-name: stagger-split;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes stagger-split {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .splitUnit {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

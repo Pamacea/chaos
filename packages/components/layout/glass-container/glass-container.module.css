@@ -1,0 +1,217 @@
+.glass {
+  position: relative;
+  backdrop-filter: blur(var(--blur, 10px)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur, 10px)) saturate(180%);
+  border: 1px solid currentColor;
+  transition: all 0.3s ease;
+}
+
+/* BORDER OPACITY */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid currentColor;
+  opacity: var(--border-opacity, 0.3);
+}
+
+/* BACKGROUND */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--opacity, 0.7);
+}
+
+/* TINT COLORS */
+.tint.white::after {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.tint.black::after {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.tint.neutral::after {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+.tint.custom::after {
+  background: var(--tint-color, rgba(255, 255, 255, 0.5));
+}
+
+/* BORDER RADIUS */
+.rounded-none {
+  border-radius: 0;
+}
+
+.rounded-sm {
+  border-radius: 0.25rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* VARIANTS */
+
+/* Frosted - classic glass effect */
+.variant-frosted {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.variant-frosted::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+/* Crystal - very clear glass */
+.variant-crystal {
+  backdrop-filter: blur(var(--blur, 10px)) saturate(200%);
+  border: 2px solid currentColor;
+}
+
+.variant-crystal::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+  opacity: 0.8;
+}
+
+.variant-crystal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Dark - dark glass */
+.variant-dark {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.variant-dark::after {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.variant-dark::before {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Light - light glass */
+.variant-light {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.variant-light::after {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Neon - glowing glass */
+.variant-neon {
+  box-shadow: 0 0 20px var(--glow-color, currentColor);
+}
+
+.variant-neon::before {
+  border-color: var(--glow-color, currentColor);
+  opacity: 0.5;
+}
+
+.variant-neon::after {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* GLOW EFFECT */
+.glass.glow {
+  box-shadow: 0 0 20px var(--glow-color, currentColor), inset 0 0 20px var(--glow-color, currentColor);
+}
+
+.glass.glow::before {
+  border-color: var(--glow-color, currentColor);
+  box-shadow: 0 0 10px var(--glow-color, currentColor);
+}
+
+/* HOVER EFFECTS */
+.glass:hover {
+  opacity: 1;
+}
+
+.variant-frosted:hover,
+.variant-crystal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+.variant-neon:hover {
+  box-shadow: 0 0 30px var(--glow-color, currentColor), inset 0 0 30px var(--glow-color, currentColor);
+}
+
+/* REFLECTION EFFECT */
+.glass.reflection::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+}
+
+.glass.reflection::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+/* CRACKED EFFECT */
+.glass.cracked::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M10,10 Q30,30 50,10 T90,10 M20,50 Q40,30 50,50 T80,50" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/></svg>');
+  background-size: 100px 100px;
+  background-repeat: repeat;
+}
+
+/* FROSTED EDGE */
+.glass.frostedEdge {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.glass.frostedEdge::before {
+  opacity: 0;
+}
+
+/* RAINBOW GLOW */
+.glass.rainbow::before {
+  background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+  background-size: 400% 400%;
+  animation: rainbow 3s ease infinite;
+  opacity: 0.8;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* PULSE GLOW */
+.glass.pulse::before {
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    opacity: var(--border-opacity, 0.3);
+    box-shadow: none;
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px var(--glow-color, currentColor);
+  }
+}

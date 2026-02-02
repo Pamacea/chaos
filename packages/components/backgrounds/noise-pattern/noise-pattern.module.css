@@ -1,0 +1,341 @@
+.noisePattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.svg {
+  display: none;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: var(--noise-opacity, 0.1);
+  background-color: var(--noise-color, #000);
+  transition: opacity 0.3s ease;
+}
+
+/* ANIMATED */
+.animated .noise {
+  animation: noise-shift var(--animation-speed, 5s) linear infinite;
+}
+
+@keyframes noise-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(5%, 5%);
+  }
+  30% {
+    transform: translate(-5%, 5%);
+  }
+  40% {
+    transform: translate(5%, -5%);
+  }
+  50% {
+    transform: translate(-3%, -3%);
+  }
+  60% {
+    transform: translate(3%, 3%);
+  }
+  70% {
+    transform: translate(-3%, 3%);
+  }
+  80% {
+    transform: translate(3%, -3%);
+  }
+  90% {
+    transform: translate(-2%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* INTENSITY VARIANTS */
+
+.light {
+  --noise-opacity: 0.05;
+}
+
+.medium {
+  --noise-opacity: 0.1;
+}
+
+.heavy {
+  --noise-opacity: 0.2;
+}
+
+/* COLOR VARIANTS */
+
+.whiteNoise .noise {
+  background-color: #fff;
+}
+
+.grayNoise .noise {
+  background-color: #888;
+}
+
+.sepiaNoise .noise {
+  background-color: #a0886c;
+}
+
+/* NOISE TYPES */
+
+.fineNoise {
+  --noise-frequency: 2;
+}
+
+.coarseNoise {
+  --noise-frequency: 0.3;
+}
+
+/* PATTERN VARIANTS */
+
+/* Checkerboard noise */
+.noisePattern.checkered .noise {
+  background-image:
+    linear-gradient(45deg, currentColor 25%, transparent 25%),
+    linear-gradient(-45deg, currentColor 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, currentColor 75%),
+    linear-gradient(-45deg, transparent 75%, currentColor 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+  filter: none;
+}
+
+/* Grid noise */
+.noisePattern.gridNoise .noise {
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  filter: none;
+}
+
+/* Diagonal lines */
+.noisePattern.diagonalLines .noise {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    currentColor 5px,
+    currentColor 6px
+  );
+  filter: none;
+}
+
+/* Dots noise */
+.noisePattern.dotsNoise .noise {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 8px 8px;
+  filter: none;
+}
+
+/* SCANLINE EFFECT */
+.noisePattern.scanlines .noise {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    currentColor 2px,
+    currentColor 3px
+  );
+  filter: none;
+}
+
+.noisePattern.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* CRT EFFECT */
+.noisePattern.crt .noise {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    currentColor 2px,
+    currentColor 4px
+  );
+  filter: none;
+}
+
+.noisePattern.crt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    transparent 100%
+  );
+  animation: crt-flicker 0.1s infinite;
+  pointer-events: none;
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.97; }
+}
+
+/* FILM GRAIN */
+.noisePattern.filmGrain .noise {
+  filter: url(#noise-fractal);
+  opacity: 0.15;
+}
+
+.noisePattern.filmGrain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+
+/* STATIC */
+.noisePattern.static .noise {
+  filter: url(#noise-turbulence);
+  opacity: 0.3;
+  animation: static-glitch 0.2s infinite;
+}
+
+@keyframes static-glitch {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+/* BLEND MODES */
+
+.noisePattern.multiply {
+  mix-blend-mode: multiply;
+}
+
+.noisePattern.screen {
+  mix-blend-mode: screen;
+}
+
+.noisePattern.overlay {
+  mix-blend-mode: overlay;
+}
+
+.noisePattern.softLight {
+  mix-blend-mode: soft-light;
+}
+
+.noisePattern.hardLight {
+  mix-blend-mode: hard-light;
+}
+
+.noisePattern.difference {
+  mix-blend-mode: difference;
+}
+
+.noisePattern.exclusion {
+  mix-blend-mode: exclusion;
+}
+
+/* SIZE VARIANTS */
+
+.small .noise {
+  background-size: 50px 50px;
+}
+
+.large .noise {
+  background-size: 150px 150px;
+}
+
+.full .noise {
+  background-size: 200% 200%;
+}
+
+/* ANIMATION VARIANTS */
+
+.noisePattern.pulse .noise {
+  animation: noise-pulse 3s ease-in-out infinite;
+}
+
+@keyframes noise-pulse {
+  0%, 100% { opacity: var(--noise-opacity, 0.1); }
+  50% { opacity: calc(var(--noise-opacity, 0.1) * 1.5); }
+}
+
+.noisePattern.zoom .noise {
+  animation: noise-zoom 10s linear infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes noise-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+.noisePattern.rotate .noise {
+  animation: noise-rotate 20s linear infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes noise-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* COLOR OVERLAYS */
+
+.noisePattern.red::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.noisePattern.blue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 255, 0.1);
+  pointer-events: none;
+}
+
+.noisePattern.green::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 255, 0, 0.1);
+  pointer-events: none;
+}
+
+/* FIXED POSITIONING */
+.noisePattern.fixed {
+  position: fixed;
+  z-index: 9999;
+}
+
+.noisePattern.absolute {
+  position: absolute;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .noisePattern {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,334 @@
+.cornerNav {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* CORNER POSITIONS */
+
+.top-left {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.top-right {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.bottom-left {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.bottom-right {
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+/* CORNER DECORATIONS */
+.cornerPiece {
+  position: absolute;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.top-left .cornerPiece:first-child {
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.top-left .cornerPiece:last-child {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 20px;
+}
+
+.top-right .cornerPiece:first-child {
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.top-right .cornerPiece:last-child {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 20px;
+}
+
+.bottom-left .cornerPiece:first-child {
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.bottom-left .cornerPiece:last-child {
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 20px;
+}
+
+.bottom-right .cornerPiece:first-child {
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.bottom-right .cornerPiece:last-child {
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  height: 20px;
+}
+
+/* ITEMS CONTAINER */
+.items {
+  display: flex;
+  gap: 1rem;
+}
+
+.horizontal .items {
+  flex-direction: row;
+}
+
+.vertical .items {
+  flex-direction: column;
+}
+
+.diagonal .items {
+  flex-direction: column;
+}
+
+/* ITEM */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: currentColor;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+}
+
+.item:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.item.active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+/* ICON */
+.icon {
+  font-size: 1em;
+  opacity: 0.8;
+}
+
+/* LABEL */
+.label {
+  white-space: nowrap;
+}
+
+/* STYLES */
+
+/* Ornate - medieval/fancy corners */
+.ornate.decorated .cornerPiece {
+  background: linear-gradient(45deg, currentColor, transparent);
+  border-radius: 2px;
+}
+
+.ornate.decorated .cornerPiece:first-child::after {
+  content: '⚜';
+  position: absolute;
+  font-size: 1.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+
+/* Minimal - clean corners */
+.minimal.decorated .cornerPiece {
+  background: currentColor;
+  width: 10px;
+  height: 10px;
+}
+
+.minimal .cornerPiece:last-child {
+  display: none;
+}
+
+/* Brutal - thick aggressive corners */
+.brutal.decorated .cornerPiece {
+  background: currentColor;
+  width: 30px;
+  height: 4px;
+  border-radius: 0;
+}
+
+.brutal.decorated .cornerPiece:last-child {
+  width: 4px;
+  height: 30px;
+}
+
+.brutal .item {
+  background: #000;
+  color: #fff;
+  border: 2px solid #ff0040;
+  padding: 0.5rem 1rem;
+}
+
+.brutal .item:hover {
+  background: #ff0040;
+}
+
+/* Neon - glowing corners */
+.neon.decorated .cornerPiece {
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.neon .item {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  border: 1px solid #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.neon .item:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+/* ORIENTATIONS */
+
+/* Diagonal */
+.diagonal .item {
+  transform: rotate(45deg);
+}
+
+.diagonal .items {
+  gap: 0.5rem;
+}
+
+.diagonal .item {
+  padding: 0.125rem 0.25rem;
+}
+
+/* DECORATED */
+
+.decorated .cornerNav {
+  padding: 1.5rem;
+}
+
+.decorated .items {
+  padding: 0.5rem;
+}
+
+/* VARIANTS */
+
+/* Compact */
+.cornerNav.compact {
+  padding: 1rem;
+  font-size: 0.625rem;
+}
+
+.compact .item {
+  padding: 0.125rem 0.25rem;
+}
+
+.compact.decorated .cornerPiece {
+  width: 10px;
+  height: 2px;
+}
+
+/* Large */
+.cornerNav.large {
+  padding: 2rem;
+  font-size: 0.875rem;
+}
+
+.large .item {
+  padding: 0.5rem 1rem;
+}
+
+.large.decorated .cornerPiece {
+  width: 25px;
+  height: 3px;
+}
+
+/* Active indicators */
+.cornerNav.withIndicator .item.active::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ff0040;
+  border-radius: 50%;
+}
+
+.cornerNav.withIndicator .item:hover::before {
+  animation: indicator-pulse 1s ease-in-out infinite;
+}
+
+@keyframes indicator-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+}
+
+/* Animated corners */
+.cornerNav.animated .cornerPiece {
+  animation: corner-pulse 3s ease-in-out infinite;
+}
+
+@keyframes corner-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Glitch corners */
+.cornerNav.glitch .cornerPiece {
+  animation: corner-glitch 2s infinite;
+}
+
+@keyframes corner-glitch {
+  0%, 90%, 100% {
+    transform: translate(0);
+  }
+  92% {
+    transform: translate(2px, -2px);
+  }
+  94% {
+    transform: translate(-2px, 2px);
+  }
+  96% {
+    transform: translate(1px, 1px);
+  }
+}

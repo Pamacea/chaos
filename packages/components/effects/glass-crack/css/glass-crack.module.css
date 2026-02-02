@@ -1,0 +1,262 @@
+.glassCrack {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.crack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
+  color: var(--crack-color, rgba(255, 255, 255, 0.5));
+}
+
+.crackPath {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.branch {
+  stroke-linecap: round;
+  animation: branch-grow 0.5s ease-out var(--delay, 0s) forwards;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+@keyframes branch-grow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* INTENSITY */
+
+.light .crackPath {
+  strokeWidth: 0.5;
+  opacity: 0.7;
+}
+
+.medium .crackPath {
+  strokeWidth: 1;
+  opacity: 0.8;
+}
+
+.heavy .crackPath {
+  strokeWidth: 2;
+  opacity: 1;
+}
+
+.heavy .branch {
+  strokeWidth: 1;
+}
+
+/* PATTERNS */
+
+/* Spiderweb - radial pattern */
+.spiderweb .crack {
+  animation: crack-grow 0.8s ease-out forwards;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.spiderweb .crackPath {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 0;
+}
+
+@keyframes crack-grow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Lightning - jagged vertical */
+.lightning .crack:nth-child(odd) {
+  animation: crack-grow 0.4s ease-out forwards;
+}
+
+.lightning .crack:nth-child(even) {
+  animation: crack-grow 0.6s ease-out forwards;
+}
+
+/* Shattered - many small cracks */
+.shattered .crack {
+  animation: shatter 0.3s ease-out forwards;
+}
+
+@keyframes shatter {
+  from {
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Random - varied animations */
+.random .crack {
+  animation-duration: calc(0.3s + var(--random-duration, 0s));
+}
+
+/* GLOW EFFECT */
+
+.glow .crackPath {
+  filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 6px currentColor);
+}
+
+.glow .branch {
+  filter: drop-shadow(0 0 2px currentColor);
+}
+
+/* VARIANTS */
+
+/* Center burst */
+.glassCrack.centered .crack {
+  transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
+}
+
+/* Corner crack */
+.glassCrack.corner .crack:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.glassCrack.corner .crack:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* Multiple impact points */
+.glassCrack.multiple .crack:nth-child(3n + 1) {
+  top: 30%;
+  left: 30%;
+}
+
+.glassCrack.multiple .crack:nth-child(3n + 2) {
+  top: 70%;
+  left: 70%;
+}
+
+.glassCrack.multiple .crack:nth-child(3n) {
+  top: 30%;
+  left: 70%;
+}
+
+/* ANIMATED VARIANTS */
+
+.glassCrack.spreading .crack {
+  animation: spread 1s ease-out forwards;
+}
+
+@keyframes spread {
+  from {
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) scale(1);
+  }
+}
+
+.glassCrack.pulsing .crackPath {
+  animation: crack-pulse 2s ease-in-out infinite;
+}
+
+@keyframes crack-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* COLOR VARIANTS */
+
+/* White cracks (default) */
+.glassCrack.white {
+  --crack-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Red cracks */
+.glassCrack.red {
+  --crack-color: rgba(255, 0, 0, 0.6);
+}
+
+/* Blue cracks */
+.glassCrack.blue {
+  --crack-color: rgba(0, 100, 255, 0.6);
+}
+
+/* Green cracks */
+.glassCrack.green {
+  --crack-color: rgba(0, 255, 0, 0.6);
+}
+
+/* Gold cracks */
+.glassCrack.gold {
+  --crack-color: rgba(255, 215, 0, 0.7);
+}
+
+/* ADDITIONAL EFFECTS */
+
+/* Shimmer effect */
+.glassCrack.shimmer .crackPath {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Fading cracks */
+.glassCrack.fading {
+  animation: fade-cracks 5s ease-out forwards;
+}
+
+@keyframes fade-cracks {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Growing cracks */
+.glassCrack.growing .crack {
+  animation: grow-crack 2s ease-out forwards;
+}
+
+@keyframes grow-crack {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* OVERLAY BLEND MODES */
+
+.glassCrack.multiply {
+  mix-blend-mode: multiply;
+}
+
+.glassCrack.screen {
+  mix-blend-mode: screen;
+}
+
+.glassCrack.overlay {
+  mix-blend-mode: overlay;
+}
+
+.glassCrack.difference {
+  mix-blend-mode: difference;
+}

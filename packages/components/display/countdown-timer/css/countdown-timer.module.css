@@ -1,0 +1,343 @@
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* UNIT */
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* LABEL STYLES */
+
+.below .unit {
+  flex-direction: column;
+}
+
+.above .unit {
+  flex-direction: column-reverse;
+}
+
+.inline .unit {
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.inline .label {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* VALUE */
+.value {
+  font-size: 2.5rem;
+  line-height: 1;
+  min-width: 3ch;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.value:last-child {
+  animation: pulse-second 1s ease-in-out infinite;
+}
+
+@keyframes pulse-second {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* LABEL */
+.label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+/* SEPARATOR */
+.separator {
+  font-size: 2rem;
+  opacity: 0.5;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* VARIANTS */
+
+/* Minimal */
+.countdown.minimal {
+  gap: 0.25rem;
+}
+
+.countdown.minimal .value {
+  font-size: 1.5rem;
+  min-width: 2ch;
+}
+
+.countdown.minimal .label {
+  font-size: 0.5rem;
+}
+
+.countdown.minimal .separator {
+  font-size: 1.5rem;
+}
+
+/* Large */
+.countdown.large .value {
+  font-size: 4rem;
+  min-width: 4ch;
+}
+
+.countdown.large .label {
+  font-size: 0.875rem;
+}
+
+.countdown.large .separator {
+  font-size: 4rem;
+}
+
+/* Neon */
+.countdown.neon .value {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.countdown.neon .separator {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.countdown.neon.completed .value {
+  color: #ff0040;
+  text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040;
+}
+
+/* Retro/CRT */
+.countdown.crt {
+  font-family: 'Courier New', monospace;
+  background: #0a0a0a;
+  padding: 1rem 2rem;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+}
+
+.countdown.crt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 0, 0.1) 0px,
+    rgba(0, 255, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+.countdown.crt .value {
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* Brutalist */
+.countdown.brutalist {
+  font-family: 'Arial Black', sans-serif;
+  background: #000;
+  padding: 2rem 3rem;
+  color: #fff;
+  border: 4px solid #ff0040;
+}
+
+.countdown.brutalist .value {
+  font-size: 3rem;
+  letter-spacing: 0;
+}
+
+.countdown.brutalist .separator {
+  color: #ff0040;
+}
+
+.countdown.brutalist .label {
+  color: #ff0040;
+}
+
+/* Glitch */
+.countdown.glitch .value {
+  animation: glitch-value 3s infinite;
+}
+
+@keyframes glitch-value {
+  0%, 90%, 100% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+  92% {
+    transform: translate(-2px, 2px);
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+  }
+  94% {
+    transform: translate(2px, -2px);
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+  }
+  96% {
+    transform: translate(-1px, 1px);
+    text-shadow: 1px 1px #ff0000;
+  }
+  98% {
+    transform: translate(1px, -1px);
+    text-shadow: -1px -1px #00ffff;
+  }
+}
+
+/* Circles */
+.countdown.circles .unit {
+  position: relative;
+}
+
+.countdown.circles .value::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.countdown.circles.large .value::before {
+  width: 100px;
+  height: 100px;
+}
+
+.countdown.circles .unit:last-child .value::before {
+  animation: circle-pulse 1s ease-in-out infinite;
+}
+
+@keyframes circle-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Completed state */
+.countdown.completed .separator {
+  animation: none;
+  opacity: 0.3;
+}
+
+.countdown.completed .value:last-child {
+  animation: none;
+}
+
+.countdown.completed {
+  opacity: 0.7;
+}
+
+/* Compact */
+.countdown.compact {
+  gap: 0.25rem;
+}
+
+.countdown.compact .value {
+  font-size: 1.125rem;
+  min-width: 2ch;
+}
+
+.countdown.compact .label {
+  display: none;
+}
+
+.countdown.compact .separator {
+  font-size: 1.125rem;
+}
+
+/* Inline with labels */
+.countdown.inlineCompact .unit {
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
+.countdown.inlineCompact .label {
+  font-size: 0.625rem;
+  text-transform: lowercase;
+}
+
+.countdown.inlineCompact .value {
+  font-size: 1.25rem;
+  min-width: 2ch;
+}
+
+/* Warning style */
+.countdown.warning .value {
+  color: #ff6600;
+}
+
+.countdown.warning .value:last-child {
+  animation: warning-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes warning-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Critical style */
+.countdown.critical .value {
+  color: #ff0000;
+}
+
+.countdown.critical .value:last-child {
+  animation: critical-blink 0.25s ease-in-out infinite;
+}
+
+@keyframes critical-blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.3; }
+}
+
+/* Gradient numbers */
+.countdown.gradient .value {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Boxed numbers */
+.countdown.boxed .value {
+  background: currentColor;
+  color: var(--bg, #000);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.countdown.boxed .value:last-child {
+  background: var(--accent, currentColor);
+}

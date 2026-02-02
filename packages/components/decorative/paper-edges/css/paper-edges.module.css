@@ -1,0 +1,313 @@
+.paperEdges {
+  position: relative;
+  padding: 1.5rem;
+  background: var(--bg-color, #f5f0e6);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* INTENSITY */
+
+.light {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.medium {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.heavy {
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* CORNERS */
+
+.rounded {
+  border-radius: 8px;
+}
+
+.sharp {
+  border-radius: 0;
+}
+
+.ragged {
+  border-radius: 2px;
+}
+
+/* STYLES */
+
+/* Aged - slight discoloration and edge darkening */
+.aged {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.aged::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.1"/></svg>');
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.3;
+}
+
+.aged::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Torn - ragged edges */
+.torn {
+  clip-path: polygon(
+    0% 2%, 3% 0%, 5% 3%, 7% 1%, 9% 4%, 11% 0%, 100% 0%,
+    100% 98%, 97% 100%, 95% 97%, 93% 99%, 91% 96%, 89% 100%,
+    0% 100%
+  );
+}
+
+/* Burnt - charred edges */
+.burnt {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 0, 0, 0.15) 0%,
+    transparent 15%,
+    transparent 85%,
+    rgba(139, 0, 0, 0.2) 100%
+  );
+}
+
+.burnt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="burn"><feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23burn)" opacity="0.2"/></svg>');
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.burnt::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 2px solid rgba(139, 0, 0, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Ink - ink stains on edges */
+.ink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 0% 0%,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 30%
+  );
+  pointer-events: none;
+}
+
+.ink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 100% 100%,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 30%
+  );
+  pointer-events: none;
+}
+
+/* Frayed - loose paper fibers */
+.frayed {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="fray"><feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23fray)" opacity="0.05"/></svg>');
+}
+
+.frayed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+  border-style: dashed;
+}
+
+/* DECKLE - rough deckle edge */
+.deckle {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="deckle"><feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23deckle)" opacity="0.1"/></svg>');
+}
+
+.deckle::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* VARIANTS */
+
+/* Folded - with crease */
+.paperEdges.folded::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.paperEdges.folded::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+/* Crumpled - crumpled texture */
+.paperEdges.crumpled {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="crumple"><feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23crumple)" opacity="0.08"/></svg>');
+}
+
+/* Stained - coffee/ink stains */
+.paperEdges.stained::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(101, 67, 33, 0.08) 0%,
+    transparent 40%
+  ),
+  radial-gradient(
+    ellipse at 70% 70%,
+    rgba(101, 67, 33, 0.06) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+/* Watermarked - subtle pattern */
+.paperEdges.watermarked::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="watermark" patternUnits="userSpaceOnUse" width="100" height="100"><text x="50" y="50" font-size="14" text-anchor="middle" fill="rgba(0,0,0,0.03)" transform="rotate(-45 50 50)">CONFIDENTIAL</text></pattern></defs><rect width="100%" height="100%" fill="url(%23watermark)"/></svg>');
+  pointer-events: none;
+}
+
+/* Lined - notebook lines */
+.paperEdges.lined::before {
+  content: '';
+  position: absolute;
+  inset: 1.5rem;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 27px,
+    rgba(0, 0, 255, 0.1) 27px,
+    rgba(0, 0, 255, 0.1) 28px
+  );
+  pointer-events: none;
+}
+
+/* Gridded - graph paper */
+.paperEdges.gridded::before {
+  content: '';
+  position: absolute;
+  inset: 1.5rem;
+  background: 
+    linear-gradient(90deg, rgba(0, 0, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 0, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* SIZE VARIANTS */
+
+.small {
+  padding: 1rem;
+}
+
+.large {
+  padding: 2rem;
+}
+
+/* COLOR VARIANTS */
+
+/* Brown paper */
+.paperEdges.brown {
+  background: #d4b48c;
+}
+
+/* White paper */
+.paperEdges.white {
+  background: #fff;
+}
+
+/* Yellow paper */
+.paperEdges.yellow {
+  background: #fff9c4;
+}
+
+/* Blue paper */
+.paperEdges.blue {
+  background: #b3d9ff;
+}
+
+/* Pink paper */
+.paperEdges.pink {
+  background: #ffb3ba;
+}
+
+/* ANIMATIONS */
+
+.paperEdges.floating {
+  animation: paper-float 3s ease-in-out infinite;
+}
+
+@keyframes paper-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
+
+.paperEdges.shaking {
+  animation: paper-shake 0.3s ease-in-out infinite;
+}
+
+@keyframes paper-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+.paperEdges.burning {
+  animation: paper-burn 5s linear forwards;
+}
+
+@keyframes paper-burn {
+  from {
+    filter: brightness(1);
+  }
+  to {
+    filter: brightness(0.7) sepia(0.5);
+  }
+}

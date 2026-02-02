@@ -1,0 +1,296 @@
+.strokeText {
+  position: relative;
+  display: inline-block;
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  color: var(--fill-color, transparent);
+}
+
+/* STROKE STYLES */
+
+.solid {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+}
+
+.dashed {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  background: var(--stroke-color, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, var(--stroke-color, #000) 50%, transparent 50%);
+  background-size: 10px 100%;
+}
+
+.dotted {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  background: var(--stroke-color, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: radial-gradient(circle, var(--stroke-color, #000) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+/* DOUBLE STROKE */
+.double {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+}
+
+.double::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: calc(var(--stroke-width, 2px) + 1px) var(--outer-stroke-color, #fff);
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+}
+
+/* ANIMATED */
+.animated {
+  animation: stroke-pulse 2s ease-in-out infinite;
+}
+
+@keyframes stroke-pulse {
+  0%, 100% {
+    -webkit-text-stroke-width: var(--stroke-width, 2px);
+  }
+  50% {
+    -webkit-text-stroke-width: calc(var(--stroke-width, 2px) + 1px);
+  }
+}
+
+/* VARIANTS */
+
+/* Gradient stroke */
+.strokeText.gradient {
+  -webkit-text-stroke: var(--stroke-width, 2px) transparent;
+  background: linear-gradient(135deg, #ff0040 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.strokeText.gradient::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: var(--stroke-width, 2px) transparent;
+  background: linear-gradient(135deg, #ff0040 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  opacity: 0.5;
+  transform: translate(1px, 1px);
+}
+
+/* Rainbow stroke */
+.strokeText.rainbow {
+  -webkit-text-stroke: var(--stroke-width, 2px) transparent;
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #9400d3
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-stroke 3s linear infinite;
+}
+
+@keyframes rainbow-stroke {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* Glow stroke */
+.strokeText.glow {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  text-shadow: 0 0 10px var(--stroke-color, #000), 0 0 20px var(--stroke-color, #000);
+}
+
+.strokeText.glow::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--fill-color, transparent);
+  text-shadow: 0 0 15px var(--stroke-color, #000);
+  pointer-events: none;
+}
+
+/* Shadow stroke */
+.strokeText.shadow {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  text-shadow: 2px 2px 0 var(--stroke-color, #000);
+}
+
+.strokeText.shadow::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--fill-color, transparent);
+  text-shadow: 4px 4px 0 var(--stroke-color, #000);
+  pointer-events: none;
+}
+
+/* Outline only (transparent fill) */
+.strokeText.outline {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pattern stroke */
+.strokeText.pattern {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="%23fff"/><rect width="5" height="5" fill="%23000"/></svg>');
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dashed line stroke */
+.strokeText.dash-line {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  background: linear-gradient(90deg, var(--stroke-color, #000) 50%, transparent 50%);
+  background-size: 20px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated dash */
+.strokeText.animated-dash {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+  background: linear-gradient(90deg, var(--stroke-color, #000) 50%, transparent 50%);
+  background-size: 30px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: dash-move 1s linear infinite;
+}
+
+@keyframes dash-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 0; }
+}
+
+/* Stroke with offset */
+.strokeText.offset {
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--stroke-color, #000);
+}
+
+.strokeText.offset::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: var(--stroke-width, 2px) var(--outer-stroke-color, #fff);
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  transform: translate(3px, 3px);
+}
+
+/* Thicker variants */
+.strokeText.thick {
+  --stroke-width: 4px;
+}
+
+.strokeText.extra-thick {
+  --stroke-width: 6px;
+}
+
+/* Thin variants */
+.strokeText.thin {
+  --stroke-width: 1px;
+}
+
+/* COLOR VARIANTS */
+
+/* Red stroke */
+.strokeText.red-stroke {
+  --stroke-color: #ff0000;
+}
+
+/* Blue stroke */
+.strokeText.blue-stroke {
+  --stroke-color: #0066ff;
+}
+
+/* Green stroke */
+.strokeText.green-stroke {
+  --stroke-color: #00aa00;
+}
+
+/* Purple stroke */
+.strokeText.purple-stroke {
+  --stroke-color: #6600cc;
+}
+
+/* Gold stroke */
+.strokeText.gold-stroke {
+  --stroke-color: #ffd700;
+}
+
+/* FILL VARIANTS */
+
+/* White fill */
+.strokeText.white-fill {
+  --fill-color: #fff;
+}
+
+/* Black fill */
+.strokeText.black-fill {
+  --fill-color: #000;
+}
+
+/* Colored fill */
+.strokeText.colored-fill {
+  --fill-color: #ff0040;
+}
+
+/* EFFECTS */
+
+/* Blinking stroke */
+.strokeText.blinking {
+  animation: blink-stroke 1s ease-in-out infinite;
+}
+
+@keyframes blink-stroke {
+  0%, 100% {
+    opacity: 1;
+    -webkit-text-stroke-width: var(--stroke-width, 2px);
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-text-stroke-width: calc(var(--stroke-width, 2px) + 2px);
+  }
+}
+
+/* Shaking stroke */
+.strokeText.shaking {
+  animation: shake-stroke 0.3s ease-in-out infinite;
+}
+
+@keyframes shake-stroke {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+}
+
+/* Zooming stroke */
+.strokeText.zooming {
+  animation: zoom-stroke 2s ease-in-out infinite;
+}
+
+@keyframes zoom-stroke {
+  0%, 100% {
+    -webkit-text-stroke-width: var(--stroke-width, 2px);
+  }
+  50% {
+    -webkit-text-stroke-width: calc(var(--stroke-width, 2px) + 3px);
+  }
+}

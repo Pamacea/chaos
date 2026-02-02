@@ -1299,6 +1299,485 @@
   letter-spacing: 0.1em;
 }
 
+/* NEW TEXT EFFECTS PREVIEWS */
+.breathingText {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.handwrittenText {
+  font-family: cursive;
+  font-size: 1.3rem;
+  color: var(--text);
+  transform: rotate(-2deg);
+}
+
+.scrambleText {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent);
+  animation: scrambleSmall 0.5s steps(5) infinite;
+}
+
+@keyframes scrambleSmall {
+  0% { text-shadow: 1px 0 var(--accent), -1px 0 #ff0040; }
+  25% { text-shadow: -1px 0 var(--accent), 1px 0 #ff0040; }
+  50% { text-shadow: 2px 0 var(--accent), -2px 0 #ff0040; }
+  75% { text-shadow: -2px 0 var(--accent), 2px 0 #ff0040; }
+  100% { text-shadow: 1px 0 var(--accent), -1px 0 #ff0040; }
+}
+
+.strokeText {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text);
+}
+
+.wordByWord {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  overflow: hidden;
+}
+
+.wordByWord::after {
+  content: ' WORD';
+  animation: wordReveal 2s steps(2) infinite;
+}
+
+@keyframes wordReveal {
+  0% { content: ' ONE'; }
+  50% { content: ' TWO'; }
+  100% { content: ' THREE'; }
+}
+
+/* NEW NAVIGATION PREVIEWS */
+.cornerNavBox {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.minimalNavBox {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.timelineNavBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.5rem;
+}
+
+.timelineNavBox > div {
+  width: 20px;
+  height: 3px;
+  background: var(--border);
+}
+
+.timelineNavBox .timelineActive {
+  background: var(--accent);
+  width: 30px;
+}
+
+/* NEW BACKGROUNDS */
+.meshBox {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  animation: meshShift 5s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes meshShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.noisePatternBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(circle at 50% 50%, #111 1px, transparent 1px);
+  background-size: 8px 8px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.starfieldBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #000;
+}
+
+.starfieldBox > div {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.starfieldBox > div:nth-child(1) { top: 20%; left: 20%; }
+.starfieldBox > div:nth-child(2) { top: 50%; left: 60%; animation-delay: 0.5s; }
+.starfieldBox > div:nth-child(3) { top: 70%; left: 30%; animation-delay: 1s; }
+.starfieldBox > div:nth-child(4) { top: 30%; left: 80%; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* NEW OVERLAYS */
+.scanlinesOverlayBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.scanlinesOverlayBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.1) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* NEW EFFECTS */
+.chromaticBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.chromaticBox::before,
+.chromaticBox::after {
+  content: 'RGB';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.chromaticBox::before {
+  color: #ff0000;
+  left: 49.5%;
+  animation: chromaticR 0.3s infinite;
+}
+
+.chromaticBox::after {
+  color: #00ffff;
+  left: 50.5%;
+  animation: chromaticB 0.3s infinite;
+}
+
+@keyframes chromaticR {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-52%, -50%); }
+}
+
+@keyframes chromaticB {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-48%, -50%); }
+}
+
+.glassCrackBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  position: relative;
+  background: rgba(255,255,255,0.05);
+}
+
+.glassCrackBox::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.radarBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 136, 0.3);
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.1), transparent 70%);
+  position: relative;
+  margin: auto;
+}
+
+.radarSweep {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.5));
+  transform-origin: bottom left;
+  animation: radarSweep 2s linear infinite;
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* NEW LAYOUT */
+.panelScrollBox {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.panelScrollBox > div {
+  min-width: 50px;
+  height: 50px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.glassContainerBox {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+
+.phaseContainerBox {
+  padding: 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.phaseContainerBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: phaseShine 2s infinite;
+}
+
+@keyframes phaseShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* NEW DECORATIVE */
+.coffeeStainBox {
+  width: 70px;
+  height: 50px;
+  position: relative;
+}
+
+.coffeeStainBox .stainRing {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(139, 90, 43, 0.4);
+  border-radius: 50%;
+}
+
+.documentStampBox {
+  padding: 0.5rem 1rem;
+  border: 3px solid #dc2626;
+  color: #dc2626;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  transform: rotate(-5deg);
+  opacity: 0.7;
+}
+
+.marginaliaBox {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 2px solid var(--accent);
+  font-family: cursive;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  transform: rotate(-1deg);
+}
+
+.paperEdgesBox {
+  padding: 0.75rem 1rem;
+  background: #f4e4bc;
+  color: #3d3526;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* NEW BUTTONS */
+.tensionMeterBox {
+  width: 80%;
+  height: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.tensionMeterBox .tensionMeterFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 65%;
+  background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+}
+
+/* INPUTS */
+.chatInterfaceBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.chatBubble {
+  padding: 0.3rem 0.6rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.secretRevealBox {
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  position: relative;
+}
+
+.secretRevealBox::after {
+  content: '👁';
+  position: absolute;
+  right: 0.5rem;
+  opacity: 0.5;
+}
+
+/* DISPLAY */
+.countdownTimerBox {
+  display: flex;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.countdownTimerBox span {
+  background: var(--bg-secondary);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+}
+
+.terminalMessageBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #0a0a0f;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.termPrompt2 {
+  color: var(--accent);
+}
+
+/* EXTRA TEXT */
+.shadowGlitch {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text);
+  animation: shadowGlitchAnim 0.5s infinite;
+}
+
+@keyframes shadowGlitchAnim {
+  0%, 100% { text-shadow: 2px 0 var(--accent), -2px 0 #ff0040; }
+  25% { text-shadow: -2px 0 var(--accent), 2px 0 #ff0040; }
+  50% { text-shadow: 3px 1px var(--accent), -3px -1px #ff0040; }
+  75% { text-shadow: -1px 2px var(--accent), 1px -2px #ff0040; }
+}
+
+.splitText {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+.splitText span {
+  display: inline-block;
+  animation: splitTextAnim 1s ease infinite;
+}
+
+@keyframes splitTextAnim {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(-2px) rotate(-2deg); }
+  75% { transform: translateX(2px) rotate(2deg); }
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .docs {

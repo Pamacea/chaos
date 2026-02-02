@@ -1,0 +1,364 @@
+.terminalMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-family: 'Courier New', 'Courier', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: 0.5rem 0;
+}
+
+/* PROMPT */
+.prompt {
+  color: #00ff00;
+  font-weight: 700;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* CONTENT */
+.content {
+  color: #fff;
+  word-break: break-word;
+  flex: 1;
+}
+
+/* CURSOR */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background: #00ff00;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* TYPING ANIMATION */
+.typing .content {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing var(--typing-speed, 2s) steps(40, end) forwards;
+}
+
+@keyframes typing {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+
+/* MESSAGE TYPES */
+
+/* System - default green */
+.system {
+  color: #00ff00;
+}
+
+.system .prompt {
+  color: #00ff00;
+}
+
+.system .content {
+  color: #00ff00;
+}
+
+/* Info - blue */
+.info {
+  color: #00aaff;
+}
+
+.info .prompt {
+  color: #00aaff;
+}
+
+.info .content {
+  color: #00aaff;
+}
+
+.info::before {
+  content: '[INFO] ';
+  color: #00aaff;
+  opacity: 0.7;
+}
+
+/* Warning - yellow */
+.warning {
+  color: #ffaa00;
+}
+
+.warning .prompt {
+  color: #ffaa00;
+}
+
+.warning .content {
+  color: #ffaa00;
+}
+
+.warning::before {
+  content: '[WARN] ';
+  color: #ffaa00;
+  opacity: 0.7;
+}
+
+/* Error - red */
+.error {
+  color: #ff0000;
+}
+
+.error .prompt {
+  color: #ff0000;
+}
+
+.error .content {
+  color: #ff0000;
+}
+
+.error::before {
+  content: '[ERROR] ';
+  color: #ff0000;
+  font-weight: 700;
+}
+
+/* Success - bright green */
+.success {
+  color: #00ff00;
+}
+
+.success .prompt {
+  color: #00ff00;
+}
+
+.success .content {
+  color: #00ff00;
+}
+
+.success::before {
+  content: '[OK] ';
+  color: #00ff00;
+  font-weight: 700;
+}
+
+/* VARIANTS */
+
+/* No prompt */
+.terminalMessage.noPrompt .prompt {
+  display: none;
+}
+
+/* Custom prompt color */
+.terminalMessage.customPrompt .prompt {
+  color: var(--prompt-color, #ff00ff);
+}
+
+/* Timestamp */
+.terminalMessage.withTimestamp::before {
+  content: attr(data-timestamp);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75em;
+  margin-right: 0.5rem;
+}
+
+/* CODE BLOCK */
+.terminalMessage.code .content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border-left: 3px solid #ff00ff;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+}
+
+/* LINK */
+.terminalMessage .content a {
+  color: #00aaff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terminalMessage .content a:hover {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+/* PATH */
+.terminalMessage.path .content {
+  color: #00aaff;
+}
+
+.terminalMessage.path .content::before {
+  content: '/';
+}
+
+/* COMMAND */
+.terminalMessage.command .content {
+  color: #ffff00;
+  font-weight: 700;
+}
+
+.terminalMessage.command .content::before {
+  content: '$ ';
+}
+
+/* OUTPUT */
+.terminalMessage.output .content {
+  color: #fff;
+  padding-left: 1rem;
+}
+
+/* MULTILINE */
+.terminalMessage.multiline .content {
+  white-space: pre-wrap;
+}
+
+/* SCROLLABLE */
+.terminalMessage.scrollable {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.terminalMessage.scrollable .content {
+  min-width: fit-content;
+}
+
+/* HIGHLIGHT */
+.terminalMessage.highlight .content {
+  background: rgba(255, 255, 0, 0.2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 2px;
+}
+
+/* DIMMED */
+.terminalMessage.dimmed {
+  opacity: 0.5;
+}
+
+/* BLINK */
+.terminalMessage.blink {
+  animation: terminal-blink 0.5s step-end infinite;
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* STRIKE */
+.terminalMessage.strike .content {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* UNDERLINE */
+.terminalMessage.underline .content {
+  text-decoration: underline;
+}
+
+/* BOLD */
+.terminalMessage.bold .content {
+  font-weight: 700;
+}
+
+/* ITALIC */
+.terminalMessage.italic .content {
+  font-style: italic;
+}
+
+/* SIZE VARIANTS */
+
+.small {
+  font-size: 0.75rem;
+}
+
+.large {
+  font-size: 1rem;
+}
+
+/* COLOR THEMES */
+
+/* Retro green */
+.terminalMessage.retro {
+  background: #001a00;
+  color: #00ff00;
+  padding: 0.75rem;
+  border: 2px solid #00ff00;
+}
+
+/* Amber */
+.terminalMessage.amber {
+  background: #1a1500;
+  color: #ffaa00;
+  padding: 0.75rem;
+  border: 2px solid #ffaa00;
+}
+
+.terminalMessage.amber .prompt {
+  color: #ffaa00;
+}
+
+.terminalMessage.amber .cursor {
+  background: #ffaa00;
+}
+
+/* White */
+.terminalMessage.white {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 0.75rem;
+  border: 2px solid #ffffff;
+}
+
+.terminalMessage.white .prompt {
+  color: #ffffff;
+}
+
+.terminalMessage.white .cursor {
+  background: #ffffff;
+}
+
+/* ANIMATIONS */
+
+/* Typing effect */
+.terminalMessage.typingEffect .content {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing-effect var(--typing-speed, 2s) steps(40, end) forwards;
+}
+
+@keyframes typing-effect {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+
+/* Fade in */
+.terminalMessage.fadeIn {
+  animation: fade-in 0.3s ease forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in */
+.terminalMessage.slideIn {
+  animation: slide-in 0.3s ease forwards;
+}
+
+@keyframes slide-in {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Glitch */
+.terminalMessage.glitch {
+  animation: terminal-glitch 0.3s infinite;
+}
+
+@keyframes terminal-glitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-1px, -1px); }
+}
