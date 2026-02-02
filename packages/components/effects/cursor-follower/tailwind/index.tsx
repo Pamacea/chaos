@@ -61,7 +61,7 @@ export function CursorFollower({
       document.removeEventListener('mouseenter', handleMouseEnter);
       cancelAnimationFrame(animationId);
     };
-  }, [delay, size, isVisible]);
+  }, [delay, size]);
 
   const variantClasses = {
     ring: 'rounded-full border-2',
