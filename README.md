@@ -2,7 +2,7 @@
 
 Glitch, noise, neon & brutalist components for React. Copy-paste like shadcn.
 
-**93 components** — CSS Modules or Tailwind — Zero runtime.
+**91 components** — CSS Modules or Tailwind — Zero runtime.
 
 ## Quick Start
 
@@ -28,7 +28,7 @@ npx @oalacea/chaosui list
 npx @oalacea/chaosui init
 ```
 
-## Components (65)
+## Components (91)
 
 ### 🔮 Neon (7)
 
@@ -53,7 +53,7 @@ npx @oalacea/chaosui init
 | `cyber-slider` | Slider with neon track and thumb |
 | `cyber-tooltip` | Terminal-style tooltips |
 
-### 📝 Text Effects (14)
+### 📝 Text Effects (21)
 
 | Component | Description |
 |-----------|-------------|
@@ -71,6 +71,13 @@ npx @oalacea/chaosui init
 | `ascii-art` | Styled ASCII art block |
 | `countdown-display` | Stylized countdown timer |
 | `terminal-output` | Terminal block with prompt |
+| `breathing-text` | Breathing animation text |
+| `handwritten-text` | Handwriting style text |
+| `scramble-text` | Text scramble effect |
+| `shadow-glitch` | Shadow glitch effect |
+| `split-text` | Split text animation |
+| `stroke-text` | Outlined text effect |
+| `word-by-word-reveal` | Word by word reveal |
 
 ### 🎛️ Buttons (7)
 
@@ -84,48 +91,56 @@ npx @oalacea/chaosui init
 | `cta-brutal` | Brutalist CTA button |
 | `tension-bar` | Dramatic tension/progress bar |
 
-### 🧭 Navigation (6)
+### 🧭 Navigation (8)
 
 | Component | Description |
 |-----------|-------------|
-| `hexagon-menu` | Honeycomb hexagon menu |
 | `scattered-nav` | Scattered fragment navigation |
 | `vertical-nav` | Vertical nav with glyphs |
 | `brutal-nav` | Brutalist chaotic navigation |
 | `progress-dots` | Section progress indicator |
 | `scroll-indicator` | Vertical scroll indicator |
+| `corner-nav` | Corner-positioned navigation |
+| `minimal-nav` | Minimalist navigation |
+| `timeline-nav` | Timeline-style navigation |
 
-### 📐 Layout (7)
+### 📐 Layout (9)
 
 | Component | Description |
 |-----------|-------------|
 | `hologram-card` | Holographic card with scanlines |
 | `data-grid` | Terminal-style data table |
 | `horizontal-scroll` | Horizontal scrolling panels |
+| `horizontal-panel-scroll` | Panel scroll container |
 | `void-frame` | Frame with decorative corners |
 | `tower-pricing` | Vertical stacked pricing cards |
 | `spec-grid` | Terminal-style specs grid |
 | `tracklist` | Music tracklist component |
+| `glass-container` | Glass morphism container |
+| `phase-container` | Phase transition container |
 
-### 🌌 Backgrounds (4)
+### 🌌 Backgrounds (6)
 
 | Component | Description |
 |-----------|-------------|
 | `noise-canvas` | Animated noise canvas background |
-| `light-beams` | Vertical colored light beams |
 | `glow-orbs` | Floating blurred orbs |
 | `particle-field` | Drifting particle background |
+| `gradient-mesh` | Animated gradient mesh |
+| `noise-pattern` | Noise pattern overlay |
+| `starfield` | Animated starfield |
 
-### 🎭 Overlays (4)
+### 🎭 Overlays (5)
 
 | Component | Description |
 |-----------|-------------|
 | `noise-overlay` | SVG fractal noise texture overlay |
 | `scanlines` | CRT-style horizontal scanlines |
+| `scanlines-overlay` | Scanline effect overlay |
 | `vignette` | Dark edges radial gradient |
 | `static-flicker` | Animated noise with flicker effect |
 
-### ✨ Effects (5)
+### ✨ Effects (8)
 
 | Component | Description |
 |-----------|-------------|
@@ -134,8 +149,11 @@ npx @oalacea/chaosui init
 | `screen-distortion` | Full screen distortion effect |
 | `glowing-border` | Glowing border container with pulse |
 | `glitch-image` | Image with RGB glitch on hover |
+| `chromatic-aberration` | RGB chromatic effect |
+| `glass-crack` | Glass shatter effect |
+| `radar-scan` | Radar scanning animation |
 
-### 🏛️ Decorative (5)
+### 🏛️ Decorative (8)
 
 | Component | Description |
 |-----------|-------------|
@@ -144,6 +162,24 @@ npx @oalacea/chaosui init
 | `coffee-stain` | Coffee stain/aged paper effect |
 | `sheet-music` | Floating music notes |
 | `inscription` | Stone carved inscription |
+| `document-stamp` | Document stamp effect |
+| `marginalia` | Margin annotations |
+| `paper-edges` | Aged paper edges |
+
+### 📥 Inputs (2)
+
+| Component | Description |
+|-----------|-------------|
+| `chat-interface` | Chat message input |
+| `secret-reveal` | Hidden content reveal |
+
+### 🖥️ Display (3)
+
+| Component | Description |
+|-----------|-------------|
+| `countdown-timer` | Countdown display |
+| `tension-meter` | Tension gauge meter |
+| `terminal-message` | Terminal message |
 
 ## Styling Variants
 
@@ -208,10 +244,10 @@ import { VoidFrame } from './components/chaos/layout/void-frame';
 ```tsx
 import { RuneSymbols } from './components/chaos/decorative/rune-symbols';
 
-<RuneSymbols 
-  symbols={['ᛟ', 'ᚨ', 'ᛊ']} 
-  variant="gold" 
-  animated 
+<RuneSymbols
+  symbols={['ᛟ', 'ᚨ', 'ᛊ']}
+  variant="gold"
+  animated
 />
 ```
 
@@ -248,16 +284,16 @@ Color variants available:
 
 ## What's New in 0.6.0
 
-- 🆕 **28 new components** extracted from 24 web demos
-- 📝 **Text effects**: breathing-text, scramble-text, word-by-word-reveal, handwritten-text, stroke-text...
-- 🧭 **Navigation**: timeline-nav, corner-nav, minimal-nav...
-- 📐 **Layout**: phase-container, glass-container, horizontal-panel-scroll...
-- ✨ **Effects**: radar-scan, glass-crack, chromatic-aberration, scanlines-overlay...
-- 🌌 **Backgrounds**: starfield, gradient-mesh, noise-pattern...
-- 🖥️ **Display**: countdown-timer, tension-meter, terminal-message...
-- 🏛️ **Decorative**: coffee-stain, document-stamp, marginalia, paper-edges...
-- 📝 **Inputs**: secret-reveal, chat-interface...
-- 🎛️ **Buttons**: cta-brutal with arrow variants...
+- 🆕 **26 new components** — 91 total
+- 📝 **Text effects**: breathing-text, scramble-text, shadow-glitch, split-text, stroke-text, word-by-word-reveal, handwritten-text
+- 🧭 **Navigation**: timeline-nav, corner-nav, minimal-nav
+- 📐 **Layout**: phase-container, glass-container, horizontal-panel-scroll
+- ✨ **Effects**: radar-scan, glass-crack, chromatic-aberration, scanlines-overlay
+- 🌌 **Backgrounds**: starfield, gradient-mesh, noise-pattern
+- 🖥️ **Display**: countdown-timer, tension-meter, terminal-message
+- 🏛️ **Decorative**: document-stamp, marginalia, paper-edges
+- 📥 **Inputs**: chat-interface, secret-reveal
+- 🎛️ **Buttons**: cta-brutal with arrow variants
 
 ## License
 
