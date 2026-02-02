@@ -1,5 +1,15 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import styles from './about.module.css';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Learn about CHAOS — a collection of copy-paste UI components for glitch, noise, and distortion effects. Built for projects that want to stand out.',
+  openGraph: {
+    title: 'About CHAOS',
+    description: 'The web is too clean. CHAOS is the antidote. Learn about our philosophy and approach.',
+  },
+};
 
 export default function AboutPage() {
   return (
