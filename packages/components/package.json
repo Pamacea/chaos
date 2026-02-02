@@ -1,6 +1,6 @@
 {
   "name": "@chaos/components",
-  "version": "0.1.0",
+  "version": "0.5.1",
   "description": "Glitch, noise, and distortion UI components",
   "type": "module",
   "exports": {
