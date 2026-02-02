@@ -1,6 +1,16 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import styles from './page.module.css';
 import { Cursor } from './cursor';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'CHAOS is a collection of glitch, noise, and distortion UI components. Copy-paste like shadcn. Pure CSS, no dependencies.',
+  openGraph: {
+    title: 'CHAOS — Glitch & Noise Components',
+    description: 'A collection of glitch, noise, and distortion UI components. Copy-paste like shadcn.',
+  },
+};
 
 export default function Home() {
   return (

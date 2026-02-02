@@ -1,5 +1,15 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import styles from './docs.module.css';
+
+export const metadata: Metadata = {
+  title: 'Documentation',
+  description: 'Browse 60+ glitch, noise, and distortion UI components. Pure CSS, no dependencies. Copy-paste installation.',
+  openGraph: {
+    title: 'CHAOS Documentation',
+    description: 'Browse all available components — from glitch text to neon buttons, scanlines to noise overlays.',
+  },
+};
 
 const COMPONENTS = {
   'neon-glow': {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import styles from './component.module.css';
 
 // Full component documentation
@@ -1352,6 +1353,55 @@ const tracks = [
 <Inscription effect="ancient" cracked textured>ANCIENT TEXT</Inscription>`,
   },
 };
+
+const BASE_URL = 'https://chaos.oalacea.com';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ component: string }>;
+}): Promise<Metadata> {
+  const { component } = await params;
+  const data = COMPONENTS[component];
+
+  if (!data) {
+    return {
+      title: 'Component Not Found',
+    };
+  }
+
+  const title = `${data.name} — ${component} | CHAOS`;
+  const description = `${data.description} Pure CSS, no dependencies. Copy-paste installation for React and Next.js projects.`;
+
+  return {
+    title,
+    description,
+    keywords: [component, data.category, 'ui', 'components', 'css', 'react', 'nextjs', 'copy-paste'],
+    openGraph: {
+      title: `${data.name} — CHAOS Component`,
+      description,
+      url: `${BASE_URL}/docs/${component}`,
+      type: 'website',
+      images: [
+        {
+          url: '/branding/chaos.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/branding/chaos.png'],
+    },
+    alternates: {
+      canonical: `${BASE_URL}/docs/${component}`,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return Object.keys(COMPONENTS).map((component) => ({ component }));
