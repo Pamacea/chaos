@@ -6,6 +6,8 @@ Glitch, noise, neon & brutalist components for React. Copy-paste like shadcn.
 
 ## Quick Start
 
+https://www.npmjs.com/package/@oalacea/chaosui
+
 ```bash
 npx @oalacea/chaosui add neon-button
 ```
