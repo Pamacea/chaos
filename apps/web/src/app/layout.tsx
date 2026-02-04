@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Space_Mono, Bebas_Neue } from 'next/font/google';
 import './globals.css';
+import { Analytics } from "@vercel/analytics/next"
 
 const BASE_URL = 'https://chaos.oalacea.com';
 
@@ -110,6 +111,7 @@ export default function RootLayout({
         {/* Scanlines */}
         <div className="scanlines" aria-hidden="true" />
         {children}
+        <Analytics />
       </body>
     </html>
   );
