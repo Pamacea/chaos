@@ -49,6 +49,8 @@ const COMPONENTS = {
   'light-beams': { category: 'backgrounds', description: 'Vertical colored light beams', status: 'ready' },
   'glow-orbs': { category: 'backgrounds', description: 'Floating blurred orbs', status: 'ready' },
   'particle-field': { category: 'backgrounds', description: 'Drifting particle background', status: 'ready' },
+  'arcane-circle': { category: 'fantasy', description: 'Rotating magical circle with glowing runes', status: 'ready' },
+  'starfall': { category: 'fantasy', description: 'Falling magical stars with trails', status: 'ready' },
   
   // Effects
   'warning-tape': { category: 'effects', description: 'Scrolling warning tape banner', status: 'ready' },
@@ -103,6 +105,31 @@ const COMPONENTS = {
   'chat-interface': { category: 'inputs', description: 'AI chat interface with messages', status: 'ready' },
   'secret-reveal': { category: 'inputs', description: 'Content revealed on interaction', status: 'ready' },
   'draggable-document': { category: 'inputs', description: 'Draggable folder document with flip', status: 'ready' },
+
+  // Fantasy - Backgrounds
+  'arcane-circle': { category: 'fantasy', description: 'Magical arcane circle with rotating runes', status: 'ready' },
+  'starfall': { category: 'fantasy', description: 'Falling stars with trails effect', status: 'ready' },
+
+  // Fantasy - Buttons
+  'spell-button': { category: 'fantasy', description: 'Magical spell casting button', status: 'ready' },
+  'rune-button': { category: 'fantasy', description: 'Norse rune inscribed button', status: 'ready' },
+  'quest-scroll': { category: 'fantasy', description: 'Ancient quest scroll button', status: 'ready' },
+  'potion-flask': { category: 'fantasy', description: 'Bubbling potion flask button', status: 'ready' },
+
+  // Fantasy - Navigation
+  'spellbook-tabs': { category: 'fantasy', description: 'Spellbook inspired tab navigation', status: 'ready' },
+  'quest-log': { category: 'fantasy', description: 'Fantasy quest log navigation', status: 'ready' },
+  'inventory-grid': { category: 'fantasy', description: 'RPG-style inventory grid', status: 'ready' },
+
+  // Fantasy - Text
+  'incantation': { category: 'fantasy', description: 'Magical incantation text effect', status: 'ready' },
+  'prophecy': { category: 'fantasy', description: 'Revealing prophecy text animation', status: 'ready' },
+  'runes-reveal': { category: 'fantasy', description: 'Ancient runes to text reveal', status: 'ready' },
+  'ancient-scroll': { category: 'fantasy', description: 'Ancient scroll text container', status: 'ready' },
+
+  // Fantasy - Effects
+  'spell-cast': { category: 'fantasy', description: 'Spell casting burst effect', status: 'ready' },
+  'heal-pulse': { category: 'fantasy', description: 'Healing pulse wave effect', status: 'ready' },
 };
 
 const program = new Command();

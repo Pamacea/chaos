@@ -1,0 +1,183 @@
+.container {
+  --arcane-color: var(--arcane-color-internal, #8b5cf6);
+  --arcane-intensity: var(--arcane-intensity-internal, medium);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  position: fixed;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--arcane-color);
+  opacity: 0.6;
+}
+
+.circle.outer {
+  width: min(80vw, 80vh);
+  height: min(80vw, 80vh);
+  animation: rotate 60s linear infinite;
+}
+
+.circle.outer::before,
+.circle.outer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--arcane-color);
+  opacity: 0.4;
+}
+
+.circle.outer::before {
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+  animation: rotate 45s linear infinite reverse;
+}
+
+.circle.outer::after {
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  animation: rotate 75s linear infinite;
+}
+
+.circle.middle {
+  width: min(60vw, 60vh);
+  height: min(60vw, 60vh);
+  animation: rotate 40s linear infinite reverse;
+}
+
+.circle.middle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed var(--arcane-color);
+  animation: rotate 30s linear infinite;
+}
+
+.circle.inner {
+  width: min(40vw, 40vh);
+  height: min(40vw, 40vh);
+  animation: rotate 25s linear infinite;
+  border-style: dotted;
+}
+
+.circle.core {
+  width: min(20vw, 20vh);
+  height: min(20vw, 20vh);
+  animation: pulse 4s ease-in-out infinite, rotate 15s linear infinite;
+  box-shadow: 0 0 60px var(--arcane-color), inset 0 0 40px var(--arcane-color);
+}
+
+.rune {
+  position: absolute;
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: var(--arcane-color);
+  text-shadow: 0 0 10px var(--arcane-color);
+  animation: runeGlow 3s ease-in-out infinite;
+}
+
+.rune:nth-child(odd) {
+  animation-delay: -1.5s;
+}
+
+/* Mild intensity */
+.container[data-intensity="mild"] .circle {
+  opacity: 0.3;
+}
+
+.container[data-intensity="mild"] .circle.core {
+  box-shadow: 0 0 30px var(--arcane-color), inset 0 0 20px var(--arcane-color);
+}
+
+.container[data-intensity="mild"] .rune {
+  opacity: 0.5;
+}
+
+/* Medium intensity */
+.container[data-intensity="medium"] .circle {
+  opacity: 0.6;
+}
+
+.container[data-intensity="medium"] .circle.core {
+  box-shadow: 0 0 60px var(--arcane-color), inset 0 0 40px var(--arcane-color);
+}
+
+/* Extreme intensity */
+.container[data-intensity="extreme"] .circle {
+  opacity: 0.9;
+}
+
+.container[data-intensity="extreme"] .circle.core {
+  box-shadow: 0 0 100px var(--arcane-color), 0 0 150px var(--arcane-color), inset 0 0 60px var(--arcane-color);
+  animation: pulse 2s ease-in-out infinite, rotate 10s linear infinite;
+}
+
+.container[data-intensity="extreme"] .rune {
+  text-shadow: 0 0 20px var(--arcane-color), 0 0 30px var(--arcane-color);
+}
+
+.energy {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 20%,
+    color-mix(in srgb, var(--arcane-color) 10%, transparent) 50%,
+    transparent 70%
+  );
+  animation: energyPulse 6s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes runeGlow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes energyPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}

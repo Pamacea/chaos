@@ -1,0 +1,197 @@
+.runeButton {
+  --rune-glow: #ffd700;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e0e0e0;
+  padding: 0;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.runeButton:hover {
+  box-shadow: 0 0 30px var(--rune-glow), 0 0 60px var(--rune-glow);
+  transform: translateY(-2px);
+}
+
+.runeButton:active {
+  transform: translateY(0);
+}
+
+.runeButton:focus-visible {
+  outline: 2px solid var(--rune-glow);
+  outline-offset: 4px;
+}
+
+/* Sizes */
+.sm {
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  min-height: 2.5rem;
+}
+
+.sm .runeSvg {
+  width: 24px;
+  height: 24px;
+}
+
+.md {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  min-height: 3rem;
+}
+
+.md .runeSvg {
+  width: 32px;
+  height: 32px;
+}
+
+.lg {
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  min-height: 3.5rem;
+}
+
+.lg .runeSvg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Rune SVG */
+.runeSvg {
+  flex-shrink: 0;
+}
+
+/* Rings */
+.ring {
+  fill: none;
+  stroke: var(--rune-glow);
+  stroke-width: 1;
+  opacity: 0.3;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.8s ease, opacity 0.4s ease;
+}
+
+.ringInner {
+  fill: none;
+  stroke: var(--rune-glow);
+  stroke-width: 0.5;
+  opacity: 0.2;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 0.6s ease 0.2s, opacity 0.4s ease;
+}
+
+.runeButton:hover .ring {
+  stroke-dashoffset: 0;
+  opacity: 0.8;
+  animation: ring-rotate 8s linear infinite;
+}
+
+.runeButton:hover .ringInner {
+  stroke-dashoffset: 0;
+  opacity: 0.6;
+  animation: ring-rotate-reverse 6s linear infinite;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); transform-origin: center; }
+  to { transform: rotate(360deg); transform-origin: center; }
+}
+
+@keyframes ring-rotate-reverse {
+  from { transform: rotate(0deg); transform-origin: center; }
+  to { transform: rotate(-360deg); transform-origin: center; }
+}
+
+/* Rune symbol */
+.runeSymbol {
+  fill: var(--rune-glow);
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  font-family: serif;
+}
+
+.runeButton:hover .runeSymbol {
+  opacity: 1;
+  animation: symbol-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes symbol-pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px var(--rune-glow));
+  }
+  50% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px var(--rune-glow));
+  }
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow overlay */
+.glowOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--rune-glow) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+
+.runeButton:hover .glowOverlay {
+  opacity: 0.15;
+}
+
+/* Rune path draw effect on ring */
+.runeButton::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, var(--rune-glow), transparent);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.runeButton:hover::before {
+  opacity: 0.3;
+  animation: border-shimmer 2s linear infinite;
+}
+
+@keyframes border-shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Ancient texture overlay */
+.runeButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  border-radius: inherit;
+  mix-blend-mode: overlay;
+}

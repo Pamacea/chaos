@@ -1,0 +1,105 @@
+.prophecy {
+  position: relative;
+  display: inline-block;
+}
+
+.prophecy .hiddenText {
+  visibility: hidden;
+  position: absolute;
+}
+
+.prophecy .visibleText {
+  display: inline-block;
+}
+
+.prophecy .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(5px) scale(0.95);
+  filter: blur(2px);
+  transition: all 0.3s ease-out;
+  color: #d4c5a9;
+}
+
+.prophecy .char.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  animation: prophetic-reveal 0.5s ease-out forwards;
+}
+
+/* ANCIENT FONT STYLE */
+
+.ancientFont {
+  font-family: 'MedievalSharp', 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.1em;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.ancientFont .char {
+  color: #c4a777;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ancientFont .char.revealed {
+  color: #f4e4c1;
+  text-shadow: 0 0 10px rgba(244, 228, 193, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* PARCHMENT BACKGROUND EFFECT */
+
+.prophecy::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 119, 85, 0.1) 0%,
+    rgba(101, 87, 65, 0.2) 50%,
+    rgba(139, 119, 85, 0.1) 100%
+  );
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ANIMATIONS */
+
+@keyframes prophetic-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scale(0.95);
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-2px) scale(1.02);
+    filter: blur(0);
+    color: #fff8e7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    color: #f4e4c1;
+  }
+}
+
+/* MYSTICAL GLOW ON HOVER */
+
+.prophecy:hover .char.revealed {
+  animation: mystical-pulse 2s ease-in-out infinite;
+}
+
+@keyframes mystical-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(244, 228, 193, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(244, 228, 193, 0.8), 0 0 30px rgba(212, 197, 169, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}

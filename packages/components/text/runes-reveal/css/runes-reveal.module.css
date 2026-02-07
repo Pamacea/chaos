@@ -1,0 +1,181 @@
+.runesReveal {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.runesReveal .runesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.runesReveal .rune {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+  position: relative;
+}
+
+.runesReveal .rune.dim {
+  opacity: 0.3;
+  color: #6b7280;
+  filter: grayscale(0.8);
+}
+
+.runesReveal .rune.illuminated {
+  opacity: 1;
+  animation: rune-illuminate 0.5s ease-out forwards;
+}
+
+.runesReveal .rune.faded {
+  opacity: 0.4;
+  transform: scale(0.9);
+}
+
+.runesReveal .translation {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  min-height: 1.5rem;
+  transition: all 0.5s ease-out;
+}
+
+.runesReveal .translation.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.runesReveal .translation.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: translation-reveal 1s ease-out;
+}
+
+/* RUNE STYLES */
+
+.nordic .rune {
+  font-family: 'Norse', 'Times New Roman', serif;
+  color: #94a3b8;
+}
+
+.nordic .rune.illuminated {
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.8), 0 0 20px rgba(96, 165, 250, 0.4);
+}
+
+.nordic .translation {
+  font-family: 'Cinzel', serif;
+  color: #e2e8f0;
+}
+
+.elven .rune {
+  font-family: 'Tengwar', 'Georgia', serif;
+  color: #a7f3d0;
+  font-style: italic;
+}
+
+.elven .rune.illuminated {
+  color: #34d399;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.8), 0 0 20px rgba(52, 211, 153, 0.4);
+}
+
+.elven .translation {
+  font-family: 'Cormorant Garamond', serif;
+  color: #d1fae5;
+  font-style: italic;
+}
+
+.draconic .rune {
+  font-family: 'UnifrakturMaguntia', serif;
+  color: #fca5a5;
+  font-weight: bold;
+}
+
+.draconic .rune.illuminated {
+  color: #f87171;
+  text-shadow: 0 0 15px rgba(248, 113, 113, 0.9), 0 0 30px rgba(239, 68, 68, 0.5);
+}
+
+.draconic .translation {
+  font-family: 'Cinzel', serif;
+  color: #fecaca;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ANIMATIONS */
+
+@keyframes rune-illuminate {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8) rotate(-10deg);
+    filter: grayscale(0.8);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: grayscale(0);
+  }
+}
+
+@keyframes translation-reveal {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.3em;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0.05em;
+    filter: blur(0);
+  }
+}
+
+/* MYSTICAL ENERGY AROUND RUNES */
+
+.runesReveal.revealing .rune.illuminated::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  opacity: 0.3;
+  animation: energy-pulse 1s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes energy-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.1;
+  }
+}
+
+/* HOVER EFFECT */
+
+.runesReveal:hover .rune.illuminated::after {
+  animation: energy-pulse 0.5s ease-out infinite;
+}

@@ -1,0 +1,154 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.castEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Shockwave */
+.shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0;
+}
+
+.shockwave.active {
+  animation: shockwave-expand var(--duration, 0.6s) ease-out forwards;
+}
+
+.shockwave.delayed.active {
+  animation-delay: 0.15s;
+}
+
+.shockwave.extra-delayed.active {
+  animation-delay: 0.3s;
+}
+
+@keyframes shockwave-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 4px;
+  }
+  100% {
+    width: var(--max-size, 300px);
+    height: var(--max-size, 300px);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Burst particles */
+.burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+}
+
+.particle.active {
+  animation: particle-explode var(--duration, 0.8s) ease-out forwards;
+}
+
+@keyframes particle-explode {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Spell type colors */
+.spell-fire { color: #ef4444; }
+.spell-fire .particle { background: linear-gradient(135deg, #ef4444, #f97316); box-shadow: 0 0 10px #ef4444; }
+
+.spell-ice { color: #06b6d4; }
+.spell-ice .particle { background: linear-gradient(135deg, #06b6d4, #a5f3fc); box-shadow: 0 0 10px #06b6d4; }
+
+.spell-lightning { color: #fbbf24; }
+.spell-lightning .particle { background: linear-gradient(135deg, #fbbf24, #fef3c7); box-shadow: 0 0 15px #fbbf24; }
+
+.spell-nature { color: #22c55e; }
+.spell-nature .particle { background: linear-gradient(135deg, #22c55e, #86efac); box-shadow: 0 0 10px #22c55e; }
+
+.spell-shadow { color: #6366f1; }
+.spell-shadow .particle { background: linear-gradient(135deg, #6366f1, #8b5cf6); box-shadow: 0 0 10px #6366f1; }
+
+.spell-holy { color: #fbbf24; }
+.spell-holy .particle { background: linear-gradient(135deg, #fbbf24, #fef08a); box-shadow: 0 0 15px #fbbf24; }
+
+.spell-arcane { color: #a855f7; }
+.spell-arcane .particle { background: linear-gradient(135deg, #a855f7, #ec4899); box-shadow: 0 0 10px #a855f7; }
+
+/* Size variants */
+.size-small { --max-size: 150px; --duration: 0.4s; }
+.size-medium { --max-size: 300px; --duration: 0.6s; }
+.size-large { --max-size: 500px; --duration: 0.8s; }
+.size-xlarge { --max-size: 700px; --duration: 1s; }
+
+/* Central flash */
+.flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  opacity: 0;
+}
+
+.flash.active {
+  animation: flash-explode 0.3s ease-out forwards;
+}
+
+@keyframes flash-explode {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(5); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(10); opacity: 0; }
+}
+
+/* Rune symbols for arcane spells */
+.rune {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  opacity: 0;
+  color: currentColor;
+}
+
+.rune.active {
+  animation: rune-appear var(--duration, 0.6s) ease-out forwards;
+}
+
+@keyframes rune-appear {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+  30% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.5) rotate(360deg); opacity: 0; }
+}
