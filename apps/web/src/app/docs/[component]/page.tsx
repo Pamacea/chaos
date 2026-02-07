@@ -1568,6 +1568,317 @@ function App() {
   );
 }`,
   },
+
+  // === FANTASY COMPONENTS ===
+
+  // Fantasy Backgrounds
+  'arcane-circle': {
+    name: 'ArcaneCircle',
+    category: 'fantasy',
+    description: 'Magical arcane circle with rotating Elder Futhark runes and glowing energy.',
+    props: [
+      { name: 'intensity', type: '"mild" | "medium" | "extreme"', default: '"medium"', description: 'Intensity of the magical effect' },
+      { name: 'color', type: 'string', default: '"#8b5cf6"', description: 'Primary color of the arcane magic' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
+    ],
+    usage: `import { ArcaneCircle } from '@/components/chaos/backgrounds/arcane-circle';
+
+<ArcaneCircle />
+<ArcaneCircle intensity="extreme" color="#ff6b6b" />
+<ArcaneCircle position="absolute" />`,
+    cssVars: [
+      { name: '--arcane-color', default: '#8b5cf6', description: 'Primary arcane color' },
+    ],
+  },
+  'starfall': {
+    name: 'Starfall',
+    category: 'fantasy',
+    description: 'Falling stars with trail effects and burst animations.',
+    props: [
+      { name: 'density', type: '"sparse" | "normal" | "dense" | "cosmic"', default: '"normal"', description: 'Density of stars' },
+      { name: 'speed', type: '"slow" | "normal" | "fast" | "meteor-shower"', default: '"normal"', description: 'Animation speed' },
+      { name: 'trail', type: 'boolean', default: 'true', description: 'Trail effect intensity' },
+      { name: 'color', type: 'string', default: '"#fbbf24"', description: 'Star color' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
+    ],
+    usage: `import { Starfall } from '@/components/chaos/backgrounds/starfall';
+
+<Starfall />
+<Starfall density="cosmic" speed="meteor-shower" trail={false} />`,
+    cssVars: [
+      { name: '--star-color', default: '#fbbf24', description: 'Star color' },
+    ],
+  },
+
+  // Fantasy Buttons
+  'spell-button': {
+    name: 'SpellButton',
+    category: 'fantasy',
+    description: 'Magical spell casting button with particle effects and elemental themes.',
+    props: [
+      { name: 'spellType', type: '"fire" | "ice" | "lightning" | "void"', default: '"fire"', description: 'Type of spell for visual effects' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the button' },
+      { name: 'intensity', type: '"subtle" | "normal" | "epic"', default: '"normal"', description: 'Intensity of the cast effect' },
+    ],
+    usage: `import { SpellButton } from '@/components/chaos/buttons/spell-button';
+
+<SpellButton>Fireball</SpellButton>
+<SpellButton spellType="ice" size="lg">Frost Nova</SpellButton>
+<SpellButton spellType="lightning" intensity="epic">Chain Lightning</SpellButton>`,
+    cssVars: [
+      { name: '--spell-primary', default: '#ff4500', description: 'Primary spell color' },
+      { name: '--spell-glow', default: '#ff6b35', description: 'Glow color' },
+    ],
+  },
+  'rune-button': {
+    name: 'RuneButton',
+    category: 'fantasy',
+    description: 'Norse rune inscribed button with magical glow effects.',
+    props: [
+      { name: 'runeType', type: '"power" | "protection" | "wisdom" | "shadow"', default: '"power"', description: 'Type of rune symbol' },
+      { name: 'glowColor', type: 'string', default: '-', description: 'Custom glow color' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the button' },
+    ],
+    usage: `import { RuneButton } from '@/components/chaos/buttons/rune-button';
+
+<RuneButton>Power</RuneButton>
+<RuneButton runeType="protection" size="lg">Shield</RuneButton>
+<RuneButton runeType="wisdom" glowColor="#9370db">Knowledge</RuneButton>`,
+    cssVars: [
+      { name: '--rune-glow', default: '#ffd700', description: 'Rune glow color' },
+    ],
+  },
+  'quest-scroll': {
+    name: 'QuestScroll',
+    category: 'fantasy',
+    description: 'Ancient quest scroll button with wax seal and aged paper texture.',
+    props: [
+      { name: 'questStatus', type: '"available" | "active" | "completed"', default: '"available"', description: 'Current quest status' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the scroll' },
+    ],
+    usage: `import { QuestScroll } from '@/components/chaos/buttons/quest-scroll';
+
+<QuestScroll>Accept Quest</QuestScroll>
+<QuestScroll questStatus="active">In Progress</QuestScroll>
+<QuestScroll questStatus="completed" size="lg">Claim Reward</QuestScroll>`,
+    cssVars: [
+      { name: '--scroll-primary', default: '#d4a574', description: 'Scroll paper color' },
+    ],
+  },
+  'potion-flask': {
+    name: 'PotionFlask',
+    category: 'fantasy',
+    description: 'Bubbling potion flask button with liquid animation and particles.',
+    props: [
+      { name: 'potionColor', type: '"health" | "mana" | "poison" | "strength" | "invisibility"', default: '"health"', description: 'Type of potion for color' },
+      { name: 'bubbles', type: 'boolean | number', default: 'true', description: 'Number of bubbles or enable/disable' },
+      { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the flask' },
+    ],
+    usage: `import { PotionFlask } from '@/components/chaos/buttons/potion-flask';
+
+<PotionFlask>Drink</PotionFlask>
+<PotionFlask potionColor="mana">Restore Mana</PotionFlask>
+<PotionFlask potionColor="strength" bubbles={12}>Buff</PotionFlask>`,
+    cssVars: [
+      { name: '--potion-liquid', default: '#e53935', description: 'Potion liquid color' },
+      { name: '--potion-glow', default: '#ff5252', description: 'Potion glow color' },
+    ],
+  },
+
+  // Fantasy Navigation
+  'spellbook-tabs': {
+    name: 'SpellbookTabs',
+    category: 'fantasy',
+    description: 'Spellbook inspired tab navigation with book cover and pages.',
+    props: [
+      { name: 'spellSchools', type: 'SpellSchool[]', default: '-', description: 'Array of spell schools {id, name, icon?}' },
+      { name: 'activeTab', type: 'string', default: '-', description: 'Currently active tab ID' },
+      { name: 'onChange', type: '(schoolId: string) => void', default: '-', description: 'Callback when tab changes' },
+    ],
+    usage: `import { SpellbookTabs } from '@/components/chaos/navigation/spellbook-tabs';
+
+const schools = [
+  { id: 'fire', name: 'Fire', icon: '🔥' },
+  { id: 'ice', name: 'Ice', icon: '❄️' },
+  { id: 'nature', name: 'Nature', icon: '🌿' },
+];
+
+<SpellbookTabs spellSchools={schools} activeTab="fire" onChange={setTab} />`,
+  },
+  'quest-log': {
+    name: 'QuestLog',
+    category: 'fantasy',
+    description: 'Fantasy quest log navigation with status indicators and wax seal.',
+    props: [
+      { name: 'quests', type: 'Quest[]', default: '-', description: 'Array of quests {id, title, description?, status, progress?, reward?, level?}' },
+      { name: 'activeQuest', type: 'string', default: '-', description: 'Currently active quest ID' },
+      { name: 'onSelect', type: '(questId: string) => void', default: '-', description: 'Callback when quest selected' },
+    ],
+    usage: `import { QuestLog } from '@/components/chaos/navigation/quest-log';
+
+const quests = [
+  { id: '1', title: 'Slay Dragon', status: 'active', progress: 75, level: 10 },
+  { id: '2', title: 'Find Artifact', status: 'available', reward: '500g' },
+];
+
+<QuestLog quests={quests} activeQuest="1" onSelect={handleSelect} />`,
+  },
+  'inventory-grid': {
+    name: 'InventoryGrid',
+    category: 'fantasy',
+    description: 'RPG-style inventory grid with drag-and-drop and rarity colors.',
+    props: [
+      { name: 'items', type: 'InventoryItem[]', default: '[]', description: 'Inventory items {id, icon?, name?, count?, rarity?, category?}' },
+      { name: 'gridSize', type: '{ rows: number; cols: number }', default: '{ rows: 4, cols: 6 }', description: 'Grid dimensions' },
+      { name: 'onSelect', type: '(item: InventoryItem) => void', default: '-', description: 'Callback when item selected' },
+      { name: 'maxSlots', type: 'number', default: '-', description: 'Maximum number of slots' },
+    ],
+    usage: `import { InventoryGrid } from '@/components/chaos/navigation/inventory-grid';
+
+const items = [
+  { id: '1', icon: '⚔️', name: 'Sword', count: 1, rarity: 'legendary' },
+  { id: '2', icon: '🧪', name: 'Potion', count: 5, rarity: 'common' },
+];
+
+<InventoryGrid items={items} onSelect={handleSelect} />`,
+  },
+  // Fantasy Text
+  'incantation': {
+    name: 'Incantation',
+    category: 'fantasy',
+    description: 'Magical incantation text with glow layers, vibration, and pulse effects.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'The incantation text to display' },
+      { name: 'intensity', type: '"subtle" | "medium" | "intense"', default: '"medium"', description: 'Intensity of the magical effect' },
+      { name: 'language', type: '"arcane" | "divine" | "eldritch"', default: '"arcane"', description: 'Magical language style' },
+      { name: 'glowColor', type: 'string', default: '"#a855f7"', description: 'Primary glow color' },
+      { name: 'shiftColor', type: 'string', default: '"#fbbf24"', description: 'Secondary color for shift effect' },
+      { name: 'pulseDuration', type: 'number', default: '2', description: 'Duration of the pulse cycle in seconds' },
+    ],
+    usage: `import { Incantation } from '@/components/chaos/text/incantation';
+
+<Incantation>Abracadabra</Incantation>
+<Incantation intensity="intense" language="divine">Sanctify</Incantation>
+<Incantation glowColor="#ef4444" shiftColor="#fbbf24">Ignis!</Incantation>`,
+    cssVars: [
+      { name: '--glow-color', default: '#a855f7', description: 'Primary glow color' },
+      { name: '--shift-color', default: '#fbbf24', description: 'Secondary shift color' },
+    ],
+  },
+  'prophecy': {
+    name: 'Prophecy',
+    category: 'fantasy',
+    description: 'Revealing prophecy text with character-by-character reveal animation.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'The prophecy text to reveal' },
+      { name: 'revealSpeed', type: '"slow" | "medium" | "fast" | "instant"', default: '"medium"', description: 'Speed of character reveal' },
+      { name: 'ancientFont', type: 'boolean', default: 'true', description: 'Use ancient/deteriorated font style' },
+      { name: 'startDelay', type: 'number', default: '500', description: 'Delay before revelation starts (ms)' },
+      { name: 'loop', type: 'boolean', default: 'false', description: 'Loop the revelation animation' },
+      { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when revelation completes' },
+    ],
+    usage: `import { Prophecy } from '@/components/chaos/text/prophecy';
+
+<Prophecy>The chosen one shall rise...</Prophecy>
+<Prophecy revealSpeed="slow" loop onComplete={handleComplete}>
+  Darkness falls, heroes rise...
+</Prophecy>`,
+  },
+  'runes-reveal': {
+    name: 'RunesReveal',
+    category: 'fantasy',
+    description: 'Ancient runes that illuminate and reveal their translation.',
+    props: [
+      { name: 'runes', type: 'string[]', default: '-', description: 'The runes to display (ancient symbols)' },
+      { name: 'translation', type: 'string', default: '-', description: 'The translation text to reveal' },
+      { name: 'revealSpeed', type: '"slow" | "medium" | "fast"', default: '"medium"', description: 'Reveal animation speed' },
+      { name: 'runeStyle', type: '"nordic" | "elven" | "draconic"', default: '"nordic"', description: 'Rune style' },
+      { name: 'autoStart', type: 'boolean', default: 'true', description: 'Auto-start animation on mount' },
+      { name: 'startDelay', type: 'number', default: '1000', description: 'Delay before start (ms)' },
+      { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when translation completes' },
+    ],
+    usage: `import { RunesReveal } from '@/components/chaos/text/runes-reveal';
+
+<RunesReveal runes={['ᚠ', 'ᚢ', 'ᚦ']} translation="SECRET" />
+<RunesReveal
+  runes={['ᛟ', 'ᛃ', 'ᛇ']}
+  translation="OPEN SESAME"
+  runeStyle="nordic"
+  revealSpeed="slow"
+/>`,
+  },
+  'ancient-scroll': {
+    name: 'AncientScroll',
+    category: 'fantasy',
+    description: 'Ancient scroll text container with aged paper, flowing ink, and wax seal.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'The text to display on the scroll' },
+      { name: 'decay', type: '"pristine" | "aged" | "weathered" | "crumbling"', default: '"aged"', description: 'Level of paper decay' },
+      { name: 'inkColor', type: '"black" | "brown" | "red" | "gold"', default: '"brown"', description: 'Ink color style' },
+      { name: 'flowingInk', type: 'boolean', default: 'true', description: 'Enable flowing ink animation' },
+      { name: 'showTexture', type: 'boolean', default: 'true', description: 'Show aged paper texture' },
+    ],
+    usage: `import { AncientScroll } from '@/components/chaos/text/ancient-scroll';
+
+<AncientScroll>
+  In the time of old, when magic flowed freely...
+</AncientScroll>
+<AncientScroll decay="crumbling" inkColor="gold">
+  The forbidden tome speaks of...
+</AncientScroll>`,
+    cssVars: [
+      { name: '--ink-color', default: '#4a3728', description: 'Ink color' },
+    ],
+  },
+
+  // Fantasy Effects
+  'spell-cast': {
+    name: 'SpellCast',
+    category: 'fantasy',
+    description: 'Spell casting burst effect with shockwaves and particles.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Content that triggers spell on click' },
+      { name: 'spellType', type: '"fire" | "ice" | "lightning" | "nature" | "shadow" | "holy" | "arcane"', default: '"arcane"', description: 'Type of spell for visual styling' },
+      { name: 'size', type: '"small" | "medium" | "large" | "xlarge"', default: '"medium"', description: 'Size of the spell effect' },
+      { name: 'duration', type: 'number', default: '0.6', description: 'Duration in seconds' },
+      { name: 'triggerOnClick', type: 'boolean', default: 'true', description: 'Trigger animation on click' },
+      { name: 'autoTrigger', type: 'boolean', default: 'false', description: 'Auto-trigger on mount' },
+      { name: 'showRune', type: 'boolean', default: 'false', description: 'Show rune symbol (arcane spells)' },
+      { name: 'particleCount', type: 'number', default: '12', description: 'Number of burst particles' },
+    ],
+    usage: `import { SpellCast } from '@/components/chaos/effects/spell-cast';
+
+<SpellCast>
+  <button>Cast Fireball</button>
+</SpellCast>
+<SpellCast spellType="lightning" particleCount={20}>
+  <button>Chain Lightning</button>
+</SpellCast>`,
+  },
+  'heal-pulse': {
+    name: 'HealPulse',
+    category: 'fantasy',
+    description: 'Healing pulse wave effect with sparkles and thematic elements.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Content that triggers heal' },
+      { name: 'color', type: '"nature" | "holy" | "mystic" | "water" | "life"', default: '"nature"', description: 'Type of healing effect' },
+      { name: 'waves', type: 'number', default: '5', description: 'Number of healing waves' },
+      { name: 'speed', type: '"slow" | "medium" | "fast"', default: '"medium"', description: 'Speed of the waves' },
+      { name: 'size', type: '"small" | "medium" | "large" | "xlarge"', default: '"medium"', description: 'Size of the effect' },
+      { name: 'triggerOnClick', type: 'boolean', default: 'true', description: 'Trigger animation on click' },
+      { name: 'autoTrigger', type: 'boolean', default: 'false', description: 'Auto-trigger on mount' },
+      { name: 'particles', type: 'boolean', default: 'true', description: 'Show floating particles' },
+      { name: 'showCross', type: 'boolean', default: 'false', description: 'Show cross pattern (holy)' },
+    ],
+    usage: `import { HealPulse } from '@/components/chaos/effects/heal-pulse';
+
+<HealPulse>
+  <button>Heal</button>
+</HealPulse>
+<HealPulse color="holy" waves={8} showCross>
+  <button>Divine Healing</button>
+</HealPulse>`,
+  },
 };
 
 const BASE_URL = 'https://chaos.oalacea.com';
@@ -2011,6 +2322,38 @@ function ComponentPreview({ component }: { component: string }) {
     // DISPLAY
     case 'depth-indicator':
       return <div className={styles.depthIndicatorPreview}>DEPTH</div>;
+
+    // === FANTASY COMPONENTS PREVIEWS ===
+    case 'arcane-circle':
+      return <div className={styles.arcaneCirclePreview}><span>ᛟ</span></div>;
+    case 'starfall':
+      return <div className={styles.starfallPreview}><div className={styles.star}/></div>;
+    case 'spell-button':
+      return <button className={styles.spellButtonPreview}>FIREBALL</button>;
+    case 'rune-button':
+      return <button className={styles.runeButtonPreview}>ᛟ POWER</button>;
+    case 'quest-scroll':
+      return <button className={styles.questScrollPreview}>QUEST</button>;
+    case 'potion-flask':
+      return <button className={styles.potionFlaskPreview}>⚗ HEALTH</button>;
+    case 'spellbook-tabs':
+      return <div className={styles.spellbookTabsPreview}><span>📖 FIRE</span><span>📘 ICE</span></div>;
+    case 'quest-log':
+      return <div className={styles.questLogPreview}><span>⚔ Slay Dragon</span></div>;
+    case 'inventory-grid':
+      return <div className={styles.inventoryGridPreview}><div className={styles.slot}/><div className={styles.slot}/></div>;
+    case 'incantation':
+      return <span className={styles.incantationPreview}>ABRACADABRA</span>;
+    case 'prophecy':
+      return <div className={styles.prophecyPreview}><span>THE PROPHECY...</span></div>;
+    case 'runes-reveal':
+      return <div className={styles.runesRevealPreview}><span>ᚠᚢᚦ</span><span>→ SECRET</span></div>;
+    case 'ancient-scroll':
+      return <div className={styles.ancientScrollPreview}><p>Ancient wisdom...</p></div>;
+    case 'spell-cast':
+      return <div className={styles.spellCastPreview}><div className={styles.burst}/></div>;
+    case 'heal-pulse':
+      return <div className={styles.healPulsePreview}><div className={styles.pulse}/></div>;
 
     default:
       return <span>Preview</span>;

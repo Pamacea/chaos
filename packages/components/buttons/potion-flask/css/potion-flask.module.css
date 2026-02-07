@@ -1,0 +1,315 @@
+.potionFlask {
+  --potion-liquid: #e53935;
+  --potion-glow: #ff5252;
+  --potion-cork: #8d6e63;
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  background: transparent;
+  color: #fff;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.potionFlask:hover {
+  transform: translateY(-4px);
+}
+
+.potionFlask:active {
+  transform: translateY(-2px);
+}
+
+.potionFlask:focus-visible {
+  outline: 2px solid var(--potion-glow);
+  outline-offset: 4px;
+}
+
+/* Sizes */
+.sm {
+  gap: 0.25rem;
+}
+
+.sm .flaskSvg {
+  width: 40px;
+  height: 56px;
+}
+
+.sm .content {
+  font-size: 0.65rem;
+}
+
+.md {
+  gap: 0.5rem;
+}
+
+.md .flaskSvg {
+  width: 56px;
+  height: 78px;
+}
+
+.md .content {
+  font-size: 0.75rem;
+}
+
+.lg {
+  gap: 0.75rem;
+}
+
+.lg .flaskSvg {
+  width: 72px;
+  height: 100px;
+}
+
+.lg .content {
+  font-size: 0.875rem;
+}
+
+/* Flask SVG */
+.flaskSvg {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Flask outline */
+.flaskOutline {
+  transition: stroke 0.3s ease;
+}
+
+.potionFlask:hover .flaskOutline {
+  stroke: var(--potion-glow);
+  stroke-width: 2;
+}
+
+/* Liquid */
+.liquid {
+  transition: y 0.5s ease;
+  animation: liquid-slosh 3s ease-in-out infinite;
+}
+
+@keyframes liquid-slosh {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  75% {
+    transform: translateX(2px) rotate(1deg);
+  }
+}
+
+/* Liquid surface */
+.liquidSurface {
+  animation: surface-wave 2s ease-in-out infinite;
+}
+
+@keyframes surface-wave {
+  0%, 100% {
+    cy: 60;
+    rx: 30;
+  }
+  50% {
+    cy: 58;
+    rx: 28;
+  }
+}
+
+/* Cork */
+.cork {
+  transition: fill 0.3s ease;
+}
+
+.potionFlask:hover .cork {
+  filter: brightness(1.1);
+}
+
+.corkTop {
+  opacity: 0.5;
+}
+
+/* Highlight */
+.highlight {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.potionFlask:hover .highlight {
+  opacity: 0.8;
+}
+
+/* Bubbles */
+.bubbles {
+  pointer-events: none;
+}
+
+.bubble {
+  animation: bubble-rise 3s ease-in infinite;
+  animation-delay: var(--bubble-delay, 0s);
+  opacity: 0;
+}
+
+.potionFlask:hover .bubble {
+  opacity: 1;
+}
+
+@keyframes bubble-rise {
+  0% {
+    cy: 90;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    cy: 55;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+/* Glow effect */
+.glow {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20%;
+  background: radial-gradient(ellipse at center, var(--potion-glow) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.potionFlask:hover .glow {
+  opacity: 0.5;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+/* Content label */
+.content {
+  position: relative;
+  z-index: 2;
+  color: var(--potion-glow);
+  text-shadow: 0 0 10px var(--potion-liquid);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.potionFlask:hover .content {
+  text-shadow: 0 0 15px var(--potion-glow), 0 0 30px var(--potion-liquid);
+}
+
+/* Potion-specific effects */
+
+/* Health - pulsing glow */
+.potionFlask:has([fill="#e53935"]) .glow,
+.potionFlask:has([fill="var(--potion-liquid)"]) .glow {
+}
+
+/* Mana - shimmer effect */
+.potionFlask:hover .flaskSvg {
+  animation: flask-shimmer 4s linear infinite;
+}
+
+@keyframes flask-shimmer {
+  0% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
+  50% { filter: drop-shadow(0 4px 12px var(--potion-glow)) brightness(1.1); }
+  100% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
+}
+
+/* Poison - bubbling more intensely */
+.potionFlask:hover .bubble {
+  animation-duration: 1.5s;
+}
+
+/* Strength - shake on hover */
+.potionFlask:active .flaskSvg {
+  animation: flask-shake 0.3s ease;
+}
+
+@keyframes flask-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(-2px) rotate(-2deg); }
+  75% { transform: translateX(2px) rotate(2deg); }
+}
+
+/* Invisibility - fade effect */
+.potionFlask:hover .flaskOutline {
+  opacity: 0.6;
+}
+
+.potionFlask:hover .liquid {
+  opacity: 0.8;
+}
+
+/* Cork pop animation on click */
+.potionFlask:active .cork {
+  animation: cork-pop 0.3s ease-out;
+}
+
+@keyframes cork-pop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Particle steam effect */
+.potionFlask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.potionFlask:hover::after {
+  animation: steam-rise 2s ease-out infinite;
+}
+
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(1.5);
+  }
+}

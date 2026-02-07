@@ -207,6 +207,26 @@ const COMPONENTS = {
       { name: 'depth-indicator', description: 'Vertical depth progress indicator' },
     ],
   },
+  'fantasy': {
+    title: 'FANTASY & MAGIC',
+    items: [
+      { name: 'arcane-circle', description: 'Magical arcane circle with runes' },
+      { name: 'starfall', description: 'Falling stars with trails' },
+      { name: 'spell-button', description: 'Magical spell casting button' },
+      { name: 'rune-button', description: 'Norse rune inscribed button' },
+      { name: 'quest-scroll', description: 'Ancient quest scroll button' },
+      { name: 'potion-flask', description: 'Bubbling potion flask' },
+      { name: 'spellbook-tabs', description: 'Spellbook inspired tabs' },
+      { name: 'quest-log', description: 'Fantasy quest log' },
+      { name: 'inventory-grid', description: 'RPG-style inventory' },
+      { name: 'incantation', description: 'Magical incantation text' },
+      { name: 'prophecy', description: 'Revealing prophecy text' },
+      { name: 'runes-reveal', description: 'Runes to text reveal' },
+      { name: 'ancient-scroll', description: 'Ancient scroll text container' },
+      { name: 'spell-cast', description: 'Spell casting burst' },
+      { name: 'heal-pulse', description: 'Healing pulse wave' },
+    ],
+  },
 };
 
 const totalComponents = Object.values(COMPONENTS).reduce((sum, cat) => sum + cat.items.length, 0);
@@ -254,7 +274,6 @@ export default function DocsPage() {
                     <span className={styles.cardName}>{comp.name}</span>
                     <span className={styles.cardDesc}>{comp.description}</span>
                   </div>
-                  <span className={styles.cardArrow}>→</span>
                 </Link>
               ))}
             </div>
@@ -581,6 +600,46 @@ function ComponentPreview({ name }: { name: string }) {
     // NEW COMPONENTS - Buttons (magnetic-button may already exist)
     case 'magnetic-button':
       return <button className={styles.magneticButtonPreview}>MAGNETIC</button>;
+
+    // FANTASY - Backgrounds
+    case 'arcane-circle':
+      return <div className={styles.arcaneCirclePreview}><span>ᛟ</span></div>;
+    case 'starfall':
+      return <div className={styles.starfallPreview}><div className={styles.star}/></div>;
+
+    // FANTASY - Buttons
+    case 'spell-button':
+      return <button className={styles.spellButtonPreview}>FIREBALL</button>;
+    case 'rune-button':
+      return <button className={styles.runeButtonPreview}>ᛟ POWER</button>;
+    case 'quest-scroll':
+      return <button className={styles.questScrollPreview}>QUEST</button>;
+    case 'potion-flask':
+      return <button className={styles.potionFlaskPreview}>⚗ HEALTH</button>;
+
+    // FANTASY - Navigation
+    case 'spellbook-tabs':
+      return <div className={styles.spellbookTabsPreview}><span>📖 FIRE</span><span>📘 ICE</span><span>📗 NATURE</span></div>;
+    case 'quest-log':
+      return <div className={styles.questLogPreview}><span>⚔ Slay Dragon</span></div>;
+    case 'inventory-grid':
+      return <div className={styles.inventoryGridPreview}><div className={styles.slot}/><div className={styles.slot}/><div className={styles.slot}/></div>;
+
+    // FANTASY - Text
+    case 'incantation':
+      return <span className={styles.incantationPreview}>ABRACADABRA</span>;
+    case 'prophecy':
+      return <div className={styles.prophecyPreview}><span>THE PROPHECY...</span></div>;
+    case 'runes-reveal':
+      return <div className={styles.runesRevealPreview}><span>ᚠᚢᚦ</span><span>→ SECRET</span></div>;
+    case 'ancient-scroll':
+      return <div className={styles.ancientScrollPreview}><p>Ancient wisdom...</p></div>;
+
+    // FANTASY - Effects
+    case 'spell-cast':
+      return <div className={styles.spellCastPreview}><div className={styles.burst}/></div>;
+    case 'heal-pulse':
+      return <div className={styles.healPulsePreview}><div className={styles.pulse}/></div>;
 
     default:
       return <span>{name}</span>;

@@ -1,0 +1,214 @@
+.container {
+  --star-color: var(--star-color-internal, #fbbf24);
+  --star-speed: var(--star-speed-internal, 1);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  position: fixed;
+}
+
+.star {
+  position: absolute;
+  background: var(--star-color);
+  border-radius: 50%;
+  animation: starFall calc(var(--duration) * var(--star-speed)) linear infinite;
+  animation-delay: calc(var(--delay) * -1s);
+}
+
+/* Twinkling effect for static stars */
+.twinkle {
+  animation: twinkle calc(2s * var(--star-speed)) ease-in-out infinite;
+}
+
+.star.withTrail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--star-color) 60%, transparent)
+  );
+  transform: translateX(-100%);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.star.large {
+  box-shadow: 0 0 10px var(--star-color), 0 0 20px var(--star-color);
+}
+
+.star.medium {
+  box-shadow: 0 0 6px var(--star-color), 0 0 12px var(--star-color);
+}
+
+.star.small {
+  box-shadow: 0 0 3px var(--star-color);
+}
+
+/* Trail effect for falling stars */
+.trail {
+  position: absolute;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--star-color) 80%, white),
+    var(--star-color),
+    transparent
+  );
+  animation: trailFall calc(var(--duration) * var(--star-speed)) linear infinite;
+  animation-delay: calc(var(--delay) * -1s);
+  opacity: 0.8;
+}
+
+/* Burst effect when stars appear */
+.burst {
+  position: absolute;
+  animation: burstFade calc(3s * var(--star-speed)) ease-out infinite;
+  animation-delay: calc(var(--delay) * -1s);
+}
+
+.burst::before,
+.burst::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--star-color) 70%, white) 0%,
+    transparent 70%
+  );
+}
+
+.burst::after {
+  animation: burstExpand calc(3s * var(--star-speed)) ease-out infinite;
+}
+
+/* Density variants */
+.container[data-density="sparse"] {
+  --density-multiplier: 0.5;
+}
+
+.container[data-density="normal"] {
+  --density-multiplier: 1;
+}
+
+.container[data-density="dense"] {
+  --density-multiplier: 1.5;
+}
+
+.container[data-density="cosmic"] {
+  --density-multiplier: 2.5;
+}
+
+/* Speed variants */
+.container[data-speed="slow"] {
+  --star-speed: 2;
+}
+
+.container[data-speed="normal"] {
+  --star-speed: 1;
+}
+
+.container[data-speed="fast"] {
+  --star-speed: 0.5;
+}
+
+.container[data-speed="meteor-shower"] {
+  --star-speed: 0.25;
+}
+
+@keyframes starFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(var(--drift, -20px)) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes trailFall {
+  0% {
+    transform: translateY(-50px) translateX(0) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) translateX(var(--drift, -50px)) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes burstFade {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes burstExpand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Cross pattern for extra sparkle */
+.cross::before,
+.cross::after {
+  content: '';
+  position: absolute;
+  background: var(--star-color);
+}
+
+.cross::before {
+  width: 100%;
+  height: 20%;
+  top: 40%;
+}
+
+.cross::after {
+  width: 20%;
+  height: 100%;
+  left: 40%;
+}

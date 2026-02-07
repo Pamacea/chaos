@@ -1,0 +1,238 @@
+.container {
+  --heal-color: #22c55e;
+  --heal-secondary: #86efac;
+  --wave-speed: 2s;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.healEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Healing waves */
+.wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--heal-color);
+  opacity: 0;
+}
+
+.wave.active {
+  animation: wave-expand var(--wave-speed) ease-out forwards;
+}
+
+.wave:nth-child(1).active { animation-delay: 0s; }
+.wave:nth-child(2).active { animation-delay: 0.3s; }
+.wave:nth-child(3).active { animation-delay: 0.6s; }
+.wave:nth-child(4).active { animation-delay: 0.9s; }
+.wave:nth-child(5).active { animation-delay: 1.2s; }
+.wave:nth-child(6).active { animation-delay: 1.5s; }
+.wave:nth-child(7).active { animation-delay: 1.8s; }
+.wave:nth-child(8).active { animation-delay: 2.1s; }
+
+@keyframes wave-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 3px;
+  }
+  100% {
+    width: var(--max-size, 400px);
+    height: var(--max-size, 400px);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Cross pattern for holy healing */
+.wave.holy::before,
+.wave.holy::after {
+  content: '';
+  position: absolute;
+  background: var(--heal-color);
+}
+
+.wave.holy::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.wave.holy::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+/* Sparkles for healing */
+.healSparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--heal-secondary);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 10px var(--heal-color), 0 0 20px var(--heal-color);
+}
+
+.healSparkle.active {
+  animation: sparkle-rise var(--rise-duration, 2s) ease-out forwards;
+}
+
+@keyframes sparkle-rise {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 0), var(--ty, -100px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Leaf particles for nature healing */
+.leaf {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--heal-color);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0;
+}
+
+.leaf.active {
+  animation: leaf-fall var(--fall-duration, 3s) ease-in-out forwards;
+}
+
+@keyframes leaf-fall {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 30px), var(--ty, 80px)) rotate(180deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Central glow */
+.glowCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--heal-secondary) 0%, transparent 70%);
+  opacity: 0;
+}
+
+.glowCenter.active {
+  animation: glow-pulse var(--wave-speed) ease-in-out;
+}
+
+@keyframes glow-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+/* Color variants */
+.color-nature {
+  --heal-color: #22c55e;
+  --heal-secondary: #86efac;
+}
+
+.color-holy {
+  --heal-color: #fbbf24;
+  --heal-secondary: #fef3c7;
+}
+
+.color-mystic {
+  --heal-color: #a855f7;
+  --heal-secondary: #d8b4fe;
+}
+
+.color-water {
+  --heal-color: #06b6d4;
+  --heal-secondary: #a5f3fc;
+}
+
+.color-life {
+  --heal-color: #84cc16;
+  --heal-secondary: #bef264;
+}
+
+/* Speed variants */
+.speed-slow { --wave-speed: 3s; }
+.speed-medium { --wave-speed: 2s; }
+.speed-fast { --wave-speed: 1s; }
+
+/* Size variants */
+.size-small { --max-size: 200px; }
+.size-medium { --max-size: 400px; }
+.size-large { --max-size: 600px; }
+.size-xlarge { --max-size: 800px; }
+
+/* Rising plus symbols for holy healing */
+.plusSymbol {
+  position: absolute;
+  font-size: 20px;
+  color: var(--heal-secondary);
+  opacity: 0;
+  text-shadow: 0 0 10px var(--heal-color);
+}
+
+.plusSymbol.active {
+  animation: plus-rise 2s ease-out forwards;
+}
+
+@keyframes plus-rise {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, calc(var(--ty, -100px) - 50px)) scale(0.5);
+    opacity: 0;
+  }
+}
