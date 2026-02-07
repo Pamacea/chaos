@@ -1,0 +1,211 @@
+/* magnetic-dock - Floating dock with magnetic attraction */
+
+.magneticDock {
+  position: fixed;
+  z-index: 1000;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* Position variants */
+.positionBottom {
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.positionTop {
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.positionLeft {
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.positionRight {
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Container */
+.container {
+  position: relative;
+  padding: 0.75rem;
+}
+
+.dockBackground {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+/* Glass variant */
+.glass .dockBackground {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Solid variant */
+.solid .dockBackground {
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon variant */
+.neon .dockBackground {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.neon .itemActive {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+/* Brutal variant */
+.brutal .dockBackground {
+  background: #ff0040;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.brutal .itemActive {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Items container */
+.items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.positionLeft .items,
+.positionRight .items {
+  flex-direction: column;
+}
+
+/* Size variants */
+.sizeSmall {
+  font-size: 0.75rem;
+}
+
+.sizeSmall .items {
+  gap: 0.25rem;
+}
+
+.sizeMedium {
+  font-size: 0.875rem;
+}
+
+.sizeLarge {
+  font-size: 1rem;
+}
+
+.sizeLarge .items {
+  gap: 0.75rem;
+}
+
+/* Individual item */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.75rem;
+  color: currentColor;
+  text-decoration: none;
+  font-size: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  will-change: transform;
+}
+
+.item:hover:not(.itemDisabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.itemDisabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Active state */
+.itemActive {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.itemActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.positionLeft .itemActive::after,
+.positionRight .itemActive::after {
+  bottom: auto;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Active indicator */
+.activeIndicator {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.25rem;
+  height: 0.25rem;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+/* Icon */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25em;
+}
+
+/* Label */
+.label {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Icon-only mode adjustments */
+/* Handled by parent component passing iconOnly prop */
+
+/* Animations */
+@keyframes dock-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.magneticDock:hover .dockBackground {
+  transform: scale(1.02);
+}

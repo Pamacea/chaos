@@ -1,0 +1,228 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.beams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.beam {
+  position: absolute;
+  opacity: 0;
+  transform-origin: top center;
+}
+
+.beam.top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  animation: beam-top 4s ease-in-out infinite;
+}
+
+.beam.bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  animation: beam-bottom 4s ease-in-out infinite;
+}
+
+.beam.left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  animation: beam-left 4s ease-in-out infinite;
+}
+
+.beam.right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  animation: beam-right 4s ease-in-out infinite;
+}
+
+.beam.topLeft {
+  top: 0;
+  left: 0;
+  transform: rotate(-45deg) scaleY(0);
+  transform-origin: top left;
+  animation: beam-diagonal 5s ease-in-out infinite;
+}
+
+.beam.topRight {
+  top: 0;
+  right: 0;
+  transform: rotate(45deg) scaleY(0);
+  transform-origin: top right;
+  animation: beam-diagonal 5s ease-in-out infinite 0.5s;
+}
+
+.beam.bottomLeft {
+  bottom: 0;
+  left: 0;
+  transform: rotate(45deg) scaleY(0);
+  transform-origin: bottom left;
+  animation: beam-diagonal-reverse 5s ease-in-out infinite 1s;
+}
+
+.beam.bottomRight {
+  bottom: 0;
+  right: 0;
+  transform: rotate(-45deg) scaleY(0);
+  transform-origin: bottom right;
+  animation: beam-diagonal-reverse 5s ease-in-out infinite 1.5s;
+}
+
+/* Beam shapes */
+.beam.vertical {
+  width: var(--beam-width, 100px);
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 20%,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 80%,
+    transparent
+  );
+}
+
+.beam.horizontal {
+  width: 100%;
+  height: var(--beam-width, 100px);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 20%,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 80%,
+    transparent
+  );
+}
+
+.beam.diagonal {
+  width: 200%;
+  height: var(--beam-width, 100px);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 15%,
+    var(--beam-color, rgba(255, 255, 255, 0.8)) 85%,
+    transparent
+  );
+}
+
+/* Animations */
+@keyframes beam-top {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@keyframes beam-bottom {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@keyframes beam-left {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+@keyframes beam-right {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+@keyframes beam-diagonal {
+  0%,
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) scaleY(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: rotate(-45deg) scaleY(1);
+  }
+}
+
+@keyframes beam-diagonal-reverse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) scaleY(0);
+  }
+  50% {
+    opacity: var(--beam-opacity, 0.6);
+    transform: rotate(45deg) scaleY(1);
+  }
+}
+
+/* Delay variations */
+.beam.delay-1 { animation-delay: 0s; }
+.beam.delay-2 { animation-delay: 0.3s; }
+.beam.delay-3 { animation-delay: 0.6s; }
+.beam.delay-4 { animation-delay: 0.9s; }
+.beam.delay-5 { animation-delay: 1.2s; }
+.beam.delay-6 { animation-delay: 1.5s; }
+.beam.delay-7 { animation-delay: 1.8s; }
+.beam.delay-8 { animation-delay: 2.1s; }
+
+/* Intensity variants */
+.intensity-subtle {
+  --beam-opacity: 0.3;
+  --beam-width: 50px;
+}
+
+.intensity-moderate {
+  --beam-opacity: 0.6;
+  --beam-width: 100px;
+}
+
+.intensity-intense {
+  --beam-opacity: 0.9;
+  --beam-width: 150px;
+}
+
+/* Blur effect */
+.beam.blurred {
+  filter: blur(20px);
+}
+
+.beam.sharp {
+  filter: blur(0);
+}
+
+.beam.medium {
+  filter: blur(10px);
+}

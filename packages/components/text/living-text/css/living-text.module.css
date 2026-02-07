@@ -1,0 +1,79 @@
+.livingTextContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.livingText {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  color: var(--living-text-color, #e8e8e8);
+  font-family: var(--living-text-font, 'SF Mono', 'Fira Code', 'Consolas', monospace);
+  white-space: pre-wrap;
+}
+
+.char {
+  display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.char.dying {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.ghostLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ghostText {
+  position: absolute;
+  font-family: var(--living-text-font, 'SF Mono', 'Fira Code', 'Consolas', monospace);
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre-wrap;
+  color: var(--living-text-ghost-opacity, rgba(255, 255, 255, 0.03));
+  transition: color 0.3s ease;
+}
+
+.ghostText.revealed {
+  color: var(--living-text-ghost-reveal, rgba(255, 255, 255, 0.15));
+}
+
+.timer {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  font-size: 0.75rem;
+  color: var(--living-text-timer-color, rgba(255, 255, 255, 0.2));
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+.timer.active {
+  color: var(--living-text-timer-active, rgba(255, 255, 255, 0.5));
+}
+
+.scanLine {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--living-text-scan-color, rgba(255, 255, 255, 0.03)) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.scanLine.active {
+  opacity: 1;
+}

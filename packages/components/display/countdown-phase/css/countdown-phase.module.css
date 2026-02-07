@@ -1,0 +1,290 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono, monospace);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.timeDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.time {
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.suffix {
+  font-size: 0.875rem;
+  opacity: 0.6;
+}
+
+/* PHASE INDICATORS */
+.phases {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.phase {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.phaseDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.phaseDot.active {
+  background: var(--accent, #00ff00);
+  box-shadow: 0 0 10px var(--accent, #00ff00);
+  animation: phase-pulse 1s ease-in-out infinite;
+}
+
+.phaseDot.completed {
+  background: var(--accent, #00ff00);
+}
+
+.phaseLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.phase:last-child .phaseLine {
+  display: none;
+}
+
+.phaseLine.filled {
+  background: var(--accent, #00ff00);
+}
+
+.phaseLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  margin-top: 0.25rem;
+}
+
+.phaseLabel.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+.phaseDescription {
+  font-size: 0.75rem;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.phaseDescription.active {
+  opacity: 0.8;
+  max-width: 150px;
+  margin-left: 0.5rem;
+}
+
+/* PROGRESS BAR */
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent, #00ff00);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressFill.glow {
+  box-shadow: 0 0 10px var(--accent, #00ff00);
+}
+
+.progressFill.pulsing {
+  animation: progress-pulse 1s ease-in-out infinite;
+}
+
+.progressFill.glitch {
+  animation: progress-glitch 0.5s infinite;
+}
+
+/* Scanline effect on progress */
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progress-scan 2s linear infinite;
+}
+
+@keyframes progress-scan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes phase-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes progress-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes progress-glitch {
+  0%, 90%, 100% { transform: translateX(0); }
+  92% { transform: translateX(-2px); }
+  94% { transform: translateX(2px); }
+  96% { transform: translateX(-1px); }
+  98% { transform: translateX(1px); }
+}
+
+/* SIZE VARIANTS */
+.compact .time {
+  font-size: 1.25rem;
+}
+
+.compact .phaseDot {
+  width: 8px;
+  height: 8px;
+}
+
+.compact .progressTrack {
+  height: 4px;
+}
+
+.large .time {
+  font-size: 3rem;
+}
+
+.large .phaseDot {
+  width: 16px;
+  height: 16px;
+}
+
+.large .progressTrack {
+  height: 12px;
+}
+
+/* COLOR VARIANTS */
+.danger .phaseDot.active,
+.danger .progressFill {
+  --accent: #ff0000;
+}
+
+.warning .phaseDot.active,
+.warning .progressFill {
+  --accent: #ffaa00;
+}
+
+.info .phaseDot.active,
+.info .progressFill {
+  --accent: #00aaff;
+}
+
+.success .phaseDot.active,
+.success .progressFill {
+  --accent: #00ff00;
+}
+
+/* ORIENTATION VARIANTS */
+.horizontal.phases {
+  flex-direction: row;
+}
+
+.vertical.phases {
+  flex-direction: column;
+  height: 200px;
+}
+
+.vertical .phase {
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.vertical .phaseLine {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: -50%;
+  width: 2px;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.vertical .phase:last-child .phaseLine {
+  display: none;
+}
+
+/* URGENT ANIMATION */
+.urgent .time {
+  animation: urgent-blink 0.5s ease-in-out infinite;
+}
+
+.urgent .progressFill {
+  animation: urgent-glitch 0.2s infinite;
+}
+
+@keyframes urgent-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes urgent-glitch {
+  0%, 85%, 100% { transform: translateX(0) scaleX(1); }
+  87% { transform: translateX(-3px) scaleX(0.95); }
+  89% { transform: translateX(3px) scaleX(1.05); }
+  91% { transform: translateX(-1px) scaleX(0.98); }
+  93% { transform: translateX(1px) scaleX(1.02); }
+}

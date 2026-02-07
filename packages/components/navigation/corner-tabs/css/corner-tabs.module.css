@@ -1,0 +1,442 @@
+/* corner-tabs - Corner-positioned tab navigation */
+
+.cornerTabs {
+  position: fixed;
+  z-index: 999;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* Corner positions */
+.cornerTopLeft {
+  top: 0;
+  left: 0;
+}
+
+.cornerTopRight {
+  top: 0;
+  right: 0;
+}
+
+.cornerBottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.cornerBottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+/* Corner decorations */
+.cornerDecoration {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.cornerTopLeft .cornerDecoration {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.cornerTopRight .cornerDecoration {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.cornerBottomLeft .cornerDecoration {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.cornerBottomRight .cornerDecoration {
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+.decorationLine {
+  position: absolute;
+  background: currentColor;
+}
+
+.cornerTopLeft .decorationLine:first-child {
+  width: 20px;
+  height: 2px;
+  top: 0;
+  left: 0;
+}
+
+.cornerTopLeft .decorationLine:nth-child(2) {
+  width: 2px;
+  height: 20px;
+  top: 0;
+  left: 0;
+}
+
+.cornerTopRight .decorationLine:first-child {
+  width: 20px;
+  height: 2px;
+  top: 0;
+  right: 0;
+}
+
+.cornerTopRight .decorationLine:nth-child(2) {
+  width: 2px;
+  height: 20px;
+  top: 0;
+  right: 0;
+}
+
+.cornerBottomLeft .decorationLine:first-child {
+  width: 20px;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+}
+
+.cornerBottomLeft .decorationLine:nth-child(2) {
+  width: 2px;
+  height: 20px;
+  bottom: 0;
+  left: 0;
+}
+
+.cornerBottomRight .decorationLine:first-child {
+  width: 20px;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+}
+
+.cornerBottomRight .decorationLine:nth-child(2) {
+  width: 2px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+}
+
+/* Tab list */
+.tabList {
+  display: flex;
+  padding: 0.75rem;
+  gap: 0.5rem;
+}
+
+.orientationHorizontal .tabList {
+  flex-direction: row;
+}
+
+.orientationVertical .tabList {
+  flex-direction: column;
+}
+
+/* Corner-specific positioning */
+.cornerTopLeft .tabList,
+.cornerTopRight .tabList {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cornerBottomLeft .tabList,
+.cornerBottomRight .tabList {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cornerTopLeft .tabList {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cornerTopRight .tabList {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cornerBottomLeft .tabList {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cornerBottomRight .tabList {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tab button */
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tab:hover:not(.tabDisabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabDisabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Active tab */
+.tabActive {
+  font-weight: 600;
+}
+
+.tabIndicator {
+  position: absolute;
+  background: currentColor;
+}
+
+.cornerTopLeft .tabIndicator,
+.cornerTopRight .tabIndicator {
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.cornerBottomLeft .tabIndicator,
+.cornerBottomRight .tabIndicator {
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+/* Tab icon */
+.tabIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+}
+
+/* Tab label */
+.tabLabel {
+  position: relative;
+}
+
+/* Content panel */
+.contentPanel {
+  position: absolute;
+  padding: 1.5rem;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+/* Content positioning by corner */
+.cornerTopLeft .contentPanel {
+  top: 100%;
+  left: 0;
+}
+
+.cornerTopRight .contentPanel {
+  top: 100%;
+  right: 0;
+}
+
+.cornerBottomLeft .contentPanel {
+  bottom: 100%;
+  left: 0;
+}
+
+.cornerBottomRight .contentPanel {
+  bottom: 100%;
+  right: 0;
+}
+
+/* Animations */
+.contentPanel.animating {
+  animation: content-enter 0.3s ease forwards;
+}
+
+.animationSlide .contentPanel.animating {
+  animation: slide-in 0.3s ease forwards;
+}
+
+.animationFade .contentPanel.animating {
+  animation: fade-in 0.3s ease forwards;
+}
+
+.animationScale .contentPanel.animating {
+  animation: scale-in 0.3s ease forwards;
+}
+
+.animationGlitch .contentPanel.animating {
+  animation: glitch-in 0.4s ease forwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glitch-in {
+  0% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* Variant styles */
+
+/* Minimal */
+.minimal {
+  color: var(--chaos-text, #888);
+  background: var(--chaos-bg, #0a0a0a);
+}
+
+.minimal .tabActive {
+  color: var(--chaos-accent, #fff);
+}
+
+.minimal .contentPanel {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Brutal */
+.brutal {
+  background: #ff0040;
+  color: #fff;
+}
+
+.brutal .tabList {
+  border-color: #000;
+}
+
+.brutal .tabActive {
+  color: #000;
+  background: #fff;
+}
+
+.brutal .tabIndicator {
+  background: #000;
+  height: 3px;
+}
+
+.brutal .contentPanel {
+  background: #ff0040;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* Neon */
+.neon {
+  color: #00ffff;
+}
+
+.neon .tabList {
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.neon .tabActive {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.neon .tabIndicator {
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.neon .contentPanel {
+  background: rgba(0, 20, 30, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+/* Ornate */
+.ornate .tab::before,
+.ornate .tab::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ornate .tab:hover::before,
+.ornate .tab:hover::after,
+.ornate .tabActive::before,
+.ornate .tabActive::after {
+  opacity: 1;
+}
+
+.ornate .tab::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ornate .tab::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.ornate .contentPanel {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 40, 40, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ornate .contentPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+}

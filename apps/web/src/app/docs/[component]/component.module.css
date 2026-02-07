@@ -1580,11 +1580,347 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   color: #d4c4a8;
-  text-shadow: 
+  text-shadow:
     1px 1px 0 rgba(0,0,0,0.8),
     -1px -1px 0 rgba(255,255,255,0.1),
     2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 0.15em;
+}
+
+/* === NEW CHAOS COMPONENTS PREVIEWS === */
+
+/* Living Text */
+.livingTextPreview {
+  position: relative;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+.livingTextAlive {
+  opacity: 1;
+  color: var(--accent);
+}
+.livingTextGhost {
+  opacity: 0.5;
+  color: #888;
+}
+
+/* Brutal Manifest */
+.brutalManifestPreview {
+  display: flex;
+  gap: 4px;
+  font-size: 0.7rem;
+}
+.brutalBox {
+  padding: 4px 8px;
+  border: 3px solid;
+  border-color: #ff0000;
+  background: #ff0000;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Strata Section */
+.strataPreview {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.strataLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1a1816;
+  clip-path: polygon(
+    0% 100%, 3% 45%, 8% 60%, 15% 30%, 22% 55%, 30% 20%,
+    38% 50%, 45% 25%, 52% 60%, 60% 15%, 68% 45%, 75% 30%,
+    82% 55%, 88% 20%, 95% 50%, 100% 35%, 100% 100%
+  );
+}
+.strataDepth {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  font-size: 0.5rem;
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Broken Grid */
+.brokenGridPreview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 80px;
+}
+.brokenGridItem {
+  background: rgba(74,74,74,0.3);
+  border: 1px solid #4a4a4a;
+  padding: 8px;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8c72e;
+}
+
+/* Scattered Nav */
+.scatteredNavPreview {
+  position: relative;
+  height: 50px;
+  width: 100%;
+}
+.scatteredNavItem {
+  position: absolute;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border: 1px solid #d4d0c8;
+  background: rgba(26,26,26,0.9);
+  color: #d4d0c8;
+}
+
+/* Collapsed Nav */
+.collapsedNavPreview {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+.collapsedNavItem {
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border: 1px solid #d4d0c8;
+  background: rgba(26,26,26,0.9);
+  color: #d4d0c8;
+  transform: rotate(-2deg);
+}
+
+/* Draggable Document */
+.draggableDocPreview {
+  position: relative;
+  width: 60px;
+  height: 40px;
+  background: #f5f0e8;
+  border: 1px solid #d4d0c8;
+}
+.docTab {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #e8c72e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.docContent {
+  padding: 8px;
+  font-size: 0.5rem;
+  font-family: monospace;
+  color: #1a1816;
+}
+
+/* Ghost Layer */
+.ghostLayerPreview {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--border);
+}
+.ghostText {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  opacity: 0.4;
+  color: #666;
+}
+
+/* Cursor Trail */
+.cursorTrailPreview {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+}
+.trailDot {
+  width: 8px;
+  height: 8px;
+  background: #888;
+  border-radius: 50%;
+}
+
+/* Flash Effect */
+.flashEffectPreview {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: flashPulse 2s infinite;
+}
+@keyframes flashPulse {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.3; }
+}
+
+/* Depth Indicator */
+.depthIndicatorPreview {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.depthBar {
+  width: 4px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+}
+.depthFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: #888;
+}
+.depthLabel {
+  font-size: 0.5rem;
+  font-family: monospace;
+  color: #666;
+}
+
+/* MISSING PREVIEW STYLES */
+.cornerNavBox {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+.minimalNavBox {
+  display: flex;
+  gap: 8px;
+}
+.minimalNavBox span {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  font-size: 0.6rem;
+}
+.meshBox {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+.noisePatternBox {
+  padding: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.6rem;
+}
+.scanlinesOverlayBox {
+  padding: 8px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.scanlinesOverlayBox::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.1) 0px,
+    rgba(0,0,0,0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+.chromaticBox {
+  padding: 8px;
+  font-size: 0.7rem;
+  color: #ff0000;
+  text-shadow: 2px 0 #00ff00, -2px 0 #0000ff;
+}
+.glassCrackBox {
+  padding: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.6rem;
+}
+.panelScrollBox {
+  display: flex;
+  gap: 4px;
+}
+.panelScrollBox div {
+  width: 30px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--border);
+}
+.glassContainerBox {
+  padding: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  font-size: 0.6rem;
+}
+.phaseContainerBox {
+  padding: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.6rem;
+}
+.documentStampBox {
+  padding: 8px;
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  font-size: 0.6rem;
+  transform: rotate(-5deg);
+}
+.marginaliaBox {
+  padding: 4px 8px;
+  background: #fffacd;
+  font-size: 0.5rem;
+  border-left: 2px solid #333;
+}
+.paperEdgesBox {
+  padding: 12px;
+  background: #f5f0e8;
+  font-size: 0.6rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.tensionMeterBox {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+}
+.tensionMeterFill {
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, #ff0000, #ffff00);
 }
 
 /* RESPONSIVE */

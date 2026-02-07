@@ -1,0 +1,4 @@
+.manifest { display: flex; flex-wrap: wrap; gap: 12px; line-height: 1.2; }
+.phrase { display: flex; flex-wrap: wrap; gap: 8px; }
+.word { display: inline-block; padding: 10px 15px; border-width: var(--border-width, 6px); border-style: solid; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.02em; transition: transform 0.2s; }
+.word:hover { transform: scale(1.05); }

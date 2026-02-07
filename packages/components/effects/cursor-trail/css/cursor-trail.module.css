@@ -1,0 +1,4 @@
+.container { position: relative; width: 100%; height: 100%; cursor: none; }
+.trail { position: fixed; width: var(--trail-size, 20px); height: var(--trail-size, 20px); border: 2px solid var(--trail-color, #fff); pointer-events: none; z-index: 9999; transition: transform 0.15s ease-out; mix-blend-mode: var(--blend-mode, difference); }
+.centerDot { position: fixed; width: 4px; height: 4px; background: var(--dot-color, #ff0000); border-radius: 50%; pointer-events: none; z-index: 10000; }
+.hovering .trail { transform: scale(2); }

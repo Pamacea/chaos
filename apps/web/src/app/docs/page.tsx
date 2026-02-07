@@ -4,7 +4,7 @@ import styles from './docs.module.css';
 
 export const metadata: Metadata = {
   title: 'Documentation',
-  description: 'Browse 60+ glitch, noise, and distortion UI components. Pure CSS, no dependencies. Copy-paste installation.',
+  description: 'Browse 120+ glitch, noise, and distortion UI components. Pure CSS, no dependencies. Copy-paste installation.',
   openGraph: {
     title: 'CHAOS Documentation',
     description: 'Browse all available components — from glitch text to neon buttons, scanlines to noise overlays.',
@@ -90,6 +90,10 @@ const COMPONENTS = {
       { name: 'word-by-word-reveal', description: 'Word by word reveal' },
       { name: 'shadow-glitch', description: 'Shadow glitch effect' },
       { name: 'split-text', description: 'Split text animation' },
+      { name: 'living-text', description: 'Text that dies and becomes ghosts' },
+      { name: 'brutal-manifest', description: 'Brutalist boxed text manifesto' },
+      { name: 'echo-chat', description: 'Chat with echo distortion' },
+      { name: 'text-distorter', description: 'Real-time text distortion' },
     ],
   },
   'navigation': {
@@ -103,6 +107,9 @@ const COMPONENTS = {
       { name: 'corner-nav', description: 'Corner-positioned nav' },
       { name: 'minimal-nav', description: 'Minimalist navigation' },
       { name: 'timeline-nav', description: 'Timeline-style navigation' },
+      { name: 'collapsed-nav', description: 'Collapse-inspired dispersed nav' },
+      { name: 'magnetic-dock', description: 'Floating dock with magnetic attraction' },
+      { name: 'corner-tabs', description: 'Corner-positioned tabs' },
     ],
   },
   'backgrounds': {
@@ -130,9 +137,19 @@ const COMPONENTS = {
     title: 'EFFECTS',
     items: [
       { name: 'cursor-follower', description: 'Custom cursor follower' },
+      { name: 'cursor-trail', description: 'Multi-element cursor trail effect' },
+      { name: 'inverted-cursor', description: 'Color inverting ring cursor' },
+      { name: 'cursor-magnet', description: 'Magnetic cursor attraction' },
+      { name: 'cursor-spotlight', description: 'Spotlight following cursor' },
       { name: 'chromatic-aberration', description: 'RGB chromatic effect' },
       { name: 'glass-crack', description: 'Glass shatter effect' },
       { name: 'radar-scan', description: 'Radar scanning animation' },
+      { name: 'ghost-layer', description: 'Revealable ghost text layer' },
+      { name: 'flash-effect', description: 'Full-screen flash overlay' },
+      { name: 'light-beams', description: 'Animated light beam effects' },
+      { name: 'mosaic-grid', description: 'Interactive mosaic tiles' },
+      { name: 'tape-border', description: 'Warning tape borders' },
+      { name: 'rgb-shift', description: 'RGB color shift effect' },
     ],
   },
   'layout-cards': {
@@ -145,6 +162,9 @@ const COMPONENTS = {
       { name: 'tracklist', description: 'Music tracklist layout' },
       { name: 'glass-container', description: 'Glass morphism container' },
       { name: 'phase-container', description: 'Phase transition container' },
+      { name: 'broken-grid', description: 'Chaotic offset grid layout' },
+      { name: 'broken-grid-chaos', description: 'Heavily chaotic grid with collapse inspiration' },
+      { name: 'strata-section', description: 'Geological layer sections' },
     ],
   },
   'decorative': {
@@ -167,6 +187,7 @@ const COMPONENTS = {
       { name: 'cta-brutal', description: 'Brutalist call-to-action' },
       { name: 'tension-bar', description: 'Progress tension meter' },
       { name: 'tension-meter', description: 'Tension gauge meter' },
+      { name: 'magnetic-button', description: 'Button with magnetic pull' },
     ],
   },
   'inputs': {
@@ -174,13 +195,16 @@ const COMPONENTS = {
     items: [
       { name: 'chat-interface', description: 'Chat message input' },
       { name: 'secret-reveal', description: 'Hidden content reveal' },
+      { name: 'draggable-document', description: 'Draggable paper document' },
     ],
   },
   'display': {
     title: 'DISPLAY',
     items: [
       { name: 'countdown-timer', description: 'Countdown display' },
+      { name: 'countdown-phase', description: 'Multi-phase countdown with progress' },
       { name: 'terminal-message', description: 'Terminal message' },
+      { name: 'depth-indicator', description: 'Vertical depth progress indicator' },
     ],
   },
 };
@@ -482,6 +506,81 @@ function ComponentPreview({ name }: { name: string }) {
       return <span className={styles.shadowGlitch}>GLITCH</span>;
     case 'split-text':
       return <span className={styles.splitText}><span>SPLIT</span></span>;
+
+    // NEW CHAOS COMPONENTS
+    case 'living-text':
+      return <span className={styles.livingTextPreview}><span className={styles.livingTextAlive}>ALIVE</span><span className={styles.livingTextGhost}>GHOST</span></span>;
+    case 'brutal-manifest':
+      return <div className={styles.brutalManifestPreview}><span className={styles.brutalBox}>NO</span><span className={styles.brutalBox}>RULES</span></div>;
+
+    // NEW LAYOUT
+    case 'strata-section':
+      return <div className={styles.strataPreview}><span>STRATA</span></div>;
+    case 'broken-grid':
+    case 'broken-grid-chaos':
+      return <div className={styles.brokenGridPreview}><div className={styles.brokenGridItem}><span>01</span></div><div className={styles.brokenGridItem}><span>02</span></div><div className={styles.brokenGridItem}><span>03</span></div></div>;
+
+    // NEW NAVIGATION
+    case 'collapsed-nav':
+      return <div className={styles.collapsedNavPreview}><span className={styles.collapsedNavItem}>COLLAPSE</span></div>;
+
+    // NEW INPUTS
+    case 'draggable-document':
+      return <div className={styles.draggableDocPreview}><span>DOC</span></div>;
+
+    // NEW EFFECTS
+    case 'ghost-layer':
+      return <div className={styles.ghostLayerPreview}><span className={styles.ghostText}>GHOST</span></div>;
+    case 'cursor-trail':
+      return <div className={styles.cursorTrailPreview}><div className={styles.trailDot}/><div className={styles.trailDot}/><div className={styles.trailDot}/></div>;
+    case 'flash-effect':
+      return <div className={styles.flashEffectPreview}><span>FLASH</span></div>;
+
+    // EFFECTS (existing but missing)
+    case 'cursor-follower':
+      return <div className={styles.cursorPreview}><div/><div/></div>;
+
+    // DISPLAY
+    case 'depth-indicator':
+      return <div className={styles.depthIndicatorPreview}>DEPTH</div>;
+
+    // NEW COMPONENTS - Navigation
+    case 'magnetic-dock':
+      return <div className={styles.magneticDockPreview}><span className={styles.dockItem}>HOME</span><span className={styles.dockItem}>WORK</span><span className={styles.dockItem}>ABOUT</span></div>;
+    case 'corner-tabs':
+      return <div className={styles.cornerTabsPreview}><span className={styles.cornerTabActive}>TAB 1</span><span>TAB 2</span></div>;
+
+    // NEW COMPONENTS - Text
+    case 'echo-chat':
+      return <div className={styles.echoChatPreview}><div className={styles.echoMessage}>Hello...</div><div className={styles.echoEcho}>Hello...</div></div>;
+    case 'text-distorter':
+      return <span className={styles.textDistorterPreview}>DISTORT</span>;
+
+    // NEW COMPONENTS - Display
+    case 'countdown-phase':
+      return <div className={styles.countdownPhasePreview}><div className={styles.phaseNumber}>42</div><div className={styles.phaseLabel}>SECONDS</div></div>;
+
+    // NEW COMPONENTS - Effects
+    case 'light-beams':
+      return <div className={styles.lightBeamsPreview}><div className={styles.beam}/><div className={styles.beam}/><div className={styles.beam}/></div>;
+    case 'mosaic-grid':
+      return <div className={styles.mosaicGridPreview}><div className={styles.mosaicTile}/><div className={styles.mosaicTile}/><div className={styles.mosaicTile}/><div className={styles.mosaicTile}/></div>;
+    case 'tape-border':
+      return <div className={styles.tapeBorderPreview}><span>BORDER</span></div>;
+    case 'rgb-shift':
+      return <div className={styles.rgbShiftPreview}><span>RGB</span></div>;
+
+    // NEW COMPONENTS - Cursors
+    case 'inverted-cursor':
+      return <div className={styles.invertedCursorPreview}><div className={styles.invertedRing}/></div>;
+    case 'cursor-magnet':
+      return <div className={styles.cursorMagnetPreview}><div className={styles.magnetItem}>ITEM</div></div>;
+    case 'cursor-spotlight':
+      return <div className={styles.cursorSpotlightPreview}><div className={styles.spotlight}/><span>TEXT</span></div>;
+
+    // NEW COMPONENTS - Buttons (magnetic-button may already exist)
+    case 'magnetic-button':
+      return <button className={styles.magneticButtonPreview}>MAGNETIC</button>;
 
     default:
       return <span>{name}</span>;

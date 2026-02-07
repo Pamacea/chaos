@@ -1,0 +1,296 @@
+/* StrataSection - Geological layer section component */
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 80px;
+  overflow: hidden;
+  background: var(--strata-bg, #8b8680);
+  color: var(--strata-text, #1a1816);
+}
+
+/* Content wrapper */
+.content {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Position variants */
+.positionLeft {
+  align-items: flex-start;
+}
+
+.positionCenter {
+  align-items: center;
+  text-align: center;
+}
+
+.positionRight {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Title */
+.title {
+  font-family: var(--strata-font, 'Space Grotesk', system-ui, sans-serif);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  line-height: 0.85;
+  margin-bottom: var(--strata-spacing, 40px);
+  letter-spacing: -0.03em;
+}
+
+/* Description */
+.description {
+  font-family: var(--strata-font, 'Space Grotesk', system-ui, sans-serif);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  max-width: 600px;
+  opacity: 0.8;
+}
+
+/* Stats grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+  text-align: left;
+}
+
+.stat {
+  opacity: 0.7;
+}
+
+.statValue {
+  font-family: var(--strata-font, 'Space Grotesk', system-ui, sans-serif);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 12px;
+  opacity: 0.6;
+}
+
+/* Stratum number label */
+.stratumNumber {
+  position: absolute;
+  right: 80px;
+  bottom: 60px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  opacity: 0.3;
+}
+
+.positionCenter .stratumNumber,
+.positionLeft .stratumNumber {
+  right: auto;
+  left: 80px;
+}
+
+/* Decorative line */
+.decorationLine {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  width: 60px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+.positionRight .decorationLine,
+.positionCenter .decorationLine {
+  left: auto;
+  right: 80px;
+}
+
+/* Jagged edge between strata */
+.jaggedEdge {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: inherit;
+  clip-path: polygon(
+    0% 100%,
+    3% 45%,
+    8% 60%,
+    15% 30%,
+    22% 55%,
+    30% 20%,
+    38% 50%,
+    45% 25%,
+    52% 60%,
+    60% 15%,
+    68% 45%,
+    75% 30%,
+    82% 55%,
+    88% 20%,
+    95% 50%,
+    100% 35%,
+    100% 100%
+  );
+  z-index: 3;
+}
+
+.noEdge {
+  display: none;
+}
+
+/* Pattern overlays */
+.patternOverlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Lines pattern */
+.patternLines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+}
+
+/* Diagonal lines */
+.patternLinesDiagonal {
+  background: repeating-linear-gradient(
+    2deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.03) 3px,
+    rgba(0, 0, 0, 0.03) 6px
+  );
+}
+
+/* Dots pattern */
+.patternDots {
+  background-image: radial-gradient(
+    circle,
+    currentColor 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+
+/* Gradient pattern */
+.patternGradient {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+}
+
+/* Rust pattern */
+.patternRust {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(139, 105, 20, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 80%, rgba(60, 40, 30, 0.4) 0%, transparent 40%);
+}
+
+/* Fossil pattern */
+.patternFossil {
+  background: radial-gradient(
+    ellipse at 30% 70%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%
+  );
+}
+
+/* Fossil element */
+.fossil {
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  border: 2px solid currentColor;
+  border-radius: 50% 50% 45% 55% / 50% 45% 55% 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.fossil::before {
+  content: '';
+  position: absolute;
+  inset: 30px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+}
+
+/* Fade-in animation */
+.fadeContent > * {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fadeContent.inView > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fadeContent.inView > *:nth-child(1) { transition-delay: 0.1s; }
+.fadeContent.inView > *:nth-child(2) { transition-delay: 0.2s; }
+.fadeContent.inView > *:nth-child(3) { transition-delay: 0.3s; }
+.fadeContent.inView > *:nth-child(4) { transition-delay: 0.4s; }
+.fadeContent.inView > *:nth-child(5) { transition-delay: 0.5s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 80px 30px;
+  }
+
+  .stratumNumber {
+    right: 30px;
+    bottom: 30px;
+    left: auto;
+  }
+
+  .positionCenter .stratumNumber,
+  .positionLeft .stratumNumber {
+    left: auto;
+    right: 30px;
+  }
+
+  .decorationLine {
+    left: 30px;
+  }
+
+  .positionRight .decorationLine,
+  .positionCenter .decorationLine {
+    right: 30px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .fossil {
+    display: none;
+  }
+}
