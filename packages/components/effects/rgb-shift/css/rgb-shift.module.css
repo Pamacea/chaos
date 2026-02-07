@@ -1,0 +1,227 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper {
+  position: relative;
+  display: contents;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: transform var(--transition-duration, 0.3s) var(--transition-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.layer.red {
+  z-index: 2;
+}
+
+.layer.green {
+  z-index: 3;
+}
+
+.layer.blue {
+  z-index: 4;
+}
+
+/* Default state - no shift */
+.layer.red {
+  transform: translate(0, 0);
+}
+
+.layer.green {
+  transform: translate(0, 0);
+}
+
+.layer.blue {
+  transform: translate(0, 0);
+}
+
+/* Hover state */
+.container:hover .layer.red,
+.container.active .layer.red {
+  transform: translate(var(--shift-x, -4px), var(--shift-y, 0));
+}
+
+.container:hover .layer.green,
+.container.active .layer.green {
+  transform: translate(0, 0);
+}
+
+.container:hover .layer.blue,
+.container.active .layer.blue {
+  transform: translate(var(--shift-x-positive, 4px), var(--shift-y, 0));
+}
+
+/* Click state */
+.container:active .layer.red {
+  transform: translate(calc(var(--shift-x, -4px) * 1.5), calc(var(--shift-y, 0) * 1.5));
+}
+
+.container:active .layer.blue {
+  transform: translate(calc(var(--shift-x-positive, 4px) * 1.5), calc(var(--shift-y, 0) * 1.5));
+}
+
+/* Intensity variants */
+.intensity-subtle {
+  --shift-x: -2px;
+  --shift-x-positive: 2px;
+  --shift-y: 0;
+}
+
+.intensity-moderate {
+  --shift-x: -4px;
+  --shift-x-positive: 4px;
+  --shift-y: 0;
+}
+
+.intensity-intense {
+  --shift-x: -8px;
+  --shift-x-positive: 8px;
+  --shift-y: 2px;
+}
+
+.intensity-extreme {
+  --shift-x: -12px;
+  --shift-x-positive: 12px;
+  --shift-y: -2px;
+}
+
+/* Direction variants */
+.direction-horizontal {
+  --shift-y: 0;
+}
+
+.direction-vertical {
+  --shift-x: 0;
+  --shift-x-positive: 0;
+}
+
+.container.direction-vertical:hover .layer.red,
+.container.direction-vertical.active .layer.red {
+  transform: translate(0, var(--shift-y-vertical, -4px));
+}
+
+.container.direction-vertical:hover .layer.blue,
+.container.direction-vertical.active .layer.blue {
+  transform: translate(0, var(--shift-y-positive, 4px));
+}
+
+.direction-diagonal {
+  --shift-y: -2px;
+  --shift-y-positive: 2px;
+}
+
+.direction-random {
+  --shift-x: -4px;
+  --shift-x-positive: 3px;
+  --shift-y: 2px;
+  --shift-y-positive: -1px;
+}
+
+/* Animation variants */
+.animate-pulse .layer {
+  animation: rgb-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rgb-pulse {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(var(--shift-x, -4px), var(--shift-y, 0));
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(var(--shift-x-positive, 4px), var(--shift-y, 0));
+  }
+}
+
+.animate-glitch .layer {
+  animation: rgb-glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+.layer.red.animate-glitch {
+  animation-delay: 0s;
+}
+
+.layer.green.animate-glitch {
+  animation-delay: 0.05s;
+}
+
+.layer.blue.animate-glitch {
+  animation-delay: 0.1s;
+}
+
+@keyframes rgb-glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(var(--shift-x, -4px), var(--shift-y, 0));
+  }
+  40% {
+    transform: translate(var(--shift-x-positive, 4px), var(--shift-y-positive, 2px));
+  }
+  60% {
+    transform: translate(var(--shift-x, -4px), calc(var(--shift-y, 0) * -1));
+  }
+  80% {
+    transform: translate(calc(var(--shift-x-positive, 4px) * -1), var(--shift-y-positive, 2px));
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-shimmer .layer {
+  animation: rgb-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes rgb-shimmer {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  33% {
+    transform: translate(var(--shift-x, -4px), var(--shift-y, 0));
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(var(--shift-x-positive, 4px), var(--shift-y, 0));
+    opacity: 0.9;
+  }
+}
+
+/* Transition speed variants */
+.transition-instant {
+  --transition-duration: 0s;
+}
+
+.transition-fast {
+  --transition-duration: 0.15s;
+}
+
+.transition-normal {
+  --transition-duration: 0.3s;
+}
+
+.transition-slow {
+  --transition-duration: 0.6s;
+}
+
+.transition-bounce {
+  --transition-duration: 0.5s;
+  --transition-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}

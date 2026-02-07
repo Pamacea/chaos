@@ -1,0 +1,11 @@
+.document { position: fixed; width: 300px; min-height: 200px; background: #f5f0e8; border: 1px solid #d4d0c8; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); cursor: grab; transition: box-shadow 0.2s, transform 0.1s; user-select: none; z-index: 10; }
+.document.dragging { cursor: grabbing; box-shadow: 8px 8px 20px rgba(0,0,0,0.3); z-index: 100; }
+.document.flipped { transform: rotateY(180deg); }
+.folderTab { position: absolute; top: -25px; left: 0; right: 0; height: 30px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; border-radius: 4px 4px 0 0; }
+.classification { font-size: 0.6rem; font-weight: bold; letter-spacing: 0.1em; }
+.ref { font-size: 0.55rem; opacity: 0.7; }
+.documentContent { padding: 20px; position: relative; }
+.docTitle { font-family: 'Courier New', monospace; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; color: #1a1816; }
+.stamp { position: absolute; bottom: 20px; right: 20px; font-family: 'Courier New', monospace; font-size: 0.7rem; font-weight: bold; color: #c23a22; border: 2px solid #c23a22; padding: 5px 10px; transform: rotate(-5deg); opacity: 0.7; }
+.coffeeStain { position: absolute; bottom: 30px; left: 30px; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(139, 90, 43, 0.3) 0%, transparent 70%); pointer-events: none; }
+.backContent { transform: rotateY(180deg); min-height: 160px; }

@@ -82,6 +82,7 @@ const COMPONENTS = {
   'tower-pricing': { category: 'layout', description: 'Vertical stacked pricing cards', status: 'ready' },
   'spec-grid': { category: 'layout', description: 'Terminal-style specs grid', status: 'ready' },
   'tracklist': { category: 'layout', description: 'Music tracklist component', status: 'ready' },
+  'strata-section': { category: 'layout', description: 'Geological layer section with jagged edges', status: 'ready' },
   
   // Navigation
   'hexagon-menu': { category: 'navigation', description: 'Honeycomb hexagon menu', status: 'ready' },
@@ -97,6 +98,11 @@ const COMPONENTS = {
   'coffee-stain': { category: 'decorative', description: 'Coffee stain/aged paper effect', status: 'ready' },
   'sheet-music': { category: 'decorative', description: 'Floating music notes', status: 'ready' },
   'inscription': { category: 'decorative', description: 'Stone carved inscription', status: 'ready' },
+
+  // Inputs
+  'chat-interface': { category: 'inputs', description: 'AI chat interface with messages', status: 'ready' },
+  'secret-reveal': { category: 'inputs', description: 'Content revealed on interaction', status: 'ready' },
+  'draggable-document': { category: 'inputs', description: 'Draggable folder document with flip', status: 'ready' },
 };
 
 const program = new Command();

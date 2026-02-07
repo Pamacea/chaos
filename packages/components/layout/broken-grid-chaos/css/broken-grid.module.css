@@ -1,0 +1,5 @@
+.grid { display: grid; gap: 20px; position: relative; }
+.item { position: relative; background: rgba(74,74,74,0.3); border: 1px solid #4a4a4a; padding: 30px; transition: transform 0.2s, box-shadow 0.2s, z-index 0.2s; }
+.item:hover { z-index: 10; transform: translate(-5px, -5px) rotate(0deg) !important; box-shadow: 8px 8px 0 #e8c72e; }
+.truncated { overflow: hidden; max-height: 4.8em; }
+.truncated::after { content: '█████████'; position: absolute; bottom: 0; right: 0; background: inherit; color: #4a4a4a; padding-left: 10px; }

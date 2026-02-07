@@ -1,0 +1,7 @@
+.indicator { position: fixed; top: 50%; transform: translateY(-50%); height: 60vh; display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 50; }
+.indicatorLeft { left: 40px; }
+.indicatorRight { right: 40px; }
+.barContainer { width: 4px; height: 100%; background: rgba(255,255,255,0.1); position: relative; }
+.barFill { position: absolute; bottom: 0; left: 0; right: 0; background: currentColor; transition: height 0.3s ease; }
+.label { writing-mode: vertical-rl; text-orientation: mixed; font-size: 0.6rem; letter-spacing: 0.3em; opacity: 0.4; }
+.value { font-family: 'SF Mono', monospace; font-size: 0.7rem; font-variant-numeric: tabular-nums; opacity: 0.6; }

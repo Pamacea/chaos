@@ -1352,6 +1352,222 @@ const tracks = [
 <Inscription effect="deepCarved" variant="marble" bordered>CARVED IN STONE</Inscription>
 <Inscription effect="ancient" cracked textured>ANCIENT TEXT</Inscription>`,
   },
+  // NEW COMPONENTS
+  'living-text': {
+    name: 'LivingText',
+    category: 'text',
+    description: 'Text that appears, lives for a duration, dies character by character, and becomes a ghost revealed on hover.',
+    props: [
+      { name: 'text', type: 'string', default: '-', description: 'The text to display' },
+      { name: 'lifetime', type: 'number', default: '0', description: 'Duration in ms, 0 = typing time' },
+      { name: 'ghostOpacity', type: 'number', default: '0.03', description: 'Base opacity for ghosts (0-1)' },
+      { name: 'revealOpacity', type: 'number', default: '0.15', description: 'Hover opacity for ghosts (0-1)' },
+      { name: 'revealDistance', type: 'number', default: '150', description: 'Pixel distance for reveal' },
+      { name: 'showTimer', type: 'boolean', default: 'true', description: 'Show timer display' },
+    ],
+    usage: `import { LivingText } from '@/components/chaos/text/living-text';
+
+<LivingText text="This text will fade away" lifetime={5000} />`,
+  },
+  'brutal-manifest': {
+    name: 'BrutalManifest',
+    category: 'text',
+    description: 'Brutalist text with each word in boxed colors, thick borders, and chaotic rotations.',
+    props: [
+      { name: 'phrases', type: 'PhraseSegment[][]', default: '-', description: 'Array of phrase arrays' },
+      { name: 'colors', type: 'string[]', default: '["#ff0000", "#ffff00", "#000000", "#ffffff"]', description: 'Color palette' },
+      { name: 'borderWidth', type: 'number', default: '6', description: 'Border width in pixels' },
+      { name: 'fontSize', type: '"small" | "medium" | "large" | "massive"', default: '"large"', description: 'Text size' },
+      { name: 'chaosLevel', type: 'number', default: '0.5', description: 'Rotation chaos level (0-1)' },
+      { name: 'textShadow', type: 'boolean', default: 'true', description: 'Add text shadow' },
+      { name: 'uppercase', type: 'boolean', default: 'true', description: 'Uppercase text' },
+    ],
+    usage: `import { BrutalManifest } from '@/components/chaos/text/brutal-manifest';
+
+<BrutalManifest phrases={[
+  [{ text: 'NO' }, { text: 'COMPROMISE' }],
+  [{ text: 'BREAK' }, { text: 'RULES' }]
+]} chaosLevel={0.8} />`,
+  },
+  'strata-section': {
+    name: 'StrataSection',
+    category: 'layout',
+    description: 'Geological layer section with jagged edges, depth indicator, and pattern overlays.',
+    props: [
+      { name: 'depth', type: 'number', default: '-', description: 'Depth in meters' },
+      { name: 'color', type: 'string', default: '-', description: 'Background color' },
+      { name: 'pattern', type: '"lines" | "dots" | "gradient" | "fossil" | "rust" | "none"', default: '"none"', description: 'Pattern overlay' },
+      { name: 'textColor', type: 'string', default: '-', description: 'Text color' },
+      { name: 'title', type: 'string', default: '-', description: 'Section title' },
+      { name: 'description', type: 'string', default: '-', description: 'Section description' },
+      { name: 'stats', type: 'Array<{label: string, value: string | number}>', default: '[]', description: 'Stats to display' },
+      { name: 'position', type: '"left" | "center" | "right"', default: '"left"', description: 'Content position' },
+    ],
+    usage: `import { StrataSection } from '@/components/chaos/layout/strata-section';
+
+<StrataSection
+  depth={450}
+  color="#8b8680"
+  pattern="lines"
+  title="CRETACEOUS"
+  description="Ancient seabed layer"
+  stats={[
+    { label: 'Age', value: '145M years' },
+    { label: 'Depth', value: '450m' }
+  ]}
+/>`,
+  },
+  'broken-grid': {
+    name: 'BrokenGrid',
+    category: 'layout',
+    description: 'CSS Grid with chaotic offset/rotation per item, hover effects, and text truncation.',
+    props: [
+      { name: 'items', type: 'GridItem[]', default: '-', description: 'Grid items' },
+      { name: 'columns', type: 'number', default: '3', description: 'Number of columns' },
+      { name: 'chaosLevel', type: 'number', default: '0.5', description: 'Chaos level (0-1)' },
+      { name: 'truncateText', type: 'boolean', default: 'true', description: 'Truncate long text' },
+      { name: 'borderStyle', type: '"solid" | "dashed" | "double"', default: '"solid"', description: 'Border style' },
+    ],
+    usage: `import { BrokenGrid } from '@/components/chaos/layout/broken-grid';
+
+<BrokenGrid
+  items={[
+    { title: 'Infrastructure', description: 'Systems broken' },
+    { title: 'Interfaces', description: 'User chaos' },
+    { title: 'Signals', description: 'Lost comms' }
+  ]}
+  columns={3}
+  chaosLevel={0.6}
+/>`,
+  },
+  'collapsed-nav': {
+    name: 'CollapsedNav',
+    category: 'navigation',
+    description: 'Navigation with items dispersed around screen edges, inspired by collapse demo.',
+    props: [
+      { name: 'items', type: 'NavItem[]', default: '-', description: 'Navigation items' },
+      { name: 'chaosLevel', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Dispersion amount' },
+    ],
+    usage: `import { CollapsedNav } from '@/components/chaos/navigation/collapsed-nav';
+
+<CollapsedNav items={[
+  { label: 'Work', href: '#work' },
+  { label: 'About', href: '#about' },
+  { label: 'Data', href: '#data' }
+]} />`,
+  },
+  'draggable-document': {
+    name: 'DraggableDocument',
+    category: 'inputs',
+    description: 'Draggable paper/folder document with classification, stamp, and coffee stain.',
+    props: [
+      { name: 'title', type: 'string', default: '-', description: 'Document title' },
+      { name: 'reference', type: 'string', default: '-', description: 'Reference number' },
+      { name: 'classification', type: '"public" | "confidentiel" | "secret" | "top-secret"', default: '"confidentiel"', description: 'Classification level' },
+      { name: 'stamp', type: 'string', default: '-', description: 'Stamp text' },
+      { name: 'content', type: 'ReactNode', default: '-', description: 'Document content' },
+      { name: 'backContent', type: 'ReactNode', default: '-', description: 'Back content (revealed on double-click)' },
+      { name: 'initialPosition', type: '{x: number; y: number}', default: '{x: 100, y: 100}', description: 'Initial position' },
+    ],
+    usage: `import { DraggableDocument } from '@/components/chaos/inputs/draggable-document';
+
+<DraggableDocument
+  title="PROJET ÆTHER"
+  classification="secret"
+  stamp="VALIDÉ"
+  reference="ÆTH-2024-001"
+>
+  <p>Confidential document content here...</p>
+</DraggableDocument>`,
+  },
+  'ghost-layer': {
+    name: 'GhostLayer',
+    category: 'effects',
+    description: 'Layer of semi-transparent ghost texts revealed on cursor proximity.',
+    props: [
+      { name: 'ghosts', type: 'GhostItem[]', default: '-', description: 'Ghost items with id, text, position' },
+      { name: 'baseOpacity', type: 'number', default: '0.03', description: 'Base opacity (0-1)' },
+      { name: 'revealOpacity', type: 'number', default: '0.15', description: 'Hover opacity (0-1)' },
+      { name: 'revealDistance', type: 'number', default: '150', description: 'Pixel radius for reveal' },
+      { name: 'showScanLine', type: 'boolean', default: 'true', description: 'Show scan line following mouse' },
+    ],
+    usage: `import { GhostLayer } from '@/components/chaos/effects/ghost-layer';
+
+<GhostLayer
+  ghosts={[
+    { id: '1', text: 'I remember...', position: { x: 100, y: 100 } },
+    { id: '2', text: 'The ocean sang', position: { x: 300, y: 200 } }
+  ]}
+  revealDistance={200}
+/>`,
+  },
+  'cursor-trail': {
+    name: 'CursorTrail',
+    category: 'effects',
+    description: 'Multi-element cursor trail with mix-blend-mode and hover expansion.',
+    props: [
+      { name: 'trailCount', type: 'number', default: '3', description: 'Number of trail elements' },
+      { name: 'trailSize', type: 'number', default: '20', description: 'Trail size in pixels' },
+      { name: 'trailColor', type: 'string', default: '"#fff"', description: 'Border color' },
+      { name: 'blendMode', type: '"normal" | "difference" | "screen" | "multiply" | "exclusion"', default: '"difference"', description: 'CSS blend mode' },
+      { name: 'hasCenterDot', type: 'boolean', default: 'true', description: 'Add center dot' },
+    ],
+    usage: `import { CursorTrail } from '@/components/chaos/effects/cursor-trail';
+
+<CursorTrail
+  trailCount={5}
+  trailColor="#00ffff"
+  blendMode="screen"
+  hasCenterDot={true}
+/>`,
+  },
+  'depth-indicator': {
+    name: 'DepthIndicator',
+    category: 'display',
+    description: 'Vertical progress bar showing depth/scroll position with real-time updates.',
+    props: [
+      { name: 'currentDepth', type: 'number', default: '-', description: 'Current depth value' },
+      { name: 'minDepth', type: 'number', default: '0', description: 'Minimum depth' },
+      { name: 'maxDepth', type: 'number', default: '100', description: 'Maximum depth' },
+      { name: 'unit', type: 'string', default: '"m"', description: 'Unit symbol' },
+      { name: 'label', type: 'string', default: '"DEPTH"', description: 'Label text' },
+      { name: 'position', type: '"left" | "right"', default: '"left"', description: 'Side position' },
+      { name: 'showValue', type: 'boolean', default: 'true', description: 'Show numeric value' },
+    ],
+    usage: `import { DepthIndicator } from '@/components/chaos/display/depth-indicator';
+
+<DepthIndicator
+  currentDepth={450}
+  minDepth={0}
+  maxDepth={1000}
+  unit="m"
+  position="right"
+/>`,
+  },
+  'flash-effect': {
+    name: 'FlashEffect',
+    category: 'effects',
+    description: 'Full-screen flash overlay with trigger modes (manual/scroll/click).',
+    props: [
+      { name: 'trigger', type: '"manual" | "scroll" | "click"', default: '"manual"', description: 'Trigger mode' },
+      { name: 'color', type: 'string', default: '"#fff"', description: 'Flash color' },
+      { name: 'duration', type: 'number', default: '150', description: 'Duration in ms' },
+      { name: 'opacity', type: 'number', default: '0.4', description: 'Flash opacity (0-1)' },
+      { name: 'blendMode', type: '"normal" | "overlay" | "screen" | "difference"', default: '"normal"', description: 'CSS blend mode' },
+    ],
+    usage: `import { FlashEffect, useFlash } from '@/components/chaos/effects/flash-effect';
+
+function App() {
+  const flashRef = useFlash();
+
+  return (
+    <>
+      <FlashEffect trigger="scroll" color="#ff0000" />
+      <button onClick={() => flashRef.current?.flash()}>FLASH</button>
+    </>
+  );
+}`,
+  },
 };
 
 const BASE_URL = 'https://chaos.oalacea.com';
@@ -1596,8 +1812,6 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.terminalPreview}><div className={styles.terminalHeader}><span/><span/><span/></div><div className={styles.terminalBody}><span className={styles.termPrompt}>❯</span> ls</div></div>;
     
     // NEW NAVIGATION
-    case 'scattered-nav':
-      return <div className={styles.scatteredNavPreview}><span>NAV</span><span className={styles.scattered}>ITEM</span></div>;
     case 'vertical-nav':
       return <div className={styles.verticalNavPreview}><span>ᛟ</span><span className={styles.navActive}>☰</span><span>ᛞ</span></div>;
     case 'timeline-nav':
@@ -1714,6 +1928,89 @@ function ComponentPreview({ component }: { component: string }) {
     // NEW BUTTONS
     case 'tension-meter':
       return <div className={styles.tensionMeterBox}><div className={styles.tensionMeterFill}/></div>;
+
+    // === NEW CHAOS COMPONENTS ===
+
+    // TEXT
+    case 'living-text':
+      return (
+        <div className={styles.livingTextPreview}>
+          <span className={styles.livingTextAlive}>ALIVE</span>
+          <span className={styles.livingTextGhost}>GHOST</span>
+        </div>
+      );
+    case 'brutal-manifest':
+      return (
+        <div className={styles.brutalManifestPreview}>
+          <span className={styles.brutalBox}>NO</span>
+          <span className={styles.brutalBox}>RULES</span>
+        </div>
+      );
+
+    // LAYOUT
+    case 'strata-section':
+      return (
+        <div className={styles.strataPreview}>
+          <div className={styles.strataLayer}><span>STRATA</span></div>
+        </div>
+      );
+    case 'broken-grid':
+    case 'broken-grid-chaos':
+      return (
+        <div className={styles.brokenGridPreview}>
+          <div className={styles.brokenGridItem}><span>01</span></div>
+          <div className={styles.brokenGridItem}><span>02</span></div>
+          <div className={styles.brokenGridItem}><span>03</span></div>
+        </div>
+      );
+
+    // NAVIGATION
+    case 'scattered-nav':
+      return (
+        <div className={styles.scatteredNavPreview}>
+          <span className={styles.scatteredNavItem}>NAV</span>
+        </div>
+      );
+    case 'collapsed-nav':
+      return (
+        <div className={styles.collapsedNavPreview}>
+          <span className={styles.collapsedNavItem}>COLLAPSE</span>
+        </div>
+      );
+
+    // INPUTS
+    case 'draggable-document':
+      return (
+        <div className={styles.draggableDocPreview}>
+          <div className={styles.docContent}>DOC</div>
+        </div>
+      );
+
+    // EFFECTS
+    case 'ghost-layer':
+      return (
+        <div className={styles.ghostLayerPreview}>
+          <span className={styles.ghostText}>GHOST</span>
+        </div>
+      );
+    case 'cursor-trail':
+      return (
+        <div className={styles.cursorTrailPreview}>
+          <div className={styles.trailDot} />
+          <div className={styles.trailDot} />
+          <div className={styles.trailDot} />
+        </div>
+      );
+    case 'flash-effect':
+      return (
+        <div className={styles.flashEffectPreview}>
+          <span>FLASH</span>
+        </div>
+      );
+
+    // DISPLAY
+    case 'depth-indicator':
+      return <div className={styles.depthIndicatorPreview}>DEPTH</div>;
 
     default:
       return <span>Preview</span>;
