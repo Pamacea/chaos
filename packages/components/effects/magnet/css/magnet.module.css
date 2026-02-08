@@ -1,0 +1,8 @@
+.magnetWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.magnetInner {
+  will-change: transform;
+}

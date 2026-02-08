@@ -1,0 +1,39 @@
+.electricBorder {
+  position: relative;
+  isolation: isolate;
+}
+
+.electricBorderStroke {
+  position: absolute;
+  inset: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.electricBorderGlow1 {
+  position: absolute;
+  inset: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.electricBorderGlow2 {
+  position: absolute;
+  inset: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.electricBorderBgGlow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.electricBorderContent {
+  position: relative;
+}

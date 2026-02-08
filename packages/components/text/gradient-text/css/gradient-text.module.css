@@ -1,0 +1,26 @@
+.gradientText {
+  display: inline-block;
+  background: linear-gradient(
+    var(--gradient-angle, 90deg),
+    var(--gradient-colors, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff)
+  );
+  background-size: var(--gradient-size, 200%) auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-flow var(--gradient-speed, 3s) linear infinite;
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
+.pauseOnHover:hover {
+  animation-play-state: paused;
+}

@@ -1,0 +1,303 @@
+/* Bubble Menu - Floating bubble navigation */
+
+.bubbleMenu {
+  position: relative;
+  display: flex;
+  z-index: 100;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* Alignment variants */
+.alignCenter {
+  justify-content: center;
+}
+
+.alignLeft {
+  justify-content: flex-start;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+/* Bubble container */
+.bubbleContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Individual bubble */
+.bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  will-change: transform;
+  overflow: visible;
+}
+
+.bubble::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--bubble-color-1, rgba(255, 255, 255, 0.9)), var(--bubble-color-2, rgba(255, 255, 255, 0.7)));
+  box-shadow:
+    0 4px 20px var(--bubble-shadow, rgba(0, 0, 0, 0.15)),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Glass variant */
+.glass .bubble::before {
+  --bubble-color-1: rgba(255, 255, 255, 0.9);
+  --bubble-color-2: rgba(255, 255, 255, 0.7);
+  --bubble-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.glass .bubble::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Solid variant */
+.solid .bubble::before {
+  --bubble-color-1: rgba(30, 30, 30, 0.95);
+  --bubble-color-2: rgba(10, 10, 10, 0.9);
+  --bubble-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.solid .bubble .iconWrapper {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.solid .bubble .bubbleLabel {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Neon variant */
+.neon .bubble::before {
+  --bubble-color-1: rgba(0, 255, 255, 0.15);
+  --bubble-color-2: rgba(0, 200, 255, 0.05);
+  --bubble-shadow: rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+}
+
+.neon .bubble .iconWrapper {
+  color: #00ffff;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
+}
+
+.neon .bubble .bubbleLabel {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Pastel variant */
+.pastel .bubble:nth-child(3n+1)::before {
+  --bubble-color-1: rgba(255, 182, 193, 0.9);
+  --bubble-color-2: rgba(255, 156, 177, 0.7);
+}
+
+.pastel .bubble:nth-child(3n+2)::before {
+  --bubble-color-1: rgba(173, 216, 230, 0.9);
+  --bubble-color-2: rgba(135, 206, 250, 0.7);
+}
+
+.pastel .bubble:nth-child(3n+3)::before {
+  --bubble-color-1: rgba(221, 255, 221, 0.9);
+  --bubble-color-2: rgba(186, 255, 186, 0.7);
+}
+
+/* Bubble inner content */
+.bubbleInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 60%;
+  font-size: calc(var(--bubble-size, 60px) * 0.4);
+  color: rgba(60, 60, 80, 0.9);
+  transition: transform 0.3s ease;
+}
+
+.iconWrapper :where(svg, img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bubbleLabel {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(60, 60, 80, 0.8);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Hover states */
+.bubbleHovered .iconWrapper {
+  transform: scale(1.1);
+}
+
+.bubbleHovered .bubbleLabel {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.bubble:hover:not(.bubbleDisabled)::before {
+  box-shadow:
+    0 8px 30px var(--bubble-shadow, rgba(0, 0, 0, 0.2)),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.neon.bubble:hover:not(.bubbleDisabled)::before {
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.5),
+    0 8px 30px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.8);
+}
+
+/* Active state */
+.bubbleActive .activeRing {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid currentColor;
+  opacity: 0.6;
+  animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.3;
+  }
+}
+
+/* Disabled state */
+.bubbleDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bubbleDisabled::before {
+  filter: grayscale(0.5);
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  animation: rippleEffect 3s ease-out infinite;
+}
+
+.bubbleHovered .ripple {
+  animation-play-state: running;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.noFloat .bubble {
+  animation: none !important;
+}
+
+.bubbleMenu:not(.noFloat) .bubble {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Focus visible */
+.bubble:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+  outline-offset: 4px;
+}
+
+.neon .bubble:focus-visible {
+  outline-color: rgba(0, 255, 255, 0.6);
+}
+
+/* Shine effect on hover */
+.bubble::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.bubble:hover::after {
+  opacity: 1;
+}

@@ -1,0 +1,255 @@
+/* Dock - macOS-style dock with magnification */
+
+.dock {
+  position: fixed;
+  z-index: 1000;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* Position variants */
+.positionBottom {
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.positionTop {
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.positionLeft {
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.positionRight {
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Container */
+.container {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.dockBackground {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px) saturate(180%);
+  transition: all 0.3s ease;
+}
+
+/* Glass variant */
+.glass .dockBackground {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glass:hover .dockBackground {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Solid variant */
+.solid .dockBackground {
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.solid:hover .dockBackground {
+  background: rgba(10, 10, 10, 0.9);
+}
+
+/* Neon variant */
+.neon .dockBackground {
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.neon:hover .dockBackground {
+  box-shadow:
+    0 0 40px rgba(0, 255, 255, 0.3),
+    0 12px 48px rgba(0, 0, 0, 0.15),
+    inset 0 0 30px rgba(0, 255, 255, 0.08);
+}
+
+.neon .itemActive {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+/* Items container */
+.items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual item */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  will-change: transform;
+}
+
+.item:hover:not(.itemDisabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.itemDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Icon wrapper */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+}
+
+.iconWrapper :where(svg, img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #ef4444;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 9px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.neon .badge {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Active indicator */
+.itemActive::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.positionLeft .itemActive::after,
+.positionRight .itemActive::after {
+  bottom: auto;
+  left: auto;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.375rem 0.75rem;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.positionLeft .tooltip,
+.positionRight .tooltip {
+  bottom: auto;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+
+.positionLeft .tooltip {
+  right: calc(100% + 12px);
+  transform: translateY(-50%) translateX(4px);
+}
+
+.positionRight .tooltip {
+  left: calc(100% + 12px);
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.item:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.positionLeft .item:hover .tooltip {
+  transform: translateY(-50%) translateX(0);
+}
+
+.positionRight .item:hover .tooltip {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Bounce animation on hover */
+@keyframes dock-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}

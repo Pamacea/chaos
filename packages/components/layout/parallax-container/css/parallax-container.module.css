@@ -1,0 +1,42 @@
+.container {
+  --parallax-speed: 0.5;
+  --parallax-offset: 0px;
+  --parallax-disabled: false;
+
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.layer.disabled {
+  transition: none;
+}
+
+/* Smooth scrolling for performance */
+.container.smooth {
+  scroll-behavior: smooth;
+}
+
+/* Perspective container for 3D effect */
+.container.perspective {
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+.container.perspective .layer {
+  transform-style: preserve-3d;
+}
+
+/* Hardware acceleration hint */
+.container.gpu,
+.layer.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

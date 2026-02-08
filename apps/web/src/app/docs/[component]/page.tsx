@@ -24,7 +24,7 @@ const COMPONENTS: Record<string, {
       { name: 'glitchColorAlt', type: 'string', default: '"#00ffff"', description: 'Secondary glitch color' },
       { name: 'static', type: 'boolean', default: 'false', description: 'Glitch only on hover' },
     ],
-    usage: `import { GlitchText } from '@/components/chaos/text/glitch-text';
+    usage: `import { GlitchText } from '@oalacea/chaosui/text/glitch-text';
 
 <GlitchText>CHAOS</GlitchText>
 <GlitchText intensity="intense">ERROR</GlitchText>
@@ -45,7 +45,7 @@ const COMPONENTS: Record<string, {
       { name: 'minOpacity', type: 'number', default: '0', description: 'Minimum opacity during flicker' },
       { name: 'hoverOnly', type: 'boolean', default: 'false', description: 'Only flicker on hover' },
     ],
-    usage: `import { FlickerText } from '@/components/chaos/text/flicker-text';
+    usage: `import { FlickerText } from '@oalacea/chaosui/text/flicker-text';
 
 <FlickerText>SIGNAL LOST</FlickerText>
 <FlickerText speed="erratic">UNSTABLE</FlickerText>
@@ -62,7 +62,7 @@ const COMPONENTS: Record<string, {
       { name: 'intensity', type: '"subtle" | "medium" | "intense"', default: '"medium"', description: 'Effect intensity' },
       { name: 'hoverOnly', type: 'boolean', default: 'false', description: 'Only animate on hover' },
     ],
-    usage: `import { DistortionText } from '@/components/chaos/text/distortion-text';
+    usage: `import { DistortionText } from '@oalacea/chaosui/text/distortion-text';
 
 <DistortionText type="wave">FLOWING</DistortionText>
 <DistortionText type="shake" intensity="intense">EARTHQUAKE</DistortionText>
@@ -79,11 +79,82 @@ const COMPONENTS: Record<string, {
       { name: 'loop', type: 'boolean', default: 'true', description: 'Loop the animation' },
       { name: 'direction', type: '"down" | "up"', default: '"down"', description: 'Fall direction' },
     ],
-    usage: `import { FallingText } from '@/components/chaos/text/falling-text';
+    usage: `import { FallingText } from '@oalacea/chaosui/text/falling-text';
 
 <FallingText>FALLING</FallingText>
 <FallingText direction="up" stagger={50}>RISING</FallingText>
 <FallingText loop={false}>ONCE</FallingText>`,
+  },
+  'gradient-text': {
+    name: 'GradientText',
+    category: 'text',
+    description: 'Animated gradient text with customizable colors and direction.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'The text to display' },
+      { name: 'colors', type: 'string[]', default: '["#ff0000", "#ffff00", ...]', description: 'Array of colors for the gradient' },
+      { name: 'speed', type: 'number', default: '3', description: 'Animation duration in seconds' },
+      { name: 'direction', type: '"horizontal" | "vertical" | "diagonal"', default: '"horizontal"', description: 'Animation direction' },
+      { name: 'angle', type: 'number', default: '-', description: 'Gradient angle in degrees (overrides direction)' },
+      { name: 'size', type: 'number', default: '200', description: 'Gradient size percentage' },
+      { name: 'pauseOnHover', type: 'boolean', default: 'false', description: 'Pause animation on hover' },
+    ],
+    usage: `import { GradientText } from '@oalacea/chaosui/text/gradient-text';
+
+<GradientText>RAINBOW</GradientText>
+<GradientText colors={['#ff0040', '#ff00ff']} speed={5}>NEON</GradientText>
+<GradientText direction="vertical">FLOW</GradientText>`,
+  },
+  'wavy-text': {
+    name: 'WavyText',
+    category: 'text',
+    description: 'Text with animated wave effect on individual letters.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'The text to display' },
+      { name: 'amplitude', type: 'number', default: '5', description: 'Wave height in pixels' },
+      { name: 'frequency', type: 'number', default: '1', description: 'Number of wave cycles' },
+      { name: 'speed', type: 'number', default: '2', description: 'Animation duration in seconds' },
+      { name: 'direction', type: '"vertical" | "horizontal"', default: '"vertical"', description: 'Wave direction' },
+    ],
+    usage: `import { WavyText } from '@oalacea/chaosui/text/wavy-text';
+
+<WavyText>WAVY</WavyText>
+<WavyText amplitude={10} frequency={2}>INTENSE</WavyText>
+<WavyText direction="horizontal">SIDE TO SIDE</WavyText>`,
+  },
+  'reflection-text': {
+    name: 'ReflectionText',
+    category: 'text',
+    description: 'Text with a mirror reflection effect below it.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'The text to display' },
+      { name: 'reflectionOpacity', type: 'number', default: '0.3', description: 'Reflection opacity (0-1)' },
+      { name: 'blur', type: 'number', default: '2', description: 'Blur amount in pixels' },
+      { name: 'skew', type: 'number', default: '0', description: 'Skew transformation in degrees' },
+      { name: 'gap', type: 'number', default: '8', description: 'Gap between text and reflection in pixels' },
+    ],
+    usage: `import { ReflectionText } from '@oalacea/chaosui/text/reflection-text';
+
+<ReflectionText>MIRROR</ReflectionText>
+<ReflectionText reflectionOpacity={0.5} blur={4}>FADED</ReflectionText>
+<ReflectionText skew={10}>TILTED</ReflectionText>`,
+  },
+  'three-d-text': {
+    name: 'ThreeDText',
+    category: 'text',
+    description: 'Text with 3D extrusion effect using layered shadows.',
+    props: [
+      { name: 'children', type: 'string', default: '-', description: 'Text to display' },
+      { name: 'depth', type: 'number', default: '5', description: 'Number of shadow layers for depth' },
+      { name: 'direction', type: '"top-left" | "top" | "top-right" | "right" | "bottom-right" | "bottom" | "bottom-left" | "left"', default: '"bottom-right"', description: 'Direction of the 3D extrusion' },
+      { name: 'color', type: 'string', default: '"#000000"', description: 'Shadow color' },
+      { name: 'opacity', type: 'number', default: '0.8', description: 'Shadow opacity (0-1)' },
+      { name: 'spacing', type: 'number', default: '2', description: 'Pixels between each layer' },
+    ],
+    usage: `import { ThreeDText } from '@oalacea/chaosui/text/three-d-text';
+
+<ThreeDText>DEPTH</ThreeDText>
+<ThreeDText depth={10} direction="left">LEFT</ThreeDText>
+<ThreeDText color="#ff0040">RED SHADOW</ThreeDText>`,
   },
 
   // OVERLAYS
@@ -98,7 +169,7 @@ const COMPONENTS: Record<string, {
       { name: 'blendMode', type: 'string', default: '"overlay"', description: 'CSS blend mode' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { NoiseOverlay } from '@/components/chaos/overlays/noise-overlay';
+    usage: `import { NoiseOverlay } from '@oalacea/chaosui/overlays/noise-overlay';
 
 <NoiseOverlay />
 <NoiseOverlay animated opacity={0.08} />
@@ -115,7 +186,7 @@ const COMPONENTS: Record<string, {
       { name: 'color', type: 'string', default: '"#000000"', description: 'Line color' },
       { name: 'flicker', type: 'boolean', default: 'false', description: 'Enable flicker' },
     ],
-    usage: `import { Scanlines } from '@/components/chaos/overlays/scanlines';
+    usage: `import { Scanlines } from '@oalacea/chaosui/overlays/scanlines';
 
 <Scanlines />
 <Scanlines flicker opacity={0.15} />
@@ -131,7 +202,7 @@ const COMPONENTS: Record<string, {
       { name: 'spread', type: 'number', default: '0.5', description: 'How far effect extends' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { Vignette } from '@/components/chaos/overlays/vignette';
+    usage: `import { Vignette } from '@oalacea/chaosui/overlays/vignette';
 
 <Vignette />
 <Vignette intensity={0.9} spread={0.3} />
@@ -147,10 +218,44 @@ const COMPONENTS: Record<string, {
       { name: 'frequency', type: 'number', default: '0.9', description: 'Noise frequency' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { StaticFlicker } from '@/components/chaos/overlays/static-flicker';
+    usage: `import { StaticFlicker } from '@oalacea/chaosui/overlays/static-flicker';
 
 <StaticFlicker />
 <StaticFlicker speed="fast" opacity={0.05} />`,
+  },
+  'scanlines-overlay': {
+    name: 'ScanlinesOverlay',
+    category: 'overlays',
+    description: 'CRT-style horizontal scanlines overlay with customizable thickness.',
+    props: [
+      { name: 'thickness', type: 'number', default: '2', description: 'Scanline thickness in pixels' },
+      { name: 'opacity', type: 'number', default: '0.15', description: 'Scanline opacity (0-1)' },
+      { name: 'color', type: 'string', default: '"#000000"', description: 'Scanline color' },
+      { name: 'flicker', type: 'boolean', default: 'false', description: 'Add CRT flicker effect' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
+    ],
+    usage: `import { ScanlinesOverlay } from '@oalacea/chaosui/overlays/scanlines-overlay';
+
+<ScanlinesOverlay />
+<ScanlinesOverlay flicker opacity={0.2} />
+<ScanlinesOverlay thickness={4} color="#ff0040" />`,
+  },
+  'vignette-overlay': {
+    name: 'VignetteOverlay',
+    category: 'overlays',
+    description: 'Radial gradient overlay for darkened edges with feathering control.',
+    props: [
+      { name: 'intensity', type: 'number', default: '0.5', description: 'Darkness intensity at edges (0-1)' },
+      { name: 'size', type: 'number', default: '70', description: 'Clear area size percentage' },
+      { name: 'color', type: 'string', default: '"#000000"', description: 'Vignette color' },
+      { name: 'feather', type: 'number', default: '30', description: 'Soft edge feathering percentage' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
+    ],
+    usage: `import { VignetteOverlay } from '@oalacea/chaosui/overlays/vignette-overlay';
+
+<VignetteOverlay />
+<VignetteOverlay intensity={0.8} size={50} />
+<VignetteOverlay color="#1a0000" feather={50} />`,
   },
 
   // BUTTONS
@@ -165,7 +270,7 @@ const COMPONENTS: Record<string, {
       { name: 'glitchColor', type: 'string', default: '"#ff0040"', description: 'Primary glitch color' },
       { name: 'glitchColorAlt', type: 'string', default: '"#00ffff"', description: 'Secondary glitch color' },
     ],
-    usage: `import { GlitchButton } from '@/components/chaos/buttons/glitch-button';
+    usage: `import { GlitchButton } from '@oalacea/chaosui/buttons/glitch-button';
 
 <GlitchButton>ENTER</GlitchButton>
 <GlitchButton variant="outline">SUBMIT</GlitchButton>
@@ -181,11 +286,87 @@ const COMPONENTS: Record<string, {
       { name: 'variant', type: '"solid" | "outline" | "broken"', default: '"solid"', description: 'Button variant' },
       { name: 'accentColor', type: 'string', default: '"#ff0040"', description: 'Accent color' },
     ],
-    usage: `import { ChaosButton } from '@/components/chaos/buttons/chaos-button';
+    usage: `import { ChaosButton } from '@oalacea/chaosui/buttons/chaos-button';
 
 <ChaosButton>CHAOS</ChaosButton>
 <ChaosButton chaos="extreme">DESTROY</ChaosButton>
 <ChaosButton variant="broken">BROKEN</ChaosButton>`,
+  },
+  'glass-button': {
+    name: 'GlassButton',
+    category: 'buttons',
+    description: 'Frosted glass morphism button with backdrop blur and customizable transparency.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Button content' },
+      { name: 'blur', type: 'string', default: '"10px"', description: 'Backdrop blur amount' },
+      { name: 'bgOpacity', type: 'number', default: '0.1', description: 'Background opacity 0-1' },
+      { name: 'borderOpacity', type: 'number', default: '0.2', description: 'Border opacity 0-1' },
+      { name: 'hoverOpacity', type: 'number', default: '0.2', description: 'Hover background opacity' },
+      { name: 'glowAmount', type: 'number', default: '0', description: 'Glow intensity 0-1' },
+      { name: 'glassColor', type: 'string', default: '-', description: 'Custom glass color (rgba or hex with alpha)' },
+      { name: 'borderColor', type: 'string', default: '-', description: 'Custom border color' },
+    ],
+    cssVars: [
+      { name: '--glass-blur', default: '10px', description: 'Backdrop filter blur amount' },
+      { name: '--glass-bg-opacity', default: '0.1', description: 'Background opacity' },
+      { name: '--glass-border-opacity', default: '0.2', description: 'Border opacity' },
+      { name: '--glass-hover-opacity', default: '0.2', description: 'Hover state opacity' },
+      { name: '--glass-glow', default: '0', description: 'Glow intensity' },
+      { name: '--glass-color', default: 'rgba(255,255,255,0.1)', description: 'Glass tint color' },
+      { name: '--glass-border', default: 'rgba(255,255,255,0.2)', description: 'Border color' },
+    ],
+    usage: `import { GlassButton } from '@oalacea/chaosui/buttons/glass-button';
+
+<GlassButton>Default Glass</GlassButton>
+<GlassButton blur="20px" bgOpacity={0.2}>Heavy Blur</GlassButton>
+<GlassButton glowAmount={0.5}>Glowing</GlassButton>
+<GlassButton glassColor="rgba(124, 58, 237, 0.2)">Purple Tint</GlassButton>`,
+  },
+  'neon-glow': {
+    name: 'NeonGlow',
+    category: 'buttons',
+    description: 'Vibrant neon-style button with customizable glow color, pulsing animation, and optional realistic flicker effect.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Button content' },
+      { name: 'color', type: 'string', default: '"#00ffff"', description: 'Neon glow color' },
+      { name: 'glowSize', type: 'number', default: '20', description: 'Glow blur radius in pixels' },
+      { name: 'pulseSpeed', type: 'number', default: '2', description: 'Pulse animation duration in seconds' },
+      { name: 'flicker', type: 'boolean', default: 'false', description: 'Add realistic neon flicker effect' },
+    ],
+    cssVars: [
+      { name: '--neon-color', default: '#00ffff', description: 'Primary neon color' },
+      { name: '--glow-size', default: '20px', description: 'Glow blur radius' },
+      { name: '--pulse-speed', default: '2s', description: 'Pulse animation duration' },
+    ],
+    usage: `import { NeonGlow } from '@oalacea/chaosui/buttons/neon-glow';
+
+<NeonGlow>CYAN NEON</NeonGlow>
+<NeonGlow color="#ff00ff">MAGENTA GLOW</NeonGlow>
+<NeonGlow color="#00ff00" flicker>FLICKERING</NeonGlow>
+<NeonGlow glowSize={40} pulseSpeed={1}>FAST PULSE</NeonGlow>`,
+  },
+  'floating-button': {
+    name: 'FloatingButton',
+    category: 'buttons',
+    description: 'Animated button with gentle floating motion and customizable shadow effects.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Button content' },
+      { name: 'floatSpeed', type: 'number', default: '3', description: 'Animation duration in seconds' },
+      { name: 'floatAmplitude', type: 'number', default: '10', description: 'Float distance in pixels' },
+      { name: 'shadowSize', type: 'number', default: '20', description: 'Shadow blur size' },
+      { name: 'shadowOpacity', type: 'number', default: '0.3', description: 'Shadow opacity 0-1' },
+    ],
+    cssVars: [
+      { name: '--float-speed', default: '3s', description: 'Float animation duration' },
+      { name: '--float-amplitude', default: '10px', description: 'Float movement distance' },
+      { name: '--shadow-size', default: '20px', description: 'Shadow blur radius' },
+      { name: '--shadow-opacity', default: '0.3', description: 'Shadow opacity' },
+    ],
+    usage: `import { FloatingButton } from '@oalacea/chaosui/buttons/floating-button';
+
+<FloatingButton>Float Away</FloatingButton>
+<FloatingButton floatSpeed={2} floatAmplitude={15}>Wild Float</FloatingButton>
+<FloatingButton shadowSize={40} shadowOpacity={0.5}>Deep Shadow</FloatingButton>`,
   },
 
   // BACKGROUNDS
@@ -200,7 +381,7 @@ const COMPONENTS: Record<string, {
       { name: 'monochrome', type: 'boolean', default: 'true', description: 'Monochrome or colored' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { NoiseCanvas } from '@/components/chaos/backgrounds/noise-canvas';
+    usage: `import { NoiseCanvas } from '@oalacea/chaosui/backgrounds/noise-canvas';
 
 <NoiseCanvas />
 <NoiseCanvas fps={60} intensity={80} />
@@ -217,7 +398,7 @@ const COMPONENTS: Record<string, {
       { name: 'blur', type: 'number', default: '80', description: 'Blur amount in px' },
       { name: 'durationRange', type: '[number, number]', default: '[15, 25]', description: 'Float duration range' },
     ],
-    usage: `import { GlowOrbs } from '@/components/chaos/backgrounds/glow-orbs';
+    usage: `import { GlowOrbs } from '@oalacea/chaosui/backgrounds/glow-orbs';
 
 <GlowOrbs />
 <GlowOrbs colors={['#ff0040']} count={3} blur={100} />
@@ -234,7 +415,7 @@ const COMPONENTS: Record<string, {
       { name: 'opacity', type: 'number', default: '0.5', description: 'Particle opacity' },
       { name: 'durationRange', type: '[number, number]', default: '[10, 20]', description: 'Drift duration range' },
     ],
-    usage: `import { ParticleField } from '@/components/chaos/backgrounds/particle-field';
+    usage: `import { ParticleField } from '@oalacea/chaosui/backgrounds/particle-field';
 
 <ParticleField />
 <ParticleField count={100} color="#ff0040" />
@@ -258,11 +439,138 @@ const COMPONENTS: Record<string, {
       { name: 'mouseParallax', type: 'boolean', default: 'true', description: 'Mouse parallax effect' },
       { name: 'parallaxIntensity', type: 'number', default: '0.5', description: 'Parallax strength' },
     ],
-    usage: `import { Starfield } from '@/components/chaos/backgrounds/starfield';
+    usage: `import { Starfield } from '@oalacea/chaosui/backgrounds/starfield';
 
 <Starfield />
 <Starfield starCount={500} speed={1} />
 <Starfield direction="right" twinkle={false} color="#ff0040" />`,
+  },
+  'particles': {
+    name: 'Particles',
+    category: 'backgrounds',
+    description: 'Interactive particle system with connection lines and mouse interaction.',
+    props: [
+      { name: 'particleCount', type: 'number', default: '100', description: 'Number of particles to render' },
+      { name: 'speed', type: 'number', default: '1', description: 'Base animation speed multiplier' },
+      { name: 'size', type: 'number', default: '2', description: 'Particle size in pixels' },
+      { name: 'color', type: 'string', default: '"#ffffff"', description: 'Particle color (hex or rgb)' },
+      { name: 'connectionDistance', type: 'number', default: '100', description: 'Max distance to draw connection lines' },
+      { name: 'lineOpacity', type: 'number', default: '0.15', description: 'Opacity of connection lines (0-1)' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Fixed or absolute positioning' },
+      { name: 'mouseInteraction', type: 'boolean', default: 'true', description: 'Enable mouse interaction (particles flee)' },
+      { name: 'mouseRadius', type: 'number', default: '150', description: 'Mouse interaction radius' },
+    ],
+    usage: `import { Particles } from '@oalacea/chaosui/backgrounds/particles';
+
+<Particles />
+<Particles particleCount={150} color="#ff0040" />
+<Particles mouseInteraction={false} connectionDistance={150} />`,
+  },
+  'aurora': {
+    name: 'Aurora',
+    category: 'backgrounds',
+    description: 'Northern lights-inspired color wave effect with multiple layers.',
+    props: [
+      { name: 'colors', type: 'string[]', default: '["#00ff00", "#00ffff", ...]', description: 'Array of aurora colors (5 colors)' },
+      { name: 'speed', type: 'number', default: '20', description: 'Animation duration in seconds' },
+      { name: 'intensity', type: 'number', default: '0.5', description: 'Opacity/strength of the aurora effect' },
+      { name: 'blur', type: 'number', default: '100', description: 'Blur amount in pixels' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position the aurora effect' },
+      { name: 'variant', type: '"default" | "subtle" | "dynamic"', default: '"default"', description: 'Animation style variant' },
+      { name: 'region', type: '"full" | "top" | "bottom" | "left" | "right"', default: '"full"', description: 'Constrain aurora to specific area' },
+      { name: 'blendMode', type: 'string', default: '"screen"', description: 'Custom CSS blend mode' },
+    ],
+    usage: `import { Aurora } from '@oalacea/chaosui/backgrounds/aurora';
+
+<Aurora />
+<Aurora colors={['#ff00ff', '#00ffff', '#ff0080']} intensity={0.7} />
+<Aurora region="top" variant="subtle" />`,
+  },
+  'plasma-wave': {
+    name: 'PlasmaWave',
+    category: 'backgrounds',
+    description: 'Retro plasma wave effect with canvas-based animation and customizable colors.',
+    props: [
+      { name: 'colors', type: 'string[]', default: '["#ff006e", "#8338ec", ...]', description: 'Array of plasma colors (min 2)' },
+      { name: 'speed', type: 'number', default: '1', description: 'Animation speed multiplier (0.1 - 3)' },
+      { name: 'complexity', type: 'number', default: '3', description: 'Wave complexity - overlapping waves (2-6)' },
+      { name: 'intensity', type: 'number', default: '0.5', description: 'Wave intensity/amplitude (0.1 - 1)' },
+      { name: 'scale', type: 'number', default: '1', description: 'Canvas scale for performance (0.5 - 2)' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position the plasma effect' },
+    ],
+    usage: `import { PlasmaWave } from '@oalacea/chaosui/backgrounds/plasma-wave';
+
+<PlasmaWave />
+<PlasmaWave colors={['#ff0000', '#0000ff']} intensity={0.8} />
+<PlasmaWave complexity={5} speed={1.5} />`,
+  },
+  'bubbles': {
+    name: 'Bubbles',
+    category: 'backgrounds',
+    description: 'Floating bubbles with 3D gradient effect and wobble animation.',
+    props: [
+      { name: 'count', type: 'number', default: '20', description: 'Number of bubbles' },
+      { name: 'minSize', type: 'number', default: '20', description: 'Minimum bubble size in pixels' },
+      { name: 'maxSize', type: 'number', default: '80', description: 'Maximum bubble size in pixels' },
+      { name: 'speed', type: 'number', default: '1', description: 'Animation speed multiplier' },
+      { name: 'color', type: 'string', default: '"rgba(255, 255, 255, 0.1)"', description: 'Bubble color (rgba or hex)' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Fixed or absolute positioning' },
+    ],
+    usage: `import { Bubbles } from '@oalacea/chaosui/backgrounds/bubbles';
+
+<Bubbles />
+<Bubbles count={40} color="rgba(255, 0, 100, 0.15)" />
+<Bubbles minSize={10} maxSize={50} speed={1.5} />`,
+  },
+  'lightning': {
+    name: 'Lightning',
+    category: 'backgrounds',
+    description: 'WebGL-based lightning effect with fractal noise and customizable colors.',
+    props: [
+      { name: 'hue', type: 'number', default: '230', description: 'Base hue for lightning color (0-360)' },
+      { name: 'xOffset', type: 'number', default: '0', description: 'Horizontal offset for lightning (-1 to 1)' },
+      { name: 'speed', type: 'number', default: '1', description: 'Animation speed multiplier' },
+      { name: 'intensity', type: 'number', default: '1', description: 'Lightning brightness intensity' },
+      { name: 'size', type: 'number', default: '1', description: 'Lightning bolt thickness' },
+      { name: 'className', type: 'string', default: '""', description: 'Custom className' },
+    ],
+    usage: `import { Lightning } from '@oalacea/chaosui/backgrounds/lightning';
+
+<Lightning />
+<Lightning hue={120} intensity={1.5} />
+<Lightning xOffset={-0.3} speed={2} />`,
+  },
+  'faulty-terminal': {
+    name: 'FaultyTerminal',
+    category: 'backgrounds',
+    description: 'CRT terminal background with matrix-style digits, scanlines, and glitch effects.',
+    props: [
+      { name: 'scale', type: 'number', default: '1', description: 'Scale of the matrix grid' },
+      { name: 'gridMul', type: '[number, number]', default: '[2, 1]', description: 'Grid multipliers [x, y]' },
+      { name: 'digitSize', type: 'number', default: '1.5', description: 'Size of the LED digits' },
+      { name: 'timeScale', type: 'number', default: '0.3', description: 'Time scale for animation' },
+      { name: 'pause', type: 'boolean', default: 'false', description: 'Pause animation' },
+      { name: 'scanlineIntensity', type: 'number', default: '0.3', description: 'Scanline intensity (0-1)' },
+      { name: 'glitchAmount', type: 'number', default: '1', description: 'Glitch amount (1 = normal, higher = more)' },
+      { name: 'flickerAmount', type: 'number', default: '1', description: 'Flicker amount (1 = normal, higher = more)' },
+      { name: 'noiseAmp', type: 'number', default: '1', description: 'Noise amplitude' },
+      { name: 'chromaticAberration', type: 'number', default: '0', description: 'Chromatic aberration strength' },
+      { name: 'dither', type: 'number | boolean', default: '0', description: 'Dithering amount (0 = off, higher = more)' },
+      { name: 'curvature', type: 'number', default: '0.2', description: 'Screen curvature (0 = flat)' },
+      { name: 'tint', type: 'string', default: '"#ffffff"', description: 'Tint color (hex)' },
+      { name: 'mouseReact', type: 'boolean', default: 'true', description: 'React to mouse interaction' },
+      { name: 'mouseStrength', type: 'number', default: '0.2', description: 'Mouse interaction strength' },
+      { name: 'dpr', type: 'number', default: 'Math.min(devicePixelRatio, 2)', description: 'Device pixel ratio' },
+      { name: 'pageLoadAnimation', type: 'boolean', default: 'true', description: 'Enable page load animation' },
+      { name: 'brightness', type: 'number', default: '1', description: 'Brightness multiplier' },
+      { name: 'className', type: 'string', default: '""', description: 'Custom className' },
+      { name: 'style', type: 'React.CSSProperties', default: '-', description: 'Custom styles' },
+    ],
+    usage: `import { FaultyTerminal } from '@oalacea/chaosui/backgrounds/faulty-terminal';
+
+<FaultyTerminal />
+<FaultyTerminal scanlineIntensity={0.5} glitchAmount={2} />
+<FaultyTerminal tint="#00ff00" chromaticAberration={2} />`,
   },
 
   // EFFECTS
@@ -278,7 +586,7 @@ const COMPONENTS: Record<string, {
       { name: 'rotation', type: 'number', default: '-1', description: 'Rotation angle in degrees' },
       { name: 'reverse', type: 'boolean', default: 'false', description: 'Reverse scroll direction' },
     ],
-    usage: `import { WarningTape } from '@/components/chaos/effects/warning-tape';
+    usage: `import { WarningTape } from '@oalacea/chaosui/effects/warning-tape';
 
 <WarningTape>SYSTEM ERROR • CRITICAL</WarningTape>
 <WarningTape bgColor="#ffff00" textColor="#000">CAUTION</WarningTape>
@@ -295,7 +603,7 @@ const COMPONENTS: Record<string, {
       { name: 'variant', type: '"ring" | "dot" | "crosshair"', default: '"ring"', description: 'Cursor style' },
       { name: 'blendMode', type: 'string', default: '"difference"', description: 'Mix blend mode' },
     ],
-    usage: `import { CursorFollower } from '@/components/chaos/effects/cursor-follower';
+    usage: `import { CursorFollower } from '@oalacea/chaosui/effects/cursor-follower';
 
 <CursorFollower />
 <CursorFollower variant="crosshair" color="#fff" />
@@ -312,7 +620,7 @@ const COMPONENTS: Record<string, {
       { name: 'hoverOnly', type: 'boolean', default: 'false', description: 'Only show on hover' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { ScreenDistortion } from '@/components/chaos/effects/screen-distortion';
+    usage: `import { ScreenDistortion } from '@oalacea/chaosui/effects/screen-distortion';
 
 <ScreenDistortion type="glitch" />
 <ScreenDistortion type="chromatic" intensity="subtle" />
@@ -328,7 +636,7 @@ const COMPONENTS: Record<string, {
       { name: 'animated', type: 'boolean', default: 'true', description: 'Enable pulse animation' },
       { name: 'intensity', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Glow intensity' },
     ],
-    usage: `import { GlowingBorder } from '@/components/chaos/effects/glowing-border';
+    usage: `import { GlowingBorder } from '@oalacea/chaosui/effects/glowing-border';
 
 <GlowingBorder>Content here</GlowingBorder>
 <GlowingBorder variant="rainbow">Rainbow glow</GlowingBorder>
@@ -344,7 +652,7 @@ const COMPONENTS: Record<string, {
       { name: 'intensity', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Glitch intensity' },
       { name: 'continuous', type: 'boolean', default: 'false', description: 'Continuous glitch (not just hover)' },
     ],
-    usage: `import { GlitchImage } from '@/components/chaos/effects/glitch-image';
+    usage: `import { GlitchImage } from '@oalacea/chaosui/effects/glitch-image';
 
 <GlitchImage src="/photo.jpg" alt="Profile" />
 <GlitchImage src="/hero.png" intensity="high" />
@@ -363,7 +671,7 @@ const COMPONENTS: Record<string, {
       { name: 'pulseBlips', type: 'boolean', default: 'true', description: 'Enable pulse on blips' },
       { name: 'scanWidth', type: 'number', default: '2', description: 'Scan line width' },
     ],
-    usage: `import { RadarScan } from '@/components/chaos/effects/radar-scan';
+    usage: `import { RadarScan } from '@oalacea/chaosui/effects/radar-scan';
 
 <RadarScan />
 <RadarScan color="rgba(255, 0, 0, 0.8)" speed={2} />
@@ -383,7 +691,7 @@ const COMPONENTS: Record<string, {
       { name: 'animated', type: 'boolean', default: 'false', description: 'Animated gradient border' },
       { name: 'cut', type: 'boolean', default: 'false', description: 'Cut corner style' },
     ],
-    usage: `import { NeonButton } from '@/components/chaos/neon/neon-button';
+    usage: `import { NeonButton } from '@oalacea/chaosui/neon/neon-button';
 
 <NeonButton>ENTER</NeonButton>
 <NeonButton variant="pink" glowing>GLOW</NeonButton>
@@ -401,7 +709,7 @@ const COMPONENTS: Record<string, {
       { name: 'pulse', type: 'boolean', default: 'false', description: 'Pulse animation' },
       { name: 'outline', type: 'boolean', default: 'false', description: 'Outline style' },
     ],
-    usage: `import { NeonBadge } from '@/components/chaos/neon/neon-badge';
+    usage: `import { NeonBadge } from '@oalacea/chaosui/neon/neon-badge';
 
 <NeonBadge>LIVE</NeonBadge>
 <NeonBadge variant="green" pulse>ONLINE</NeonBadge>
@@ -419,7 +727,7 @@ const COMPONENTS: Record<string, {
       { name: 'animated', type: 'boolean', default: 'true', description: 'Shimmer animation' },
       { name: 'showValue', type: 'boolean', default: 'false', description: 'Show percentage' },
     ],
-    usage: `import { NeonProgress } from '@/components/chaos/neon/neon-progress';
+    usage: `import { NeonProgress } from '@oalacea/chaosui/neon/neon-progress';
 
 <NeonProgress value={75} />
 <NeonProgress value={50} variant="rainbow" showValue />
@@ -435,7 +743,7 @@ const COMPONENTS: Record<string, {
       { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Toggle size' },
     ],
-    usage: `import { NeonToggle } from '@/components/chaos/neon/neon-toggle';
+    usage: `import { NeonToggle } from '@oalacea/chaosui/neon/neon-toggle';
 
 const [on, setOn] = useState(false);
 
@@ -453,7 +761,7 @@ const [on, setOn] = useState(false);
       { name: 'dismissible', type: 'boolean', default: 'false', description: 'Show close button' },
       { name: 'onDismiss', type: '() => void', default: '-', description: 'Close callback' },
     ],
-    usage: `import { NeonAlert } from '@/components/chaos/neon/neon-alert';
+    usage: `import { NeonAlert } from '@oalacea/chaosui/neon/neon-alert';
 
 <NeonAlert title="Info">This is an info message</NeonAlert>
 <NeonAlert variant="error" dismissible onDismiss={handleClose}>
@@ -470,7 +778,7 @@ const [on, setOn] = useState(false);
       { name: 'onChange', type: '(tabId: string) => void', default: '-', description: 'Tab change callback' },
       { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
     ],
-    usage: `import { NeonTabs } from '@/components/chaos/neon/neon-tabs';
+    usage: `import { NeonTabs } from '@oalacea/chaosui/neon/neon-tabs';
 
 const tabs = [
   { id: 'home', label: 'Home' },
@@ -488,7 +796,7 @@ const tabs = [
       { name: 'animated', type: 'boolean', default: 'false', description: 'Glow animation' },
       { name: 'text', type: 'string', default: '-', description: 'Center text' },
     ],
-    usage: `import { NeonDivider } from '@/components/chaos/neon/neon-divider';
+    usage: `import { NeonDivider } from '@oalacea/chaosui/neon/neon-divider';
 
 <NeonDivider />
 <NeonDivider variant="gradient" animated />
@@ -505,7 +813,7 @@ const tabs = [
       { name: 'label', type: 'string', default: '-', description: 'Input label' },
       { name: 'error', type: 'string', default: '-', description: 'Error message' },
     ],
-    usage: `import { CyberInput } from '@/components/chaos/cyber/cyber-input';
+    usage: `import { CyberInput } from '@oalacea/chaosui/cyber/cyber-input';
 
 <CyberInput placeholder="Enter text" />
 <CyberInput label="Username" variant="pink" />
@@ -520,7 +828,7 @@ const tabs = [
       { name: 'color', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Loader size' },
     ],
-    usage: `import { CyberLoader } from '@/components/chaos/cyber/cyber-loader';
+    usage: `import { CyberLoader } from '@oalacea/chaosui/cyber/cyber-loader';
 
 <CyberLoader />
 <CyberLoader variant="dots" color="pink" />
@@ -537,7 +845,7 @@ const tabs = [
       { name: 'variant', type: '"cyan" | "pink" | "green" | "red"', default: '"cyan"', description: 'Neon color' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Modal size' },
     ],
-    usage: `import { CyberModal } from '@/components/chaos/cyber/cyber-modal';
+    usage: `import { CyberModal } from '@oalacea/chaosui/cyber/cyber-modal';
 
 <CyberModal isOpen={open} onClose={() => setOpen(false)} title="Confirm">
   Are you sure?
@@ -554,7 +862,7 @@ const tabs = [
       { name: 'status', type: '"online" | "offline" | "busy" | "away"', default: '-', description: 'Status indicator' },
       { name: 'glowing', type: 'boolean', default: 'false', description: 'Continuous glow' },
     ],
-    usage: `import { CyberAvatar } from '@/components/chaos/cyber/cyber-avatar';
+    usage: `import { CyberAvatar } from '@oalacea/chaosui/cyber/cyber-avatar';
 
 <CyberAvatar src="/avatar.jpg" />
 <CyberAvatar src="/user.png" status="online" glowing />
@@ -573,7 +881,7 @@ const tabs = [
       { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
       { name: 'showValue', type: 'boolean', default: 'false', description: 'Show current value' },
     ],
-    usage: `import { CyberSlider } from '@/components/chaos/cyber/cyber-slider';
+    usage: `import { CyberSlider } from '@oalacea/chaosui/cyber/cyber-slider';
 
 <CyberSlider value={50} onChange={setValue} />
 <CyberSlider value={vol} onChange={setVol} showValue variant="pink" />`,
@@ -588,7 +896,7 @@ const tabs = [
       { name: 'position', type: '"top" | "bottom" | "left" | "right"', default: '"top"', description: 'Tooltip position' },
       { name: 'variant', type: '"cyan" | "pink" | "green"', default: '"cyan"', description: 'Neon color' },
     ],
-    usage: `import { CyberTooltip } from '@/components/chaos/cyber/cyber-tooltip';
+    usage: `import { CyberTooltip } from '@oalacea/chaosui/cyber/cyber-tooltip';
 
 <CyberTooltip content="Click to submit">
   <button>Submit</button>
@@ -599,14 +907,14 @@ const tabs = [
   'hologram-card': {
     name: 'HologramCard',
     category: 'layout',
-    description: 'Holographic card with scanlines and glow.',
+    description: 'Holographic card with scanlines, RGB shift, 3D tilt, and mouse-tracking glow.',
     props: [
       { name: 'children', type: 'ReactNode', default: '-', description: 'Card content' },
       { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
       { name: 'scanlines', type: 'boolean', default: 'true', description: 'Show CRT scanlines' },
       { name: 'flicker', type: 'boolean', default: 'false', description: 'Flicker effect' },
     ],
-    usage: `import { HologramCard } from '@/components/chaos/layout/hologram-card';
+    usage: `import { HologramCard } from '@oalacea/chaosui/layout/hologram-card';
 
 <HologramCard>
   <h2>Title</h2>
@@ -625,7 +933,7 @@ const tabs = [
       { name: 'striped', type: 'boolean', default: 'true', description: 'Striped rows' },
       { name: 'hoverable', type: 'boolean', default: 'true', description: 'Hover effect' },
     ],
-    usage: `import { DataGrid } from '@/components/chaos/layout/data-grid';
+    usage: `import { DataGrid } from '@oalacea/chaosui/layout/data-grid';
 
 const columns = [
   { key: 'name', header: 'Name' },
@@ -646,7 +954,7 @@ const data = [{ name: 'Server-1', status: 'Online' }];
       { name: 'variant', type: '"cyan" | "pink" | "green" | "purple"', default: '"cyan"', description: 'Neon color' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Hexagon size' },
     ],
-    usage: `import { HexagonMenu } from '@/components/chaos/navigation/hexagon-menu';
+    usage: `import { HexagonMenu } from '@oalacea/chaosui/navigation/hexagon-menu';
 
 const items = [
   { id: 'home', label: 'Home' },
@@ -674,7 +982,7 @@ const items = [
       { name: 'deleteSpeed', type: 'number', default: '30', description: 'Delete speed when looping' },
       { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when typing completes' },
     ],
-    usage: `import { TypingText } from '@/components/chaos/text/typing-text';
+    usage: `import { TypingText } from '@oalacea/chaosui/text/typing-text';
 
 <TypingText text="Hello World" />
 <TypingText text="Loading..." variant="terminal" loop />
@@ -693,7 +1001,7 @@ const items = [
       { name: 'glitchChars', type: 'string', default: '"!@#$%..."', description: 'Characters to use for scramble' },
       { name: 'scramble', type: 'boolean', default: 'false', description: 'Enable scramble reveal effect' },
     ],
-    usage: `import { CharGlitch } from '@/components/chaos/text/char-glitch';
+    usage: `import { CharGlitch } from '@oalacea/chaosui/text/char-glitch';
 
 <CharGlitch>CORRUPTED</CharGlitch>
 <CharGlitch variant="matrix" mode="wave">MATRIX</CharGlitch>
@@ -716,7 +1024,7 @@ const items = [
       { name: 'highlightColor', type: 'string', default: '"#ff0040"', description: 'Highlight color' },
       { name: 'immediate', type: 'boolean', default: 'false', description: 'Trigger immediately without scroll' },
     ],
-    usage: `import { RevealText } from '@/components/chaos/text/reveal-text';
+    usage: `import { RevealText } from '@oalacea/chaosui/text/reveal-text';
 
 <RevealText>This text reveals on scroll</RevealText>
 <RevealText splitBy="char" direction="fromLeft">Character by character</RevealText>
@@ -737,7 +1045,7 @@ const items = [
       { name: 'strikeColor', type: 'string', default: '-', description: 'Custom strike color' },
       { name: 'onReveal', type: '() => void', default: '-', description: 'Callback when reveal completes' },
     ],
-    usage: `import { StrikeReveal } from '@/components/chaos/text/strike-reveal';
+    usage: `import { StrikeReveal } from '@oalacea/chaosui/text/strike-reveal';
 
 <StrikeReveal revealText="TRUTH">LIE</StrikeReveal>
 <StrikeReveal variant="redacted" trigger="hover">CLASSIFIED</StrikeReveal>
@@ -757,7 +1065,7 @@ const items = [
       { name: 'hover', type: 'boolean', default: 'false', description: 'Expand on hover' },
       { name: 'layerColors', type: '[string, string?, string?]', default: '-', description: 'Custom layer colors' },
     ],
-    usage: `import { GiantLayers } from '@/components/chaos/text/giant-layers';
+    usage: `import { GiantLayers } from '@oalacea/chaosui/text/giant-layers';
 
 <GiantLayers>CHAOS</GiantLayers>
 <GiantLayers variant="cyber" animated>CYBER</GiantLayers>
@@ -781,7 +1089,7 @@ const items = [
       { name: 'dripColor', type: 'string', default: '-', description: 'Custom drip color' },
       { name: 'dripProbability', type: 'number', default: '0.7', description: 'Probability of drip per character (0-1)' },
     ],
-    usage: `import { BloodDrip } from '@/components/chaos/text/blood-drip';
+    usage: `import { BloodDrip } from '@oalacea/chaosui/text/blood-drip';
 
 <BloodDrip>HORROR</BloodDrip>
 <BloodDrip variant="acid" glowing>TOXIC</BloodDrip>
@@ -806,7 +1114,7 @@ const items = [
       { name: 'cursor', type: 'boolean', default: 'false', description: 'Show typing cursor' },
       { name: 'onChange', type: '(word: string, index: number) => void', default: '-', description: 'Callback when word changes' },
     ],
-    usage: `import { RotateText } from '@/components/chaos/text/rotate-text';
+    usage: `import { RotateText } from '@oalacea/chaosui/text/rotate-text';
 
 <RotateText prefix="I am" words={['CHAOS', 'DESTRUCTION', 'POWER']} />
 <RotateText words={['BUILD', 'BREAK', 'REPEAT']} animation="flip" highlight />
@@ -827,7 +1135,7 @@ const items = [
       { name: 'revealDelay', type: 'number', default: '100', description: 'Delay between lines for reveal animation (ms)' },
       { name: 'color', type: 'string', default: '-', description: 'Custom color' },
     ],
-    usage: `import { AsciiArt } from '@/components/chaos/text/ascii-art';
+    usage: `import { AsciiArt } from '@oalacea/chaosui/text/ascii-art';
 
 <AsciiArt variant="matrix" animation="reveal">
 {\`  /\\\\
@@ -852,7 +1160,7 @@ const items = [
       { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when countdown reaches zero' },
       { name: 'labels', type: '{ days?: string; hours?: string; minutes?: string; seconds?: string }', default: '-', description: 'Labels customization' },
     ],
-    usage: `import { CountdownDisplay } from '@/components/chaos/text/countdown-display';
+    usage: `import { CountdownDisplay } from '@oalacea/chaosui/text/countdown-display';
 
 <CountdownDisplay target={new Date('2025-01-01')} />
 <CountdownDisplay target={3600} variant="neon" flip />
@@ -878,7 +1186,7 @@ const items = [
       { name: 'onCommand', type: '(command: string) => void', default: '-', description: 'Callback when command is submitted' },
       { name: 'autoScroll', type: 'boolean', default: 'true', description: 'Auto-scroll to bottom' },
     ],
-    usage: `import { TerminalOutput } from '@/components/chaos/text/terminal-output';
+    usage: `import { TerminalOutput } from '@oalacea/chaosui/text/terminal-output';
 
 const lines = [
   { type: 'command', content: 'npm install chaos' },
@@ -904,7 +1212,7 @@ const lines = [
       { name: 'placeholder', type: 'string', default: '"Type a message..."', description: 'Input placeholder' },
       { name: 'sendLabel', type: 'string', default: '"Send"', description: 'Send button label' },
     ],
-    usage: `import { ChatInterface } from '@/components/chaos/inputs/chat-interface';
+    usage: `import { ChatInterface } from '@oalacea/chaosui/inputs/chat-interface';
 
 <ChatInterface />
 <ChatInterface theme="neon" showTimestamps />
@@ -920,7 +1228,7 @@ const lines = [
       { name: 'items', type: 'ScatteredNavItemProps[]', default: '-', description: 'Navigation items' },
       { name: 'children', type: 'ReactNode', default: '-', description: 'Custom nav items' },
     ],
-    usage: `import { ScatteredNav, ScatteredNavItem } from '@/components/chaos/navigation/scattered-nav';
+    usage: `import { ScatteredNav, ScatteredNavItem } from '@oalacea/chaosui/navigation/scattered-nav';
 
 <ScatteredNav>
   <ScatteredNavItem href="/" variant="logo">LOGO</ScatteredNavItem>
@@ -940,7 +1248,7 @@ const lines = [
       { name: 'size', type: '"default" | "compact"', default: '"default"', description: 'Size variant' },
       { name: 'children', type: 'ReactNode', default: '-', description: 'Custom nav items' },
     ],
-    usage: `import { VerticalNav } from '@/components/chaos/navigation/vertical-nav';
+    usage: `import { VerticalNav } from '@oalacea/chaosui/navigation/vertical-nav';
 
 const items = [
   { glyph: '⌂', label: 'Home', href: '/', active: true },
@@ -962,7 +1270,7 @@ const items = [
       { name: 'showLine', type: 'boolean', default: 'true', description: 'Show connecting line' },
       { name: 'dotSize', type: '"small" | "medium" | "large"', default: '"medium"', description: 'Dot size' },
     ],
-    usage: `import { TimelineNav } from '@/components/chaos/navigation/timeline-nav';
+    usage: `import { TimelineNav } from '@oalacea/chaosui/navigation/timeline-nav';
 
 const eras = [
   { value: '2020', label: '2020', active: true },
@@ -984,7 +1292,7 @@ const eras = [
       { name: 'variant', type: '"default" | "heavy" | "double"', default: '"default"', description: 'Visual variant' },
       { name: 'children', type: 'ReactNode', default: '-', description: 'Custom content' },
     ],
-    usage: `import { BrutalNav } from '@/components/chaos/navigation/brutal-nav';
+    usage: `import { BrutalNav } from '@oalacea/chaosui/navigation/brutal-nav';
 
 <BrutalNav 
   brand="CHAOS"
@@ -1010,7 +1318,7 @@ const eras = [
       { name: 'showConnector', type: 'boolean', default: 'false', description: 'Show connectors between dots' },
       { name: 'onDotClick', type: '(id: string) => void', default: '-', description: 'Click callback' },
     ],
-    usage: `import { ProgressDots } from '@/components/chaos/navigation/progress-dots';
+    usage: `import { ProgressDots } from '@oalacea/chaosui/navigation/progress-dots';
 
 const items = [
   { id: 'intro', label: 'INTRO', href: '#intro' },
@@ -1032,7 +1340,7 @@ const items = [
       { name: 'position', type: '"right" | "left"', default: '"right"', description: 'Position' },
       { name: 'trackHeight', type: 'number', default: '100', description: 'Track height in px' },
     ],
-    usage: `import { ScrollIndicator } from '@/components/chaos/navigation/scroll-indicator';
+    usage: `import { ScrollIndicator } from '@oalacea/chaosui/navigation/scroll-indicator';
 
 <ScrollIndicator />
 <ScrollIndicator showPercentage variant="blood" />
@@ -1051,7 +1359,7 @@ const items = [
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Button size' },
       { name: 'showStrike', type: 'boolean', default: 'true', description: 'Show strikethrough effect' },
     ],
-    usage: `import { DeadButton } from '@/components/chaos/buttons/dead-button';
+    usage: `import { DeadButton } from '@oalacea/chaosui/buttons/dead-button';
 
 <DeadButton>DEAD END</DeadButton>
 <DeadButton gradient={2} size="lg">DESTROYED</DeadButton>
@@ -1072,7 +1380,7 @@ const items = [
       { name: 'iconRight', type: 'ReactNode', default: '-', description: 'Right icon' },
       { name: 'href', type: 'string', default: '-', description: 'Link URL (renders as anchor)' },
     ],
-    usage: `import { DeeperButton } from '@/components/chaos/buttons/deeper-button';
+    usage: `import { DeeperButton } from '@oalacea/chaosui/buttons/deeper-button';
 
 <DeeperButton>GO DEEPER</DeeperButton>
 <DeeperButton variant="gold" pulsing>DESCEND</DeeperButton>
@@ -1093,7 +1401,7 @@ const items = [
       { name: 'disabled', type: 'boolean', default: 'false', description: 'Disable both buttons' },
       { name: 'selectedValue', type: '"yes" | "no" | null', default: 'null', description: 'Currently selected value' },
     ],
-    usage: `import { DualChoice } from '@/components/chaos/buttons/dual-choice';
+    usage: `import { DualChoice } from '@oalacea/chaosui/buttons/dual-choice';
 
 <DualChoice onYes={() => console.log('yes')} onNo={() => console.log('no')} />
 <DualChoice yesLabel="ACCEPT" noLabel="REJECT" variant="dramatic" />
@@ -1116,7 +1424,7 @@ const items = [
       { name: 'disabled', type: 'boolean', default: 'false', description: 'Disabled state' },
       { name: 'href', type: 'string', default: '-', description: 'Link URL (renders as anchor)' },
     ],
-    usage: `import { CtaBrutal } from '@/components/chaos/buttons/cta-brutal';
+    usage: `import { CtaBrutal } from '@oalacea/chaosui/buttons/cta-brutal';
 
 <CtaBrutal>TAKE ACTION</CtaBrutal>
 <CtaBrutal variant="gold" glitch size="lg">SUBSCRIBE</CtaBrutal>
@@ -1140,7 +1448,7 @@ const items = [
       { name: 'animated', type: 'boolean', default: 'false', description: 'Enable animation' },
       { name: 'dangerThreshold', type: 'number', default: '80', description: 'Danger threshold percentage' },
     ],
-    usage: `import { TensionBar } from '@/components/chaos/buttons/tension-bar';
+    usage: `import { TensionBar } from '@oalacea/chaosui/buttons/tension-bar';
 
 <TensionBar value={75} />
 <TensionBar value={90} variant="danger" dangerThreshold={80} />
@@ -1160,7 +1468,7 @@ const items = [
       { name: 'showIndicators', type: 'boolean', default: 'false', description: 'Show navigation indicators' },
       { name: 'gap', type: 'number', default: '2', description: 'Gap between panels in rem' },
     ],
-    usage: `import { HorizontalScroll } from '@/components/chaos/layout/horizontal-scroll';
+    usage: `import { HorizontalScroll } from '@oalacea/chaosui/layout/horizontal-scroll';
 
 <HorizontalScroll showIndicators>
   <div>Panel 1</div>
@@ -1179,7 +1487,7 @@ const items = [
       { name: 'glow', type: 'boolean', default: 'false', description: 'Add glow effect' },
       { name: 'padding', type: '"sm" | "md" | "lg" | "xl"', default: '"md"', description: 'Padding size' },
     ],
-    usage: `import { VoidFrame } from '@/components/chaos/layout/void-frame';
+    usage: `import { VoidFrame } from '@oalacea/chaosui/layout/void-frame';
 
 <VoidFrame>
   <h2>Framed Content</h2>
@@ -1196,7 +1504,7 @@ const items = [
       { name: 'variant', type: '"gold" | "blood" | "cyan" | "bone"', default: '"gold"', description: 'Color variant' },
       { name: 'showConnectors', type: 'boolean', default: 'false', description: 'Show connectors between tiers' },
     ],
-    usage: `import { TowerPricing } from '@/components/chaos/layout/tower-pricing';
+    usage: `import { TowerPricing } from '@oalacea/chaosui/layout/tower-pricing';
 
 const tiers = [
   { name: 'Basic', price: 9, features: ['Feature 1', 'Feature 2'] },
@@ -1219,7 +1527,7 @@ const tiers = [
       { name: 'compact', type: 'boolean', default: 'false', description: 'Compact mode' },
       { name: 'striped', type: 'boolean', default: 'false', description: 'Striped rows' },
     ],
-    usage: `import { SpecGrid } from '@/components/chaos/layout/spec-grid';
+    usage: `import { SpecGrid } from '@oalacea/chaosui/layout/spec-grid';
 
 const specs = [
   { label: 'CPU', value: '8', unit: 'cores', highlighted: true },
@@ -1241,7 +1549,7 @@ const specs = [
       { name: 'numbered', type: 'boolean', default: 'false', description: 'Large track numbers' },
       { name: 'onTrackClick', type: '(track: Track, index: number) => void', default: '-', description: 'Track click handler' },
     ],
-    usage: `import { Tracklist } from '@/components/chaos/layout/tracklist';
+    usage: `import { Tracklist } from '@oalacea/chaosui/layout/tracklist';
 
 const tracks = [
   { number: 1, name: 'Intro', duration: '0:42' },
@@ -1266,7 +1574,7 @@ const tracks = [
       { name: 'size', type: '"sm" | "md" | "lg" | "xl"', default: '"md"', description: 'Size variant' },
       { name: 'scattered', type: 'boolean', default: 'false', description: 'Scattered positioning' },
     ],
-    usage: `import { RuneSymbols, RUNES } from '@/components/chaos/decorative/rune-symbols';
+    usage: `import { RuneSymbols, RUNES } from '@oalacea/chaosui/decorative/rune-symbols';
 
 <RuneSymbols />
 <RuneSymbols runes={['algiz', 'sowilo', 'tiwaz']} animation="pulsing" />
@@ -1285,7 +1593,7 @@ const tracks = [
       { name: 'animated', type: 'boolean', default: 'false', description: 'Animate' },
       { name: 'position', type: '"top-left" | "top-right" | "bottom-left" | "bottom-right" | "all"', default: '"all"', description: 'Corner position (for type="corner")' },
     ],
-    usage: `import { Ornaments } from '@/components/chaos/decorative/ornaments';
+    usage: `import { Ornaments } from '@oalacea/chaosui/decorative/ornaments';
 
 <Ornaments type="divider" symbol="fleurDeLis" />
 <Ornaments type="symbols" symbols={['star', 'diamond', 'star']} />
@@ -1306,7 +1614,7 @@ const tracks = [
       { name: 'burnEdges', type: 'boolean', default: 'false', description: 'Show burn/dark edges' },
       { name: 'edgeDarkening', type: 'boolean', default: 'false', description: 'Show edge darkening' },
     ],
-    usage: `import { CoffeeStain } from '@/components/chaos/decorative/coffee-stain';
+    usage: `import { CoffeeStain } from '@oalacea/chaosui/decorative/coffee-stain';
 
 <CoffeeStain />
 <CoffeeStain variant="wine" agedPaper burnEdges />
@@ -1326,7 +1634,7 @@ const tracks = [
       { name: 'showStaff', type: 'boolean', default: 'false', description: 'Show decorative staff lines' },
       { name: 'symbols', type: '(keyof typeof MUSIC_SYMBOLS)[]', default: '-', description: 'Symbols to use for random generation' },
     ],
-    usage: `import { SheetMusic } from '@/components/chaos/decorative/sheet-music';
+    usage: `import { SheetMusic } from '@oalacea/chaosui/decorative/sheet-music';
 
 <SheetMusic />
 <SheetMusic animation="falling" variant="gold" showStaff />
@@ -1346,7 +1654,7 @@ const tracks = [
       { name: 'cracked', type: 'boolean', default: 'false', description: 'Add crack effect' },
       { name: 'as', type: '"div" | "span" | "h1" | "h2" | "h3" | "h4" | "p"', default: '"div"', description: 'HTML tag to render' },
     ],
-    usage: `import { Inscription } from '@/components/chaos/decorative/inscription';
+    usage: `import { Inscription } from '@oalacea/chaosui/decorative/inscription';
 
 <Inscription>MEMENTO MORI</Inscription>
 <Inscription effect="deepCarved" variant="marble" bordered>CARVED IN STONE</Inscription>
@@ -1365,7 +1673,7 @@ const tracks = [
       { name: 'revealDistance', type: 'number', default: '150', description: 'Pixel distance for reveal' },
       { name: 'showTimer', type: 'boolean', default: 'true', description: 'Show timer display' },
     ],
-    usage: `import { LivingText } from '@/components/chaos/text/living-text';
+    usage: `import { LivingText } from '@oalacea/chaosui/text/living-text';
 
 <LivingText text="This text will fade away" lifetime={5000} />`,
   },
@@ -1382,7 +1690,7 @@ const tracks = [
       { name: 'textShadow', type: 'boolean', default: 'true', description: 'Add text shadow' },
       { name: 'uppercase', type: 'boolean', default: 'true', description: 'Uppercase text' },
     ],
-    usage: `import { BrutalManifest } from '@/components/chaos/text/brutal-manifest';
+    usage: `import { BrutalManifest } from '@oalacea/chaosui/text/brutal-manifest';
 
 <BrutalManifest phrases={[
   [{ text: 'NO' }, { text: 'COMPROMISE' }],
@@ -1403,7 +1711,7 @@ const tracks = [
       { name: 'stats', type: 'Array<{label: string, value: string | number}>', default: '[]', description: 'Stats to display' },
       { name: 'position', type: '"left" | "center" | "right"', default: '"left"', description: 'Content position' },
     ],
-    usage: `import { StrataSection } from '@/components/chaos/layout/strata-section';
+    usage: `import { StrataSection } from '@oalacea/chaosui/layout/strata-section';
 
 <StrataSection
   depth={450}
@@ -1428,7 +1736,7 @@ const tracks = [
       { name: 'truncateText', type: 'boolean', default: 'true', description: 'Truncate long text' },
       { name: 'borderStyle', type: '"solid" | "dashed" | "double"', default: '"solid"', description: 'Border style' },
     ],
-    usage: `import { BrokenGrid } from '@/components/chaos/layout/broken-grid';
+    usage: `import { BrokenGrid } from '@oalacea/chaosui/layout/broken-grid';
 
 <BrokenGrid
   items={[
@@ -1448,13 +1756,86 @@ const tracks = [
       { name: 'items', type: 'NavItem[]', default: '-', description: 'Navigation items' },
       { name: 'chaosLevel', type: '"low" | "medium" | "high"', default: '"medium"', description: 'Dispersion amount' },
     ],
-    usage: `import { CollapsedNav } from '@/components/chaos/navigation/collapsed-nav';
+    usage: `import { CollapsedNav } from '@oalacea/chaosui/navigation/collapsed-nav';
 
 <CollapsedNav items={[
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Data', href: '#data' }
 ]} />`,
+  },
+  'dock': {
+    name: 'Dock',
+    category: 'navigation',
+    description: 'macOS-style dock with magnification effect on hover and magnetic items.',
+    props: [
+      { name: 'items', type: 'DockItem[]', default: '-', description: 'Dock items {id, icon, label?, badge?, onClick?, href?, active?, disabled?}' },
+      { name: 'maxScale', type: 'number', default: '1.5', description: 'Maximum scale for hovered item' },
+      { name: 'spacing', type: 'number', default: '8', description: 'Spacing between items in px' },
+      { name: 'iconSize', type: 'number', default: '48', description: 'Base icon size in px' },
+      { name: 'position', type: '"bottom" | "top" | "left" | "right"', default: '"bottom"', description: 'Position of the dock' },
+      { name: 'magnificationRange', type: 'number', default: '150', description: 'Magnification range in px' },
+      { name: 'animationDuration', type: 'number', default: '200', description: 'Animation duration in ms' },
+      { name: 'variant', type: '"glass" | "solid" | "neon"', default: '"glass"', description: 'Style variant' },
+    ],
+    usage: `import { Dock } from '@oalacea/chaosui/navigation/dock';
+
+const items = [
+  { id: 'home', icon: <HomeIcon />, label: 'Home', href: '/' },
+  { id: 'search', icon: <SearchIcon />, label: 'Search', badge: 3 },
+  { id: 'settings', icon: <SettingsIcon />, label: 'Settings', active: true }
+];
+
+<Dock items={items} />
+<Dock items={items} position="left" variant="neon" />`,
+  },
+  'magnetic-dock': {
+    name: 'MagneticDock',
+    category: 'navigation',
+    description: 'Dock with magnetic attraction and spring physics for smooth animations.',
+    props: [
+      { name: 'items', type: 'MagneticDockItem[]', default: '-', description: 'Dock items {id, label?, icon?, href?, onClick?, active?, disabled?}' },
+      { name: 'position', type: '"bottom" | "top" | "left" | "right"', default: '"bottom"', description: 'Position of the dock' },
+      { name: 'magneticStrength', type: 'number', default: '0.3', description: 'Magnetic strength (0-1)' },
+      { name: 'stiffness', type: 'number', default: '0.1', description: 'Spring stiffness for animation' },
+      { name: 'damping', type: 'number', default: '0.8', description: 'Damping for animation' },
+      { name: 'size', type: '"small" | "medium" | "large"', default: '"medium"', description: 'Dock size variant' },
+      { name: 'iconOnly', type: 'boolean', default: 'false', description: 'Icon-only mode' },
+      { name: 'variant', type: '"glass" | "solid" | "neon" | "brutal"', default: '"glass"', description: 'Style variant' },
+    ],
+    usage: `import { MagneticDock } from '@oalacea/chaosui/navigation/magnetic-dock';
+
+const items = [
+  { id: 'home', icon: <HomeIcon />, label: 'Home' },
+  { id: 'search', icon: <SearchIcon />, label: 'Search' }
+];
+
+<MagneticDock items={items} />
+<MagneticDock items={items} magneticStrength={0.5} variant="neon" />`,
+  },
+  'bubble-menu': {
+    name: 'BubbleMenu',
+    category: 'navigation',
+    description: 'Floating bubble menu with pop animations and ripple effects.',
+    props: [
+      { name: 'items', type: 'BubbleMenuItem[]', default: '-', description: 'Menu items {id, icon, label?, onClick?, href?, active?, disabled?}' },
+      { name: 'bubbleSize', type: 'number', default: '60', description: 'Size of each bubble in px' },
+      { name: 'spacing', type: 'number', default: '16', description: 'Spacing between bubbles in px' },
+      { name: 'floating', type: 'boolean', default: 'true', description: 'Enable floating animation' },
+      { name: 'align', type: '"center" | "left" | "right"', default: '"center"', description: 'Alignment of bubbles' },
+      { name: 'variant', type: '"glass" | "solid" | "neon" | "pastel"', default: '"glass"', description: 'Style variant' },
+      { name: 'animationSpeed', type: 'number', default: '1', description: 'Animation speed multiplier' },
+    ],
+    usage: `import { BubbleMenu } from '@oalacea/chaosui/navigation/bubble-menu';
+
+const items = [
+  { id: 'home', icon: <HomeIcon />, label: 'Home' },
+  { id: 'search', icon: <SearchIcon />, label: 'Search' },
+  { id: 'settings', icon: <SettingsIcon />, label: 'Settings', active: true }
+];
+
+<BubbleMenu items={items} />
+<BubbleMenu items={items} variant="neon" bubbleSize={80} />`,
   },
   'draggable-document': {
     name: 'DraggableDocument',
@@ -1469,7 +1850,7 @@ const tracks = [
       { name: 'backContent', type: 'ReactNode', default: '-', description: 'Back content (revealed on double-click)' },
       { name: 'initialPosition', type: '{x: number; y: number}', default: '{x: 100, y: 100}', description: 'Initial position' },
     ],
-    usage: `import { DraggableDocument } from '@/components/chaos/inputs/draggable-document';
+    usage: `import { DraggableDocument } from '@oalacea/chaosui/inputs/draggable-document';
 
 <DraggableDocument
   title="PROJET ÆTHER"
@@ -1491,7 +1872,7 @@ const tracks = [
       { name: 'revealDistance', type: 'number', default: '150', description: 'Pixel radius for reveal' },
       { name: 'showScanLine', type: 'boolean', default: 'true', description: 'Show scan line following mouse' },
     ],
-    usage: `import { GhostLayer } from '@/components/chaos/effects/ghost-layer';
+    usage: `import { GhostLayer } from '@oalacea/chaosui/effects/ghost-layer';
 
 <GhostLayer
   ghosts={[
@@ -1512,7 +1893,7 @@ const tracks = [
       { name: 'blendMode', type: '"normal" | "difference" | "screen" | "multiply" | "exclusion"', default: '"difference"', description: 'CSS blend mode' },
       { name: 'hasCenterDot', type: 'boolean', default: 'true', description: 'Add center dot' },
     ],
-    usage: `import { CursorTrail } from '@/components/chaos/effects/cursor-trail';
+    usage: `import { CursorTrail } from '@oalacea/chaosui/effects/cursor-trail';
 
 <CursorTrail
   trailCount={5}
@@ -1534,7 +1915,7 @@ const tracks = [
       { name: 'position', type: '"left" | "right"', default: '"left"', description: 'Side position' },
       { name: 'showValue', type: 'boolean', default: 'true', description: 'Show numeric value' },
     ],
-    usage: `import { DepthIndicator } from '@/components/chaos/display/depth-indicator';
+    usage: `import { DepthIndicator } from '@oalacea/chaosui/display/depth-indicator';
 
 <DepthIndicator
   currentDepth={450}
@@ -1555,7 +1936,7 @@ const tracks = [
       { name: 'opacity', type: 'number', default: '0.4', description: 'Flash opacity (0-1)' },
       { name: 'blendMode', type: '"normal" | "overlay" | "screen" | "difference"', default: '"normal"', description: 'CSS blend mode' },
     ],
-    usage: `import { FlashEffect, useFlash } from '@/components/chaos/effects/flash-effect';
+    usage: `import { FlashEffect, useFlash } from '@oalacea/chaosui/effects/flash-effect';
 
 function App() {
   const flashRef = useFlash();
@@ -1581,7 +1962,7 @@ function App() {
       { name: 'color', type: 'string', default: '"#8b5cf6"', description: 'Primary color of the arcane magic' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { ArcaneCircle } from '@/components/chaos/backgrounds/arcane-circle';
+    usage: `import { ArcaneCircle } from '@oalacea/chaosui/backgrounds/arcane-circle';
 
 <ArcaneCircle />
 <ArcaneCircle intensity="extreme" color="#ff6b6b" />
@@ -1601,7 +1982,7 @@ function App() {
       { name: 'color', type: 'string', default: '"#fbbf24"', description: 'Star color' },
       { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Position type' },
     ],
-    usage: `import { Starfall } from '@/components/chaos/backgrounds/starfall';
+    usage: `import { Starfall } from '@oalacea/chaosui/backgrounds/starfall';
 
 <Starfall />
 <Starfall density="cosmic" speed="meteor-shower" trail={false} />`,
@@ -1620,7 +2001,7 @@ function App() {
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the button' },
       { name: 'intensity', type: '"subtle" | "normal" | "epic"', default: '"normal"', description: 'Intensity of the cast effect' },
     ],
-    usage: `import { SpellButton } from '@/components/chaos/buttons/spell-button';
+    usage: `import { SpellButton } from '@oalacea/chaosui/buttons/spell-button';
 
 <SpellButton>Fireball</SpellButton>
 <SpellButton spellType="ice" size="lg">Frost Nova</SpellButton>
@@ -1639,7 +2020,7 @@ function App() {
       { name: 'glowColor', type: 'string', default: '-', description: 'Custom glow color' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the button' },
     ],
-    usage: `import { RuneButton } from '@/components/chaos/buttons/rune-button';
+    usage: `import { RuneButton } from '@oalacea/chaosui/buttons/rune-button';
 
 <RuneButton>Power</RuneButton>
 <RuneButton runeType="protection" size="lg">Shield</RuneButton>
@@ -1656,7 +2037,7 @@ function App() {
       { name: 'questStatus', type: '"available" | "active" | "completed"', default: '"available"', description: 'Current quest status' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the scroll' },
     ],
-    usage: `import { QuestScroll } from '@/components/chaos/buttons/quest-scroll';
+    usage: `import { QuestScroll } from '@oalacea/chaosui/buttons/quest-scroll';
 
 <QuestScroll>Accept Quest</QuestScroll>
 <QuestScroll questStatus="active">In Progress</QuestScroll>
@@ -1674,7 +2055,7 @@ function App() {
       { name: 'bubbles', type: 'boolean | number', default: 'true', description: 'Number of bubbles or enable/disable' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Size of the flask' },
     ],
-    usage: `import { PotionFlask } from '@/components/chaos/buttons/potion-flask';
+    usage: `import { PotionFlask } from '@oalacea/chaosui/buttons/potion-flask';
 
 <PotionFlask>Drink</PotionFlask>
 <PotionFlask potionColor="mana">Restore Mana</PotionFlask>
@@ -1695,7 +2076,7 @@ function App() {
       { name: 'activeTab', type: 'string', default: '-', description: 'Currently active tab ID' },
       { name: 'onChange', type: '(schoolId: string) => void', default: '-', description: 'Callback when tab changes' },
     ],
-    usage: `import { SpellbookTabs } from '@/components/chaos/navigation/spellbook-tabs';
+    usage: `import { SpellbookTabs } from '@oalacea/chaosui/navigation/spellbook-tabs';
 
 const schools = [
   { id: 'fire', name: 'Fire', icon: '🔥' },
@@ -1714,7 +2095,7 @@ const schools = [
       { name: 'activeQuest', type: 'string', default: '-', description: 'Currently active quest ID' },
       { name: 'onSelect', type: '(questId: string) => void', default: '-', description: 'Callback when quest selected' },
     ],
-    usage: `import { QuestLog } from '@/components/chaos/navigation/quest-log';
+    usage: `import { QuestLog } from '@oalacea/chaosui/navigation/quest-log';
 
 const quests = [
   { id: '1', title: 'Slay Dragon', status: 'active', progress: 75, level: 10 },
@@ -1733,7 +2114,7 @@ const quests = [
       { name: 'onSelect', type: '(item: InventoryItem) => void', default: '-', description: 'Callback when item selected' },
       { name: 'maxSlots', type: 'number', default: '-', description: 'Maximum number of slots' },
     ],
-    usage: `import { InventoryGrid } from '@/components/chaos/navigation/inventory-grid';
+    usage: `import { InventoryGrid } from '@oalacea/chaosui/navigation/inventory-grid';
 
 const items = [
   { id: '1', icon: '⚔️', name: 'Sword', count: 1, rarity: 'legendary' },
@@ -1755,7 +2136,7 @@ const items = [
       { name: 'shiftColor', type: 'string', default: '"#fbbf24"', description: 'Secondary color for shift effect' },
       { name: 'pulseDuration', type: 'number', default: '2', description: 'Duration of the pulse cycle in seconds' },
     ],
-    usage: `import { Incantation } from '@/components/chaos/text/incantation';
+    usage: `import { Incantation } from '@oalacea/chaosui/text/incantation';
 
 <Incantation>Abracadabra</Incantation>
 <Incantation intensity="intense" language="divine">Sanctify</Incantation>
@@ -1777,7 +2158,7 @@ const items = [
       { name: 'loop', type: 'boolean', default: 'false', description: 'Loop the revelation animation' },
       { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when revelation completes' },
     ],
-    usage: `import { Prophecy } from '@/components/chaos/text/prophecy';
+    usage: `import { Prophecy } from '@oalacea/chaosui/text/prophecy';
 
 <Prophecy>The chosen one shall rise...</Prophecy>
 <Prophecy revealSpeed="slow" loop onComplete={handleComplete}>
@@ -1797,7 +2178,7 @@ const items = [
       { name: 'startDelay', type: 'number', default: '1000', description: 'Delay before start (ms)' },
       { name: 'onComplete', type: '() => void', default: '-', description: 'Callback when translation completes' },
     ],
-    usage: `import { RunesReveal } from '@/components/chaos/text/runes-reveal';
+    usage: `import { RunesReveal } from '@oalacea/chaosui/text/runes-reveal';
 
 <RunesReveal runes={['ᚠ', 'ᚢ', 'ᚦ']} translation="SECRET" />
 <RunesReveal
@@ -1818,7 +2199,7 @@ const items = [
       { name: 'flowingInk', type: 'boolean', default: 'true', description: 'Enable flowing ink animation' },
       { name: 'showTexture', type: 'boolean', default: 'true', description: 'Show aged paper texture' },
     ],
-    usage: `import { AncientScroll } from '@/components/chaos/text/ancient-scroll';
+    usage: `import { AncientScroll } from '@oalacea/chaosui/text/ancient-scroll';
 
 <AncientScroll>
   In the time of old, when magic flowed freely...
@@ -1846,7 +2227,7 @@ const items = [
       { name: 'showRune', type: 'boolean', default: 'false', description: 'Show rune symbol (arcane spells)' },
       { name: 'particleCount', type: 'number', default: '12', description: 'Number of burst particles' },
     ],
-    usage: `import { SpellCast } from '@/components/chaos/effects/spell-cast';
+    usage: `import { SpellCast } from '@oalacea/chaosui/effects/spell-cast';
 
 <SpellCast>
   <button>Cast Fireball</button>
@@ -1870,7 +2251,7 @@ const items = [
       { name: 'particles', type: 'boolean', default: 'true', description: 'Show floating particles' },
       { name: 'showCross', type: 'boolean', default: 'false', description: 'Show cross pattern (holy)' },
     ],
-    usage: `import { HealPulse } from '@/components/chaos/effects/heal-pulse';
+    usage: `import { HealPulse } from '@oalacea/chaosui/effects/heal-pulse';
 
 <HealPulse>
   <button>Heal</button>
@@ -1878,6 +2259,179 @@ const items = [
 <HealPulse color="holy" waves={8} showCross>
   <button>Divine Healing</button>
 </HealPulse>`,
+  },
+
+  // NEW EFFECTS COMPONENTS
+  'blob-cursor': {
+    name: 'BlobCursor',
+    category: 'effects',
+    description: 'Fluid blob cursor that follows mouse with organic movement and distortion.',
+    props: [
+      { name: 'size', type: 'number', default: '80', description: 'Blob size in pixels' },
+      { name: 'color', type: 'string', default: '"rgba(100, 200, 255, 0.5)"', description: 'Blob color (any valid CSS color)' },
+      { name: 'blobAmount', type: 'number', default: '5', description: 'How distorted the blob shape is (0 = circle, higher = more distorted)' },
+      { name: 'speed', type: 'number', default: '0.1', description: 'Follow speed (0.01-1, lower = smoother/slower)' },
+      { name: 'damping', type: 'number', default: '0.9', description: 'Smoothness/damping of movement (0.1-0.99, higher = more momentum)' },
+      { name: 'zIndex', type: 'number', default: '9999', description: 'Z-index of the blob cursor' },
+      { name: 'className', type: 'string', default: '""', description: 'Additional className for the blob container' },
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Child elements to render underneath the cursor' },
+    ],
+    usage: `import { BlobCursor } from '@oalacea/chaosui/effects/blob-cursor';
+
+<BlobCursor />
+<BlobCursor size={120} color="rgba(255, 100, 150, 0.6)" />
+<BlobCursor blobAmount={10} speed={0.05} damping={0.95} />`,
+  },
+  'splash-cursor': {
+    name: 'SplashCursor',
+    category: 'effects',
+    description: 'Interactive fluid simulation cursor with colorful splash effects and realistic dye diffusion.',
+    props: [
+      { name: 'SIM_RESOLUTION', type: 'number', default: '128', description: 'Fluid simulation resolution for velocity fields' },
+      { name: 'DYE_RESOLUTION', type: 'number', default: '1440', description: 'Resolution of the color/dye texture' },
+      { name: 'DENSITY_DISSIPATION', type: 'number', default: '3.5', description: 'Rate at which color/density dissipates over time' },
+      { name: 'VELOCITY_DISSIPATION', type: 'number', default: '2', description: 'Rate at which velocity dissipates over time' },
+      { name: 'SPLAT_RADIUS', type: 'number', default: '0.2', description: 'Radius of the splash effect' },
+      { name: 'SPLAT_FORCE', type: 'number', default: '6000', description: 'Force of the fluid splash on interaction' },
+      { name: 'SHADING', type: 'boolean', default: 'true', description: 'Toggle simple lighting/shading' },
+      { name: 'COLOR_UPDATE_SPEED', type: 'number', default: '10', description: 'Frequency of color randomization' },
+      { name: 'BACK_COLOR', type: '{ r: number; g: number; b: number }', default: '{ r: 0.5, g: 0, b: 0 }', description: 'Background color RGB values' },
+      { name: 'TRANSPARENT', type: 'boolean', default: 'true', description: 'Transparent canvas background' },
+      { name: 'className', type: 'string', default: '""', description: 'Custom className' },
+    ],
+    usage: `import { SplashCursor } from '@oalacea/chaosui/effects/splash-cursor';
+
+<SplashCursor />
+<SplashCursor DENSITY_DISSIPATION={5} SPLAT_FORCE={8000} />
+<SplashCursor SHADING={false} TRANSPARENT={false} />`,
+  },
+  'electric-border': {
+    name: 'ElectricBorder',
+    category: 'effects',
+    description: 'Animated electric border with turbulent noise distortion and glow effects.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Child elements to wrap' },
+      { name: 'color', type: 'string', default: '"#5227FF"', description: 'Border color (hex)' },
+      { name: 'speed', type: 'number', default: '1', description: 'Animation speed (1 = normal, higher = faster)' },
+      { name: 'chaos', type: 'number', default: '1', description: 'Chaos/turbulence intensity' },
+      { name: 'thickness', type: 'number', default: '2', description: 'Border thickness in pixels' },
+      { name: 'className', type: 'string', default: '""', description: 'Custom className' },
+      { name: 'style', type: 'React.CSSProperties', default: '-', description: 'Custom styles' },
+    ],
+    usage: `import { ElectricBorder } from '@oalacea/chaosui/effects/electric-border';
+
+<ElectricBorder>
+  <div>Content with electric border</div>
+</ElectricBorder>
+<ElectricBorder color="#ff0040" chaos={2} thickness={3}>
+  <button>High Voltage</button>
+</ElectricBorder>`,
+  },
+  'click-spark': {
+    name: 'ClickSpark',
+    category: 'effects',
+    description: 'Spark explosion effect on click with configurable particles and animation.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Child elements' },
+      { name: 'sparkColor', type: 'string', default: '"#fff"', description: 'Color of sparks (hex)' },
+      { name: 'sparkSize', type: 'number', default: '10', description: 'Size of each spark line in pixels' },
+      { name: 'sparkRadius', type: 'number', default: '15', description: 'Radius of explosion in pixels' },
+      { name: 'sparkCount', type: 'number', default: '8', description: 'Number of sparks per click' },
+      { name: 'duration', type: 'number', default: '400', description: 'Duration of animation in ms' },
+      { name: 'easing', type: '"linear" | "ease-in" | "ease-in-out" | "ease-out"', default: '"ease-out"', description: 'Easing function' },
+      { name: 'extraScale', type: 'number', default: '1.0', description: 'Extra scale multiplier' },
+    ],
+    usage: `import { ClickSpark } from '@oalacea/chaosui/effects/click-spark';
+
+<ClickSpark>
+  <button>Click for sparks</button>
+</ClickSpark>
+<ClickSpark sparkColor="#ff0040" sparkCount={12} sparkRadius={20}>
+  <button>Red burst</button>
+</ClickSpark>`,
+  },
+  'magnet': {
+    name: 'Magnet',
+    category: 'effects',
+    description: 'Magnetic effect that pulls elements toward cursor on hover.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Child elements to apply magnet effect' },
+      { name: 'padding', type: 'number', default: '100', description: 'Padding around element to trigger effect (pixels)' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Disable the magnet effect' },
+      { name: 'magnetStrength', type: 'number', default: '2', description: 'Strength of attraction (higher = less movement)' },
+      { name: 'activeTransition', type: 'string', default: '"transform 0.3s ease-out"', description: 'Transition when active/attracted' },
+      { name: 'inactiveTransition', type: 'string', default: '"transform 0.5s ease-in-out"', description: 'Transition when inactive/released' },
+      { name: 'wrapperClassName', type: 'string', default: '""', description: 'Class for wrapper div' },
+      { name: 'innerClassName', type: 'string', default: '""', description: 'Class for inner div' },
+    ],
+    usage: `import { Magnet } from '@oalacea/chaosui/effects/magnet';
+
+<Magnet>
+  <button>Hover me</button>
+</Magnet>
+<Magnet padding={150} magnetStrength={3}>
+  <div>Stronger pull</div>
+</Magnet>`,
+  },
+  'lens-flare': {
+    name: 'LensFlare',
+    category: 'effects',
+    description: 'Optical lens flare effect with multiple elements that follow mouse position.',
+    props: [
+      { name: 'children', type: 'ReactNode', default: '-', description: 'Content to overlay flare on' },
+      { name: 'intensity', type: 'number', default: '0.6', description: 'Flare brightness 0-1' },
+      { name: 'color', type: 'string', default: '"#ffffff"', description: 'Flare color tint' },
+      { name: 'flareSize', type: 'number', default: '300', description: 'Max flare diameter in pixels' },
+      { name: 'elementCount', type: 'number', default: '5', description: 'Number of flare elements' },
+      { name: 'followMouse', type: 'boolean', default: 'true', description: 'Whether flare follows mouse' },
+      { name: 'className', type: 'string', default: '""', description: 'Additional class name' },
+    ],
+    usage: `import { LensFlare } from '@oalacea/chaosui/effects/lens-flare';
+
+<LensFlare>
+  <div>Content with lens flare</div>
+</LensFlare>
+<LensFlare intensity={0.8} color="#ffcc00" elementCount={7} />
+<LensFlare followMouse={false} />`,
+  },
+  'fireflies': {
+    name: 'Fireflies',
+    category: 'effects',
+    description: 'Ambient fireflies with pulsing glow and wandering movement patterns.',
+    props: [
+      { name: 'count', type: 'number', default: '30', description: 'Number of fireflies' },
+      { name: 'color', type: 'string', default: '"#ffff00"', description: 'Firefly color (hex or rgb)' },
+      { name: 'minSize', type: 'number', default: '2', description: 'Minimum firefly size in pixels' },
+      { name: 'maxSize', type: 'number', default: '4', description: 'Maximum firefly size in pixels' },
+      { name: 'speed', type: 'number', default: '1', description: 'Movement speed multiplier' },
+      { name: 'glowIntensity', type: 'number', default: '0.8', description: 'Glow intensity (0-1)' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Fixed or absolute positioning' },
+    ],
+    usage: `import { Fireflies } from '@oalacea/chaosui/effects/fireflies';
+
+<Fireflies />
+<Fireflies count={50} color="#00ff00" glowIntensity={1} />
+<Fireflies position="absolute" speed={2} />`,
+  },
+  'snowfall': {
+    name: 'Snowfall',
+    category: 'effects',
+    description: 'Animated snowflakes with swaying motion and wind effects.',
+    props: [
+      { name: 'snowflakeCount', type: 'number', default: '100', description: 'Number of snowflakes' },
+      { name: 'minSize', type: 'number', default: '2', description: 'Minimum snowflake size in pixels' },
+      { name: 'maxSize', type: 'number', default: '5', description: 'Maximum snowflake size in pixels' },
+      { name: 'speed', type: 'number', default: '1', description: 'Fall speed multiplier' },
+      { name: 'wind', type: 'number', default: '0', description: 'Horizontal wind (negative = left, positive = right)' },
+      { name: 'color', type: 'string', default: '"#ffffff"', description: 'Snowflake color' },
+      { name: 'opacity', type: 'number', default: '0.8', description: 'Snowflake opacity (0-1)' },
+      { name: 'position', type: '"fixed" | "absolute"', default: '"fixed"', description: 'Fixed or absolute positioning' },
+    ],
+    usage: `import { Snowfall } from '@oalacea/chaosui/effects/snowfall';
+
+<Snowfall />
+<Snowfall snowflakeCount={200} wind={1} />
+<Snowfall color="#add8e6" opacity={0.6} />`,
   },
 };
 
@@ -1970,6 +2524,12 @@ export default async function ComponentPage({
       {/* Usage */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>USAGE</h2>
+    case 'glass-button':
+      return <button className={styles.glassBtnPreview}>GLASS</button>;
+    case 'neon-glow':
+      return <button className={styles.neonGlowPreview}>NEON</button>;
+    case 'floating-button':
+      return <button className={styles.floatingBtnPreview}>FLOAT</button>;
         <div className={styles.codeBlock}>
           <pre><code>{data.usage}</code></pre>
         </div>
@@ -2205,6 +2765,18 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.minimalNavBox}><span>Home</span><span>About</span></div>;
 
     // NEW BACKGROUNDS
+    case 'particles':
+      return <div className={styles.particlesPreview}>{Array.from({length:12}).map((_,i)=><div key={i}/>)}</div>;
+    case 'aurora':
+      return <div className={styles.auroraPreview}><div/><div/><div/></div>;
+    case 'plasma-wave':
+      return <div className={styles.plasmaPreview} />;
+    case 'bubbles':
+      return <div className={styles.bubblesPreview}><div/><div/><div/></div>;
+    case 'lightning':
+      return <div className={styles.lightningPreview} />;
+    case 'faulty-terminal':
+      return <div className={styles.faultyTerminalPreview}><span className={styles.ftText}>TERMINAL</span></div>;
     case 'gradient-mesh':
       return <div className={styles.meshBox} />;
     case 'noise-pattern':
@@ -2213,6 +2785,8 @@ function ComponentPreview({ component }: { component: string }) {
     // NEW OVERLAYS
     case 'scanlines-overlay':
       return <div className={styles.scanlinesOverlayBox}><span>SCAN</span></div>;
+    case 'vignette-overlay':
+      return <div className={styles.vignetteOverlayBox}><span>VIGNETTE</span></div>;
 
     // NEW EFFECTS
     case 'chromatic-aberration':
@@ -2258,6 +2832,16 @@ function ComponentPreview({ component }: { component: string }) {
         </div>
       );
 
+    // NEW TEXT PREVIEWS
+    case 'gradient-text':
+      return <span className={styles.gradientText}>GRADIENT</span>;
+    case 'wavy-text':
+      return <span className={styles.wavyText}><span>W</span><span>A</span><span>V</span><span>Y</span></span>;
+    case 'reflection-text':
+      return <div className={styles.reflectionText}><span>REFLECT</span></div>;
+    case 'three-d-text':
+      return <span className={styles.threeDText}>DEPTH</span>;
+
     // LAYOUT
     case 'strata-section':
       return (
@@ -2286,6 +2870,67 @@ function ComponentPreview({ component }: { component: string }) {
       return (
         <div className={styles.collapsedNavPreview}>
           <span className={styles.collapsedNavItem}>COLLAPSE</span>
+        </div>
+      );
+    case 'dock':
+      return (
+        <div className={styles.dockPreview}>
+          <div className={styles.dockItem}><span>1</span></div>
+          <div className={styles.dockItem}><span>2</span></div>
+          <div className={styles.dockItem}><span>3</span></div>
+        </div>
+      );
+    case 'magnetic-dock':
+      return (
+        <div className={styles.magneticDockPreview}>
+          <div className={styles.magneticDockItem}><span>M</span></div>
+          <div className={styles.magneticDockItem}><span>A</span></div>
+          <div className={styles.magneticDockItem}><span>G</span></div>
+        </div>
+      );
+    case 'bubble-menu':
+      return (
+        <div className={styles.bubbleMenuPreview}>
+          <div className={styles.bubble}><span>+</span></div>
+          <div className={styles.bubble}><span>-</span></div>
+          <div className={styles.bubble}><span>*</span></div>
+        </div>
+      );
+
+    // LAYOUT
+    case 'parallax-container':
+      return (
+        <div className={styles.parallaxPreview}>
+          <div className={styles.parallaxLayer} style={{transform: 'translateY(2px)'}}><span>BACK</span></div>
+          <div className={styles.parallaxLayer} style={{transform: 'translateY(0)'}}><span>MID</span></div>
+          <div className={styles.parallaxLayer} style={{transform: 'translateY(-2px)'}}><span>FRONT</span></div>
+        </div>
+      );
+    case 'stack-cards':
+      return (
+        <div className={styles.stackCardsPreview}>
+          <div className={styles.stackCard} style={{transform: 'translateY(0) rotate(0deg)', zIndex: 3}}><span>1</span></div>
+          <div className={styles.stackCard} style={{transform: 'translateY(4px) rotate(1deg)', zIndex: 2}}><span>2</span></div>
+          <div className={styles.stackCard} style={{transform: 'translateY(8px) rotate(2deg)', zIndex: 1}}><span>3</span></div>
+        </div>
+      );
+    case 'animated-list':
+      return (
+        <div className={styles.animatedListPreview}>
+          <div><span>•</span> Item 1</div>
+          <div><span>•</span> Item 2</div>
+          <div><span>•</span> Item 3</div>
+        </div>
+      );
+    case 'circular-gallery':
+      return (
+        <div className={styles.circularGalleryPreview}>
+          <div className={styles.galleryCenter}>●</div>
+          <div className={styles.galleryItem} style={{transform: 'rotate(0deg) translate(25px) rotate(0deg)'}}>1</div>
+          <div className={styles.galleryItem} style={{transform: 'rotate(72deg) translate(25px) rotate(-72deg)'}}>2</div>
+          <div className={styles.galleryItem} style={{transform: 'rotate(144deg) translate(25px) rotate(-144deg)'}}>3</div>
+          <div className={styles.galleryItem} style={{transform: 'rotate(216deg) translate(25px) rotate(-216deg)'}}>4</div>
+          <div className={styles.galleryItem} style={{transform: 'rotate(288deg) translate(25px) rotate(-288deg)'}}>5</div>
         </div>
       );
 
@@ -2354,6 +2999,24 @@ function ComponentPreview({ component }: { component: string }) {
       return <div className={styles.spellCastPreview}><div className={styles.burst}/></div>;
     case 'heal-pulse':
       return <div className={styles.healPulsePreview}><div className={styles.pulse}/></div>;
+
+
+    case 'blob-cursor':
+      return <div className={styles.blobCursorPreview}><div className={styles.blob}/></div>;
+    case 'splash-cursor':
+      return <div className={styles.splashCursorPreview}><div className={styles.splash}/></div>;
+    case 'electric-border':
+      return <div className={styles.electricBorderPreview}><span>⚡ELECTRIC⚡</span></div>;
+    case 'click-spark':
+      return <button className={styles.clickSparkPreview}>CLICK ME</button>;
+    case 'magnet':
+      return <div className={styles.magnetPreview}><button>HOVER ME</button></div>;
+    case 'lens-flare':
+      return <div className={styles.lensFlarePreview}><span>☀️FLARE☀️</span></div>;
+    case 'fireflies':
+      return <div className={styles.firefliesPreview}><div className={styles.firefly}/><div className={styles.firefly}/><div className={styles.firefly}/></div>;
+    case 'snowfall':
+      return <div className={styles.snowfallPreview}><div className={styles.snowflake}/><div className={styles.snowflake}/><div className={styles.snowflake}/></div>;
 
     default:
       return <span>Preview</span>;

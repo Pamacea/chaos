@@ -1,0 +1,11 @@
+.threeDText {
+  position: relative;
+  display: inline-block;
+  text-shadow: var(--text-shadow, none);
+  font-weight: bold;
+  user-select: none;
+}
+
+.threeDText:hover {
+  transform: translate(-1px, -1px);
+}

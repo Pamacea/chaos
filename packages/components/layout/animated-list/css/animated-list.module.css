@@ -1,0 +1,120 @@
+.container {
+  --anim-duration: 400ms;
+  --anim-delay: 100ms;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  opacity: 0;
+  animation: var(--anim-type, fade-in) var(--anim-duration) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--item-delay, 0ms);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Animation type modifiers */
+.itemFade {
+  --anim-type: fade-in;
+}
+
+.itemSlideUp {
+  --anim-type: slide-up;
+}
+
+.itemSlideDown {
+  --anim-type: slide-down;
+}
+
+.itemSlideLeft {
+  --anim-type: slide-left;
+}
+
+.itemSlideRight {
+  --anim-type: slide-right;
+}
+
+.itemScale {
+  --anim-type: scale-in;
+}
+
+.itemBlur {
+  --anim-type: blur-in;
+}

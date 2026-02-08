@@ -1,6 +1,6 @@
 {
   "name": "@oalacea/chaosui",
-  "version": "0.7.2",
+  "version": "0.7.4",
   "description": "Glitch, noise, organic, fantasy and distortion UI components",
   "type": "module",
   "exports": {
