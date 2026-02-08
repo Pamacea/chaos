@@ -1,0 +1,63 @@
+.wavyText {
+  display: inline-flex;
+}
+
+.letter {
+  display: inline-block;
+  will-change: transform;
+  animation: wavy-vertical var(--wave-speed, 2s) ease-in-out infinite;
+  animation-delay: var(--wave-delay);
+}
+
+/* Vertical wave animation */
+@keyframes wavy-vertical {
+  0%, 100% {
+    transform: translateY(
+      calc(sin(var(--wave-phase) + 0) * var(--wave-amplitude, 5px))
+    );
+  }
+  25% {
+    transform: translateY(
+      calc(sin(var(--wave-phase) + 1.5708) * var(--wave-amplitude, 5px))
+    );
+  }
+  50% {
+    transform: translateY(
+      calc(sin(var(--wave-phase) + 3.14159) * var(--wave-amplitude, 5px))
+    );
+  }
+  75% {
+    transform: translateY(
+      calc(sin(var(--wave-phase) + 4.71239) * var(--wave-amplitude, 5px))
+    );
+  }
+}
+
+/* Horizontal wave animation */
+@keyframes wavy-horizontal {
+  0%, 100% {
+    transform: translateX(
+      calc(sin(var(--wave-phase) + 0) * var(--wave-amplitude, 5px))
+    );
+  }
+  25% {
+    transform: translateX(
+      calc(sin(var(--wave-phase) + 1.5708) * var(--wave-amplitude, 5px))
+    );
+  }
+  50% {
+    transform: translateX(
+      calc(sin(var(--wave-phase) + 3.14159) * var(--wave-amplitude, 5px))
+    );
+  }
+  75% {
+    transform: translateX(
+      calc(sin(var(--wave-phase) + 4.71239) * var(--wave-amplitude, 5px))
+    );
+  }
+}
+
+/* Direction modifier */
+.wavyText[data-direction="horizontal"] .letter {
+  animation-name: wavy-horizontal;
+}

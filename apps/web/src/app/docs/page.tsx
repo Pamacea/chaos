@@ -4,7 +4,7 @@ import styles from './docs.module.css';
 
 export const metadata: Metadata = {
   title: 'Documentation',
-  description: 'Browse 120+ glitch, noise, and distortion UI components. Pure CSS, no dependencies. Copy-paste installation.',
+  description: 'Browse 160+ glitch, noise, and distortion UI components. Pure CSS, no dependencies. Copy-paste installation.',
   openGraph: {
     title: 'CHAOS Documentation',
     description: 'Browse all available components — from glitch text to neon buttons, scanlines to noise overlays.',
@@ -71,6 +71,10 @@ const COMPONENTS = {
   'text-animations': {
     title: 'TEXT ANIMATIONS',
     items: [
+      { name: 'gradient-text', description: 'Animated flowing gradient text' },
+      { name: 'wavy-text', description: 'Wave effect on letters' },
+      { name: 'reflection-text', description: 'Mirror reflection effect' },
+      { name: '3d-text', description: '3D extrusion shadow effect' },
       { name: 'flicker-text', description: 'Random opacity flicker' },
       { name: 'distortion-text', description: 'Wave/shake/skew/blur' },
       { name: 'falling-text', description: 'Cascading letters' },
@@ -99,6 +103,9 @@ const COMPONENTS = {
   'navigation': {
     title: 'NAVIGATION',
     items: [
+      { name: 'dock', description: 'macOS-style dock with magnification' },
+      { name: 'magnetic-dock', description: 'Floating dock with magnetic attraction' },
+      { name: 'bubble-menu', description: 'Floating bubble menu with animation' },
       { name: 'scattered-nav', description: 'Scattered chaotic nav' },
       { name: 'vertical-nav', description: 'Rune vertical sidebar' },
       { name: 'brutal-nav', description: 'Bold brutalist navbar' },
@@ -108,13 +115,18 @@ const COMPONENTS = {
       { name: 'minimal-nav', description: 'Minimalist navigation' },
       { name: 'timeline-nav', description: 'Timeline-style navigation' },
       { name: 'collapsed-nav', description: 'Collapse-inspired dispersed nav' },
-      { name: 'magnetic-dock', description: 'Floating dock with magnetic attraction' },
       { name: 'corner-tabs', description: 'Corner-positioned tabs' },
     ],
   },
   'backgrounds': {
     title: 'BACKGROUNDS',
     items: [
+      { name: 'particles', description: 'Connected particles with mouse interaction' },
+      { name: 'aurora', description: 'Northern lights animated gradient' },
+      { name: 'plasma-wave', description: 'Retro plasma wave effect' },
+      { name: 'bubbles', description: 'Floating bubble canvas animation' },
+      { name: 'lightning', description: 'WebGL lightning bolt effect' },
+      { name: 'faulty-terminal', description: 'Matrix-style LED terminal' },
       { name: 'noise-canvas', description: 'Animated noise canvas' },
       { name: 'particle-field', description: 'Drifting particles' },
       { name: 'glow-orbs', description: 'Floating blurred orbs' },
@@ -126,6 +138,7 @@ const COMPONENTS = {
   'overlays': {
     title: 'OVERLAYS',
     items: [
+      { name: 'vignette-overlay', description: 'Dark edges radial gradient' },
       { name: 'noise-overlay', description: 'SVG fractal noise' },
       { name: 'scanlines', description: 'CRT horizontal lines' },
       { name: 'scanlines-overlay', description: 'Scanline effect overlay' },
@@ -136,6 +149,14 @@ const COMPONENTS = {
   'effects': {
     title: 'EFFECTS',
     items: [
+      { name: 'blob-cursor', description: 'Fluid blob cursor with organic movement' },
+      { name: 'splash-cursor', description: 'Fluid simulation with colorful splashes' },
+      { name: 'electric-border', description: 'Animated turbulent border with glow' },
+      { name: 'click-spark', description: 'Explosion sparks on click' },
+      { name: 'magnet', description: 'Elements attracted to cursor' },
+      { name: 'lens-flare', description: 'Optical lens flare effect' },
+      { name: 'fireflies', description: 'Floating fireflies with pulsing glow' },
+      { name: 'snowfall', description: 'Animated snowflakes with wind' },
       { name: 'cursor-follower', description: 'Custom cursor follower' },
       { name: 'cursor-trail', description: 'Multi-element cursor trail effect' },
       { name: 'inverted-cursor', description: 'Color inverting ring cursor' },
@@ -155,6 +176,11 @@ const COMPONENTS = {
   'layout-cards': {
     title: 'LAYOUT & CARDS',
     items: [
+      { name: 'hologram-card', description: 'Holographic card with scanlines' },
+      { name: 'parallax-container', description: 'Scroll-based parallax layers' },
+      { name: 'stack-cards', description: 'Swipeable card stack' },
+      { name: 'animated-list', description: 'Staggered entrance animations' },
+      { name: 'circular-gallery', description: 'Rotating circular gallery' },
       { name: 'horizontal-scroll', description: 'Horizontal panel scroll' },
       { name: 'horizontal-panel-scroll', description: 'Panel scroll container' },
       { name: 'void-frame', description: 'Decorative corner frame' },
@@ -183,6 +209,9 @@ const COMPONENTS = {
   'buttons-controls': {
     title: 'BUTTONS & CONTROLS',
     items: [
+      { name: 'glass-button', description: 'Frosted glass morphism button' },
+      { name: 'neon-glow', description: 'Vibrant neon glow button' },
+      { name: 'floating-button', description: 'Animated floating button' },
       { name: 'dual-choice', description: 'Yes/No binary choice' },
       { name: 'cta-brutal', description: 'Brutalist call-to-action' },
       { name: 'tension-bar', description: 'Progress tension meter' },
@@ -640,6 +669,78 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className={styles.spellCastPreview}><div className={styles.burst}/></div>;
     case 'heal-pulse':
       return <div className={styles.healPulsePreview}><div className={styles.pulse}/></div>;
+
+    // === NEW COMPONENTS FROM REACT BITS ===
+
+    // BUTTONS
+    case 'glass-button':
+      return <div className={styles.glassButtonPreview}>GLASS</div>;
+    case 'neon-glow':
+      return <div className={styles.neonGlowPreview}>NEON</div>;
+    case 'floating-button':
+      return <div className={styles.floatingButtonPreview}>FLOAT</div>;
+
+    // TEXT
+    case 'gradient-text':
+      return <span className={styles.gradientText}>GRADIENT</span>;
+    case 'wavy-text':
+      return <span className={styles.wavyText}><span>W</span><span>A</span><span>V</span><span>Y</span></span>;
+    case 'reflection-text':
+      return <span className={styles.reflectionText} data-text="REFLECT">REFLECT</span>;
+    case '3d-text':
+      return <span className={styles.threeDText}>DEPTH</span>;
+
+    // BACKGROUNDS
+    case 'particles':
+      return <div className={styles.particlesBox} />;
+    case 'aurora':
+      return <div className={styles.auroraBox} />;
+    case 'plasma-wave':
+      return <div className={styles.plasmaBox} />;
+    case 'bubbles':
+      return <div className={styles.bubblesBox} />;
+    case 'lightning':
+      return <div className={styles.lightningBox} />;
+    case 'faulty-terminal':
+      return <div className={styles.faultyTerminalBox}><span>TERM</span></div>;
+
+    // EFFECTS
+    case 'blob-cursor':
+      return <div className={styles.blobCursorBox} />;
+    case 'splash-cursor':
+      return <div className={styles.splashCursorBox} />;
+    case 'electric-border':
+      return <div className={styles.electricBorderBox}><span>⚡</span></div>;
+    case 'click-spark':
+      return <div className={styles.clickSparkBox}><span>CLICK</span></div>;
+    case 'magnet':
+      return <div className={styles.magnetBox}><button>MAGNET</button></div>;
+    case 'lens-flare':
+      return <div className={styles.lensFlareBox} />;
+    case 'fireflies':
+      return <div className={styles.firefliesBox} />;
+    case 'snowfall':
+      return <div className={styles.snowfallBox} />;
+
+    // NAVIGATION
+    case 'dock':
+      return <div className={styles.dockBox}><div className={styles.dockItem}>1</div><div className={styles.dockItem}>2</div><div className={styles.dockItem}>3</div></div>;
+    case 'bubble-menu':
+      return <div className={styles.bubbleMenuBox}><div className={styles.bubble}>+</div><div className={styles.bubble}>−</div><div className={styles.bubble}>×</div></div>;
+
+    // LAYOUT
+    case 'parallax-container':
+      return <div className={styles.parallaxBox}><div className={styles.layer}>BACK</div><div className={styles.layer}>MID</div><div className={styles.layer}>FRONT</div></div>;
+    case 'stack-cards':
+      return <div className={styles.stackCardsBox}><div className={styles.card} style={{transform: 'translateY(0)'}}>1</div><div className={styles.card} style={{transform: 'translateY(4px)'}}>2</div><div className={styles.card} style={{transform: 'translateY(8px)'}}>3</div></div>;
+    case 'animated-list':
+      return <div className={styles.animatedListBox}><div>• Item 1</div><div>• Item 2</div><div>• Item 3</div></div>;
+    case 'circular-gallery':
+      return <div className={styles.circularGalleryBox}><div className={styles.center}>●</div><div className={styles.item} style={{transform: 'translate(-25px, 0)'}}>1</div><div className={styles.item} style={{transform: 'translate(25px, 0)'}}>2</div></div>;
+
+    // OVERLAYS
+    case 'vignette-overlay':
+      return <div className={styles.vignetteBox}><span>VIGNETTE</span></div>;
 
     default:
       return <span>{name}</span>;

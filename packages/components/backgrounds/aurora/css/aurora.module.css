@@ -1,0 +1,110 @@
+.container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aurora {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: var(--aurora-intensity, 0.5);
+  filter: blur(var(--aurora-blur, 100px));
+  mix-blend-mode: screen;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 50%,
+    var(--aurora-color) 0%,
+    transparent 70%
+  );
+  opacity: 0.6;
+  animation: aurora-move var(--aurora-speed, 20s) ease-in-out infinite;
+}
+
+.layer1 {
+  --aurora-color: var(--color-1, #00ff00);
+  animation-delay: 0s;
+  transform: rotate(0deg) scale(1.2);
+}
+
+.layer2 {
+  --aurora-color: var(--color-2, #00ffff);
+  animation-delay: calc(var(--aurora-speed, 20s) * -0.25);
+  transform: rotate(60deg) scale(1.1);
+}
+
+.layer3 {
+  --aurora-color: var(--color-3, #ff00ff);
+  animation-delay: calc(var(--aurora-speed, 20s) * -0.5);
+  transform: rotate(120deg) scale(1.3);
+}
+
+.layer4 {
+  --aurora-color: var(--color-4, #00ff80);
+  animation-delay: calc(var(--aurora-speed, 20s) * -0.75);
+  transform: rotate(180deg) scale(1.15);
+}
+
+.layer5 {
+  --aurora-color: var(--color-5, #8000ff);
+  animation-delay: calc(var(--aurora-speed, 20s) * -0.33);
+  transform: rotate(240deg) scale(1.25);
+}
+
+@keyframes aurora-move {
+  0% {
+    transform: translate(-30%, -30%) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(30%, -20%) rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: translate(20%, 30%) rotate(180deg) scale(1.05);
+  }
+  75% {
+    transform: translate(-25%, 20%) rotate(270deg) scale(1.15);
+  }
+  100% {
+    transform: translate(-30%, -30%) rotate(360deg) scale(1);
+  }
+}
+
+/* Slower, more subtle variant */
+.aurora.subtle .layer {
+  animation-duration: calc(var(--aurora-speed, 20s) * 1.5);
+}
+
+/* Fast, more dynamic variant */
+.aurora.dynamic .layer {
+  animation-duration: calc(var(--aurora-speed, 20s) * 0.6);
+}
+
+/* Position variants */
+.aurora.top {
+  bottom: 50%;
+  top: -50%;
+}
+
+.aurora.bottom {
+  top: 50%;
+  bottom: -50%;
+}
+
+.aurora.left {
+  right: 50%;
+  left: -50%;
+}
+
+.aurora.right {
+  left: 50%;
+  right: -50%;
+}

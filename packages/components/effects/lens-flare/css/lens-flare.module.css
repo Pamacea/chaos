@@ -1,0 +1,109 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.flareContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.flare {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.core {
+  background: radial-gradient(circle, var(--flare-color, rgba(255, 255, 255, 0.9)) 0%, transparent 70%);
+  filter: blur(2px);
+}
+
+.halo {
+  background: radial-gradient(circle, var(--flare-color, rgba(255, 255, 255, 0.4)) 0%, transparent 60%);
+  filter: blur(8px);
+}
+
+.ring {
+  border: 2px solid var(--flare-color, rgba(255, 255, 255, 0.3));
+  background: transparent;
+  box-shadow: 0 0 20px var(--flare-color, rgba(255, 255, 255, 0.2)),
+              inset 0 0 20px var(--flare-color, rgba(255, 255, 255, 0.1));
+}
+
+.streak {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--flare-color, rgba(255, 255, 255, 0.6)) 20%,
+    var(--flare-color, rgba(255, 255, 255, 0.9)) 50%,
+    var(--flare-color, rgba(255, 255, 255, 0.6)) 80%,
+    transparent 100%
+  );
+  filter: blur(1px);
+}
+
+.ghost {
+  background: radial-gradient(circle, var(--flare-color, rgba(255, 255, 255, 0.3)) 0%, transparent 50%);
+  filter: blur(4px);
+}
+
+.aperture {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 10deg,
+    transparent 20deg,
+    transparent 30deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 40deg,
+    transparent 50deg,
+    transparent 60deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 70deg,
+    transparent 80deg,
+    transparent 90deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 100deg,
+    transparent 110deg,
+    transparent 120deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 130deg,
+    transparent 140deg,
+    transparent 150deg,
+    var(--flare-color, rgba(255, 255, 255, 0.1)) 160deg,
+    transparent 170deg,
+    transparent 180deg
+  );
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.rainbow {
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 0, 0, 0.3) 0deg,
+    rgba(255, 165, 0, 0.3) 30deg,
+    rgba(255, 255, 0, 0.3) 60deg,
+    rgba(0, 255, 0, 0.3) 90deg,
+    rgba(0, 255, 255, 0.3) 120deg,
+    rgba(0, 0, 255, 0.3) 150deg,
+    rgba(128, 0, 128, 0.3) 180deg,
+    rgba(255, 0, 0, 0.3) 210deg,
+    rgba(255, 165, 0, 0.3) 240deg,
+    rgba(255, 255, 0, 0.3) 270deg,
+    rgba(0, 255, 0, 0.3) 300deg,
+    rgba(0, 255, 255, 0.3) 330deg,
+    rgba(0, 0, 255, 0.3) 360deg
+  );
+  border-radius: 50%;
+  filter: blur(3px);
+  mix-blend-mode: screen;
+}
+
+.children {
+  position: relative;
+  z-index: 1;
+}
