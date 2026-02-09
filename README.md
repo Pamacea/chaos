@@ -5,10 +5,19 @@
 [![CI](https://github.com/Pamacea/chaos/actions/workflows/ci.yml/badge.svg)](https://github.com/Pamacea/chaos/actions)
 
 
-
 Glitch, noise, neon & brutalist components for React. Copy-paste like shadcn.
 
 **91 components** — CSS Modules or Tailwind — Zero runtime.
+
+## Quick Start
+
+https://www.npmjs.com/package/@oalacea/chaosui
+
+```bash
+npx @oalacea/chaosui add neon-button
+```
+
+That's it. No install needed.
 
 ## Quick Start
 
