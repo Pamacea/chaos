@@ -1,5 +1,11 @@
 # 🗡️ Chaos UI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/v/release/Pamacea/chaos)](https://github.com/Pamacea/chaos/releases/latest)
+[![CI](https://github.com/Pamacea/chaos/actions/workflows/ci.yml/badge.svg)](https://github.com/Pamacea/chaos/actions)
+
+
+
 Glitch, noise, neon & brutalist components for React. Copy-paste like shadcn.
 
 **91 components** — CSS Modules or Tailwind — Zero runtime.
