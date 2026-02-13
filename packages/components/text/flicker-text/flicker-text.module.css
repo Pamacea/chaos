@@ -1,0 +1,18 @@
+.flicker {
+  display: inline-block;
+  transition: opacity 0.05s ease-out;
+}
+
+.flicker:hover {
+  animation: rapidFlicker 0.1s infinite;
+}
+
+@keyframes rapidFlicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

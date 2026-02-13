@@ -1,18 +1,44 @@
 .container {
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
+  background: #0a0a0f;
 }
 
 .orb {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.3;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
   transform: translate(-50%, -50%);
-  animation: float 20s ease-in-out infinite;
+  animation: pulse var(--duration, 8s) ease-in-out infinite,
+    float var(--float-duration, 20s) ease-in-out infinite;
+}
+
+.orb::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(40px);
+  opacity: 0.5;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: var(--min-opacity, 0.3);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: var(--max-opacity, 0.6);
+    transform: translate(-50%, -50%) scale(1.2);
+  }
 }
 
 @keyframes float {
@@ -28,4 +54,28 @@
   75% {
     transform: translate(-50%, -50%) translate(40px, 30px);
   }
+}
+
+/* Speed variants */
+.fast .orb {
+  --duration: 4s;
+  --float-duration: 10s;
+}
+
+.slow .orb {
+  --duration: 12s;
+  --float-duration: 30s;
+}
+
+/* Intensity variants */
+.subtle .orb {
+  --min-opacity: 0.1;
+  --max-opacity: 0.3;
+  filter: blur(60px);
+}
+
+.intense .orb {
+  --min-opacity: 0.5;
+  --max-opacity: 0.8;
+  filter: blur(100px);
 }

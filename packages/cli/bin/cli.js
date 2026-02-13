@@ -39,6 +39,7 @@ const COMPONENTS = {
   'glitch-button': { category: 'buttons', description: 'Button with glitch hover effect', status: 'ready' },
   'chaos-button': { category: 'buttons', description: 'Chaotic animated button with debris', status: 'ready' },
   'dead-button': { category: 'buttons', description: 'Destroyed/glitched button with layers', status: 'ready' },
+  'dead-button': { category: 'buttons', description: 'Destroyed/glitched button with layers', status: 'ready' },
   'deeper-button': { category: 'buttons', description: 'Go deeper style descent button', status: 'ready' },
   'dual-choice': { category: 'buttons', description: 'Yes/No dual button choice', status: 'ready' },
   'cta-brutal': { category: 'buttons', description: 'Brutalist CTA button', status: 'ready' },
@@ -46,9 +47,9 @@ const COMPONENTS = {
   
   // Backgrounds
   'noise-canvas': { category: 'backgrounds', description: 'Animated noise canvas background', status: 'ready' },
-  'light-beams': { category: 'backgrounds', description: 'Vertical colored light beams', status: 'ready' },
+  'light-beams': { category: 'backgrounds', description: 'Diagonal light rays with perspective', status: 'ready' },
   'glow-orbs': { category: 'backgrounds', description: 'Floating blurred orbs', status: 'ready' },
-  'particle-field': { category: 'backgrounds', description: 'Drifting particle background', status: 'ready' },
+  'particle-field': { category: 'backgrounds', description: 'Floating particles with connection lines', status: 'ready' },
   'arcane-circle': { category: 'fantasy', description: 'Rotating magical circle with glowing runes', status: 'ready' },
   'starfall': { category: 'fantasy', description: 'Falling magical stars with trails', status: 'ready' },
   

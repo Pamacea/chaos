@@ -1,0 +1,72 @@
+.chaos-static-flicker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background-color: white;
+  opacity: 0;
+  animation: static-flicker 100ms steps(1) infinite;
+  will-change: opacity;
+}
+
+.chaos-static-flicker--low {
+  animation-name: static-flicker-low;
+}
+
+.chaos-static-flicker--medium {
+  animation-name: static-flicker-medium;
+}
+
+.chaos-static-flicker--high {
+  animation-name: static-flicker-high;
+}
+
+@keyframes static-flicker-low {
+  0% { opacity: 0; }
+  5% { opacity: 0.02; }
+  10% { opacity: 0; }
+  15% { opacity: 0.01; }
+  20% { opacity: 0; }
+  40% { opacity: 0.015; }
+  45% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes static-flicker-medium {
+  0% { opacity: 0; }
+  5% { opacity: 0.04; }
+  10% { opacity: 0; }
+  15% { opacity: 0.03; }
+  20% { opacity: 0; }
+  25% { opacity: 0.02; }
+  30% { opacity: 0; }
+  50% { opacity: 0.05; }
+  55% { opacity: 0; }
+  60% { opacity: 0.025; }
+  65% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes static-flicker-high {
+  0% { opacity: 0; }
+  3% { opacity: 0.08; }
+  6% { opacity: 0; }
+  9% { opacity: 0.06; }
+  12% { opacity: 0; }
+  15% { opacity: 0.04; }
+  18% { opacity: 0; }
+  21% { opacity: 0.07; }
+  24% { opacity: 0; }
+  27% { opacity: 0.05; }
+  30% { opacity: 0; }
+  45% { opacity: 0.09; }
+  48% { opacity: 0; }
+  51% { opacity: 0.065; }
+  54% { opacity: 0; }
+  57% { opacity: 0.045; }
+  60% { opacity: 0; }
+  100% { opacity: 0; }
+}

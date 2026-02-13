@@ -1,113 +1,110 @@
 'use client';
 
-import { useEffect, useRef, forwardRef, HTMLAttributes } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './noise-canvas.module.css';
 
-export interface NoiseCanvasProps extends HTMLAttributes<HTMLCanvasElement> {
-  /** Noise opacity (0-1) */
-  opacity?: number;
-  /** Animation speed (fps) */
-  fps?: number;
-  /** Noise intensity (0-255) */
-  intensity?: number;
-  /** Monochrome or colored noise */
-  monochrome?: boolean;
-  /** Fixed or absolute positioning */
-  position?: 'fixed' | 'absolute';
+export interface NoiseCanvasProps {
+  /** Noise intensity */
+  intensity?: 'subtle' | 'medium' | 'heavy';
+  /** Noise scale/fineness */
+  scale?: 'fine' | 'medium' | 'coarse';
+  /** Animation speed (0 for static) */
+  speed?: number;
+  /** Container class name */
+  className?: string;
 }
 
-export const NoiseCanvas = forwardRef<HTMLCanvasElement, NoiseCanvasProps>(
-  (
-    {
-      opacity = 0.05,
-      fps = 24,
-      intensity = 50,
-      monochrome = true,
-      position = 'fixed',
-      className,
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const animationRef = useRef<number>();
+export function NoiseCanvas({
+  intensity = 'medium',
+  scale = 'medium',
+  speed = 1,
+  className,
+}: NoiseCanvasProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>();
 
-    useEffect(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-      const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      };
+    let animationId: number;
+    let offset = 0;
 
-      resize();
-      window.addEventListener('resize', resize);
+    const resize = () => {
+      canvas.width = window.innerWidth * window.devicePixelRatio;
+      canvas.height = window.innerHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
 
-      let lastFrame = 0;
-      const frameInterval = 1000 / fps;
+    const generateNoise = (time: number) => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-      const render = (timestamp: number) => {
-        if (timestamp - lastFrame >= frameInterval) {
-          const imageData = ctx.createImageData(canvas.width, canvas.height);
-          const data = imageData.data;
+      const imageData = ctx.createImageData(width, height);
+      const data = imageData.data;
 
-          for (let i = 0; i < data.length; i += 4) {
-            const value = Math.random() * intensity;
+      const scaleValue = scale === 'fine' ? 100 : scale === 'coarse' ? 50 : 75;
+      const intensityValue = intensity === 'subtle' ? 30 : intensity === 'heavy' ? 80 : 50;
 
-            if (monochrome) {
-              data[i] = value;
-              data[i + 1] = value;
-              data[i + 2] = value;
-            } else {
-              data[i] = Math.random() * intensity;
-              data[i + 1] = Math.random() * intensity;
-              data[i + 2] = Math.random() * intensity;
-            }
-            data[i + 3] = 255;
-          }
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const i = (y * width + x) * 4;
 
-          ctx.putImageData(imageData, 0, 0);
-          lastFrame = timestamp;
+          // Simplex-like noise
+          const nx = x / scaleValue;
+          const ny = y / scaleValue;
+          const nt = time * 0.0001 * speed;
+
+          const noise = Math.sin(nx * 12.9898 + ny * 78.233 + nt) * 43758.5453;
+          const value = ((Math.sin(noise) + 1) / 2) * intensityValue;
+
+          data[i] = value; // R
+          data[i + 1] = value; // G
+          data[i + 2] = value; // B
+          data[i + 3] = 255; // A
         }
+      }
 
-        animationRef.current = requestAnimationFrame(render);
-      };
+      ctx.putImageData(imageData, 0, 0);
+    };
 
-      animationRef.current = requestAnimationFrame(render);
+    const animate = (time: number) => {
+      if (speed !== 0) {
+        generateNoise(time);
+        animationId = requestAnimationFrame(animate);
+      }
+    };
 
-      return () => {
-        window.removeEventListener('resize', resize);
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current);
-        }
-      };
-    }, [fps, intensity, monochrome]);
+    resize();
+    window.addEventListener('resize', resize);
 
-    return (
-      <canvas
-        ref={(node) => {
-          (canvasRef as React.MutableRefObject<HTMLCanvasElement | null>).current = node;
-          if (typeof ref === 'function') ref(node);
-          else if (ref) ref.current = node;
-        }}
-        className={`${styles.canvas} ${className || ''}`}
-        style={{
-          position,
-          opacity,
-          ...style,
-        }}
-        aria-hidden="true"
-        {...props}
-      />
-    );
-  }
-);
+    if (speed === 0) {
+      generateNoise(0);
+    } else {
+      animationId = requestAnimationFrame(animate);
+    }
 
-NoiseCanvas.displayName = 'NoiseCanvas';
+    animationRef.current = animationId;
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [intensity, scale, speed]);
+
+  const intensityClass = intensity === 'subtle' ? styles.subtle : intensity === 'heavy' ? styles.heavy : '';
+  const scaleClass = scale === 'fine' ? styles.fine : scale === 'coarse' ? styles.coarse : '';
+
+  return (
+    <div className={`${styles.container} ${intensityClass} ${scaleClass} ${className || ''}`}>
+      <canvas ref={canvasRef} className={styles.canvas} />
+    </div>
+  );
+}
 
 export default NoiseCanvas;

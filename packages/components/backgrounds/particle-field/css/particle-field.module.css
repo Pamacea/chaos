@@ -1,31 +1,40 @@
 .container {
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
+  background: #0a0a0f;
 }
 
-.particle {
+.canvas {
   position: absolute;
-  border-radius: 50%;
-  animation: drift linear infinite;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: var(--particle-opacity, 0.6);
 }
 
-@keyframes drift {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--opacity, 0.5);
-  }
-  90% {
-    opacity: var(--opacity, 0.5);
-  }
-  100% {
-    transform: translate(var(--drift, 50px), -100vh);
-    opacity: 0;
-  }
+/* Density variants */
+.sparse .canvas {
+  --particle-opacity: 0.4;
+}
+
+.dense .canvas {
+  --particle-opacity: 0.8;
+}
+
+/* Size variants */
+.small .canvas {
+  --particle-size: 2px;
+}
+
+.medium .canvas {
+  --particle-size: 3px;
+}
+
+.large .canvas {
+  --particle-size: 4px;
 }

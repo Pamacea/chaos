@@ -5,12 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.5] - 2025-02-13
 
 ### Added
-- Additional component variants and themes
-- Enhanced accessibility features
-- Performance optimizations
+- **Background Effects**: glow-orbs, light-beams, noise-canvas, particle-field
+- **Buttons**: chaos-button
+- **Overlays**: noise-overlay, scanlines, static-flicker, vignette
+- **Text Effects**: distortion-text, flicker-text, falling-text
+- **Enhanced**: light-beams with perspective animation
+- **Documentation**: Complete component showcase and usage examples
+
+### Changed
+- Updated CLI registry with new components
+- Improved component categorization
+- Enhanced README with quick start guide
+
+### Fixed
+- Particle field performance optimization
+- Static flicker timing consistency
 
 ## [1.0.0] - 2026-02-09
 

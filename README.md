@@ -299,6 +299,16 @@ Color variants available:
 - **Composable** — Mix effects freely
 - **Brutalist** — Embrace the chaos
 
+## What's New in 0.7.5
+
+- 🆕 **14 new chaotic UI components** — 105 total
+- 🌌 **Backgrounds**: Algorithmic generative backgrounds (glow-orbs, light-beams, noise-canvas, particle-field)
+- 🎛️ **Buttons**: chaos-button with debris animation
+- 🎭️ **Overlays**: CRT-style effects (noise-overlay, scanlines, static-flicker, vignette)
+- ✨ **Text Effects**: Sci-fi inspired (distortion-text, flicker-text, falling-text)
+- 📚 **Documentation**: Full component showcase with live examples
+- 🎨️ **Inspired by**: sciencemagic.net chaotic aesthetics
+
 ## What's New in 0.6.0
 
 - 🆕 **26 new components** — 91 total
